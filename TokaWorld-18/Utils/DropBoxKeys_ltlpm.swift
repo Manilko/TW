@@ -43,7 +43,7 @@ final class ServerManager : NSObject {
                     } else {
                         self?.client = DropboxClient(accessToken: accessToken)
                     }
-                    self?.getFolders()
+//                    self?.getFolders()
                     print("good job token update 🫡 \(accessToken),\(String(describing: self?.client))")
                 } else {
                     print("error while getting access token ⚠️")

@@ -29,8 +29,6 @@ final class ModsController: UIViewController {
         resultsMod = RealmManager.shared.getObjects(Mod.self)
         arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
         
-        
-        
         super.init(nibName: nil, bundle: nil)
         
         view().navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
@@ -56,8 +54,6 @@ final class ModsController: UIViewController {
         view().filterView.collectionView.delegate = self
         view().filterView.collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         view().filterView.closeButton.addTarget(self, action: #selector(closeButtonTappedFilterView), for: .touchUpInside)
-        
-        
     }
 
     
@@ -81,8 +77,34 @@ final class ModsController: UIViewController {
             print(" 🔶  DONE")
         }
         
+        // MARK: - Alerts
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//            self.presentInternetAlert()
+//        })
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//            self.presentTextAlert(titleText: "Loading...".uppercased()) { (vc) in
+//                vc.dismiss(animated: true)
+//            }
+//        })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.presentTwoVLabelAndTwoHButtonAlert(
+                titleText: "Are you sure?",
+                subtitleText: "You 100% sure about deleting your character?",
+                leftButtonImageType: .noButton,
+                rightButtonImageType: .deleteButton,
+                leftCompletion: {
+                    print("left button tapped")
+                    self.dismiss(animated: true)
+                },
+                rightCompletion: {
+                    print("right button tapped")
+                    self.dismiss(animated: true)
+
+                })
+        })
     }
-    
     
     func downloadPDFs(completion: @escaping () -> Void) {
         let fileManager = FileManager.default
@@ -291,6 +313,3 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
 extension ModsController: ViewSeparatable {
     typealias RootView = ModsView
 }
-
-
-

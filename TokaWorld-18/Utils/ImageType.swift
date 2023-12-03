@@ -10,6 +10,12 @@ import UIKit
 enum ImageType: String, Codable, CaseIterable {
     case loadingBackgroundIPhone
     case loadingBackgroundIPad
+    case alertBackground
+    
+    case noButton
+    case settingsButton
+    case deleteButton
+    case cancelButton
     
     static let isIPhone: Bool = UIDevice.current.isIPhone
     static let loadingBackground: String = isIPhone ? ImageType.loadingBackgroundIPhone.rawValue  : ImageType.loadingBackgroundIPad.rawValue

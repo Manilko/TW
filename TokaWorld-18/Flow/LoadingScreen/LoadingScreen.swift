@@ -142,14 +142,18 @@ class LoadingScreenViewController: UIViewController {
             loadingLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ])
         
+        let screenWidth = UIScreen.main.bounds.width
+        let alertWidth = UIDevice.current.isIPhone ? screenWidth - 40 : screenWidth * 0.6
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(loadingIndicator)
         
         NSLayoutConstraint.activate([
             loadingIndicator.heightAnchor.constraint(equalToConstant: UIDevice.current.isIPhone ? 32 : 40),
             loadingIndicator.topAnchor.constraint(equalTo: loadingLabel.bottomAnchor, constant: 16),
-            loadingIndicator.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            loadingIndicator.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            loadingIndicator.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            loadingIndicator.widthAnchor.constraint(equalToConstant: alertWidth),
+//            loadingIndicator.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+//            loadingIndicator.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
         ])
     }
 }
