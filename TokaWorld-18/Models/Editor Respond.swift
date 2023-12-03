@@ -10,8 +10,9 @@ import RealmSwift
 
 // MARK: - Editor Respond
 final class EditorRespondModel: Object, Codable {
-    @objc dynamic var id: String? = "editor"
+    
     var editor = List<EditorCategory>()
+    @objc dynamic var id: String? = "editor"
     
     override static func primaryKey() -> String? {
         return "id"

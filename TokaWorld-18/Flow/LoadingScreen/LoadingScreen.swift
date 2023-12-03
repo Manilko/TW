@@ -70,6 +70,9 @@ class LoadingScreenViewController: UIViewController {
                         case .wallpapers:
                             if let convertedData = value as? Wallpapers {
                                 RealmManager.shared.add(convertedData.item)
+//                                if !RealmManager.shared.isDataExist(Wallpapers.self, primaryKeyValue: convertedData.id as Any) {
+//                                        RealmManager.shared.add(convertedData)
+//                                    }
                             }
                         case .editor:
                             if let convertedData = value as? EditorRespondModel {
@@ -201,20 +204,6 @@ class LoadingScreenViewModel{
     
     }
     
-//    private func getEditorJson(){
-//        ServerManager.shared.downloadJSONFile(filePath: editorJSON) { data in
-//            guard let data = data else { return }
-//            
-//            if let categoryArray = JsonParsingManager.parseEditorJSON(data: data) {
-//                
-//                categoryArray.forEach { categoryItem in
-//                    categoryItem.downloadImages {
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
     
     func getJson(completion: @escaping ([JsonPathType: Data?]) -> Void) {
         var dataResults: [JsonPathType: Data?] = [:]
@@ -236,5 +225,27 @@ class LoadingScreenViewModel{
             completion(dataResults)
         }
     }
+    
+    
+    
+    
+    func downloadFile(completion: @escaping ([JsonPathType: Data?]) -> Void) {
+        
+//        let results: Results<Wallpapers>
+//        let array: [Wallpapers]
+//        
+//        results = RealmManager.shared.getObjects(Wallpapers.self)
+//        array = Array(RealmManager.shared.getObjects(Wallpapers.self))
+//        
+//        let herosElementSet = JsonParsingManager.parseJSON(data: array)
+//        guard let herosElementSet = herosElementSet else { return }
+//        for i in herosElementSet {
+//            i.downloadPDFs {
+//                print("@@@@@@@@>>>>>>>>")
+//            }
+//        }
+    }
+    
+    
 }
 

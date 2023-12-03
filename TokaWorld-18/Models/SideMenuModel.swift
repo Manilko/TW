@@ -9,6 +9,27 @@ import UIKit
 import RealmSwift
 
 // MARK: - Wallpapers
+//class Wallpapers: Object, Codable {
+//    @objc dynamic var id: String? = "wallpapers"
+//    @objc dynamic var rd1L3K: String = ""
+//    var item: List<WallpaperRealm> = List<WallpaperRealm>()
+//
+//    override static func primaryKey() -> String? {
+//        return "id"
+//    }
+//
+//    enum CodingKeys: String, CodingKey {
+//        case rd1L3K = "_rd1l_3k"
+//        case item = "Wallpapers"
+//        case id
+//    }
+//}
+
+
+
+
+
+
 struct Wallpapers: Codable {
     let rd1L3K: String
     let item: [WallpaperRealm]
@@ -18,6 +39,15 @@ struct Wallpapers: Codable {
         case item = "Wallpapers"
     }
 }
+
+
+
+
+
+
+
+
+
 
 final class WallpaperRealm: Object, Codable {
     
@@ -165,9 +195,9 @@ final class Mod: Object, Codable {
     @objc dynamic var isNew: Bool = false
     @objc dynamic var isTop: Bool = false
     @objc dynamic var isAll: Bool = false
-    @objc dynamic var rd1Ld4: String?
-    @objc dynamic var rd1Li1: String?
-    @objc dynamic var rd1Lf2: String?
+    @objc dynamic var rd1Ld4: String?  // "icon"
+    @objc dynamic var rd1Li1: String?  // "title"
+    @objc dynamic var rd1Lf2: String? // discription
 
     override static func primaryKey() -> String? {
         return "id"

@@ -125,7 +125,7 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     }
 
     func configure(with model: Mod) {
-        image.image = UIImage(named: "model.icon")
+        image.image = getImageFromFile(with: "/Mods/\(model.rd1Lf2)")
         titleLabel.text = model.rd1Ld4
         descriptionLabel.text = model.rd1Li1
         favoriteImage.isHidden = false
@@ -137,5 +137,69 @@ final class ModsTVCell: UITableViewCell, NibCapable {
 
     func updateFavoriteImage(isFavorite: Bool = false) {
         // favoriteImage.isHidden = !isFavorite
+    }
+}
+
+extension ModsTVCell{
+    
+    func getImageFromFile(with fileName: String) -> UIImage {
+        var image = UIImage()
+        
+//        for local Image
+        if let localImage = UIImage(named: fileName){
+            image = localImage
+        } else{
+            if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let fileURL = documentDirectory.appendingPathComponent(fileName)
+
+                if FileManager.default.fileExists(atPath: fileURL.path) {
+                    do {
+                        let fileData = try Data(contentsOf: fileURL)
+
+                        if let im = transformPdfToImage(data: fileData) {
+                            image = im
+                        }
+                    } catch {
+                        print("Failed to read data from file: \(error)")
+                    }
+                }
+            }
+        }
+        
+        return image
+    }
+
+    
+    func transformPdfToImage(data: Data) -> UIImage? {
+        guard let provider = CGDataProvider(data: data as CFData),
+              let pdfDoc = CGPDFDocument(provider),
+              let pdfPage = pdfDoc.page(at: 1)
+        else {
+            return nil
+        }
+
+        let imageSize = CGSize(width: 1000, height: 1000)
+
+        UIGraphicsBeginImageContext(imageSize)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+
+        context.setFillColor(UIColor.clear.cgColor)
+        context.fill(CGRect(origin: .zero, size: imageSize))
+
+        context.translateBy(x: 0, y: imageSize.height)
+        context.scaleBy(x: 1, y: -1)
+
+        let pdfRect = pdfPage.getBoxRect(.mediaBox)
+
+        let scale = min(imageSize.width / pdfRect.width, imageSize.height / pdfRect.height)
+        context.scaleBy(x: scale, y: scale)
+
+        context.drawPDFPage(pdfPage)
+
+        let pdfImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return pdfImage
     }
 }
