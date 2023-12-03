@@ -64,6 +64,21 @@
                   endingLineNumber = "41"
                   offsetFromSymbolStart = "52">
                </Location>
+               <Location
+                  uuid = "82C9F1D4-59E9-4CB9-A6CC-32AA1367520C - 7942e66595aed164"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.HouseIdeasViewController.menuDidTaped(__C.UIButton) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/HouseIdeasViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "52">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -247,6 +262,21 @@
                   moduleName = "TokaWorld-18"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yevheniimanilko/Documents/ios-toka-world-18-ref/TokaWorld-18/Flow/SideMenuController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "9F1F4A35-EC32-424C-8AE3-6055BBB6D73C - 188c36d4265a9434"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.SideMenuController.closeDidTaped() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/SideMenuController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -605,6 +635,86 @@
             startingLineNumber = "295"
             endingLineNumber = "295"
             landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C4BCF75-CC26-44B1-BBBA-FE444CBC7CB1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "configure(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C70963C7-F575-497F-9CF3-BCE5661F9C89"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "getImageFromFile(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4A2F3E18-091D-40E9-9229-5A78F50D9839"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "getImageFromFile(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "74564D27-2693-4D6A-81FB-563E0D7496E4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "getImageFromFile(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "685C19D9-6B74-4E11-8B12-C784388EF651"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "getImageFromFile(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

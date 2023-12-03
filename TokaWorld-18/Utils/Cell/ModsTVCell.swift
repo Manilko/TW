@@ -125,7 +125,8 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     }
 
     func configure(with model: Mod) {
-        image.image = getImageFromFile(with: "/Mods/\(model.rd1Lf2)")
+        let im = getImageFromFile(with: "/Mods/\(model.rd1Lf2)")
+        image.image = im
         titleLabel.text = model.rd1Ld4
         descriptionLabel.text = model.rd1Li1
         favoriteImage.isHidden = false
@@ -156,9 +157,15 @@ extension ModsTVCell{
                     do {
                         let fileData = try Data(contentsOf: fileURL)
 
-                        if let im = transformPdfToImage(data: fileData) {
-                            image = im
+//                        if let im = transformPdfToImage(data: fileData) {
+//                            image = im
+//                        }
+                        if let uiImage = UIImage(data: fileData){
+                            image = uiImage
+                        } else{
+                            print("Failed let uiImage = UIImage(data: fileData) ")
                         }
+                        
                     } catch {
                         print("Failed to read data from file: \(error)")
                     }
@@ -170,36 +177,36 @@ extension ModsTVCell{
     }
 
     
-    func transformPdfToImage(data: Data) -> UIImage? {
-        guard let provider = CGDataProvider(data: data as CFData),
-              let pdfDoc = CGPDFDocument(provider),
-              let pdfPage = pdfDoc.page(at: 1)
-        else {
-            return nil
-        }
-
-        let imageSize = CGSize(width: 1000, height: 1000)
-
-        UIGraphicsBeginImageContext(imageSize)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-
-        context.setFillColor(UIColor.clear.cgColor)
-        context.fill(CGRect(origin: .zero, size: imageSize))
-
-        context.translateBy(x: 0, y: imageSize.height)
-        context.scaleBy(x: 1, y: -1)
-
-        let pdfRect = pdfPage.getBoxRect(.mediaBox)
-
-        let scale = min(imageSize.width / pdfRect.width, imageSize.height / pdfRect.height)
-        context.scaleBy(x: scale, y: scale)
-
-        context.drawPDFPage(pdfPage)
-
-        let pdfImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-        return pdfImage
-    }
+//    func transformPdfToImage(data: Data) -> UIImage? {
+//        guard let provider = CGDataProvider(data: data as CFData),
+//              let pdfDoc = CGPDFDocument(provider),
+//              let pdfPage = pdfDoc.page(at: 1)
+//        else {
+//            return nil
+//        }
+//
+//        let imageSize = CGSize(width: 1000, height: 1000)
+//
+//        UIGraphicsBeginImageContext(imageSize)
+//        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+//
+//        context.setFillColor(UIColor.clear.cgColor)
+//        context.fill(CGRect(origin: .zero, size: imageSize))
+//
+//        context.translateBy(x: 0, y: imageSize.height)
+//        context.scaleBy(x: 1, y: -1)
+//
+//        let pdfRect = pdfPage.getBoxRect(.mediaBox)
+//
+//        let scale = min(imageSize.width / pdfRect.width, imageSize.height / pdfRect.height)
+//        context.scaleBy(x: scale, y: scale)
+//
+//        context.drawPDFPage(pdfPage)
+//
+//        let pdfImage = UIGraphicsGetImageFromCurrentImageContext()
+//
+//        UIGraphicsEndImageContext()
+//
+//        return pdfImage
+//    }
 }
