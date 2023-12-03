@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DA987A62B1CD88900E06C26 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A52B1CD88900E06C26 /* ImageType.swift */; };
+		0DA987A92B1CD95B00E06C26 /* UIImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */; };
+		0DA987AB2B1CD99F00E06C26 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */; };
+		0DA987AD2B1CDFB400E06C26 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987AC2B1CDFB400E06C26 /* UIColor+Extension.swift */; };
+		0DA987AF2B1CE3EB00E06C26 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987AE2B1CE3EB00E06C26 /* UIView+Extension.swift */; };
+		0DA987B12B1CEEC600E06C26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DA987B02B1CEEC600E06C26 /* LaunchScreen.storyboard */; };
 		15B3B0732AFBFBF700706666 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0722AFBFBF700706666 /* AppDelegate.swift */; };
 		15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0742AFBFBF700706666 /* SceneDelegate.swift */; };
 		15B3B0772AFBFBF700706666 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0762AFBFBF700706666 /* SideMenuController.swift */; };
@@ -103,6 +109,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DA987A52B1CD88900E06C26 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
+		0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Init.swift"; sourceTree = "<group>"; };
+		0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		0DA987AC2B1CDFB400E06C26 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0DA987AE2B1CE3EB00E06C26 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		0DA987B02B1CEEC600E06C26 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15B3B06F2AFBFBF700706666 /* TokaWorld-18.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TokaWorld-18.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B3B0722AFBFBF700706666 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15B3B0742AFBFBF700706666 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +212,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DA987A72B1CD92E00E06C26 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */,
+				0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */,
+				0DA987AC2B1CDFB400E06C26 /* UIColor+Extension.swift */,
+				0DA987AE2B1CE3EB00E06C26 /* UIView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		15B3B0662AFBFBF700706666 = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +303,7 @@
 		15B3B0A42AFC033E00706666 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0DA987A72B1CD92E00E06C26 /* Extensions */,
 				4C78BBFD2B1C939400C59A64 /* Uiews */,
 				4C50AC952B03AE5700355DBF /* Protocols */,
 				4C50AC942B03A77200355DBF /* Fonts */,
@@ -291,6 +315,8 @@
 				4C60211B2B0190BB0098F071 /* Extension.swift */,
 				4C4CC7462B14E3030030885C /* NetworkMonitor.swift */,
 				4C4CC7482B14E36E0030885C /* BaseViewController.swift */,
+				0DA987A52B1CD88900E06C26 /* ImageType.swift */,
+				0DA987B02B1CEEC600E06C26 /* LaunchScreen.storyboard */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -629,6 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C575F232B0256F500135BF3 /* ReadexPro-Bold.ttf in Resources */,
+				0DA987B12B1CEEC600E06C26 /* LaunchScreen.storyboard in Resources */,
 				15B3B07C2AFBFBF900706666 /* Assets.xcassets in Resources */,
 				4C575F1F2B02567B00135BF3 /* LilitaOne.ttf in Resources */,
 			);
@@ -660,6 +687,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C7006C42B08DA41009A497C /* EditProcessCoordinator.swift in Sources */,
+				0DA987AD2B1CDFB400E06C26 /* UIColor+Extension.swift in Sources */,
 				4C78BC012B1C948200C59A64 /* SideMenuView.swift in Sources */,
 				15C9D6152AFE3824002232D3 /* NavigationView.swift in Sources */,
 				4C78BBF92B1AB0C900C59A64 /* CollectionViewContainer.swift in Sources */,
@@ -676,6 +704,7 @@
 				4C50AC8F2B0397D400355DBF /* AppCoordinator.swift in Sources */,
 				4C6AFE612B0754FF0001B6A7 /* DownloadPictureCoordinator.swift in Sources */,
 				4C50ACA12B042ED100355DBF /* SideMenuTVCell.swift in Sources */,
+				0DA987AF2B1CE3EB00E06C26 /* UIView+Extension.swift in Sources */,
 				4C55CBAC2B10E08E00A883AC /* EditorCategoryCell.swift in Sources */,
 				4C78BC032B1C955900C59A64 /* DownloadPictureView.swift in Sources */,
 				4C7006BC2B08D1E8009A497C /* DetailEditController.swift in Sources */,
@@ -692,12 +721,14 @@
 				4C6021162B018B730098F071 /* RoundButton.swift in Sources */,
 				4C78BC072B1C95F100C59A64 /* EditorCollectionCell.swift in Sources */,
 				4C78BBF72B1A88AD00C59A64 /* Editor Respond.swift in Sources */,
+				0DA987AB2B1CD99F00E06C26 /* UIDevice+Extension.swift in Sources */,
 				15B3B0772AFBFBF700706666 /* SideMenuController.swift in Sources */,
 				4C50AC912B03A54A00355DBF /* FurnitureViewController.swift in Sources */,
 				4C78BBFF2B1C93B800C59A64 /* LinearLoadingIndicator.swift in Sources */,
 				4C8939B32B13504700EB821A /* ViewMod.swift in Sources */,
 				4C7006BE2B08D1F6009A497C /* DetailEditCoordinator.swift in Sources */,
 				4C78BBF52B15629100C59A64 /* SideMenuModel.swift in Sources */,
+				0DA987A62B1CD88900E06C26 /* ImageType.swift in Sources */,
 				15B3B0732AFBFBF700706666 /* AppDelegate.swift in Sources */,
 				4C60211C2B0190BB0098F071 /* Extension.swift in Sources */,
 				4C7006B72B08C19E009A497C /* EditorController.swift in Sources */,
@@ -712,6 +743,7 @@
 				4C575F2F2B02773700135BF3 /* HouseIdeasCoordinator.swift in Sources */,
 				4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */,
 				4C7006C22B08DA34009A497C /* EditProcessController.swift in Sources */,
+				0DA987A92B1CD95B00E06C26 /* UIImage+Init.swift in Sources */,
 				4C50AC932B03A5BD00355DBF /* FurnitureCoordinator.swift in Sources */,
 				4C6AFE682B075F780001B6A7 /* RecommendedCell.swift in Sources */,
 			);
@@ -879,10 +911,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TokaWorld-18/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -905,10 +937,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TokaWorld-18/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
