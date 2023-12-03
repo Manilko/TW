@@ -29,11 +29,9 @@ class LoadingScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .red
+        self.view.backgroundColor = .clear
         
-        configureLayout()
-        loadDataWithLoadingIndicator()
-        updateProgressView(progress: 0)
+        fetchData()
     }
     
     //bad idea, need to fix it
@@ -92,6 +90,18 @@ class LoadingScreenViewController: UIViewController {
                 case .decodingError(let jsonPath, let decodingError):
                     print("Error decoding JSON for \(jsonPath): \(decodingError)")
                 }
+            }
+        }
+    }
+    
+    private func fetchData() {
+        if NetworkMonitoring.isConnection {
+            configureLayout()
+            loadDataWithLoadingIndicator()
+            updateProgressView(progress: 0)
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.fetchData()
             }
         }
     }

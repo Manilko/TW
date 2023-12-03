@@ -19,6 +19,8 @@
 		0DA987BE2B1D01CD00E06C26 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987BD2B1D01CD00E06C26 /* UIViewController+Alert.swift */; };
 		0DA987C02B1D034B00E06C26 /* TitleSubtitleAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987BF2B1D034B00E06C26 /* TitleSubtitleAlertView.swift */; };
 		0DA987C22B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987C12B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift */; };
+		0DA987C42B1D0C9F00E06C26 /* NetworkMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987C32B1D0C9F00E06C26 /* NetworkMonitoring.swift */; };
+		0DA987C62B1D0D4500E06C26 /* UIWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987C52B1D0D4500E06C26 /* UIWindow+Extension.swift */; };
 		15B3B0732AFBFBF700706666 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0722AFBFBF700706666 /* AppDelegate.swift */; };
 		15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0742AFBFBF700706666 /* SceneDelegate.swift */; };
 		15B3B0772AFBFBF700706666 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0762AFBFBF700706666 /* SideMenuController.swift */; };
@@ -127,6 +129,8 @@
 		0DA987BD2B1D01CD00E06C26 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		0DA987BF2B1D034B00E06C26 /* TitleSubtitleAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleAlertView.swift; sourceTree = "<group>"; };
 		0DA987C12B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleAndTwoHButtonView.swift; sourceTree = "<group>"; };
+		0DA987C32B1D0C9F00E06C26 /* NetworkMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoring.swift; sourceTree = "<group>"; };
+		0DA987C52B1D0D4500E06C26 /* UIWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extension.swift"; sourceTree = "<group>"; };
 		15B3B06F2AFBFBF700706666 /* TokaWorld-18.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TokaWorld-18.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B3B0722AFBFBF700706666 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15B3B0742AFBFBF700706666 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				0DA987AE2B1CE3EB00E06C26 /* UIView+Extension.swift */,
 				0DA987B42B1CF41C00E06C26 /* UIFont+Extension.swift */,
 				0DA987BD2B1D01CD00E06C26 /* UIViewController+Alert.swift */,
+				0DA987C52B1D0D4500E06C26 /* UIWindow+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 			children = (
 				4C4CC7442B13D43E0030885C /* LoadingScreen.swift */,
 				4C78BBFB2B1C933A00C59A64 /* LoadingScreenCoordinator.swift */,
+				0DA987C32B1D0C9F00E06C26 /* NetworkMonitoring.swift */,
 			);
 			path = LoadingScreen;
 			sourceTree = "<group>";
@@ -768,8 +774,10 @@
 				0DA987B52B1CF41C00E06C26 /* UIFont+Extension.swift in Sources */,
 				15C9D61B2AFE6C8F002232D3 /* RealmManager.swift in Sources */,
 				0DA987BE2B1D01CD00E06C26 /* UIViewController+Alert.swift in Sources */,
+				0DA987C42B1D0C9F00E06C26 /* NetworkMonitoring.swift in Sources */,
 				4C7006B92B08C1AF009A497C /* EditirCoordinator.swift in Sources */,
 				4C7006C82B0E934F009A497C /* CharacterImageViewManager.swift in Sources */,
+				0DA987C62B1D0D4500E06C26 /* UIWindow+Extension.swift in Sources */,
 				15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */,
 				4C575F2F2B02773700135BF3 /* HouseIdeasCoordinator.swift in Sources */,
 				4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */,
