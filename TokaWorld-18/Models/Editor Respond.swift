@@ -12,10 +12,22 @@ import RealmSwift
 final class EditorRespondModel: Object, Codable {
     
     var editor = List<EditorCategory>()
-    @objc dynamic var id: String? = "editor"
+    @objc dynamic var id: String = "editor"
     
-    override static func primaryKey() -> String? {
+    override static func primaryKey() -> String {
         return "id"
+    }
+    
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Handle the absence of the "id" key
+        if let id = try container.decodeIfPresent(String.self, forKey: .id) {
+            self.id = id
+        }
+
+        self.editor = try container.decodeIfPresent(List<EditorCategory>.self, forKey: .editor) ?? List<EditorCategory>()
     }
 }
 

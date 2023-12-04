@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "82C9F1D4-59E9-4CB9-A6CC-32AA1367520C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TokaWorld-18/Flow/HouseIdeasViewController.swift"
@@ -642,80 +642,502 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4C4BCF75-CC26-44B1-BBBA-FE444CBC7CB1"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "configure(with:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4C4BCF75-CC26-44B1-BBBA-FE444CBC7CB1 - b112721f8afcaae6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.ModsTVCell.configure(with: TokaWorld_18.Mod) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "636">
+               </Location>
+               <Location
+                  uuid = "4C4BCF75-CC26-44B1-BBBA-FE444CBC7CB1 - b112721f8afcaae6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.ModsTVCell.configure(with: TokaWorld_18.Mod) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "684">
+               </Location>
+               <Location
+                  uuid = "4C4BCF75-CC26-44B1-BBBA-FE444CBC7CB1 - b112721f8afca9ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.ModsTVCell.configure(with: TokaWorld_18.Mod) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "940">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C70963C7-F575-497F-9CF3-BCE5661F9C89"
+            uuid = "D6AD8544-2721-4F12-A184-1051357FB05D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "getImageFromFile(with:)"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "loadDataWithLoadingIndicator()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D6AD8544-2721-4F12-A184-1051357FB05D - 520315528d42cffa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1256">
+               </Location>
+               <Location
+                  uuid = "D6AD8544-2721-4F12-A184-1051357FB05D - 520315528d42cffa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1140">
+               </Location>
+               <Location
+                  uuid = "D6AD8544-2721-4F12-A184-1051357FB05D - 520315528d42cffa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17F65E8C-79C4-4C10-8460-ABB6FC188894"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "loadDataWithLoadingIndicator()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4A2F3E18-091D-40E9-9229-5A78F50D9839"
+            uuid = "F2C9E47C-26B7-4845-990E-52C22D88BA56"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "getImageFromFile(with:)"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "loadDataWithLoadingIndicator()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F2C9E47C-26B7-4845-990E-52C22D88BA56 - 520315528d42b037"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "3536">
+               </Location>
+               <Location
+                  uuid = "F2C9E47C-26B7-4845-990E-52C22D88BA56 - 520315528d42b037"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "3420">
+               </Location>
+               <Location
+                  uuid = "F2C9E47C-26B7-4845-990E-52C22D88BA56 - 520315528d42b037"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "3280">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "74564D27-2693-4D6A-81FB-563E0D7496E4"
+            uuid = "898B5060-B7B1-4992-951D-300E7E2F6765"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "getImageFromFile(with:)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "loadDataWithLoadingIndicator()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "898B5060-B7B1-4992-951D-300E7E2F6765 - 520315528d42b016"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "3268">
+               </Location>
+               <Location
+                  uuid = "898B5060-B7B1-4992-951D-300E7E2F6765 - 520315528d42b016"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "3152">
+               </Location>
+               <Location
+                  uuid = "898B5060-B7B1-4992-951D-300E7E2F6765 - 520315528d42b016"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in TokaWorld_18.LoadingScreenViewController.loadDataWithLoadingIndicator() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "3140">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "685C19D9-6B74-4E11-8B12-C784388EF651"
+            uuid = "1B76DD40-0A1B-4ADD-8D54-B9E33B58AC40"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
+            filePath = "TokaWorld-18/Utils/RealmManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "getImageFromFile(with:)"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "isDataExist(_:primaryKeyValue:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1B76DD40-0A1B-4ADD-8D54-B9E33B58AC40 - 6506ed2261d493c8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Any) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "172"
+                  endingLineNumber = "172"
+                  offsetFromSymbolStart = "456">
+               </Location>
+               <Location
+                  uuid = "1B76DD40-0A1B-4ADD-8D54-B9E33B58AC40 - 6506ed2261d493ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Any) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "316">
+               </Location>
+               <Location
+                  uuid = "1B76DD40-0A1B-4ADD-8D54-B9E33B58AC40 - 6506ed2261d493ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Any) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "492">
+               </Location>
+               <Location
+                  uuid = "1B76DD40-0A1B-4ADD-8D54-B9E33B58AC40 - 6506ed2261d493ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Any) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "568">
+               </Location>
+               <Location
+                  uuid = "1B76DD40-0A1B-4ADD-8D54-B9E33B58AC40 - 4a11322ca99f6874"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Swift.String) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "376">
+               </Location>
+               <Location
+                  uuid = "1B76DD40-0A1B-4ADD-8D54-B9E33B58AC40 - 4a11322ca99f6874"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Swift.String) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "432">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CD5239C-7E04-4C1D-B169-47F7E55B1D1B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TokaWorld-18/Utils/RealmManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "isDataExist(_:primaryKeyValue:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1CD5239C-7E04-4C1D-B169-47F7E55B1D1B - 6506ed2261d4938a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Any) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "492">
+               </Location>
+               <Location
+                  uuid = "1CD5239C-7E04-4C1D-B169-47F7E55B1D1B - 6506ed2261d4938a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Any) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "580">
+               </Location>
+               <Location
+                  uuid = "1CD5239C-7E04-4C1D-B169-47F7E55B1D1B - 4a11322ca99f6855"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Swift.String) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "444">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C61199A-2D30-4EFF-89A8-03BF150F7370"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TokaWorld-18/Utils/RealmManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "isDataExist(_:primaryKeyValue:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7C61199A-2D30-4EFF-89A8-03BF150F7370 - 6506ed2261d49334"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Any) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "512">
+               </Location>
+               <Location
+                  uuid = "7C61199A-2D30-4EFF-89A8-03BF150F7370 - 6506ed2261d49334"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Any) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  uuid = "7C61199A-2D30-4EFF-89A8-03BF150F7370 - 4a11322ca99f68eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.RealmManager.isDataExist&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.RealmSwiftObject&gt;(_: &#x3c4;_0_0.Type, primaryKeyValue: Swift.String) -&gt; Swift.Bool"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Utils/RealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "472">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

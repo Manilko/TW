@@ -125,8 +125,14 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     }
 
     func configure(with model: Mod) {
-        let im = getImageFromFile(with: "/Mods/\(model.rd1Lf2)")
-        image.image = im
+        
+        if let imageq = getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
+            image.image = imageq
+            print(" ✅ Loaded image from file.")
+        }
+//        let im = getImageFromFile(with: "/Mods/\(model.rd1Lf2 ?? ""))")
+//        print(im)
+//        image.image = im
         titleLabel.text = model.rd1Ld4
         descriptionLabel.text = model.rd1Li1
         favoriteImage.isHidden = false
@@ -139,42 +145,39 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     func updateFavoriteImage(isFavorite: Bool = false) {
         // favoriteImage.isHidden = !isFavorite
     }
-}
-
-extension ModsTVCell{
     
-    func getImageFromFile(with fileName: String) -> UIImage {
-        var image = UIImage()
+    func getImageFromFile(fileName: String) -> UIImage? {
+        let fileManager = FileManager.default
         
-//        for local Image
-        if let localImage = UIImage(named: fileName){
-            image = localImage
-        } else{
-            if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let fileURL = documentDirectory.appendingPathComponent(fileName)
-
-                if FileManager.default.fileExists(atPath: fileURL.path) {
-                    do {
-                        let fileData = try Data(contentsOf: fileURL)
-
-//                        if let im = transformPdfToImage(data: fileData) {
-//                            image = im
-//                        }
-                        if let uiImage = UIImage(data: fileData){
-                            image = uiImage
-                        } else{
-                            print("Failed let uiImage = UIImage(data: fileData) ")
-                        }
-                        
-                    } catch {
-                        print("Failed to read data from file: \(error)")
-                    }
-                }
-            }
+        var fixedFileName = fileName
+        if fixedFileName == "/Mods/7.jpeg"{   // mistake in json
+            fixedFileName = "/Mods/7.png"
         }
         
-        return image
+        if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = documentsDirectory.appendingPathComponent(fixedFileName)
+
+            // Check if the file exists
+            guard fileManager.fileExists(atPath: fileURL.path) else {
+                print(" ⚠️ File not found at: \(fileURL)")
+                return nil
+            }
+
+            // Attempt to load the image from the file
+            if let imageData = try? Data(contentsOf: fileURL), let image = UIImage(data: imageData) {
+                return image
+            } else {
+                print(" ⛔ Error loading image from file.")
+            }
+        } else {
+            print("🚫 Document directory not found.")
+        }
+
+        return nil
     }
+
+
+
 
     
 //    func transformPdfToImage(data: Data) -> UIImage? {

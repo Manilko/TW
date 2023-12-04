@@ -49,7 +49,9 @@ class LoadingScreenViewController: UIViewController {
                         switch key {
                         case .mods:
                             if let convertedData = value as? Mods {
-                                RealmManager.shared.add(convertedData.item)
+                                if !RealmManager.shared.isDataExist(Mods.self, primaryKeyValue: convertedData.id) {
+                                        RealmManager.shared.add(convertedData)
+                                    }
                             }
                         case .furniture:
                             if let convertedData = value as? Furniture {
@@ -76,7 +78,7 @@ class LoadingScreenViewController: UIViewController {
                             }
                         case .editor:
                             if let convertedData = value as? EditorRespondModel {
-                                if !RealmManager.shared.isDataExist(EditorRespondModel.self, primaryKeyValue: convertedData.id as Any) {
+                                if !RealmManager.shared.isDataExist(EditorRespondModel.self, primaryKeyValue: convertedData.id) {
                                         RealmManager.shared.add(convertedData)
                                     }
                             }

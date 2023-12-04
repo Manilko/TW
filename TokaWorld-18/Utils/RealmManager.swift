@@ -149,16 +149,32 @@ extension RealmManager {
 
     }
     
-    func isDataExist<T: Object>(_ type: T.Type, primaryKeyValue: Any) -> Bool {
-            if !isRealmAccessible() { return false }
+//    func isDataExist<T: Object>(_ type: T.Type, primaryKeyValue: Any) -> Bool {
+//            if !isRealmAccessible() { return false }
+//
+//            let realm = getRealm()
+//            realm.refresh()
+//
+//            if let existingObject = realm.object(ofType: type, forPrimaryKey: primaryKeyValue) {
+//                return true
+//            } else {
+//                return false
+//            }
+//        }
+    
+    func isDataExist<T: Object>(_ type: T.Type, primaryKeyValue: String) -> Bool {
+        if !isRealmAccessible() { return false }
 
-            let realm = getRealm()
-            realm.refresh()
+        let realm = getRealm()
+        realm.refresh()
+        
+        print(primaryKeyValue)
 
-            if let existingObject = realm.object(ofType: type, forPrimaryKey: primaryKeyValue) {
-                return true
-            } else {
-                return false
-            }
+        if let primaryKeyValue = realm.object(ofType: type, forPrimaryKey: primaryKeyValue) {
+            return true
+        } else {
+            return false
         }
+    }
+
 }
