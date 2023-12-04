@@ -80,6 +80,8 @@
 		4C78BC092B1C962700C59A64 /* DetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78BC082B1C962700C59A64 /* DetailEditView.swift */; };
 		4C78BC0B2B1C96A200C59A64 /* EditProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78BC0A2B1C96A200C59A64 /* EditProcessView.swift */; };
 		4C78BC0D2B1C97DC00C59A64 /* CategorysData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78BC0C2B1C97DC00C59A64 /* CategorysData.swift */; };
+		4C78BC0F2B1DDBFF00C59A64 /* LoadingScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78BC0E2B1DDBFF00C59A64 /* LoadingScreenVM.swift */; };
+		4C78BC112B1DFAE800C59A64 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78BC102B1DFAE800C59A64 /* DownloadManager.swift */; };
 		4C8939B32B13504700EB821A /* ViewMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8939B22B13504700EB821A /* ViewMod.swift */; };
 		4C8939B62B13598700EB821A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8939B52B13598700EB821A /* Realm */; };
 		4C8939B82B13598700EB821A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8939B72B13598700EB821A /* RealmSwift */; };
@@ -167,6 +169,8 @@
 		4C78BC082B1C962700C59A64 /* DetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditView.swift; sourceTree = "<group>"; };
 		4C78BC0A2B1C96A200C59A64 /* EditProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProcessView.swift; sourceTree = "<group>"; };
 		4C78BC0C2B1C97DC00C59A64 /* CategorysData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorysData.swift; sourceTree = "<group>"; };
+		4C78BC0E2B1DDBFF00C59A64 /* LoadingScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenVM.swift; sourceTree = "<group>"; };
+		4C78BC102B1DFAE800C59A64 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		4C8939B22B13504700EB821A /* ViewMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,6 +290,7 @@
 				15C9D6112AFE3684002232D3 /* Cell */,
 				15C9D61A2AFE6C8F002232D3 /* RealmManager.swift */,
 				4C55CBAF2B10E24200A883AC /* JsonParsingManager.swift */,
+				4C78BC102B1DFAE800C59A64 /* DownloadManager.swift */,
 				4C7007052B0F6A09009A497C /* DropBoxKeys_ltlpm.swift */,
 				4C6021172B018BAD0098F071 /* ImageNameNawMenuType.swift */,
 				4C60211B2B0190BB0098F071 /* Extension.swift */,
@@ -485,6 +490,7 @@
 			children = (
 				4C4CC7442B13D43E0030885C /* LoadingScreen.swift */,
 				4C78BBFB2B1C933A00C59A64 /* LoadingScreenCoordinator.swift */,
+				4C78BC0E2B1DDBFF00C59A64 /* LoadingScreenVM.swift */,
 			);
 			path = LoadingScreen;
 			sourceTree = "<group>";
@@ -708,8 +714,10 @@
 				15C9D61B2AFE6C8F002232D3 /* RealmManager.swift in Sources */,
 				4C7006B92B08C1AF009A497C /* EditirCoordinator.swift in Sources */,
 				4C7006C82B0E934F009A497C /* CharacterImageViewManager.swift in Sources */,
+				4C78BC0F2B1DDBFF00C59A64 /* LoadingScreenVM.swift in Sources */,
 				15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */,
 				4C575F2F2B02773700135BF3 /* HouseIdeasCoordinator.swift in Sources */,
+				4C78BC112B1DFAE800C59A64 /* DownloadManager.swift in Sources */,
 				4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */,
 				4C7006C22B08DA34009A497C /* EditProcessController.swift in Sources */,
 				4C50AC932B03A5BD00355DBF /* FurnitureCoordinator.swift in Sources */,

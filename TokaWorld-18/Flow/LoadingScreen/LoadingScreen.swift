@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import Realm
 
 class LoadingScreenViewController: UIViewController {
 
@@ -16,6 +17,20 @@ class LoadingScreenViewController: UIViewController {
     private var progressView: UIView!
     private var loadingIndicator = LinearLoadingIndicator()
     let containerView = UIView()
+    
+    var dataDictionary: [JsonPathType: Data?] = [:]{
+        didSet{
+            dataArray = JsonParsingManager.parseJSON(data: dataDictionary)
+        }
+    }
+    var dataArray: Result<[[JsonPathType: Codable]], ParseError> = .success([]){
+        didSet{
+            preparin {
+                let _ = DownloadManager()
+            }
+        }
+    }
+
 
     init(viewModel: LoadingScreenViewModel) {
         self.viewModel = viewModel
@@ -34,77 +49,87 @@ class LoadingScreenViewController: UIViewController {
 
         configureLayout()
         loadDataWithLoadingIndicator()
+        
     }
+    
+    private func preparin(completion: @escaping () -> Void) {
+        switch dataArray {
+           case .success(let parsedResults):
+               for result in parsedResults {
+                   for (key, value) in result {
+                       switch key {
+                       case .mods:
+                           if let convertedData = value as? Mods {
+                               storageData(type: Mods.self, convertedData: convertedData)
+                           }
+                       case .furniture:
+                           if let convertedData = value as? Furniture {
+                               storageData(type: Furniture.self, convertedData: convertedData)
+                           }
+                       case .house:
+                           if let convertedData = value as? HouseIdeas {
+                               RealmManager.shared.add(convertedData.item)
+                           }
+                       case .recipes:
+                           if let convertedData = value as? Recipes {
+                               RealmManager.shared.add(convertedData.item)
+                           }
+                       case .guides:
+                           if let convertedData = value as? Guides {
+                               RealmManager.shared.add(convertedData.item)
+                           }
+                       case .wallpapers:
+                           if let convertedData = value as? Wallpapers {
+                               RealmManager.shared.add(convertedData.item)
+                           }
+                       case .editor:
+                           if let convertedData = value as? EditorRespondModel {
+                               if !RealmManager.shared.isDataExist(EditorRespondModel.self, primaryKeyValue: convertedData.id) {
+                                       RealmManager.shared.add(convertedData)
+                                   }
+                           }
+                       }
+                   }
+                   
+               }
+
+           case .failure(let error):
+               switch error {
+               case .noData(let jsonPath):
+                   print("Error: No data found for \(jsonPath)")
+               case .decodingError(let jsonPath, let decodingError):
+                   print("Error decoding JSON for \(jsonPath): \(decodingError)")
+               }
+           }
+        completion()
+        
+    }
+    
     
     //bad idea, need to fix it
     private func loadDataWithLoadingIndicator() {
 
-              
-        viewModel.getJson { res in
-            let array = JsonParsingManager.parseJSON(data: res)
-            switch array {
-            case .success(let parsedResults):
-                for result in parsedResults {
-                    for (key, value) in result {
-                        switch key {
-                        case .mods:
-                            if let convertedData = value as? Mods {
-                                if !RealmManager.shared.isDataExist(Mods.self, primaryKeyValue: convertedData.id) {
-                                        RealmManager.shared.add(convertedData)
-                                    }
-                            }
-                        case .furniture:
-                            if let convertedData = value as? Furniture {
-                                RealmManager.shared.add(convertedData.item)
-                            }
-                        case .house:
-                            if let convertedData = value as? HouseIdeas {
-                                RealmManager.shared.add(convertedData.item)
-                            }
-                        case .recipes:
-                            if let convertedData = value as? Recipes {
-                                RealmManager.shared.add(convertedData.item)
-                            }
-                        case .guides:
-                            if let convertedData = value as? Guides {
-                                RealmManager.shared.add(convertedData.item)
-                            }
-                        case .wallpapers:
-                            if let convertedData = value as? Wallpapers {
-                                RealmManager.shared.add(convertedData.item)
-//                                if !RealmManager.shared.isDataExist(Wallpapers.self, primaryKeyValue: convertedData.id as Any) {
-//                                        RealmManager.shared.add(convertedData)
-//                                    }
-                            }
-                        case .editor:
-                            if let convertedData = value as? EditorRespondModel {
-                                if !RealmManager.shared.isDataExist(EditorRespondModel.self, primaryKeyValue: convertedData.id) {
-                                        RealmManager.shared.add(convertedData)
-                                    }
-                            }
-                        }
-                    }
-                }
-
-            case .failure(let error):
-                switch error {
-                case .noData(let jsonPath):
-                    print("Error: No data found for \(jsonPath)")
-                case .decodingError(let jsonPath, let decodingError):
-                    print("Error decoding JSON for \(jsonPath): \(decodingError)")
-                }
-            }
+        viewModel.getJson(completion: { dictionary in
+            self.dataDictionary = dictionary
+        })
+       
     }
-
-
-        self.loadingIndicator.setProgress(300, duration: 8) {
-            self.coordinatorDelegate?.didSelectScreen(.mods)
-        }
-
+    
+    private func storageData (type: RealmSwiftObject.Type,convertedData: Identifier) {
+        if !RealmManager.shared.isDataExist(type.self, primaryKeyValue: convertedData.id) {
+            let data = (convertedData as? Object) ?? Object()
+                RealmManager.shared.add(data)
+            }
     }
     
 
     private func configureLayout() {
+        
+        self.loadingIndicator.setProgress(300, duration: 8) {
+            self.coordinatorDelegate?.didSelectScreen(.mods)
+        }
+        
+        
         let width = view.frame.width
 
         let backgroundImageView = UIImageView(image: UIImage(named: "mocImage"))
@@ -162,92 +187,5 @@ class LoadingScreenViewController: UIViewController {
             loadingIndicator.trailingAnchor.constraint(equalTo: progressView.trailingAnchor),
         ])
     }
-}
-
-// MARK: - JsonPathType
-enum JsonPathType: String, CaseIterable {
-    case mods = "/Mods/Mods.json"
-    case furniture = "/Furniture/Furniture.json"
-    case house = "/House_Ideas/House_Ideas.json"
-    case recipes = "/Recipes/Recipes.json"
-    case guides = "/Guides/Guides.json"
-    case wallpapers = "/Wallpapers/Wallpapers.json"
-    case editor = "/json.json"
-    
-    var caseName: String {
-        return String(describing: self)
-    }
-    
-    var correspondingModel: Codable.Type {
-        switch self {
-        case .mods:
-            return Mods.self
-        case .furniture:
-            return Furniture.self
-        case .house:
-            return HouseIdeas.self
-        case .recipes:
-            return Recipes.self
-        case .guides:
-            return Guides.self
-        case .wallpapers:
-            return Wallpapers.self
-        case .editor:
-            return EditorRespondModel.self
-        }
-    }
-
-}
-
-// MARK: - LoadingScreenViewModel
-class LoadingScreenViewModel{
-
-    init(){
-    
-    }
-    
-    
-    func getJson(completion: @escaping ([JsonPathType: Data?]) -> Void) {
-        var dataResults: [JsonPathType: Data?] = [:]
-
-        let dispatchGroup = DispatchGroup()
-
-        JsonPathType.allCases.forEach { jsonPathEnum in
-            let jsonPath = jsonPathEnum.rawValue
-            dispatchGroup.enter()
-
-            ServerManager.shared.downloadJSONFile(filePath: jsonPath) { data in
-//                print("          \(jsonPathEnum.caseName) ✅ \(String(describing: data))")
-                dataResults[jsonPathEnum] = data
-                dispatchGroup.leave()
-            }
-        }
-
-        dispatchGroup.notify(queue: .main) {
-            completion(dataResults)
-        }
-    }
-    
-    
-    
-    
-    func downloadFile(completion: @escaping ([JsonPathType: Data?]) -> Void) {
-        
-//        let results: Results<Wallpapers>
-//        let array: [Wallpapers]
-//        
-//        results = RealmManager.shared.getObjects(Wallpapers.self)
-//        array = Array(RealmManager.shared.getObjects(Wallpapers.self))
-//        
-//        let herosElementSet = JsonParsingManager.parseJSON(data: array)
-//        guard let herosElementSet = herosElementSet else { return }
-//        for i in herosElementSet {
-//            i.downloadPDFs {
-//                print("@@@@@@@@>>>>>>>>")
-//            }
-//        }
-    }
-    
-    
 }
 

@@ -8,8 +8,12 @@
 import UIKit
 import RealmSwift
 
+protocol Identifier{
+    dynamic var id: String { get }
+}
+
 // MARK: - Editor Respond
-final class EditorRespondModel: Object, Codable {
+final class EditorRespondModel: Object, Codable, Identifier {
     
     var editor = List<EditorCategory>()
     @objc dynamic var id: String = "editor"
