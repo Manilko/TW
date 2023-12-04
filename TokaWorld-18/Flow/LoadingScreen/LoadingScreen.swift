@@ -68,19 +68,19 @@ class LoadingScreenViewController: UIViewController {
                            }
                        case .house:
                            if let convertedData = value as? HouseIdeas {
-                               RealmManager.shared.add(convertedData.item)
+                               storageData(type: HouseIdeas.self, convertedData: convertedData)
                            }
                        case .recipes:
                            if let convertedData = value as? Recipes {
-                               RealmManager.shared.add(convertedData.item)
+                               storageData(type: Recipes.self, convertedData: convertedData)
                            }
                        case .guides:
                            if let convertedData = value as? Guides {
-                               RealmManager.shared.add(convertedData.item)
+                               storageData(type: Guides.self, convertedData: convertedData)
                            }
                        case .wallpapers:
                            if let convertedData = value as? Wallpapers {
-                               RealmManager.shared.add(convertedData.item)
+                               storageData(type: Wallpapers.self, convertedData: convertedData)
                            }
                        case .editor:
                            if let convertedData = value as? EditorRespondModel {
@@ -115,7 +115,7 @@ class LoadingScreenViewController: UIViewController {
        
     }
     
-    private func storageData (type: RealmSwiftObject.Type,convertedData: Identifier) {
+    private func storageData (type: RealmSwiftObject.Type,convertedData: Identifierble) {
         if !RealmManager.shared.isDataExist(type.self, primaryKeyValue: convertedData.id) {
             let data = (convertedData as? Object) ?? Object()
                 RealmManager.shared.add(data)

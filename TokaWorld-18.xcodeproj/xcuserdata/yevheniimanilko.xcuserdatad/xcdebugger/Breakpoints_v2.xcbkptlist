@@ -949,6 +949,38 @@
             endingLineNumber = "121"
             landmarkName = "storageData(type:convertedData:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "61FB3CE9-F921-4F8D-8AAE-DADDDB1C9295 - 2bfd140e1dbb779d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.LoadingScreenViewController.storageData(type: __C.RealmSwiftObject.Type, convertedData: TokaWorld_18.Identifier) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "512">
+               </Location>
+               <Location
+                  uuid = "61FB3CE9-F921-4F8D-8AAE-DADDDB1C9295 - da68813a4674d6e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.LoadingScreenViewController.storageData(type: __C.RealmSwiftObject.Type, convertedData: TokaWorld_18.Identifierble) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "512">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -965,6 +997,38 @@
             endingLineNumber = "120"
             landmarkName = "storageData(type:convertedData:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CEA9CFF0-601B-46E3-9940-617ABB1EDCC7 - 2bfd140e1dbb77be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.LoadingScreenViewController.storageData(type: __C.RealmSwiftObject.Type, convertedData: TokaWorld_18.Identifier) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "CEA9CFF0-601B-46E3-9940-617ABB1EDCC7 - da68813a4674d6c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.LoadingScreenViewController.storageData(type: __C.RealmSwiftObject.Type, convertedData: TokaWorld_18.Identifierble) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "332">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -981,6 +1045,38 @@
             endingLineNumber = "119"
             landmarkName = "storageData(type:convertedData:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9276A67F-F9D5-42B1-95E3-0E801E95DC5C - 2bfd140e1dbb77df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.LoadingScreenViewController.storageData(type: __C.RealmSwiftObject.Type, convertedData: TokaWorld_18.Identifier) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "9276A67F-F9D5-42B1-95E3-0E801E95DC5C - da68813a4674d6a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.LoadingScreenViewController.storageData(type: __C.RealmSwiftObject.Type, convertedData: TokaWorld_18.Identifierble) -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
