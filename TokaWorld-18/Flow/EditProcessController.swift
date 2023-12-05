@@ -39,7 +39,7 @@ final class EditProcessController: UIViewController {
         let herosElementSet = JsonParsingManager.parseEditorJSON(data: arrayMod)
         guard let herosElementSet = herosElementSet else { return }
         for i in herosElementSet {
-            i.downloadPDFs {
+            i.downloadPDFs {   ///   <-    move to load screen
                 print("@@@@@@@@>>>>>>>>")
             }
         }
