@@ -108,19 +108,26 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         for i in obgect {
             
             let imageView = UIImageView()
-            var fileName = ""
+            var fileName: String = ""
 
-            if obgect.gender == .girl{
-                if i.isMandatoryPresentation{
-                    fileName = "\((i.girl[i.valueS ].vcbVnbvbvBBB)!)"
-                }
-            }
+//            if obgect.gender == .girl{
+//                if i.isMandatoryPresentation{
+//                    fileName = "\((i.girl[i.valueS ].vcbVnbvbvBBB)!)"
+//                }
+//            }
             
             if i.isMandatoryPresentation{
                 fileName = "\((i.boy[i.valueS ].vcbVnbvbvBBB)!)"
+            } else {
+                // for deleteButton
+                    let del = ComponentsHero(id: "w", imageName: "nil", previewName: "deleteButton_ic_round")
+                i.item.insert(del, at: 0)
             }
             
-            imageView.image = getImageFromFile(with: fileName)
+//            if let fileName {
+                imageView.image = getImageFromFile(with: fileName)
+//            }
+            
             imageView.contentMode = .scaleAspectFit
             imageView.translatesAutoresizingMaskIntoConstraints = false
            
@@ -212,7 +219,7 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
-            let gender = 0
+//            let gender = 0
             if collectionView == firstCollectionView {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCategoryCell.identifier, for: indexPath) as! EditorCategoryCell
                 
@@ -223,6 +230,8 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCategoryItemCell.identifier, for: indexPath) as! EditorCategoryItemCell
                 
                 var fileName = ""
+                
+               
                 
                 if obgect.gender == .girl{
                     fileName = obgect.items[index].girl[indexPath.item].bvcfXbnbjb6Hhn ?? ""
@@ -251,6 +260,8 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                     self.secondCollectionView.reloadData()
                 }
                 
+                print(">>>>>>>  obgect.items[indexPath.row].nameS\(obgect.items[indexPath.row].nameS) ===  isMandatoryPresentation  \(obgect.items[indexPath.row].isMandatoryPresentation)        ")
+                
                 if obgect.gender == .girl{
                     count = obgect.items[indexPath.row].girl.count
                 } else{
@@ -265,6 +276,10 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
             if collectionView == secondCollectionView {
                 
                 var fileName = ""
+                
+//                if obgect.items[index].isMandatoryPresentation{
+//
+//                }
                 
                 if obgect.gender == .girl{
                     fileName = obgect.items[index].girl[indexPath.item].vcbVnbvbvBBB ?? ""

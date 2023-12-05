@@ -78,7 +78,7 @@ final class ComponentsHero: Object, Codable {
     
     convenience init(id: String, imageName: String?, previewName: String?) {
             self.init()
-            self.id = id
+//            self.id = id
             self.gvhgvchgvFGFG56GC = id
             self.vcbVnbvbvBBB = imageName
             self.bvcfXbnbjb6Hhn = previewName

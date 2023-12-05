@@ -61,6 +61,7 @@ extension HerosBodyElementSet{
     
     func creatLocalGenderFunctionality() -> HerosElement {
         let genderElement = HerosElement()
+        genderElement.isMandatoryPresentation = true
         genderElement.nameS = "Gender"
         genderElement.hierarchy = -1
         
