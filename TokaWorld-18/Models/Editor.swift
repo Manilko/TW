@@ -8,17 +8,21 @@ import UIKit
 import RealmSwift
 
 // MARK: - StoryCharacterChanges
-final class StoryCharacterChanges: Object {
+final class StoryCharacterChanges: Object, Sequence {
     @objc dynamic var id: String = UUID().uuidString
-    var item: List<HerosBodyElementSet> = List<HerosBodyElementSet>()
+    var item: List<HeroSet> = List<HeroSet>()
 
     override static func primaryKey() -> String? {
         return "id"
     }
 
-    convenience init(item: List<HerosBodyElementSet>) {
+    convenience init(item: List<HeroSet>) {
         self.init()
         self.item.append(objectsIn: item)
+    }
+    
+    func makeIterator() -> List<HeroSet>.Iterator {
+        return item.makeIterator()
     }
 }
 
@@ -27,10 +31,10 @@ enum GenderType: String {
     case boy
 }
 
-final class HerosBodyElementSet: Object, Sequence {   // to store the history of character changes
+final class HeroSet: Object, Sequence {   // to store the history of character changes
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic private var genderRaw: String = GenderType.boy.rawValue
-    var items: List<HerosElement> = List<HerosElement>()
+    var items: List<BodyPart> = List<BodyPart>()
 
     var gender: GenderType {
         get {
@@ -45,28 +49,29 @@ final class HerosBodyElementSet: Object, Sequence {   // to store the history of
         return "id"
     }
 
-    convenience init(item: List<HerosElement>) {
+    convenience init(item: List<BodyPart>) {
         self.init()
 
         self.items.append(creatLocalGenderFunctionality())
         self.items.append(objectsIn: item)
     }
 
-    func makeIterator() -> List<HerosElement>.Iterator {
+    func makeIterator() -> List<BodyPart>.Iterator {
         return items.makeIterator()
     }
 }
 
-extension HerosBodyElementSet{
+extension HeroSet{
     
-    func creatLocalGenderFunctionality() -> HerosElement {
-        let genderElement = HerosElement()
+    func creatLocalGenderFunctionality() -> BodyPart {
+        let genderElement = BodyPart()
         genderElement.isMandatoryPresentation = true
         genderElement.nameS = "Gender"
         genderElement.hierarchy = -1
         
-        let boy = ComponentsHero(id: "0", imageName: "ic_round-b", previewName: "ic_round-b")
-        let girl = ComponentsHero(id: "1", imageName: "ic_round-g", previewName: "ic_round-g")
+        // imageName: "ic_round"  -- recorded In the filter, it should be just such that it falls under the filtering and gives the necessary number of realizations of the display of sails
+        let boy = ComponentsHero(id: "0", imageName: "ic_round", previewName: "ic_round-b")
+        let girl = ComponentsHero(id: "1", imageName: "ic_round", previewName: "ic_round-g")
         
         genderElement.item.append(boy)
         genderElement.item.append(girl)
@@ -79,12 +84,14 @@ extension HerosBodyElementSet{
 
 
 // MARK: - HerosElement
-final class HerosElement: Object, Codable, Sequence {
+final class BodyPart: Object, Codable, Sequence {
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var nameS: String?
     @objc dynamic var hierarchy: Int = 0
     @objc dynamic var isMandatoryPresentation: Bool = false
+    @objc dynamic var gender: String?
     @objc dynamic var valueS: Int = 0
+    @objc dynamic var valueValue: String?
     var item: List<ComponentsHero> = List<ComponentsHero>()
 
     override static func primaryKey() -> String? {
@@ -96,15 +103,23 @@ final class HerosElement: Object, Codable, Sequence {
         case hierarchy = "hierarchy"
         case isMandatoryPresentation = "isMandatoryPresentation"
         case valueS = "value"
+        case gender
+        case valueValue
     }
     
     required convenience init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.nameS = try container.decodeIfPresent(String.self, forKey: .nameS)
+        self.gender = try container.decodeIfPresent(String.self, forKey: .gender)
         self.hierarchy = try container.decodeIfPresent(Int.self, forKey: .hierarchy) ?? 0
         self.isMandatoryPresentation = try container.decodeIfPresent(Bool.self, forKey: .isMandatoryPresentation) ?? false
         self.valueS = try container.decodeIfPresent(Int.self, forKey: .valueS) ?? 0
+//        self.valueValue = try container.decodeIfPresent(String.self, forKey: .valueValue)
+        
+        if isMandatoryPresentation{
+            valueValue = item.first?.vcbVnbvbvBBB
+        }
     }
     
     func encode(to encoder: Encoder) throws {
@@ -113,6 +128,8 @@ final class HerosElement: Object, Codable, Sequence {
         try container.encodeIfPresent(hierarchy, forKey: .hierarchy)
         try container.encodeIfPresent(isMandatoryPresentation, forKey: .isMandatoryPresentation)
         try container.encodeIfPresent(valueS, forKey: .valueS)
+        try container.encodeIfPresent(gender, forKey: .gender)
+//        try container.encodeIfPresent(valueValue, forKey: .valueValue)
     }
     
     convenience init(
@@ -120,7 +137,8 @@ final class HerosElement: Object, Codable, Sequence {
         hierarchy: Int,
         isMandatoryPresentation: Bool,
         value: Int,
-        item:  List<ComponentsHero>
+        item:  List<ComponentsHero>,
+        valueValue: String?
     ) {
         self.init()
         self.nameS = name
@@ -128,6 +146,7 @@ final class HerosElement: Object, Codable, Sequence {
         self.isMandatoryPresentation = isMandatoryPresentation
         self.valueS = value
         self.item.append(objectsIn: item)
+        self.valueValue = valueValue
     }
     
     func makeIterator() -> List<ComponentsHero>.Iterator {
@@ -135,8 +154,6 @@ final class HerosElement: Object, Codable, Sequence {
     }
     
     var boy: [ComponentsHero] {
-        
-        
         item.filter { item in
             if let vcbVnbvbvBBB = item.vcbVnbvbvBBB {
                 return vcbVnbvbvBBB.lowercased().contains("boy") || vcbVnbvbvBBB.contains("Boy") || vcbVnbvbvBBB.contains("Body") || vcbVnbvbvBBB.contains("ic_round")

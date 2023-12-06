@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+import Realm
 
 class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -18,13 +20,23 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         }
     }
     
-    var oneStep: HerosBodyElementSet = HerosBodyElementSet() {
+    var oneStep: HeroSet = HeroSet() {
         didSet {
-            self.storyCharacterChangesReaim.item.append(oneStep)
+            self.storyHeroChanges.item.append(oneStep)
         }
     }
+
     
-    var storyCharacterChangesReaim: StoryCharacterChanges = StoryCharacterChanges()
+    var storyHeroChanges: StoryCharacterChanges = StoryCharacterChanges()
+    
+    let saveButton: UIButton = {
+            let button = UIButton()
+            button.setTitle("Save to Realm", for: .normal)
+            button.backgroundColor = .green
+            button.addTarget(self, action: #selector(saveToRealm), for: .touchUpInside)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            return button
+        }()
     
     let firstCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -52,13 +64,13 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         return view
     }()
     
-    var obgect: HerosBodyElementSet = HerosBodyElementSet()
+    var obgect: HeroSet = HeroSet()
     
     init(obj: StoryCharacterChanges) {
 
-        obgect = obj.item.last ?? HerosBodyElementSet()
+        obgect = obj.item.last ?? HeroSet()
         self.count = obj.item.first?.items.first?.item.count ?? 0
-        self.storyCharacterChangesReaim = obj
+        self.storyHeroChanges = obj
         
         super.init(frame: .zero)
         setupViews()
@@ -70,6 +82,11 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc private func saveToRealm() {
+            RealmManager.shared.add(storyHeroChanges)
+            print("Data saved to Realm")
+        }
     
     private func setupViews() {
         
@@ -84,6 +101,14 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         secondCollectionView.delegate = self
         secondCollectionView.dataSource = self
         secondCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(saveButton)
+               NSLayoutConstraint.activate([
+                   saveButton.topAnchor.constraint(equalTo: secondCollectionView.bottomAnchor, constant: 20),
+                   saveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+                   saveButton.widthAnchor.constraint(equalToConstant: 150),
+                   saveButton.heightAnchor.constraint(equalToConstant: 40),
+               ])
         
         NSLayoutConstraint.activate([
             
@@ -105,28 +130,28 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         
         
         
-        for i in obgect {
+        var startHeroSet: HeroSet = HeroSet()
+         
+        for bodyPart in obgect {
             
             let imageView = UIImageView()
-            var fileName: String = ""
-
-//            if obgect.gender == .girl{
-//                if i.isMandatoryPresentation{
-//                    fileName = "\((i.girl[i.valueS ].vcbVnbvbvBBB)!)"
-//                }
-//            }
+            var fileName: String?
             
-            if i.isMandatoryPresentation{
-                fileName = "\((i.boy[i.valueS ].vcbVnbvbvBBB)!)"
+            if (bodyPart.valueValue == nil && bodyPart.isMandatoryPresentation) || bodyPart.nameS == "Gender"{
+                fileName = "\((bodyPart.item[bodyPart.valueS ].vcbVnbvbvBBB)!)"
             } else {
                 // for deleteButton
-                    let del = ComponentsHero(id: "w", imageName: "nil", previewName: "deleteButton_ic_round")
-                i.item.insert(del, at: 0)
+                    let del = ComponentsHero(id: "0", imageName: "ic_round", previewName: "deleteButton_ic_round")
+                bodyPart.item.insert(del, at: 0)
             }
             
-//            if let fileName {
+            if let fileName {
                 imageView.image = getImageFromFile(with: fileName)
-//            }
+            }
+           
+            let firstBodyPa = BodyPart(name: bodyPart.nameS ?? "", hierarchy: bodyPart.hierarchy, isMandatoryPresentation: bodyPart.isMandatoryPresentation, value: bodyPart.valueS, item: bodyPart.item, valueValue: fileName)
+            
+            startHeroSet.items.append(firstBodyPa)
             
             imageView.contentMode = .scaleAspectFit
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -140,6 +165,8 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                 imageView.bottomAnchor.constraint(equalTo: characterView.bottomAnchor),
             ])
         }
+        
+        self.storyHeroChanges.item.append(startHeroSet)
            
                 self.firstCollectionView.reloadData()
                 self.secondCollectionView.reloadData()
@@ -208,6 +235,7 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     }
         
         // MARK: - UICollectionViewDelegate and UICollectionViewDataSource methods
+    var genderType = 0
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             if collectionView == firstCollectionView {
@@ -219,7 +247,6 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
-//            let gender = 0
             if collectionView == firstCollectionView {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCategoryCell.identifier, for: indexPath) as! EditorCategoryCell
                 
@@ -230,15 +257,13 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCategoryItemCell.identifier, for: indexPath) as! EditorCategoryItemCell
                 
                 var fileName = ""
-                
-               
-                
+          
                 if obgect.gender == .girl{
                     fileName = obgect.items[index].girl[indexPath.item].bvcfXbnbjb6Hhn ?? ""
                 } else{
                     fileName = obgect.items[index].boy[indexPath.item].bvcfXbnbjb6Hhn ?? ""
                 }
-                
+
                 if fileName == "ic_round-g"{
                     let previewImage = getImageFromFile(with: fileName)
                     cell.configure(with: previewImage, backgroundColorr: .blue)
@@ -260,8 +285,6 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                     self.secondCollectionView.reloadData()
                 }
                 
-                print(">>>>>>>  obgect.items[indexPath.row].nameS\(obgect.items[indexPath.row].nameS) ===  isMandatoryPresentation  \(obgect.items[indexPath.row].isMandatoryPresentation)        ")
-                
                 if obgect.gender == .girl{
                     count = obgect.items[indexPath.row].girl.count
                 } else{
@@ -277,10 +300,6 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                 
                 var fileName = ""
                 
-//                if obgect.items[index].isMandatoryPresentation{
-//
-//                }
-                
                 if obgect.gender == .girl{
                     fileName = obgect.items[index].girl[indexPath.item].vcbVnbvbvBBB ?? ""
                 } else{
@@ -294,6 +313,7 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
 
                 } else {
                     print("indexPath.item\(indexPath.item)")
+                    genderType = indexPath.item
                     if indexPath.item == 0{
                         for (ind, subview) in characterView.subviews.enumerated() {
                             if let imageView = subview as? UIImageView {
@@ -316,35 +336,30 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                             }
                         }
                     }
+                    
                 }
-                
-               
-//                oneStep = createOneNextStep(with: fileName, and: indexPath.item, changedItem: obgect.items[index])
-                
-//                print(storyCharacterChangesReaim)
-                
-      
+                oneStep = createOneNextStep(with: fileName, and: indexPath.item, changedBodyPart: obgect.items[index])
             }
         }
     
     
-    func createOneNextStep(with fileName: String, and index: Int, changedItem: HerosElement) -> HerosBodyElementSet {
-        let lastSet = storyCharacterChangesReaim.item.last
-        var newStep: HerosBodyElementSet = HerosBodyElementSet()
+    func createOneNextStep(with fileName: String, and index: Int, changedBodyPart: BodyPart) -> HeroSet {
+        let lastHeroSet = storyHeroChanges.item.last
+        var newStepHeroSet: HeroSet = HeroSet()
         
-        let item = HerosElement(name: changedItem.nameS ?? "", hierarchy: changedItem.hierarchy, isMandatoryPresentation: changedItem.isMandatoryPresentation, value: index, item: changedItem.item)
+        let newBodyPart = BodyPart(name: changedBodyPart.nameS ?? "", hierarchy: changedBodyPart.hierarchy, isMandatoryPresentation: changedBodyPart.isMandatoryPresentation, value: index, item: changedBodyPart.item, valueValue: fileName)
+
+        guard let lastHeroSet else { return HeroSet() }
         
-        guard let lastEl = lastSet else { return HerosBodyElementSet() }
-        
-        for element in lastEl {
-            if element.nameS == item.nameS {
-                    newStep.items.append(item)
+        for bodyPart in lastHeroSet {
+            if bodyPart.nameS == newBodyPart.nameS {
+                    newStepHeroSet.items.append(newBodyPart)
                 } else {
-                    newStep.items.append(element)
+                    newStepHeroSet.items.append(bodyPart)
                 }
             }
-        
-        return newStep
+
+        return newStepHeroSet
     }
     
     }

@@ -10,12 +10,12 @@ import UIKit
 class EditirCoordinator: Coordinator {
     var navigationController: UINavigationController
     let viewController: EditorController
-    let detailCoordinator: DetailEditCoordinator
+    let detailCoordinator: EditProcessCoordinator
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.viewController = EditorController()
-        self.detailCoordinator = DetailEditCoordinator(navigationController: navigationController)
+        self.detailCoordinator = EditProcessCoordinator(navigationController: navigationController)
         self.viewController.itemDelegate = self
         self.detailCoordinator.viewController.coordinatorDelegate = detailCoordinator
         

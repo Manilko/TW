@@ -39,26 +39,26 @@ class JsonParsingManager {
         return parsedResults.isEmpty ? .failure(.noData("No valid data found")) : .success(parsedResults)
     }
     
-    static func parseEditorJSON(data: [EditorCategory]) -> [HerosElement]? {
+    static func parseEditorJSON(data: [EditorCategory]) -> [BodyPart]? {
         
-        var categoryItems: [HerosElement] = []
+        var categoryItems: [BodyPart] = []
 
             let uniqueCategories = Array(Set(data.map { $0.jhvqwjgcvMMB5fF }))
 
             categoryItems = uniqueCategories.compactMap { category in
-                guard let firstItem = data.first(where: { $0.jhvqwjgcvMMB5fF == category }) else { return HerosElement() }
+                guard let firstItem = data.first(where: { $0.jhvqwjgcvMMB5fF == category }) else { return BodyPart() }
 
                 let items = data.filter { $0.jhvqwjgcvMMB5fF == category }.flatMap { $0.vccfcfbNNBGCFX }
                 
                 let list = List<ComponentsHero>()
                 list.append(objectsIn: items)
 
-                return HerosElement(
+                return BodyPart(
                     name: category,
                     hierarchy: firstItem.cfxfDXCGFc4DFf,
                     isMandatoryPresentation: firstItem.kmbcvvfcCFVgvff,
                     value: 0,
-                    item: list
+                    item: list, valueValue: nil
                 )
             }
 

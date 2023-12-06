@@ -60,9 +60,8 @@
 		4C7006B72B08C19E009A497C /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006B62B08C19E009A497C /* EditorController.swift */; };
 		4C7006B92B08C1AF009A497C /* EditirCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006B82B08C1AF009A497C /* EditirCoordinator.swift */; };
 		4C7006BC2B08D1E8009A497C /* DetailEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006BB2B08D1E8009A497C /* DetailEditController.swift */; };
-		4C7006BE2B08D1F6009A497C /* DetailEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006BD2B08D1F6009A497C /* DetailEditCoordinator.swift */; };
+		4C7006BE2B08D1F6009A497C /* EditProcessCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006BD2B08D1F6009A497C /* EditProcessCoordinator.swift */; };
 		4C7006C22B08DA34009A497C /* EditProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006C12B08DA33009A497C /* EditProcessController.swift */; };
-		4C7006C42B08DA41009A497C /* EditProcessCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006C32B08DA41009A497C /* EditProcessCoordinator.swift */; };
 		4C7006C62B0C27C7009A497C /* json.json in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006C52B0C27C7009A497C /* json.json */; };
 		4C7006C82B0E934F009A497C /* CharacterImageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7006C72B0E934F009A497C /* CharacterImageViewManager.swift */; };
 		4C7007062B0F6A0A009A497C /* DropBoxKeys_ltlpm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7007052B0F6A09009A497C /* DropBoxKeys_ltlpm.swift */; };
@@ -151,9 +150,8 @@
 		4C7006B62B08C19E009A497C /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
 		4C7006B82B08C1AF009A497C /* EditirCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditirCoordinator.swift; sourceTree = "<group>"; };
 		4C7006BB2B08D1E8009A497C /* DetailEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditController.swift; sourceTree = "<group>"; };
-		4C7006BD2B08D1F6009A497C /* DetailEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditCoordinator.swift; sourceTree = "<group>"; };
+		4C7006BD2B08D1F6009A497C /* EditProcessCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProcessCoordinator.swift; sourceTree = "<group>"; };
 		4C7006C12B08DA33009A497C /* EditProcessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProcessController.swift; sourceTree = "<group>"; };
-		4C7006C32B08DA41009A497C /* EditProcessCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProcessCoordinator.swift; sourceTree = "<group>"; };
 		4C7006C52B0C27C7009A497C /* json.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = json.json; sourceTree = "<group>"; };
 		4C7006C72B0E934F009A497C /* CharacterImageViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageViewManager.swift; sourceTree = "<group>"; };
 		4C7007052B0F6A09009A497C /* DropBoxKeys_ltlpm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxKeys_ltlpm.swift; sourceTree = "<group>"; };
@@ -273,6 +271,7 @@
 				4C575F012B0225DF00135BF3 /* ModsScreen */,
 				4C575F272B0260AC00135BF3 /* House Ideas */,
 				4C575F2B2B02611000135BF3 /* Editor */,
+				4C7006BA2B08D1B2009A497C /* DetailEditScreen */,
 				4C575F2A2B02610D00135BF3 /* Wallpapers */,
 				4C575F292B0260B300135BF3 /* Guides */,
 				4C575F282B0260B000135BF3 /* Recipes */,
@@ -429,7 +428,6 @@
 			isa = PBXGroup;
 			children = (
 				4C7006BF2B08D974009A497C /* EditCollectionScreen */,
-				4C7006BA2B08D1B2009A497C /* DetailEditScreen */,
 				4C7006C02B08D9D5009A497C /* EditProcessScreen */,
 			);
 			name = Editor;
@@ -459,7 +457,6 @@
 			isa = PBXGroup;
 			children = (
 				4C7006BB2B08D1E8009A497C /* DetailEditController.swift */,
-				4C7006BD2B08D1F6009A497C /* DetailEditCoordinator.swift */,
 				4C78BC082B1C962700C59A64 /* DetailEditView.swift */,
 			);
 			name = DetailEditScreen;
@@ -479,7 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				4C7006C12B08DA33009A497C /* EditProcessController.swift */,
-				4C7006C32B08DA41009A497C /* EditProcessCoordinator.swift */,
+				4C7006BD2B08D1F6009A497C /* EditProcessCoordinator.swift */,
 				4C78BC0A2B1C96A200C59A64 /* EditProcessView.swift */,
 			);
 			name = EditProcessScreen;
@@ -665,7 +662,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C7006C42B08DA41009A497C /* EditProcessCoordinator.swift in Sources */,
 				4C78BC012B1C948200C59A64 /* SideMenuView.swift in Sources */,
 				15C9D6152AFE3824002232D3 /* NavigationView.swift in Sources */,
 				4C78BBF92B1AB0C900C59A64 /* CollectionViewContainer.swift in Sources */,
@@ -702,7 +698,7 @@
 				4C50AC912B03A54A00355DBF /* FurnitureViewController.swift in Sources */,
 				4C78BBFF2B1C93B800C59A64 /* LinearLoadingIndicator.swift in Sources */,
 				4C8939B32B13504700EB821A /* ViewMod.swift in Sources */,
-				4C7006BE2B08D1F6009A497C /* DetailEditCoordinator.swift in Sources */,
+				4C7006BE2B08D1F6009A497C /* EditProcessCoordinator.swift in Sources */,
 				4C78BBF52B15629100C59A64 /* SideMenuModel.swift in Sources */,
 				15B3B0732AFBFBF700706666 /* AppDelegate.swift in Sources */,
 				4C60211C2B0190BB0098F071 /* Extension.swift in Sources */,

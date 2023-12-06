@@ -10,14 +10,21 @@ import RealmSwift
 
 final class EditorController: UIViewController {
     
-    let moc = 7
+    
+    var moc = 1
+    let a: Results<StoryCharacterChanges>
     
     weak var sideMenuDelegate: SideMenuDelegate?
     weak var itemDelegate: ItemPresrntDelegate?
     
     
     init() {
+        a = RealmManager.shared.getObjects(StoryCharacterChanges.self)
         super.init(nibName: nil, bundle: nil)
+        if a.count > 0{
+            moc = a.count
+        }
+        
         
         view().navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
         
@@ -25,6 +32,11 @@ final class EditorController: UIViewController {
         view().collectionView.dataSource = self
         view().collectionView.delegate = self
         view().collectionView.register(EditorCollectionCell.self, forCellWithReuseIdentifier: EditorCollectionCell.identifier)
+        
+        
+       
+        
+        print(a.count)
         
     }
 
@@ -64,7 +76,16 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCollectionCell.identifier, for: indexPath) as! EditorCollectionCell
         
-        cell.configure(with: UIImage(named: "mocImage"))
+        if !a.isEmpty{
+            let item = a[indexPath.row]
+            cell.configure(storyCharacter: item)
+        } else{
+            cell.backgroundColor = .red
+        }
+        
+        
+        
+//        cell.configure(with: UIImage(named: "mocImage"))
         return cell
     }
     

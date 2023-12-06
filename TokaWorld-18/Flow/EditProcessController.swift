@@ -12,7 +12,7 @@ import PDFKit
 final class EditProcessController: UIViewController {
     
     // MARK: - Properties
-    weak var coordinatorDelegate: DetailEditDelegate?
+    weak var coordinatorDelegate: EditProcessDelegate?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -45,10 +45,10 @@ final class EditProcessController: UIViewController {
         }
         let sortedHerosElementSet  = herosElementSet.sorted { $0.hierarchy < $1.hierarchy }
         
-        let herosElementlist = List<HerosElement>()
+        let herosElementlist = List<BodyPart>()
         herosElementlist.append(objectsIn: sortedHerosElementSet)
         
-        let herosBodyElementSet = HerosBodyElementSet(item: herosElementlist)
+        let herosBodyElementSet = HeroSet(item: herosElementlist)
         let storyCharacterChanges = StoryCharacterChanges()
         storyCharacterChanges.item.append(herosBodyElementSet)
         
@@ -60,7 +60,7 @@ final class EditProcessController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        view.backgroundColor =  #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
     }
     
     @objc private func leftDidTaped(_ celector: UIButton) {
