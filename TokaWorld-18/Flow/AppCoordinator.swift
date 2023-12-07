@@ -46,8 +46,8 @@ class AppCoordinator {
             
         case .furniture:
             var screen3Coordinator = FurnitureCoordinator(navigationController: navigationController)
-            screen3Coordinator.viewController.coordinatorDelegate = self
-            screen3Coordinator.viewController.sideMenuDelegate = self
+//            screen3Coordinator.viewController.coordinatorDelegate = self
+//            screen3Coordinator.viewController.sideMenuDelegate = self
             screen3Coordinator.start()
             
         case .editor:

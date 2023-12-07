@@ -64,6 +64,12 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         return view
     }()
     
+    var viewImage: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var obgect: HeroSet = HeroSet()
     
     init(obj: StoryCharacterChanges) {
@@ -71,6 +77,7 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         obgect = obj.item.last ?? HeroSet()
         self.count = obj.item.first?.items.first?.item.count ?? 0
         self.storyHeroChanges = obj
+        
         
         super.init(frame: .zero)
         setupViews()
@@ -84,9 +91,28 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     }
     
     @objc private func saveToRealm() {
-            RealmManager.shared.add(storyHeroChanges)
-            print("Data saved to Realm")
+        
+        let image = createImageFromLayers()
+        viewImage.image = image
+        print(image)
+        print("Data saved to Realm")
+    }
+
+    
+    func createImageFromLayers() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(characterView.bounds.size, false, UIScreen.main.scale)
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
         }
+        
+        characterView.layer.render(in: context)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
     
     private func setupViews() {
         
@@ -109,6 +135,13 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                    saveButton.widthAnchor.constraint(equalToConstant: 150),
                    saveButton.heightAnchor.constraint(equalToConstant: 40),
                ])
+        addSubview(viewImage)
+        NSLayoutConstraint.activate([
+            viewImage.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 4),
+            viewImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+            viewImage.widthAnchor.constraint(equalToConstant: 150),
+            viewImage.heightAnchor.constraint(equalToConstant: 150),
+        ])
         
         NSLayoutConstraint.activate([
             
@@ -167,6 +200,7 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         }
         
         self.storyHeroChanges.item.append(startHeroSet)
+        RealmManager.shared.add(storyHeroChanges)
            
                 self.firstCollectionView.reloadData()
                 self.secondCollectionView.reloadData()
@@ -176,8 +210,8 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     func getImageFromFile(with fileName: String) -> UIImage {
         var image = UIImage()
         
-//        for local Image
-        if let localImage = UIImage(named: fileName){
+
+        if let localImage = UIImage(named: fileName){  //  for local Image
             image = localImage
         } else{
             if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
@@ -311,32 +345,36 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                     let  a = characterView.subviews[index] as? UIImageView
                     a?.image = image
 
-                } else {
-                    print("indexPath.item\(indexPath.item)")
-                    genderType = indexPath.item
+                } else {   //   control functionality =>> gender button click. it need fix!
+                    var startHeroSet: HeroSet = HeroSet()
+
                     if indexPath.item == 0{
                         for (ind, subview) in characterView.subviews.enumerated() {
                             if let imageView = subview as? UIImageView {
                                 obgect.gender = .boy
-                                if ind != 0{
+                                if ind != 0{ // gender cell
                                     let fileName = obgect.items[ind].boy.first?.vcbVnbvbvBBB ?? ""
                                     imageView.image = getImageFromFile(with: fileName)
+                                    let firstBodyPa = BodyPart(name: obgect.items[ind].nameS ?? "", hierarchy: obgect.items[ind].hierarchy, isMandatoryPresentation: obgect.items[ind].isMandatoryPresentation, value: obgect.items[ind].valueS, item: obgect.items[ind].item, valueValue: fileName)
+                                    startHeroSet.items.append(firstBodyPa)
                                 }
-                                
                             }
                         }
                     } else{
                         for (ind, subview) in characterView.subviews.enumerated() {
                             if let imageView = subview as? UIImageView {
                                 obgect.gender = .girl
-                                if ind != 0{
+                                if ind != 0{ // gender cell
                                     let fileName = obgect.items[ind].girl.first?.vcbVnbvbvBBB ?? ""
                                     imageView.image = getImageFromFile(with: fileName)
+                                    let firstBodyPa = BodyPart(name: obgect.items[ind].nameS ?? "", hierarchy: obgect.items[ind].hierarchy, isMandatoryPresentation: obgect.items[ind].isMandatoryPresentation, value: obgect.items[ind].valueS, item: obgect.items[ind].item, valueValue: fileName)
+                                    startHeroSet.items.append(firstBodyPa)
                                 }
                             }
                         }
                     }
-                    
+                
+                    oneStep = startHeroSet
                 }
                 oneStep = createOneNextStep(with: fileName, and: indexPath.item, changedBodyPart: obgect.items[index])
             }
@@ -364,4 +402,56 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     
     }
 
-
+//import UIKit
+//
+//class YourViewController: UIViewController {
+//
+//    let firstButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("First Button", for: .normal)
+//        button.backgroundColor = .blue
+//        button.addTarget(self, action: #selector(firstButtonTapped), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
+//
+//    let secondButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("Second Button", for: .normal)
+//        button.backgroundColor = .green
+//        button.addTarget(self, action: #selector(secondButtonTapped), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
+//    
+//    var df: Int = 0
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        view.addSubview(firstButton)
+//        view.addSubview(secondButton)
+//
+//        NSLayoutConstraint.activate([
+//            firstButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            firstButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+//            firstButton.widthAnchor.constraint(equalToConstant: 150),
+//            firstButton.heightAnchor.constraint(equalToConstant: 40),
+//
+//            secondButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            secondButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
+//            secondButton.widthAnchor.constraint(equalToConstant: 150),
+//            secondButton.heightAnchor.constraint(equalToConstant: 40),
+//        ])
+//    }
+//
+//    @objc private func firstButtonTapped() {
+//        print("First button tapped!")
+//        RealmManager.shared.add(df)
+//    }
+//
+//    @objc private func secondButtonTapped() {
+//        print("Second button tapped!")
+//        df = df + 1
+//    }
+//}
