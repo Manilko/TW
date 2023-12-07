@@ -11,11 +11,35 @@ import PDFKit
 
 final class EditProcessController: UIViewController {
     
+    var storyCharacterChanges: StoryCharacterChanges = StoryCharacterChanges()
+    
     // MARK: - Properties
     weak var coordinatorDelegate: EditProcessDelegate?
     
-    init() {
+    init(item: String) {
         super.init(nibName: nil, bundle: nil)
+        
+        
+        let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
+        
+        let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
+        guard let herosElementSet else { return }
+//        for herosElement in herosElementSet {
+//            herosElement.downloadPDFs {   ///   <-    move to load screen
+//                print("@@@@@@@@>>>>>>>>")
+//            }
+//        }
+        let sortedHerosElementSet  = herosElementSet.sorted { $0.hierarchy < $1.hierarchy }
+        
+        let herosElementlist = List<BodyPart>()
+        herosElementlist.append(objectsIn: sortedHerosElementSet)
+        
+        let herosBodyElementSet = HeroSet(item: herosElementlist)
+//        let storyCharacterChanges = StoryCharacterChanges()
+        storyCharacterChanges.item.append(herosBodyElementSet)
+        
+        
+        
         view().navView.leftButton.addTarget(self, action: #selector(leftDidTaped), for: .touchUpInside)
         
     }
@@ -30,31 +54,10 @@ final class EditProcessController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let resultsMod: Results<EditorCategory>
-        let arrayMod: [EditorCategory]
+        self.view = EditProcessView(storyChanges: storyCharacterChanges)
         
-        resultsMod = RealmManager.shared.getObjects(EditorCategory.self)
-        arrayMod = Array(RealmManager.shared.getObjects(EditorCategory.self))
-        
-        let herosElementSet = JsonParsingManager.parseEditorJSON(data: arrayMod)
-        guard let herosElementSet = herosElementSet else { return }
-        for i in herosElementSet {
-            i.downloadPDFs {   ///   <-    move to load screen
-                print("@@@@@@@@>>>>>>>>")
-            }
-        }
-        let sortedHerosElementSet  = herosElementSet.sorted { $0.hierarchy < $1.hierarchy }
-        
-        let herosElementlist = List<BodyPart>()
-        herosElementlist.append(objectsIn: sortedHerosElementSet)
-        
-        let herosBodyElementSet = HeroSet(item: herosElementlist)
-        let storyCharacterChanges = StoryCharacterChanges()
-        storyCharacterChanges.item.append(herosBodyElementSet)
-        
-       
-        
-        self.view = EditProcessView(obj: storyCharacterChanges)
+        let editorCategory = RealmManager.shared.getObjects(HeroSet.self)
+        print(">>>>>>>editorCategory      \(editorCategory.count)")
 
     }
 
@@ -69,27 +72,6 @@ final class EditProcessController: UIViewController {
 
 }
 
-extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendedCell.identifier, for: indexPath) as? RecommendedCell else { return UICollectionViewCell() }
-
-                let item = ItemModel(title: "title", icon: "mocImage", discription: "description")
-                cell.configure(with: item)
-
-                return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           CGSize(width: 80, height: 180)
-       }
-    
-    
-}
 
 // MARK: - ViewSeparatable
 extension EditProcessController: ViewSeparatable {

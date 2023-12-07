@@ -402,7 +402,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4183E80B-AF87-4AC1-9A02-9BFC5C48809F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TokaWorld-18/Flow/ModsCoordinator.swift"
@@ -424,8 +424,8 @@
             filePath = "TokaWorld-18/Flow/EditorController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -552,8 +552,8 @@
             filePath = "TokaWorld-18/Flow/EditorController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "menuDidTaped(_:)"
             landmarkType = "7">
             <Locations>
@@ -1010,6 +1010,21 @@
                   endingLineNumber = "161"
                   offsetFromSymbolStart = "264">
                </Location>
+               <Location
+                  uuid = "8C23790A-464E-4664-8911-77C73F73BBBF - 556c02fbda5b82c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (TokaWorld_18.ComponentsBodyPart) -&gt; Swift.Bool in TokaWorld_18.BodyPart.boy.getter : Swift.Array&lt;TokaWorld_18.ComponentsBodyPart&gt;"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Models/Editor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "161"
+                  endingLineNumber = "161"
+                  offsetFromSymbolStart = "264">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -1064,6 +1079,21 @@
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (TokaWorld_18.ComponentsHero) -&gt; Swift.Bool in TokaWorld_18.BodyPart.girl.getter : Swift.Array&lt;TokaWorld_18.ComponentsHero&gt;"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Models/Editor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "5C9281E7-EB39-441C-8E88-A0A5A15980E0 - 9e81f0658cc69162"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (TokaWorld_18.ComponentsBodyPart) -&gt; Swift.Bool in TokaWorld_18.BodyPart.girl.getter : Swift.Array&lt;TokaWorld_18.ComponentsBodyPart&gt;"
                   moduleName = "TokaWorld-18"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Models/Editor.swift"
@@ -1149,8 +1179,8 @@
             filePath = "TokaWorld-18/Flow/EditorController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1181,10 +1211,10 @@
             filePath = "TokaWorld-18/Flow/EditProcessController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "EditProcessController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1239,7 +1269,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "FA8FD753-5ADA-4A5E-B5B5-1D59B664AD85"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TokaWorld-18/Utils/Uiews/CollectionViewContainer.swift"

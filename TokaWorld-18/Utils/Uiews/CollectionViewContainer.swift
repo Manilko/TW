@@ -25,6 +25,8 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
             self.storyHeroChanges.item.append(oneStep)
         }
     }
+    
+    var obgect: HeroSet = HeroSet()
 
     
     var storyHeroChanges: StoryCharacterChanges = StoryCharacterChanges()
@@ -70,13 +72,13 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         return view
     }()
     
-    var obgect: HeroSet = HeroSet()
     
-    init(obj: StoryCharacterChanges) {
+    
+    init(story: StoryCharacterChanges) {
 
-        obgect = obj.item.last ?? HeroSet()
-        self.count = obj.item.first?.items.first?.item.count ?? 0
-        self.storyHeroChanges = obj
+        obgect = story.item.last ?? HeroSet()
+        self.count = story.item.first?.items.first?.item.count ?? 0
+//        self.storyHeroChanges = story
         
         
         super.init(frame: .zero)
@@ -91,20 +93,25 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     }
     
     @objc private func saveToRealm() {
-        
+        //  save to realm storyHeroChanges.item.last
         let image = createImageFromLayers()
         viewImage.image = image
         print(image)
         print("Data saved to Realm")
+        
+        let lastSet = storyHeroChanges.item.last
+        guard let lastSet else{ return }
+        RealmManager.shared.add(lastSet)
+        
+        removeFromSuperview()
+
     }
 
     
     func createImageFromLayers() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(characterView.bounds.size, false, UIScreen.main.scale)
         
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return nil
-        }
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
         
         characterView.layer.render(in: context)
         
@@ -174,7 +181,7 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                 fileName = "\((bodyPart.item[bodyPart.valueS ].vcbVnbvbvBBB)!)"
             } else {
                 // for deleteButton
-                    let del = ComponentsHero(id: "0", imageName: "ic_round", previewName: "deleteButton_ic_round")
+                    let del = ComponentsBodyPart(id: "0", imageName: "ic_round", previewName: "deleteButton_ic_round")
                 bodyPart.item.insert(del, at: 0)
             }
             
@@ -199,8 +206,8 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
             ])
         }
         
-        self.storyHeroChanges.item.append(startHeroSet)
-        RealmManager.shared.add(storyHeroChanges)
+        oneStep = startHeroSet
+
            
                 self.firstCollectionView.reloadData()
                 self.secondCollectionView.reloadData()

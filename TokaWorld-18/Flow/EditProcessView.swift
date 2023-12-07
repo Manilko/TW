@@ -15,8 +15,8 @@ final class EditProcessView: UIView {
     let collectionViewContainer: CollectionViewContainer
 
     // MARK: - Lifecycle
-    init(obj: StoryCharacterChanges) {
-        collectionViewContainer = CollectionViewContainer(obj: obj)
+    init(storyChanges: StoryCharacterChanges) {
+        collectionViewContainer = CollectionViewContainer(story: storyChanges)
         super.init(frame: .zero)
 
         configureLayout()

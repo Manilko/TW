@@ -50,7 +50,7 @@ class JsonParsingManager {
 
                 let items = data.filter { $0.jhvqwjgcvMMB5fF == category }.flatMap { $0.vccfcfbNNBGCFX }
                 
-                let list = List<ComponentsHero>()
+                let list = List<ComponentsBodyPart>()
                 list.append(objectsIn: items)
 
                 return BodyPart(

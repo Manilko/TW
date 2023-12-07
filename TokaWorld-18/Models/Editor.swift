@@ -31,7 +31,7 @@ enum GenderType: String {
     case boy
 }
 
-final class HeroSet: Object, Sequence {   // to store the history of character changes
+final class HeroSet: Object, Sequence {   // complete full set of hero BodyPart
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic private var genderRaw: String = GenderType.boy.rawValue
     var items: List<BodyPart> = List<BodyPart>()
@@ -70,8 +70,8 @@ extension HeroSet{
         genderElement.hierarchy = -1
         
         // imageName: "ic_round"  -- recorded In the filter, it should be just such that it falls under the filtering and gives the necessary number of realizations of the display of sails
-        let boy = ComponentsHero(id: "0", imageName: "ic_round", previewName: "ic_round-b")
-        let girl = ComponentsHero(id: "1", imageName: "ic_round", previewName: "ic_round-g")
+        let boy = ComponentsBodyPart(id: "0", imageName: "ic_round", previewName: "ic_round-b")
+        let girl = ComponentsBodyPart(id: "1", imageName: "ic_round", previewName: "ic_round-g")
         
         genderElement.item.append(boy)
         genderElement.item.append(girl)
@@ -92,7 +92,7 @@ final class BodyPart: Object, Codable, Sequence {
     @objc dynamic var gender: String?
     @objc dynamic var valueS: Int = 0
     @objc dynamic var valueValue: String?
-    var item: List<ComponentsHero> = List<ComponentsHero>()
+    var item: List<ComponentsBodyPart> = List<ComponentsBodyPart>()
 
     override static func primaryKey() -> String? {
         return "id"
@@ -137,7 +137,7 @@ final class BodyPart: Object, Codable, Sequence {
         hierarchy: Int,
         isMandatoryPresentation: Bool,
         value: Int,
-        item:  List<ComponentsHero>,
+        item:  List<ComponentsBodyPart>,
         valueValue: String?
     ) {
         self.init()
@@ -149,11 +149,11 @@ final class BodyPart: Object, Codable, Sequence {
         self.valueValue = valueValue
     }
     
-    func makeIterator() -> List<ComponentsHero>.Iterator {
+    func makeIterator() -> List<ComponentsBodyPart>.Iterator {
         return item.makeIterator()
     }
     
-    var boy: [ComponentsHero] {
+    var boy: [ComponentsBodyPart] {
         item.filter { item in
             if let vcbVnbvbvBBB = item.vcbVnbvbvBBB {
                 return vcbVnbvbvBBB.lowercased().contains("boy") || vcbVnbvbvBBB.contains("Boy") || vcbVnbvbvBBB.contains("Body") || vcbVnbvbvBBB.contains("ic_round")
@@ -163,7 +163,7 @@ final class BodyPart: Object, Codable, Sequence {
         }
     }
 
-    var girl: [ComponentsHero] {
+    var girl: [ComponentsBodyPart] {
         item.filter { item in
             if let vcbVnbvbvBBB = item.vcbVnbvbvBBB {
                 return vcbVnbvbvBBB.lowercased().contains("girl") || vcbVnbvbvBBB.contains("Girl") || vcbVnbvbvBBB.contains("Body") || vcbVnbvbvBBB.contains("ic_round")
