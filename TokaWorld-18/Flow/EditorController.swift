@@ -10,14 +10,14 @@ import RealmSwift
 
 final class EditorController: UIViewController {
     
-    let listHeros: Results<StoryCharacterChanges>
+    let listHeros: Results<HeroSet>
     
     weak var sideMenuDelegate: SideMenuDelegate?
     weak var itemDelegate: PresrntDelegate?
     
     
     init() {
-        listHeros = RealmManager.shared.getObjects(StoryCharacterChanges.self)
+        listHeros = RealmManager.shared.getObjects(HeroSet.self)
         print("listHeros.count \(listHeros.count)")
         super.init(nibName: nil, bundle: nil)
         
@@ -84,8 +84,9 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let a = "\(listHeros[indexPath.row])"
-        itemDelegate?.presentDetailViewController(item: "_")
+        let id = listHeros[indexPath.row].id
+//        print(listHeros[indexPath.row])
+        itemDelegate?.presentDetailViewController(item: id)
 //        print("didSelectItemAt \(indexPath.row)")
         
     }

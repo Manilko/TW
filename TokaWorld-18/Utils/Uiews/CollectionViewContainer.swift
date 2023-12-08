@@ -27,7 +27,7 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     }
     
     var obgect: HeroSet = HeroSet()
-
+    var id: String
     
     var storyHeroChanges: StoryCharacterChanges = StoryCharacterChanges()
     
@@ -74,18 +74,25 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     
     
     
-    init(story: StoryCharacterChanges) {
+    init(story: String) {
 
-        obgect = story.item.last ?? HeroSet()
-        self.count = story.item.first?.items.first?.item.count ?? 0
-//        self.storyHeroChanges = story
-        
+        self.id = story
+        self.count = 1
         
         super.init(frame: .zero)
+        let obgectFromRealm = getHeroSetById(heroSetId: id)
+
+        obgect = obgectFromRealm
         setupViews()
     }
     
-    
+    func getHeroSetById(heroSetId: String) -> HeroSet {
+
+        let heroSets = RealmManager.shared.getObjects(HeroSet.self).filter("id == %@", heroSetId)
+        
+        print(heroSets)
+           return heroSets.first ?? HeroSet()
+       }
     
     
     required init?(coder: NSCoder) {
@@ -93,15 +100,13 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
     }
     
     @objc private func saveToRealm() {
-        //  save to realm storyHeroChanges.item.last
+
         let image = createImageFromLayers()
         viewImage.image = image
-        print(image)
-        print("Data saved to Realm")
-        
+
         let lastSet = storyHeroChanges.item.last
         guard let lastSet else{ return }
-        RealmManager.shared.add(lastSet)
+
         
         removeFromSuperview()
 

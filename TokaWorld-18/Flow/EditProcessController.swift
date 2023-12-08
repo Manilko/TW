@@ -12,11 +12,13 @@ import PDFKit
 final class EditProcessController: UIViewController {
     
     var storyCharacterChanges: StoryCharacterChanges = StoryCharacterChanges()
+    var itemString: String
     
     // MARK: - Properties
     weak var coordinatorDelegate: EditProcessDelegate?
     
     init(item: String) {
+        self.itemString = item
         super.init(nibName: nil, bundle: nil)
         
         
@@ -54,7 +56,7 @@ final class EditProcessController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        self.view = EditProcessView(storyChanges: storyCharacterChanges)
+        self.view = EditProcessView(storyChanges: itemString)
         
         let editorCategory = RealmManager.shared.getObjects(HeroSet.self)
         print(">>>>>>>editorCategory      \(editorCategory.count)")

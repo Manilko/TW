@@ -15,7 +15,7 @@ final class EditProcessView: UIView {
     let collectionViewContainer: CollectionViewContainer
 
     // MARK: - Lifecycle
-    init(storyChanges: StoryCharacterChanges) {
+    init(storyChanges: String) {
         collectionViewContainer = CollectionViewContainer(story: storyChanges)
         super.init(frame: .zero)
 
