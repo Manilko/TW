@@ -85,13 +85,18 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
     
     // MARK: - Public Method
     
-    func configure(storyCharacter: HeroSet) {
+    func configure(storyCharacter: StoryCharacterChanges) {
         
-                for bodyPart in storyCharacter {
+        if storyCharacter.item.isEmpty{
+            
+        } else{
+
+            for oneStepHeroSet in storyCharacter {
+                for bodyPart in oneStepHeroSet {
                     
                     let imageView = UIImageView()
                     var fileName: String?
-//                    print("       >>>>>>>>>>    bodyPart.valueValue   \( bodyPart.valueValue)")
+                    print("       >>>>>>>>>>    bodyPart.valueValue   \( bodyPart.valueValue)")
                     fileName = bodyPart.valueValue
                     
                     if let fileName {
@@ -110,6 +115,7 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
                         imageView.bottomAnchor.constraint(equalTo: characterView.bottomAnchor),
                     ])
                 }
+            }
             
         }
     
@@ -172,7 +178,7 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
         UIGraphicsEndImageContext()
 
         return pdfImage
-    
+    }
     }
     
     // MARK: - Private Methods

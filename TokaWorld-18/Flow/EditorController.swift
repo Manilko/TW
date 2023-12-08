@@ -10,16 +10,20 @@ import RealmSwift
 
 final class EditorController: UIViewController {
     
-    let listHeros: Results<HeroSet>
+    
+    var moc = 1
+    let a: Results<StoryCharacterChanges>
     
     weak var sideMenuDelegate: SideMenuDelegate?
-    weak var itemDelegate: PresrntDelegate?
+    weak var itemDelegate: ItemPresrntDelegate?
     
     
     init() {
-        listHeros = RealmManager.shared.getObjects(HeroSet.self)
-        print("listHeros.count \(listHeros.count)")
+        a = RealmManager.shared.getObjects(StoryCharacterChanges.self)
         super.init(nibName: nil, bundle: nil)
+        if a.count > 0{
+            moc = a.count
+        }
         
         
         view().navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
@@ -28,6 +32,11 @@ final class EditorController: UIViewController {
         view().collectionView.dataSource = self
         view().collectionView.delegate = self
         view().collectionView.register(EditorCollectionCell.self, forCellWithReuseIdentifier: EditorCollectionCell.identifier)
+        
+        
+       
+        
+        print(a.count)
         
     }
 
@@ -60,34 +69,31 @@ final class EditorController: UIViewController {
 // MARK: - filterView UICollectionViewDataSource
 extension EditorController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if listHeros.count > 0{
-            return listHeros.count
-        } else{
-            return 1
-        }
+        moc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCollectionCell.identifier, for: indexPath) as! EditorCollectionCell
         
-        if !listHeros.isEmpty{
-            let item = listHeros[indexPath.row]
+        if !a.isEmpty{
+            let item = a[indexPath.row]
             cell.configure(storyCharacter: item)
         } else{
             cell.backgroundColor = .red
         }
         
+        
+        
+//        cell.configure(with: UIImage(named: "mocImage"))
         return cell
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let id = listHeros[indexPath.row].id
-//        print(listHeros[indexPath.row])
-        itemDelegate?.presentDetailViewController(item: id)
-//        print("didSelectItemAt \(indexPath.row)")
+        itemDelegate?.presentDetailViewController()
+        print("didSelectItemAt \(indexPath.row)")
         
     }
     

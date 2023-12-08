@@ -16,9 +16,9 @@ class EditProcessCoordinator: Coordinator {
     var navigationController: UINavigationController
     let viewController: EditProcessController
 
-    init(navigationController: UINavigationController, itemQ: String) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.viewController = EditProcessController(item: itemQ)
+        self.viewController = EditProcessController()
     }
 
     func start() {

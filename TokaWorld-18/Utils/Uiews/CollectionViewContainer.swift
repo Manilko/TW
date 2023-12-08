@@ -11,26 +11,6 @@ import Realm
 
 class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var index = 0
-    var count: Int{
-        didSet {
-            DispatchQueue.main.async {
-                self.secondCollectionView.reloadData()
-            }
-        }
-    }
-    
-    var oneStep: HeroSet = HeroSet() {
-        didSet {
-            self.storyHeroChanges.item.append(oneStep)
-        }
-    }
-    
-    var obgect: HeroSet = HeroSet()
-    var id: String
-    
-    var storyHeroChanges: StoryCharacterChanges = StoryCharacterChanges()
-    
     let saveButton: UIButton = {
             let button = UIButton()
             button.setTitle("Save to Realm", for: .normal)
@@ -72,70 +52,55 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         return view
     }()
     
-    
-    
-    init(story: String) {
-
-        self.id = story
-        self.count = 1
-        
-        super.init(frame: .zero)
-        let obgectFromRealm = getHeroSetById(heroSetId: id)
-        var modifiedObject = HeroSet(value: obgectFromRealm)
-        
-        let modifiedBodyPart = BodyPart(value: obgectFromRealm.items)
-        modifiedObject.items = List<BodyPart>()
-        modifiedObject.items.append(modifiedBodyPart)
-        
-        print(modifiedBodyPart)
-        
-
-//       RealmManager.shared.delete(obgectFromRealm)
-//        RealmManager.shared.delete(modifiedBodyPart)
-        
-        modifiedObject.id = "hhjjhb"
-        
-        
-        
-        
-        
-
-//        print(modifiedObject)
-        
-        setupViews()
+    var obgect: HeroSet = HeroSet()
+    var index = 0
+    var count: Int{
+        didSet {
+            DispatchQueue.main.async {
+                self.secondCollectionView.reloadData()
+            }
+        }
     }
     
-    func getHeroSetById(heroSetId: String) -> HeroSet {
+    var oneStep: HeroSet = HeroSet() {
+        didSet {
+            self.storyHeroChanges.item.append(oneStep)
+        }
+    }
 
-        let heroSets = RealmManager.shared.getObjects(HeroSet.self).filter("id == %@", heroSetId)
+    
+    var storyHeroChanges: StoryCharacterChanges = StoryCharacterChanges()
+    
+    init(obj: HeroSet) {
+
+        obgect = obj
+        self.count = obj.items.count
+//        self.storyHeroChanges = obj
         
-        print(heroSets)
-           return heroSets.first ?? HeroSet()
-       }
-    
-    
+        
+        super.init(frame: .zero)
+        setupViews()
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     @objc private func saveToRealm() {
-
+        
         let image = createImageFromLayers()
         viewImage.image = image
-
-        let lastSet = storyHeroChanges.item.last
-        guard let lastSet else{ return }
-
-        
-        removeFromSuperview()
-
+        print(image)
+        print("Data saved to Realm")
     }
 
     
     func createImageFromLayers() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(characterView.bounds.size, false, UIScreen.main.scale)
         
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
         
         characterView.layer.render(in: context)
         
@@ -205,7 +170,7 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
                 fileName = "\((bodyPart.item[bodyPart.valueS ].vcbVnbvbvBBB)!)"
             } else {
                 // for deleteButton
-                    let del = ComponentsBodyPart(id: "0", imageName: "ic_round", previewName: "deleteButton_ic_round")
+                    let del = ComponentsHero(id: "0", imageName: "ic_round", previewName: "deleteButton_ic_round")
                 bodyPart.item.insert(del, at: 0)
             }
             
@@ -230,8 +195,8 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
             ])
         }
         
-        oneStep = startHeroSet
-
+        self.storyHeroChanges.item.append(startHeroSet)
+//        RealmManager.shared.add(storyHeroChanges)
            
                 self.firstCollectionView.reloadData()
                 self.secondCollectionView.reloadData()
