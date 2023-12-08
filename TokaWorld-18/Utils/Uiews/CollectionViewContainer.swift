@@ -81,8 +81,27 @@ class CollectionViewContainer: UIView, UICollectionViewDelegate, UICollectionVie
         
         super.init(frame: .zero)
         let obgectFromRealm = getHeroSetById(heroSetId: id)
+        var modifiedObject = HeroSet(value: obgectFromRealm)
+        
+        let modifiedBodyPart = BodyPart(value: obgectFromRealm.items)
+        modifiedObject.items = List<BodyPart>()
+        modifiedObject.items.append(modifiedBodyPart)
+        
+        print(modifiedBodyPart)
+        
 
-        obgect = obgectFromRealm
+//       RealmManager.shared.delete(obgectFromRealm)
+//        RealmManager.shared.delete(modifiedBodyPart)
+        
+        modifiedObject.id = "hhjjhb"
+        
+        
+        
+        
+        
+
+//        print(modifiedObject)
+        
         setupViews()
     }
     
