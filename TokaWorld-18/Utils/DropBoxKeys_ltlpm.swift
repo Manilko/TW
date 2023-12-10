@@ -43,6 +43,7 @@ final class ServerManager : NSObject {
                     } else {
                         self?.client = DropboxClient(accessToken: accessToken)
                     }
+//                    self?.getFolders()
                     print("good job token update 🫡 \(accessToken),\(String(describing: self?.client))")
                 } else {
                     print("error while getting access token ⚠️")
@@ -68,7 +69,38 @@ final class ServerManager : NSObject {
 //        refresh token ✅ T6nuDC12wS0AAAAAAAAAAUi6A-AH2TSkhpMdBwJ05bYo7cbWUD7kr-gGk9-qQkI4
         
     }
+    
+    func getFolders() {
+        getAuthorizedClient { client in
+            guard let client else {
+                print("⚠️ Dropbox client not authorized.")
+                return
+            }
+            
+            client.files.listFolder(path: "/mods").response { list, error in
+                print(list)
+                guard let result = list else { return }
+                print(result.entries.map({$0.name}))
+                for entry in result.entries {
+//                    print(entry.name)
+                       guard let file = entry as? Files.FolderMetadata else{
+                         return
+                       }
 
+                       // only folders
+                       print(entry)
+
+                       // *********  or
+//                       guard let entry is Files.FolderMetadata else{
+//                         return
+//                       }
+
+                       // only folders
+                       print(entry)
+                    }
+            }
+        }
+    }
 
     private func getReshreshToken(authCode: String, completion: @escaping (String?) -> ()) {
     

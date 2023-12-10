@@ -18,26 +18,42 @@ class LinearLoadingIndicator: UIView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configureUI()
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func configureUI() {
-        backgroundColor = .clear
+        backgroundColor = .white
 
-        progressView.backgroundColor = .green
-        progressView.frame = CGRect(x: 0, y: 0, width: 0, height: 20)
-        progressView.layer.cornerRadius = frame.height / 2
-
+        progressView.backgroundColor = .loadingBlue
+        progressView.layer.cornerRadius = UIDevice.current.isIPhone ? 8 : 12
+        self.layer.cornerRadius = UIDevice.current.isIPhone ? 16 : 20
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+//        progressView.autoPinLoadingViewToSuperView()
         addSubview(progressView)
-    }
+        
+        NSLayoutConstraint.activate([
+//            progressView.heightAnchor.constraint(equalToConstant: UIDevice.current.isIPhone ? 16 : 24),
+            progressView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            progressView.widthAnchor.constraint(equalToConstant: 0),
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            progressView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+//            progressView.trailingAnchor.constraint(equalTo: progressView.trailingAnchor, constant: 8),
+        ])
 
-    func setProgress(_ progress: CGFloat, duration: TimeInterval, completion: @escaping () -> Void) {
-            UIView.animate(withDuration: duration, animations: {
-                self.progressView.frame.origin.x = 0
-                self.progressView.frame.size.width = progress
-            }) { _ in
+    }
+    
+    func updateProgressView(progress: CGFloat = 0, completion: @escaping () -> Void) {
+        let width = self.frame.width - 16
+        let shift = width - (width * progress)
+        
+        progressView.constraints(.width).first?.constant = width - (shift > width ? width : shift)
+        UIView.animate(withDuration: 0.1) {
+            self.layoutIfNeeded()
+        } completion: { _ in
+            if progress == 1 {
                 completion()
             }
         }
+    }
 }
 

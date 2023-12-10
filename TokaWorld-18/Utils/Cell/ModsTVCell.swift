@@ -43,7 +43,7 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-        // label.font = .customFont(type: .bold, size: 20)
+        label.font = .customFont(type: .regular, size: 20)
         label.textColor = .black
         label.numberOfLines = 1
         label.textAlignment = .left
@@ -53,7 +53,7 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-        // label.font = .customFont(type: .semiBold, size: 14)
+        label.font = .customFont(type: .regular, size: 12)
         label.textColor = .black
         label.numberOfLines = 4
         label.isUserInteractionEnabled = true
@@ -102,21 +102,20 @@ final class ModsTVCell: UITableViewCell, NibCapable {
             image.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
             image.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
             image.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -20),
-            image.widthAnchor.constraint(equalToConstant: 120),
+            image.heightAnchor.constraint(equalToConstant: 120),
+            image.widthAnchor.constraint(equalTo: image.heightAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
-            titleLabel.heightAnchor.constraint(equalToConstant: 40),
-            titleLabel.widthAnchor.constraint(equalToConstant: 120),
+            titleLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
 
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 20),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
             descriptionLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -20),
-            descriptionLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
 
             favoriteImage.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
             favoriteImage.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20),
-            // favoriteImage.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -20),
             favoriteImage.widthAnchor.constraint(equalToConstant: 40),
             favoriteImage.heightAnchor.constraint(equalToConstant: 40),
         ])
@@ -125,6 +124,9 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     }
 
     func configure(with model: Mod) {
+        let im = getImageFromFile(with: "/Mods/\(model.rd1Lf2 ?? "")")
+        image.image = im
+        image.layer.cornerRadius = 32
         
         if let imageq = getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
             image.image = imageq

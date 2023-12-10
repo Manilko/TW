@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DA987A62B1CD88900E06C26 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A52B1CD88900E06C26 /* ImageType.swift */; };
+		0DA987A92B1CD95B00E06C26 /* UIImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */; };
+		0DA987AB2B1CD99F00E06C26 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */; };
+		0DA987AD2B1CDFB400E06C26 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987AC2B1CDFB400E06C26 /* UIColor+Extension.swift */; };
+		0DA987AF2B1CE3EB00E06C26 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987AE2B1CE3EB00E06C26 /* UIView+Extension.swift */; };
+		0DA987B12B1CEEC600E06C26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DA987B02B1CEEC600E06C26 /* LaunchScreen.storyboard */; };
+		0DA987B32B1CF3DA00E06C26 /* LilitaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA987B22B1CF3D900E06C26 /* LilitaOne-Regular.ttf */; };
+		0DA987B52B1CF41C00E06C26 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987B42B1CF41C00E06C26 /* UIFont+Extension.swift */; };
+		0DA987BC2B1CFBFE00E06C26 /* BlueTitleAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987BB2B1CFBFE00E06C26 /* BlueTitleAlertView.swift */; };
+		0DA987BE2B1D01CD00E06C26 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987BD2B1D01CD00E06C26 /* UIViewController+Alert.swift */; };
+		0DA987C02B1D034B00E06C26 /* TitleSubtitleAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987BF2B1D034B00E06C26 /* TitleSubtitleAlertView.swift */; };
+		0DA987C22B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987C12B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift */; };
+		0DA987C42B1D0C9F00E06C26 /* NetworkMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987C32B1D0C9F00E06C26 /* NetworkMonitoring.swift */; };
+		0DA987C62B1D0D4500E06C26 /* UIWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987C52B1D0D4500E06C26 /* UIWindow+Extension.swift */; };
 		15B3B0732AFBFBF700706666 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0722AFBFBF700706666 /* AppDelegate.swift */; };
 		15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0742AFBFBF700706666 /* SceneDelegate.swift */; };
 		15B3B0772AFBFBF700706666 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3B0762AFBFBF700706666 /* SideMenuController.swift */; };
@@ -104,6 +118,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DA987A52B1CD88900E06C26 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
+		0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Init.swift"; sourceTree = "<group>"; };
+		0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		0DA987AC2B1CDFB400E06C26 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0DA987AE2B1CE3EB00E06C26 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		0DA987B02B1CEEC600E06C26 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0DA987B22B1CF3D900E06C26 /* LilitaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LilitaOne-Regular.ttf"; sourceTree = "<group>"; };
+		0DA987B42B1CF41C00E06C26 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		0DA987BB2B1CFBFE00E06C26 /* BlueTitleAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTitleAlertView.swift; sourceTree = "<group>"; };
+		0DA987BD2B1D01CD00E06C26 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		0DA987BF2B1D034B00E06C26 /* TitleSubtitleAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleAlertView.swift; sourceTree = "<group>"; };
+		0DA987C12B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleAndTwoHButtonView.swift; sourceTree = "<group>"; };
+		0DA987C32B1D0C9F00E06C26 /* NetworkMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoring.swift; sourceTree = "<group>"; };
+		0DA987C52B1D0D4500E06C26 /* UIWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extension.swift"; sourceTree = "<group>"; };
 		15B3B06F2AFBFBF700706666 /* TokaWorld-18.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TokaWorld-18.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B3B0722AFBFBF700706666 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15B3B0742AFBFBF700706666 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +230,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DA987A72B1CD92E00E06C26 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */,
+				0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */,
+				0DA987AC2B1CDFB400E06C26 /* UIColor+Extension.swift */,
+				0DA987AE2B1CE3EB00E06C26 /* UIView+Extension.swift */,
+				0DA987B42B1CF41C00E06C26 /* UIFont+Extension.swift */,
+				0DA987BD2B1D01CD00E06C26 /* UIViewController+Alert.swift */,
+				0DA987C52B1D0D4500E06C26 /* UIWindow+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0DA987B62B1CF81700E06C26 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				0DA987BB2B1CFBFE00E06C26 /* BlueTitleAlertView.swift */,
+				0DA987BF2B1D034B00E06C26 /* TitleSubtitleAlertView.swift */,
+				0DA987C12B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 		15B3B0662AFBFBF700706666 = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +335,7 @@
 		15B3B0A42AFC033E00706666 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0DA987A72B1CD92E00E06C26 /* Extensions */,
 				4C78BBFD2B1C939400C59A64 /* Uiews */,
 				4C50AC952B03AE5700355DBF /* Protocols */,
 				4C50AC942B03A77200355DBF /* Fonts */,
@@ -295,6 +348,9 @@
 				4C60211B2B0190BB0098F071 /* Extension.swift */,
 				4C4CC7462B14E3030030885C /* NetworkMonitor.swift */,
 				4C4CC7482B14E36E0030885C /* BaseViewController.swift */,
+				0DA987A52B1CD88900E06C26 /* ImageType.swift */,
+				0DA987B02B1CEEC600E06C26 /* LaunchScreen.storyboard */,
+				0DA987B22B1CF3D900E06C26 /* LilitaOne-Regular.ttf */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -488,6 +544,7 @@
 				4C4CC7442B13D43E0030885C /* LoadingScreen.swift */,
 				4C78BBFB2B1C933A00C59A64 /* LoadingScreenCoordinator.swift */,
 				4C78BC0E2B1DDBFF00C59A64 /* LoadingScreenVM.swift */,
+				0DA987C32B1D0C9F00E06C26 /* NetworkMonitoring.swift */,
 			);
 			path = LoadingScreen;
 			sourceTree = "<group>";
@@ -495,6 +552,7 @@
 		4C78BBFD2B1C939400C59A64 /* Uiews */ = {
 			isa = PBXGroup;
 			children = (
+				0DA987B62B1CF81700E06C26 /* Alerts */,
 				4C78BBFE2B1C93B800C59A64 /* LinearLoadingIndicator.swift */,
 				15C9D6142AFE3824002232D3 /* NavigationView.swift */,
 				4C7006C72B0E934F009A497C /* CharacterImageViewManager.swift */,
@@ -632,7 +690,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C575F232B0256F500135BF3 /* ReadexPro-Bold.ttf in Resources */,
+				0DA987B12B1CEEC600E06C26 /* LaunchScreen.storyboard in Resources */,
 				15B3B07C2AFBFBF900706666 /* Assets.xcassets in Resources */,
+				0DA987B32B1CF3DA00E06C26 /* LilitaOne-Regular.ttf in Resources */,
 				4C575F1F2B02567B00135BF3 /* LilitaOne.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -662,6 +722,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7006C42B08DA41009A497C /* EditProcessCoordinator.swift in Sources */,
+				0DA987AD2B1CDFB400E06C26 /* UIColor+Extension.swift in Sources */,
 				4C78BC012B1C948200C59A64 /* SideMenuView.swift in Sources */,
 				15C9D6152AFE3824002232D3 /* NavigationView.swift in Sources */,
 				4C78BBF92B1AB0C900C59A64 /* CollectionViewContainer.swift in Sources */,
@@ -676,12 +738,15 @@
 				4C575F072B022DCE00135BF3 /* ModsCoordinator.swift in Sources */,
 				4C6AFE652B07592E0001B6A7 /* DetailModsView.swift in Sources */,
 				4C50AC8F2B0397D400355DBF /* AppCoordinator.swift in Sources */,
+				0DA987BC2B1CFBFE00E06C26 /* BlueTitleAlertView.swift in Sources */,
 				4C6AFE612B0754FF0001B6A7 /* DownloadPictureCoordinator.swift in Sources */,
 				4C50ACA12B042ED100355DBF /* SideMenuTVCell.swift in Sources */,
+				0DA987AF2B1CE3EB00E06C26 /* UIView+Extension.swift in Sources */,
 				4C55CBAC2B10E08E00A883AC /* EditorCategoryCell.swift in Sources */,
 				4C78BC032B1C955900C59A64 /* DownloadPictureView.swift in Sources */,
 				4C7006BC2B08D1E8009A497C /* DetailEditController.swift in Sources */,
 				4C50ACA32B042EF700355DBF /* ModsTVCell.swift in Sources */,
+				0DA987C22B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift in Sources */,
 				4C78BC0D2B1C97DC00C59A64 /* CategorysData.swift in Sources */,
 				4C55CBB22B10E85100A883AC /* Editor.swift in Sources */,
 				15B3B0A62AFC036D00706666 /* Coordinator.swift in Sources */,
@@ -694,12 +759,14 @@
 				4C6021162B018B730098F071 /* RoundButton.swift in Sources */,
 				4C78BC072B1C95F100C59A64 /* EditorCollectionCell.swift in Sources */,
 				4C78BBF72B1A88AD00C59A64 /* Editor Respond.swift in Sources */,
+				0DA987AB2B1CD99F00E06C26 /* UIDevice+Extension.swift in Sources */,
 				15B3B0772AFBFBF700706666 /* SideMenuController.swift in Sources */,
 				4C50AC912B03A54A00355DBF /* FurnitureViewController.swift in Sources */,
 				4C78BBFF2B1C93B800C59A64 /* LinearLoadingIndicator.swift in Sources */,
 				4C8939B32B13504700EB821A /* ViewMod.swift in Sources */,
 				4C7006BE2B08D1F6009A497C /* EditProcessCoordinator.swift in Sources */,
 				4C78BBF52B15629100C59A64 /* SideMenuModel.swift in Sources */,
+				0DA987A62B1CD88900E06C26 /* ImageType.swift in Sources */,
 				15B3B0732AFBFBF700706666 /* AppDelegate.swift in Sources */,
 				4C60211C2B0190BB0098F071 /* Extension.swift in Sources */,
 				4C7006B72B08C19E009A497C /* EditorController.swift in Sources */,
@@ -707,16 +774,22 @@
 				4C50AC9B2B040E0400355DBF /* NibCapable.swift in Sources */,
 				4C4CC7472B14E3030030885C /* NetworkMonitor.swift in Sources */,
 				4C78BC052B1C958F00C59A64 /* EditirView.swift in Sources */,
+				0DA987B52B1CF41C00E06C26 /* UIFont+Extension.swift in Sources */,
 				15C9D61B2AFE6C8F002232D3 /* RealmManager.swift in Sources */,
+				0DA987BE2B1D01CD00E06C26 /* UIViewController+Alert.swift in Sources */,
+				0DA987C42B1D0C9F00E06C26 /* NetworkMonitoring.swift in Sources */,
 				4C7006B92B08C1AF009A497C /* EditirCoordinator.swift in Sources */,
 				4C7006C82B0E934F009A497C /* CharacterImageViewManager.swift in Sources */,
 				4C78BC0F2B1DDBFF00C59A64 /* LoadingScreenVM.swift in Sources */,
+				0DA987C62B1D0D4500E06C26 /* UIWindow+Extension.swift in Sources */,
 				15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */,
 				4C575F2F2B02773700135BF3 /* HouseIdeasCoordinator.swift in Sources */,
 				4C78BC112B1DFAE800C59A64 /* DownloadManager.swift in Sources */,
 				4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */,
 				4C7006C22B08DA34009A497C /* EditProcessController.swift in Sources */,
+				0DA987A92B1CD95B00E06C26 /* UIImage+Init.swift in Sources */,
 				4C50AC932B03A5BD00355DBF /* FurnitureCoordinator.swift in Sources */,
+				0DA987C02B1D034B00E06C26 /* TitleSubtitleAlertView.swift in Sources */,
 				4C6AFE682B075F780001B6A7 /* RecommendedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -883,10 +956,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TokaWorld-18/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -909,10 +982,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TokaWorld-18/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
