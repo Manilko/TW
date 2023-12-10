@@ -31,14 +31,14 @@ enum GenderType: String {
     case boy
 }
 
-final class HeroSet: Object, Sequence {   // to store the history of character changes
+final class HeroSet: Object, Sequence {   // complete full set of hero BodyPart
     @objc dynamic var id: String = UUID().uuidString
-    @objc dynamic private var genderRaw: String = GenderType.boy.rawValue
-    var items: List<BodyPart> = List<BodyPart>()
+    @objc dynamic private var genderRaw: String = GenderType.girl.rawValue
+    var bodyParts: List<BodyPart> = List<BodyPart>()
 
     var gender: GenderType {
         get {
-            return GenderType(rawValue: genderRaw) ?? .boy
+            return GenderType(rawValue: genderRaw) ?? .girl
         }
         set {
             genderRaw = newValue.rawValue
@@ -52,12 +52,13 @@ final class HeroSet: Object, Sequence {   // to store the history of character c
     convenience init(item: List<BodyPart>) {
         self.init()
 
-        self.items.append(creatLocalGenderFunctionality())
-        self.items.append(objectsIn: item)
+        self.bodyParts.append(creatLocalGenderFunctionality())
+        self.bodyParts.append(objectsIn: item)
+        setDelButton()
     }
 
     func makeIterator() -> List<BodyPart>.Iterator {
-        return items.makeIterator()
+        return bodyParts.makeIterator()
     }
 }
 
@@ -70,15 +71,23 @@ extension HeroSet{
         genderElement.hierarchy = -1
         
         // imageName: "ic_round"  -- recorded In the filter, it should be just such that it falls under the filtering and gives the necessary number of realizations of the display of sails
-        let boy = ComponentsHero(id: "0", imageName: "ic_round", previewName: "ic_round-b")
-        let girl = ComponentsHero(id: "1", imageName: "ic_round", previewName: "ic_round-g")
+        let boy = ComponentsBodyPart(id: "0", imageName: "ic_round", previewName: "ic_round-b")
+        let girl = ComponentsBodyPart(id: "1", imageName: "ic_round", previewName: "ic_round-g")
         
         genderElement.item.append(boy)
         genderElement.item.append(girl)
         
-        
-        
         return genderElement
+    }
+    
+    func setDelButton() {
+        for bodyPart in bodyParts{
+            if !bodyPart.isMandatoryPresentation && bodyPart.nameS != "Gender"{
+                // for deleteButton
+                let del = ComponentsBodyPart(id: "0", imageName: "ic_round", previewName: "deleteButton_ic_round")
+                bodyPart.item.insert(del, at: 0)
+            }
+        }
     }
 }
 
@@ -92,7 +101,7 @@ final class BodyPart: Object, Codable, Sequence {
     @objc dynamic var gender: String?
     @objc dynamic var valueS: Int = 0
     @objc dynamic var valueValue: String?
-    var item: List<ComponentsHero> = List<ComponentsHero>()
+    var item: List<ComponentsBodyPart> = List<ComponentsBodyPart>()
 
     override static func primaryKey() -> String? {
         return "id"
@@ -118,7 +127,7 @@ final class BodyPart: Object, Codable, Sequence {
 //        self.valueValue = try container.decodeIfPresent(String.self, forKey: .valueValue)
         
         if isMandatoryPresentation{
-            valueValue = item.first?.vcbVnbvbvBBB
+            valueValue = girl.first?.vcbVnbvbvBBB
         }
     }
     
@@ -137,8 +146,9 @@ final class BodyPart: Object, Codable, Sequence {
         hierarchy: Int,
         isMandatoryPresentation: Bool,
         value: Int,
-        item:  List<ComponentsHero>,
+        item:  List<ComponentsBodyPart>,
         valueValue: String?
+        
     ) {
         self.init()
         self.nameS = name
@@ -147,13 +157,16 @@ final class BodyPart: Object, Codable, Sequence {
         self.valueS = value
         self.item.append(objectsIn: item)
         self.valueValue = valueValue
+        if isMandatoryPresentation{
+            self.valueValue = self.girl.first?.vcbVnbvbvBBB
+        }
     }
     
-    func makeIterator() -> List<ComponentsHero>.Iterator {
+    func makeIterator() -> List<ComponentsBodyPart>.Iterator {
         return item.makeIterator()
     }
     
-    var boy: [ComponentsHero] {
+    var boy: [ComponentsBodyPart] {
         item.filter { item in
             if let vcbVnbvbvBBB = item.vcbVnbvbvBBB {
                 return vcbVnbvbvBBB.lowercased().contains("boy") || vcbVnbvbvBBB.contains("Boy") || vcbVnbvbvBBB.contains("Body") || vcbVnbvbvBBB.contains("ic_round")
@@ -163,7 +176,7 @@ final class BodyPart: Object, Codable, Sequence {
         }
     }
 
-    var girl: [ComponentsHero] {
+    var girl: [ComponentsBodyPart] {
         item.filter { item in
             if let vcbVnbvbvBBB = item.vcbVnbvbvBBB {
                 return vcbVnbvbvBBB.lowercased().contains("girl") || vcbVnbvbvBBB.contains("Girl") || vcbVnbvbvBBB.contains("Body") || vcbVnbvbvBBB.contains("ic_round")
@@ -180,7 +193,7 @@ final class BodyPart: Object, Codable, Sequence {
             if let bvcfXbnbjb6HhnPath = imageItem.bvcfXbnbjb6Hhn {
                 ServerManager.shared.getData(forPath: bvcfXbnbjb6HhnPath) { data in
                     if let data = data {
-//                        print(" ℹ️  data at: \(data)")
+                        print(" ℹ️  data at: \(data)")
                         self.saveDataToFileManager(data: data, fileName: "\(bvcfXbnbjb6HhnPath)")
                     }
                 }
@@ -189,7 +202,7 @@ final class BodyPart: Object, Codable, Sequence {
             if let vcbVnbvbvBBBPath = imageItem.vcbVnbvbvBBB {
                 ServerManager.shared.getData(forPath: vcbVnbvbvBBBPath) { data in
                     if let data = data {
-//                        print(" ℹ️  data at: \(data)")
+                        print(" ℹ️  data at: \(data)")
                         self.saveDataToFileManager(data: data, fileName: "\(vcbVnbvbvBBBPath)")
                     }
                 }

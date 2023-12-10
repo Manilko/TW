@@ -85,39 +85,33 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
     
     // MARK: - Public Method
     
-    func configure(storyCharacter: StoryCharacterChanges) {
+    func configure(setHeroBodyPart: HeroSet) {
         
-        if storyCharacter.item.isEmpty{
+        for bodyPart in setHeroBodyPart {
             
-        } else{
-
-            for oneStepHeroSet in storyCharacter {
-                for bodyPart in oneStepHeroSet {
-                    
-                    let imageView = UIImageView()
-                    var fileName: String?
-                    print("       >>>>>>>>>>    bodyPart.valueValue   \( bodyPart.valueValue)")
-                    fileName = bodyPart.valueValue
-                    
-                    if let fileName {
-                        imageView.image = getImageFromFile(with: fileName)
-                    }
-                    
-                    imageView.contentMode = .scaleAspectFit
-                    imageView.translatesAutoresizingMaskIntoConstraints = false
-                    
-                    characterView.addSubview(imageView)
-                    
-                    NSLayoutConstraint.activate([
-                        imageView.topAnchor.constraint(equalTo: characterView.topAnchor),
-                        imageView.leadingAnchor.constraint(equalTo: characterView.leadingAnchor),
-                        imageView.trailingAnchor.constraint(equalTo: characterView.trailingAnchor),
-                        imageView.bottomAnchor.constraint(equalTo: characterView.bottomAnchor),
-                    ])
-                }
+            let imageView = UIImageView()
+            var fileName: String?
+//            print("       >>>>>>>>>>    bodyPart.valueValue   \( bodyPart.valueValue)")
+            fileName = bodyPart.valueValue
+            
+            if let fileName {
+                imageView.image = getImageFromFile(with: fileName)
             }
             
+            imageView.contentMode = .scaleAspectFit
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            
+            characterView.addSubview(imageView)
+            
+            NSLayoutConstraint.activate([
+                imageView.topAnchor.constraint(equalTo: characterView.topAnchor),
+                imageView.leadingAnchor.constraint(equalTo: characterView.leadingAnchor),
+                imageView.trailingAnchor.constraint(equalTo: characterView.trailingAnchor),
+                imageView.bottomAnchor.constraint(equalTo: characterView.bottomAnchor),
+            ])
         }
+            
+    }
     
     func getImageFromFile(with fileName: String) -> UIImage {
         var image = UIImage()
@@ -178,7 +172,6 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
         UIGraphicsEndImageContext()
 
         return pdfImage
-    }
     }
     
     // MARK: - Private Methods

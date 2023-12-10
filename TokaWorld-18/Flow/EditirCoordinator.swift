@@ -7,18 +7,20 @@
 
 import UIKit
 
+protocol PresrntDelegate: AnyObject {
+    func presentDetailViewController(hero: HeroSet)
+    func pop(_ cender: UIViewController)
+}
+
 class EditirCoordinator: Coordinator {
     var navigationController: UINavigationController
     let viewController: EditorController
-    let detailCoordinator: EditProcessCoordinator
+    var detailCoordinator: EditProcessCoordinator?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.viewController = EditorController()
-        self.detailCoordinator = EditProcessCoordinator(navigationController: navigationController)
         self.viewController.itemDelegate = self
-        self.detailCoordinator.viewController.coordinatorDelegate = detailCoordinator
-        
     }
     
     deinit{
@@ -30,15 +32,18 @@ class EditirCoordinator: Coordinator {
     }
 }
 
-extension EditirCoordinator: ItemPresrntDelegate {
+extension EditirCoordinator: PresrntDelegate {
     func pop(_ cender: UIViewController) {
         if let index = navigationController.viewControllers.firstIndex(of: cender) {
                navigationController.viewControllers.remove(at: index)
            }
     }
     
-    func presentDetailViewController() {
-        detailCoordinator.navigationController.navigationBar.isHidden = true
-        detailCoordinator.start()
+    func presentDetailViewController(hero: HeroSet) {
+        detailCoordinator = EditProcessCoordinator(navigationController: navigationController, itemQ: hero)
+        
+        detailCoordinator?.viewController.coordinatorDelegate = detailCoordinator
+        detailCoordinator?.navigationController.navigationBar.isHidden = true
+        detailCoordinator?.start()
     }
 }

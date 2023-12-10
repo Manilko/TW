@@ -11,11 +11,29 @@ import PDFKit
 
 final class EditProcessController: UIViewController {
     
+    var startSetBodyElementSet: HeroSet = HeroSet()
+    
     // MARK: - Properties
     weak var coordinatorDelegate: EditProcessDelegate?
     
-    init() {
+    init(item: HeroSet) {
+        
         super.init(nibName: nil, bundle: nil)
+        startSetBodyElementSet = HeroSet(value: item)
+        
+        let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
+        
+        let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
+        guard let herosElementSet else { return }
+//        for herosElement in herosElementSet {
+//            herosElement.downloadPDFs {   ///   <-    move to load screen
+//                print("@@@@@@@@>>>>>>>>")
+//            }
+//        }
+
+        
+        
+        
         view().navView.leftButton.addTarget(self, action: #selector(leftDidTaped), for: .touchUpInside)
         
     }
@@ -30,28 +48,8 @@ final class EditProcessController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
+        self.view = EditProcessView(startSet: startSetBodyElementSet)
 
-        
-        let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
-        guard let herosElementSet = herosElementSet else { return }
-        for i in herosElementSet {
-            i.downloadPDFs {   ///   <-    move to load screen
-                print("@@@@@@@@>>>>>>>>")
-            }
-        }
-        let sortedHerosElementSet  = herosElementSet.sorted { $0.hierarchy < $1.hierarchy }
-        
-        let herosElementlist = List<BodyPart>()
-        herosElementlist.append(objectsIn: sortedHerosElementSet)
-        
-        let herosBodyElementSet = HeroSet(item: herosElementlist)
-//        let storyCharacterChanges = StoryCharacterChanges()
-//        storyCharacterChanges.item.append(herosBodyElementSet)
-        
-       
-        
-        self.view = EditProcessView(obj: herosBodyElementSet)
 
     }
 
@@ -65,6 +63,7 @@ final class EditProcessController: UIViewController {
     }
 
 }
+
 
 // MARK: - ViewSeparatable
 extension EditProcessController: ViewSeparatable {

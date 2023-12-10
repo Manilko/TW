@@ -43,7 +43,7 @@ final class EditorCategory: Object, Codable {
     @objc dynamic var cfxfDXCGFc4DFf: Int = 0       // hierarchy: Int
     @objc dynamic var gcgdxdfzASXXS3dd: Int = 0     // value: Int
     @objc dynamic var kmbcvvfcCFVgvff: Bool = false // isnecessarily
-    var vccfcfbNNBGCFX = List<ComponentsHero>()
+    var vccfcfbNNBGCFX = List<ComponentsBodyPart>()
 
     override static func primaryKey() -> String? {
         return "id"
@@ -59,7 +59,7 @@ final class EditorCategory: Object, Codable {
     }
 }
 
-final class ComponentsHero: Object, Codable {
+final class ComponentsBodyPart: Object, Codable {
     @objc dynamic var id: String = UUID().uuidString
     
     @objc dynamic var gvhgvchgvFGFG56GC: String?    // id
