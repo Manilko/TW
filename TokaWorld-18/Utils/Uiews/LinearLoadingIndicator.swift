@@ -37,7 +37,6 @@ class LinearLoadingIndicator: UIView {
             progressView.widthAnchor.constraint(equalToConstant: 0),
             progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             progressView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-//            progressView.trailingAnchor.constraint(equalTo: progressView.trailingAnchor, constant: 8),
         ])
 
     }

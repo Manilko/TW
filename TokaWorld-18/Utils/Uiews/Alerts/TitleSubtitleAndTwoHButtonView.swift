@@ -27,7 +27,7 @@ final class TitleSubtitleAndTwoHButtonView: UIView {
     
     private let titleLabel: UILabel = {
         let v = UILabel()
-        v.font = .customFont(type: .regular, size: 28)
+        v.font = .customFont(type: .bolt, size: 28)
         v.textColor = .black
         v.textAlignment = .center
         v.numberOfLines = 0
@@ -36,7 +36,7 @@ final class TitleSubtitleAndTwoHButtonView: UIView {
     
     private let subtitleLabel: UILabel = {
         let v = UILabel()
-        v.font = .customFont(type: .regular, size: 18)
+        v.font = .customFont(type: .bolt, size: 18)
         v.textColor = .black
         v.textAlignment = .center
         v.numberOfLines = 0

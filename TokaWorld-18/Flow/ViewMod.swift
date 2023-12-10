@@ -22,6 +22,9 @@ final class ModsView: UIView {
     lazy var modsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
 
@@ -61,13 +64,13 @@ final class ModsView: UIView {
                 navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
                 navView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 navView.widthAnchor.constraint(equalTo: widthAnchor),
-                navView.heightAnchor.constraint(equalToConstant: 100),
+                navView.heightAnchor.constraint(equalToConstant: 80),
 
-                searchView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 20),
+                searchView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
                 searchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 searchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
-                searchView.heightAnchor.constraint(equalToConstant: 310),
+//                searchView.heightAnchor.constraint(equalToConstant: 44),
 
                 modsTableView.topAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 20),
                 modsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),

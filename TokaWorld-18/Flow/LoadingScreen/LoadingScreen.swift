@@ -29,31 +29,39 @@ class LoadingScreenViewController: UIViewController {
             StorageHandler.handleStorage(array: dataArray) {
                 let modManager = DownloadManager<Mod>(results: RealmManager.shared.getObjects(Mod.self))
                 modManager.downloadData(nameDirectory: .mods) {
+                    self.loadingIndicator.updateProgressView(progress: 1 / 6, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 
                 let furnitureElementManager = DownloadManager<FurnitureElement>(results: RealmManager.shared.getObjects(FurnitureElement.self))
                 modManager.downloadData(nameDirectory: .furniture) {
+                    self.loadingIndicator.updateProgressView(progress: 2 / 6, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 
               
                 let houseManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
                 modManager.downloadData(nameDirectory: .house) {
+                    self.loadingIndicator.updateProgressView(progress: 3 / 6, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 
                 let recipesManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
                 modManager.downloadData(nameDirectory: .recipes) {
+                    self.loadingIndicator.updateProgressView(progress: 4 / 6, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 
                 let guidesManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
                 modManager.downloadData(nameDirectory: .guides) {
+                    self.loadingIndicator.updateProgressView(progress: 5 / 6, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 let wallpapersManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
                 modManager.downloadData(nameDirectory: .wallpapers) {
+                    self.loadingIndicator.updateProgressView(progress: 6 / 6, completion: {
+                        self.coordinatorDelegate?.didSelectScreen(.mods)
+                    })
                     print(" 🔶  DONE Mods")
                 }
                 
@@ -95,10 +103,9 @@ class LoadingScreenViewController: UIViewController {
     }
 
     private func configureLayout() {
-        
-        self.loadingIndicator.setProgress(300, duration: 8) {
-            self.coordinatorDelegate?.didSelectScreen(.mods)
-        }
+//        self.loadingIndicator.setProgress(300, duration: 8) {
+//            self.coordinatorDelegate?.didSelectScreen(.mods)
+//        }
         
         
         let width = view.frame.width
@@ -150,8 +157,6 @@ class LoadingScreenViewController: UIViewController {
             loadingIndicator.topAnchor.constraint(equalTo: loadingLabel.bottomAnchor, constant: 16),
             loadingIndicator.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             loadingIndicator.widthAnchor.constraint(equalToConstant: alertWidth),
-//            loadingIndicator.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-//            loadingIndicator.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
         ])
     }
 }

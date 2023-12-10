@@ -68,7 +68,7 @@ final class ModsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
+        view.backgroundColor =  .backgroundBlue
         
 
         filteredCollection = filterCollection(arrayMod, by: .all)
@@ -262,7 +262,7 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
         var cellHeight: CGFloat = 0
         
         if tableView == view().modsTableView {
-            cellHeight =  160
+            cellHeight =  164
        } else if tableView == view().searchView.resultTableView {
            cellHeight = 60
        }

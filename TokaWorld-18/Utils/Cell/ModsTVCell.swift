@@ -8,13 +8,12 @@
 import UIKit
 
 final class ModsTVCell: UITableViewCell, NibCapable {
-
     private lazy var mainView: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = .loadingBlue
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
-        view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 40
 
         // Apply shadow to mainView
         view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
@@ -28,14 +27,15 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     private let image: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .clear
-        // image.set(cornerRadius: 12)
+        image.clipsToBounds = true
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 32
         return image
     }()
 
     private let favoriteImage: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .clear
-        // image.set(cornerRadius: 12)
         image.image = UIImage(named: ImageNameNawMenuType.unFavorite.rawValue)
         return image
     }()
@@ -43,8 +43,8 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-        label.font = .customFont(type: .regular, size: 20)
-        label.textColor = .black
+        label.font = .customFont(type: .bolt, size: 20)
+        label.textColor = .white
         label.numberOfLines = 1
         label.textAlignment = .left
         return label
@@ -53,9 +53,9 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-        label.font = .customFont(type: .regular, size: 12)
-        label.textColor = .black
-        label.numberOfLines = 4
+        label.font = .customFont(type: .bolt, size: 12)
+        label.textColor = .white
+        label.numberOfLines = 0
         label.isUserInteractionEnabled = true
         label.textAlignment = .left
         return label
@@ -79,7 +79,7 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     }
 
     private func setup() {
-        backgroundColor = .yellow
+        backgroundColor = .clear
 
         image.translatesAutoresizingMaskIntoConstraints = false
         mainView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,39 +94,38 @@ final class ModsTVCell: UITableViewCell, NibCapable {
         addSubview(favoriteImage)
 
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            mainView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             mainView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             mainView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
 
-            image.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
-            image.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
-            image.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -20),
-            image.heightAnchor.constraint(equalToConstant: 120),
+            image.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12),
+            image.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 12),
+            image.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12),
+//            image.heightAnchor.constraint(equalToConstant: 120),
             image.widthAnchor.constraint(equalTo: image.heightAnchor),
 
-            titleLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12),
+            titleLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
             titleLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
 
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            descriptionLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
+            descriptionLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
             descriptionLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -20),
             descriptionLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
 
-            favoriteImage.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
-            favoriteImage.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20),
-            favoriteImage.widthAnchor.constraint(equalToConstant: 40),
-            favoriteImage.heightAnchor.constraint(equalToConstant: 40),
+            favoriteImage.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16),
+            favoriteImage.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
+            favoriteImage.widthAnchor.constraint(equalToConstant: 32),
+            favoriteImage.heightAnchor.constraint(equalToConstant: 32),
         ])
 
         selectionStyle = .none
     }
 
     func configure(with model: Mod) {
-        let im = getImageFromFile(with: "/Mods/\(model.rd1Lf2 ?? "")")
-        image.image = im
-        image.layer.cornerRadius = 32
+//        let im = getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "")")
+//        image.image = im
         
         if let imageq = getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
             image.image = imageq

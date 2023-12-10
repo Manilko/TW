@@ -9,7 +9,7 @@ import UIKit
 
 extension UIFont {
     enum FontType: String {
-        case regular = "LilitaOne-Regular"
+        case bolt = "LilitaOne"
     }
 
     static func customFont(

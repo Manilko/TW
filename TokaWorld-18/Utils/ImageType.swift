@@ -17,6 +17,13 @@ enum ImageType: String, Codable, CaseIterable {
     case deleteButton
     case cancelButton
     
+    case filterImage
+    case menuImage
+    case searchImage
+    case closeImage
+    
+    case smile
+    
     static let isIPhone: Bool = UIDevice.current.isIPhone
     static let loadingBackground: String = isIPhone ? ImageType.loadingBackgroundIPhone.rawValue  : ImageType.loadingBackgroundIPad.rawValue
 }

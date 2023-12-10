@@ -13,14 +13,14 @@ class NavigationView: UIView {
     let leftButton:  RoundButton = {
         let button = RoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-
+        button.isUserInteractionEnabled = true
         return button
     }()
 
     let rightButton: RoundButton = {
         let button = RoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-
+        button.isUserInteractionEnabled = true
         return button
     }()
     
@@ -29,8 +29,7 @@ class NavigationView: UIView {
         var titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont(name: "LilitaOne", size: 20)
-        var paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineHeightMultiple = 0.87
+        titleLabel.contentMode = .center
         
         return titleLabel
     }()
@@ -40,8 +39,9 @@ class NavigationView: UIView {
     required init(leftButtonType: ImageNameNawMenuType, title: String, rightButtonType: ImageNameNawMenuType) {
         super.init(frame: .zero)
 
-        setupButton(leftButton, withImageName: leftButtonType)
-        setupButton(rightButton, withImageName: rightButtonType)
+        setupButton(leftButton, withImageName: .menuImage)
+        setupButton(rightButton, withImageName: .filterImage)
+        
         titleLabel.text = title
         
         setupViews()
@@ -56,40 +56,42 @@ class NavigationView: UIView {
     // MARK: - View Setup
     
     private func setupButton(_ button: RoundButton, withImageName: ImageNameNawMenuType) {
-        
         if withImageName == .none {
             button.isHidden = true
         } else{
-            button.setImageA(UIImage(named: withImageName.rawValue))
+            button.setImageA(UIImage.image(name: withImageName.rawValue))
         }
-        
+    }
+    
+    private func setupButton(_ button: RoundButton, withImageName: ImageType?) {
+        if withImageName == nil {
+            button.isHidden = true
+        } else{
+            button.setImage(UIImage.image(name: withImageName?.rawValue ?? ""), for: .normal)
+        }
     }
 
     private func setupViews() {
-        backgroundColor = .white
+        backgroundColor = .clear
         
         addSubview(leftButton)
         addSubview(rightButton)
         addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
-            
             leftButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            leftButton.widthAnchor.constraint(equalToConstant: 30),
-            leftButton.heightAnchor.constraint(equalToConstant: 30),
+            leftButton.widthAnchor.constraint(equalToConstant: 40),
+            leftButton.heightAnchor.constraint(equalToConstant: 40),
             leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
             rightButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            rightButton.widthAnchor.constraint(equalToConstant: 30),
-            rightButton.heightAnchor.constraint(equalToConstant: 30),
+            rightButton.widthAnchor.constraint(equalToConstant: 40),
+            rightButton.heightAnchor.constraint(equalToConstant: 40),
             rightButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            titleLabel.widthAnchor.constraint(equalToConstant: 300),
-            titleLabel.heightAnchor.constraint(equalToConstant: 50),
         ])
-
     }
 }
 

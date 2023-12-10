@@ -12,14 +12,21 @@ extension UIImage {
         name: ImageType
     ) -> UIImage? {
         .init(named: name.rawValue)?
-//        .withRenderingMode(renderingMode)
     }
     
     static func image(
         name: String,
-        renderingMode: RenderingMode = .alwaysTemplate
+        renderingMode: RenderingMode = .alwaysOriginal
     ) -> UIImage? {
         .init(named: name)?
+        .withRenderingMode(renderingMode)
+    }
+    
+    static func image(
+        imageType: ImageType,
+        renderingMode: RenderingMode = .alwaysOriginal
+    ) -> UIImage? {
+        .init(named: imageType.rawValue)?
         .withRenderingMode(renderingMode)
     }
 }
