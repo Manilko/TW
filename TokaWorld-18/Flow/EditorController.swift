@@ -11,20 +11,18 @@ import RealmSwift
 
 final class EditorController: UIViewController {
     
-    let listHeros: Results<HeroSet>
-    
+    // MARK: - Properties
+    var listHeros: [HeroSet] = []
+    // Delegates
     weak var sideMenuDelegate: SideMenuDelegate?
     weak var itemDelegate: PresrntDelegate?
     
     init() {
-        listHeros = RealmManager.shared.getObjects(HeroSet.self)
-        print("listHeros.count \(listHeros.count)")
         super.init(nibName: nil, bundle: nil)
-        
-        
+
         view().navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
         
-        // MARK: - filterView
+        // MARK: - collectionView
         view().collectionView.dataSource = self
         view().collectionView.delegate = self
         view().collectionView.register(EditorCollectionCell.self, forCellWithReuseIdentifier: EditorCollectionCell.identifier)
@@ -47,17 +45,30 @@ final class EditorController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor =  #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        
-//        RealmManager.shared.delete(listHeros)
-        
-        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           reloadData()
+       }
+    
+    private func reloadData() {
+        listHeros.removeAll()
+        let firstCell = HeroSet()
+        if let image = UIImage(named: "Component 17"), let imageData = image.pngData() {
+            firstCell.iconImage = imageData
+        }
+
+        listHeros.append(firstCell)
+        listHeros.append(contentsOf: Array(RealmManager.shared.getObjects(HeroSet.self)))
+        view().collectionView.reloadData()
+        }
     
     @objc private func menuDidTaped(_ celector: UIButton) {
         sideMenuDelegate?.showSideMenu()
     }
     
-    func createStartSet() -> HeroSet {
+    private func createStartSet() -> HeroSet {
         
         var herosBodyElementSet = HeroSet()
         let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
@@ -77,53 +88,41 @@ final class EditorController: UIViewController {
     
 }
 
-// MARK: - filterView UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 extension EditorController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if listHeros.count > 0{
-//            return listHeros.count + 1
-//        } else{
-//            return 1
-//        }
-        
-        return listHeros.count + 1
+        listHeros.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        print("cellForItemAt indexPath")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCollectionCell.identifier, for: indexPath) as! EditorCollectionCell
-        
-        if indexPath.row == 0 {
-            cell.backgroundColor = .red
-        } else  {
-            let item = listHeros[indexPath.row - 1]
+
+            let item = listHeros[indexPath.row]
             cell.configure(setHeroBodyPart: item)
-        }
         
         return cell
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let chosenHero: HeroSet
         
         if indexPath.row != 0{
-            chosenHero = listHeros[indexPath.row - 1]
+            chosenHero = listHeros[indexPath.row]
         } else{
             chosenHero = createStartSet()
         }
-        
+
         itemDelegate?.presentDetailViewController(hero: chosenHero)
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let cellWidth = (collectionView.frame.width - 16) / 2 
-           let cellHeight = collectionView.frame.height / 2
-           return CGSize(width: cellWidth, height: cellHeight)
-       }
-    
+        // Assuming characterView's width is 166 and height is 211
+        let cellWidth = 166.0
+        let cellHeight = 211.0
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
 }
 
 

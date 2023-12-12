@@ -34,6 +34,7 @@ enum GenderType: String {
 final class HeroSet: Object, Sequence {   // complete full set of hero BodyPart
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic private var genderRaw: String = GenderType.girl.rawValue
+    @objc dynamic var iconImage: Data?
     var bodyParts: List<BodyPart> = List<BodyPart>()
 
     var gender: GenderType {
@@ -190,6 +191,15 @@ final class BodyPart: Object, Codable, Sequence {
         let fileManager = FileManager.default
 
         for imageItem in item {
+            // Check if the file already exists in the document directory
+            if let filePath = localFilePath(for: imageItem) {
+                if fileManager.fileExists(atPath: filePath.path) {
+                    print(" ℹ️ File already exists at: \(filePath)")
+                    continue // Skip download if the file already exists
+                }
+            }
+
+            // Download the file if it doesn't exist locally
             if let bvcfXbnbjb6HhnPath = imageItem.bvcfXbnbjb6Hhn {
                 ServerManager.shared.getData(forPath: bvcfXbnbjb6HhnPath) { data in
                     if let data = data {
@@ -212,6 +222,27 @@ final class BodyPart: Object, Codable, Sequence {
         // Call the completion handler when all downloads are complete
         completion()
     }
+
+    // Function to get the local file path for a given image item
+    func localFilePath(for imageItem: ComponentsBodyPart) -> URL? {
+        // Adjust the logic based on your image item structure
+        var fileName: String?
+
+        if let bvcfXbnbjb6HhnPath = imageItem.bvcfXbnbjb6Hhn {
+            fileName = bvcfXbnbjb6HhnPath
+        } else if let vcbVnbvbvBBBPath = imageItem.vcbVnbvbvBBB {
+            fileName = vcbVnbvbvBBBPath
+        }
+
+        if let fileName = fileName {
+            if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                return documentsDirectory.appendingPathComponent(fileName)
+            }
+        }
+
+        return nil
+    }
+
 
     func saveDataToFileManager(data: Data, fileName: String) {
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {

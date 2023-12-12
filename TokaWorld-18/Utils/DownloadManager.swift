@@ -37,10 +37,10 @@ class DownloadManager<T: Object & Codable & MenuTypeNameble>: Downloadable {
 
         for imageItem in array {
             if let name = imageItem.rd1Lf2 {
-                var fileName = "\(name)"
-//                if fileName == "/\(nameDirectory.category)/7.jpeg"{   // mistake in json
-//                    fileName = "/\(nameDirectory.category)/7.png"
-//                }
+                var fileName = "/\(nameDirectory.category)/\(name)"
+                if fileName == "/\(nameDirectory.category)/7.jpeg"{   // mistake in json
+                    fileName = "/\(nameDirectory.category)/7.png"
+                }
 
                 // Obtain the full file URL
                 let fileURL = documentsDirectory.appendingPathComponent(fileName)
@@ -110,7 +110,7 @@ class DownloadManager<T: Object & Codable & MenuTypeNameble>: Downloadable {
 //            guard let name = (item as? MenuTypeNameble)?.rd1Lf2 else {
 //                continue
 //            }
-//            
+//
 //            let fileName = "/\(T.self)/\(name)"
 //            let fileURL = FileManager.default.documentsDirectoryURL.appendingPathComponent(fileName)
 //

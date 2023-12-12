@@ -12,6 +12,7 @@ import Realm
 
 class CollectionViewContainer: UIView {
     
+    // MARK: - ______
     let saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Save to Realm", for: .normal)
@@ -57,7 +58,7 @@ class CollectionViewContainer: UIView {
     var index = 0
     var countSecondCVCell: Int = 0 {
         didSet {
-            print("countSecondCVCell =  \(countSecondCVCell)")
+//            print("countSecondCVCell =  \(countSecondCVCell)")
             DispatchQueue.main.async {
                 self.secondCollectionView.reloadData()
             }
@@ -66,18 +67,21 @@ class CollectionViewContainer: UIView {
     
     var oneStep: HeroSet = HeroSet() {
         didSet {
-            print("              oneStep      \(oneStep)")
+//            print("              oneStep      \(oneStep)")
             self.storyHeroChanges.item.append(oneStep)
+            print("              storyHeroChanges.item.count      \(storyHeroChanges.item.count)")
         }
     }
     
     var startSetQ: HeroSet = HeroSet()
     
     var storyHeroChanges: StoryCharacterChanges = StoryCharacterChanges()
+    var startToDel: HeroSet
     
     // MARK: - Life Cycle
     init(startSet: HeroSet) {
 
+        startToDel = startSet
         super.init(frame: .zero)
 
         var bodyParts: List<BodyPart> = List<BodyPart>()
@@ -90,7 +94,7 @@ class CollectionViewContainer: UIView {
         
         
         startSetQ = HeroSet()
-
+        startSetQ.id = startSet.id
         startSetQ.bodyParts.append(objectsIn: bodyParts)
         startSetQ.gender = startSet.gender
         
@@ -111,32 +115,36 @@ class CollectionViewContainer: UIView {
     
     
     
-    
+    // MARK: - func
     @objc private func saveToRealm() {
-        //  save to realm storyHeroChanges.item.last
-        let image = createImageFromLayers()
+
+        let image = UIImage(data: createImageFromLayers() ?? Data())
         viewImage.image = image
-//        print(image)
+
         print("Data saved to Realm")
         
         guard let lastSet = storyHeroChanges.item.last else { return }
+
+        RealmManager.shared.deleteObject(HeroSet.self, primaryKeyValue: startToDel.id)
         RealmManager.shared.add(lastSet)
-        
-        removeFromSuperview()
+
+//        removeFromSuperview()
     }
     
-    func createImageFromLayers() -> UIImage? {
+    func createImageFromLayers() -> Data? {
         UIGraphicsBeginImageContextWithOptions(characterView.bounds.size, false, UIScreen.main.scale)
         
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        
         characterView.layer.render(in: context)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        guard let image = UIGraphicsGetImageFromCurrentImageContext(),
+              let imageData = image.pngData() else {
+            UIGraphicsEndImageContext()
+            return nil
+        }
         UIGraphicsEndImageContext()
-        
-        return image
+        return imageData
     }
+
     
     func setDelButton() {
         for (index, bodyPart) in startSetQ.enumerated(){
@@ -195,12 +203,8 @@ class CollectionViewContainer: UIView {
        private func setupExistingBodyParts() {
 
            oneStep = startSetQ
-           print(startSetQ)
-           
            for bodyPart in startSetQ {
-               
                let imageView = UIImageView()
-
                var fileName = ""
 
                if bodyPart.valueValue != nil {
@@ -221,8 +225,11 @@ class CollectionViewContainer: UIView {
        }
         
     }
+
+
+// MARK: - UICollectionViewDelegate and UICollectionViewDataSource methods
 extension CollectionViewContainer: UICollectionViewDelegate, UICollectionViewDataSource {
-    // MARK: - UICollectionViewDelegate and UICollectionViewDataSource methods
+   
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == firstCollectionView {
@@ -261,8 +268,8 @@ extension CollectionViewContainer: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("🔸 didSelectItemAt = \(indexPath.row)")
-        print("🔸 startSetQ.gender = \(startSetQ.gender)")
+//        print("🔸 didSelectItemAt = \(indexPath.row)")
+//        print("🔸 startSetQ.gender = \(startSetQ.gender)")
 
         if collectionView == firstCollectionView {
             DispatchQueue.main.async {
@@ -324,12 +331,13 @@ extension CollectionViewContainer: UICollectionViewDelegate, UICollectionViewDat
                     let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
                     let  part = startSetQ.bodyParts[ind]
                     part.valueValue = fileName
-                    
-                    
+
                     imageView.image = getImageFromFile(with: fileName)
     
                     genderChangeSet.bodyParts.append(part)
                     genderChangeSet.gender = startSetQ.gender
+                let image = createImageFromLayers()
+                genderChangeSet.iconImage = image
 //                }  //
             }
         }
@@ -341,15 +349,20 @@ extension CollectionViewContainer: UICollectionViewDelegate, UICollectionViewDat
         guard let previousHeroSet = storyHeroChanges.item.last else { return HeroSet() }
         var newHeroSet = HeroSet()
 
-        print("previousHeroSet.bodyParts.count   =   \(previousHeroSet.bodyParts.count)")
+//        print("previousHeroSet.bodyParts.count   =   \(previousHeroSet.bodyParts.count)")
         
         newHeroSet.gender = previousHeroSet.gender
         newHeroSet.bodyParts.append(objectsIn: previousHeroSet.bodyParts)
         newHeroSet.bodyParts[index].valueValue = fileName
-        print("newHeroSet.bodyParts.count   =   \(newHeroSet.bodyParts.count)")
+        let image = createImageFromLayers()
+        newHeroSet.iconImage = image
+        
+//        print("newHeroSet.iconImage   =   \(newHeroSet.iconImage)")
        
         return newHeroSet
     }
+    
+  
 }
 
 
@@ -372,20 +385,7 @@ extension CollectionViewContainer: UICollectionViewDelegate, UICollectionViewDat
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// MARK: - getImageFromFile
 
 extension CollectionViewContainer{
     

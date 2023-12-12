@@ -17,7 +17,7 @@ protocol MenuTypeNameble: AnyObject {
 class Wallpapers: Object, Codable, Identifierble {
     @objc dynamic var id: String = "wallpapers"
     @objc dynamic var rd1L3K: String = ""
-    var item: List<WallpaperRealm> = List<WallpaperRealm>()
+    var item: List<Wallpaper> = List<Wallpaper>()
 
     override static func primaryKey() -> String {
         return "id"
@@ -38,7 +38,7 @@ class Wallpapers: Object, Codable, Identifierble {
         }
 
         self.rd1L3K = try container.decodeIfPresent(String.self, forKey: .rd1L3K) ?? ""
-        self.item = try container.decodeIfPresent(List<WallpaperRealm>.self, forKey: .item) ?? List<WallpaperRealm>()
+        self.item = try container.decodeIfPresent(List<Wallpaper>.self, forKey: .item) ?? List<Wallpaper>()
     }
 }
 
@@ -66,7 +66,7 @@ class Wallpapers: Object, Codable, Identifierble {
 
 
 
-final class WallpaperRealm: Object, Codable, MenuTypeNameble {
+final class Wallpaper: Object, Codable, MenuTypeNameble {
     
     @objc dynamic var id: String = UUID().uuidString
 

@@ -29,46 +29,56 @@ class LoadingScreenViewController: UIViewController {
             StorageHandler.handleStorage(array: dataArray) {
                 let modManager = DownloadManager<Mod>(results: RealmManager.shared.getObjects(Mod.self))
                 modManager.downloadData(nameDirectory: .mods) {
-                    self.loadingIndicator.updateProgressView(progress: 1 / 6, completion: {})
+                    self.loadingIndicator.updateProgressView(progress: 1 / 7, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 
                 let furnitureElementManager = DownloadManager<FurnitureElement>(results: RealmManager.shared.getObjects(FurnitureElement.self))
                 modManager.downloadData(nameDirectory: .furniture) {
-                    self.loadingIndicator.updateProgressView(progress: 2 / 6, completion: {})
+                    self.loadingIndicator.updateProgressView(progress: 2 / 7, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 
               
-                let houseManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
+                let houseManager = DownloadManager<HouseIdea>(results: RealmManager.shared.getObjects(HouseIdea.self))
                 modManager.downloadData(nameDirectory: .house) {
-                    self.loadingIndicator.updateProgressView(progress: 3 / 6, completion: {})
+                    self.loadingIndicator.updateProgressView(progress: 3 / 7, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 
                 let recipesManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
                 modManager.downloadData(nameDirectory: .recipes) {
-                    self.loadingIndicator.updateProgressView(progress: 4 / 6, completion: {})
+                    self.loadingIndicator.updateProgressView(progress: 4 / 7, completion: {})
                     print(" 🔶  DONE Mods")
                 }
                 
-                let guidesManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
+                let guidesManager = DownloadManager<Guide>(results: RealmManager.shared.getObjects(Guide.self))
                 modManager.downloadData(nameDirectory: .guides) {
-                    self.loadingIndicator.updateProgressView(progress: 5 / 6, completion: {})
+                    self.loadingIndicator.updateProgressView(progress: 5 / 7, completion: {})
                     print(" 🔶  DONE Mods")
                 }
-                let wallpapersManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
+                let wallpapersManager = DownloadManager<Wallpaper>(results: RealmManager.shared.getObjects(Wallpaper.self))
                 modManager.downloadData(nameDirectory: .wallpapers) {
-                    self.loadingIndicator.updateProgressView(progress: 6 / 6, completion: {
-                        self.coordinatorDelegate?.didSelectScreen(.mods)
+                    self.loadingIndicator.updateProgressView(progress: 6 / 7, completion: {
+//                        self.coordinatorDelegate?.didSelectScreen(.mods)
                     })
                     print(" 🔶  DONE Mods")
                 }
                 
-//                let RecipeManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
-//                modManager.downloadData(nameDirectory: .editor) {
-//                    print(" 🔶  DONE Mods")
-//                }
+                let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
+                
+                let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
+                guard let herosElementSet else { return }
+                for herosElement in herosElementSet {
+                    herosElement.downloadPDFs {
+                        self.loadingIndicator.updateProgressView(progress: 7 / 7, completion: {
+                            self.coordinatorDelegate?.didSelectScreen(.mods)
+                        })
+                        print("@@@@@@@@>>>>>>>>")
+                    }
+                }
+                
+
             }
         }
     }
@@ -95,18 +105,12 @@ class LoadingScreenViewController: UIViewController {
     }
     
     private func loadDataWithLoadingIndicator() {
-
         viewModel.getJson(completion: { dictionary in
             self.dataDictionary = dictionary
         })
-       
     }
 
     private func configureLayout() {
-//        self.loadingIndicator.setProgress(300, duration: 8) {
-//            self.coordinatorDelegate?.didSelectScreen(.mods)
-//        }
-        
         
         let width = view.frame.width
         
@@ -162,38 +166,38 @@ class LoadingScreenViewController: UIViewController {
 }
 
 // MARK: - JsonPathType
-enum JsonPathType: String, CaseIterable {
-    case mods = "/Mods/Mods.json"
-    case furniture = "/Furniture/Furniture.json"
-    case house = "/House_Ideas/House_Ideas.json"
-    case recipes = "/Recipes/Recipes.json"
-    case guides = "/Guides/Guides.json"
-    case wallpapers = "/Wallpapers/Wallpapers.json"
-    case editor = "/json.json"
-    
-    var caseName: String {
-        return String(describing: self)
-    }
-    
-    var correspondingModel: Codable.Type {
-        switch self {
-        case .mods:
-            return Mods.self
-        case .furniture:
-            return Furniture.self
-        case .house:
-            return HouseIdeas.self
-        case .recipes:
-            return Recipes.self
-        case .guides:
-            return Guides.self
-        case .wallpapers:
-            return Wallpapers.self
-        case .editor:
-            return EditorRespondModel.self
-        }
-    }
-}
+//enum JsonPathType: String, CaseIterable {
+//    case mods = "/Mods/Mods.json"
+//    case furniture = "/Furniture/Furniture.json"
+//    case house = "/House_Ideas/House_Ideas.json"
+//    case recipes = "/Recipes/Recipes.json"
+//    case guides = "/Guides/Guides.json"
+//    case wallpapers = "/Wallpapers/Wallpapers.json"
+//    case editor = "/json.json"
+//    
+//    var caseName: String {
+//        return String(describing: self)
+//    }
+//    
+//    var correspondingModel: Codable.Type {
+//        switch self {
+//        case .mods:
+//            return Mods.self
+//        case .furniture:
+//            return Furniture.self
+//        case .house:
+//            return HouseIdeas.self
+//        case .recipes:
+//            return Recipes.self
+//        case .guides:
+//            return Guides.self
+//        case .wallpapers:
+//            return Wallpapers.self
+//        case .editor:
+//            return EditorRespondModel.self
+//        }
+//    }
+//}
 
 // MARK: - LoadingScreenViewModel
 class LoadingScreenViewModel {

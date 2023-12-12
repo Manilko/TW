@@ -9,7 +9,7 @@ import UIKit
 
 class EditirView: UIView {
 
-    let navView = NavigationView(leftButtonType: .menu, title: "Editir", rightButtonType: ImageNameNawMenuType.filter)
+    let navView = NavigationView(leftButtonType: .menu, title: "Editor", rightButtonType: ImageNameNawMenuType.filter)
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

@@ -126,6 +126,19 @@ final class RealmManager {
 
         return realm.objects(type)
     }
+    
+    func deleteObject<T: Object>(_ type: T.Type, primaryKeyValue: String) {
+           guard isRealmAccessible() else { return }
+
+           let realm = getRealm()
+           realm.refresh()
+
+           if let objectToDelete = realm.object(ofType: type, forPrimaryKey: primaryKeyValue) {
+               try? realm.write {
+                   realm.delete(objectToDelete)
+               }
+           }
+       }
 }
 
 extension RealmManager {
