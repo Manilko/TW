@@ -6,6 +6,8 @@
 	<array>
 		<string>LilitaOne.ttf</string>
 		<string>ReadexPro-Bold.ttf</string>
+		<string>Jua-Regular.ttf</string>
+		<string>SF-Medium.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

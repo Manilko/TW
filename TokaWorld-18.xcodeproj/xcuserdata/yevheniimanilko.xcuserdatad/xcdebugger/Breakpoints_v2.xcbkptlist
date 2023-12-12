@@ -218,8 +218,8 @@
             filePath = "TokaWorld-18/Flow/SideMenuController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "closeDidTaped()"
             landmarkType = "7">
             <Locations>
@@ -584,8 +584,8 @@
             filePath = "TokaWorld-18/Utils/Cell/ModsTVCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "configure(with:)"
             landmarkType = "7">
             <Locations>
@@ -1736,8 +1736,8 @@
             filePath = "TokaWorld-18/Flow/EditorController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>

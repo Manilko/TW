@@ -11,7 +11,7 @@ final class SideMenuView: UIView{
    
    // MARK: - Properties
     
-    let navView = NavigationView(leftButtonType: .none, title: "Title", rightButtonType: ImageNameNawMenuType.close)
+    let navView = NavigationView(leftButtonType: .none, title: "Menu", rightButtonType: ImageNameNawMenuType.close)
 
    lazy var tableView: UITableView = {
       let tableView = UITableView()
@@ -22,7 +22,7 @@ final class SideMenuView: UIView{
    // MARK: - Lifecycle
    required init() {
        super.init(frame: .zero)
-
+       backgroundColor =  .backgroundWhite
        configureLayout()
    }
 
@@ -47,14 +47,14 @@ final class SideMenuView: UIView{
        navView.translatesAutoresizingMaskIntoConstraints = false
        NSLayoutConstraint.activate([
            
-           navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
-           navView.leadingAnchor.constraint(equalTo: leadingAnchor),
-           navView.widthAnchor.constraint(equalTo: widthAnchor),
-           navView.heightAnchor.constraint(equalToConstant: 100),
+            navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
+            navView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            navView.widthAnchor.constraint(equalTo: widthAnchor),
+            navView.heightAnchor.constraint(equalToConstant: 80),
    
-           tableView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 40),
-           tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
-           tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 4),
+           tableView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 20),
+           tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+           tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
 
        ])

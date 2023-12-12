@@ -39,11 +39,11 @@ class NavigationView: UIView {
     required init(leftButtonType: ImageNameNawMenuType, title: String, rightButtonType: ImageNameNawMenuType) {
         super.init(frame: .zero)
 
-        setupButton(leftButton, withImageName: .menuImage)
-        setupButton(rightButton, withImageName: .filterImage)
+        setupButton(leftButton, withImageName: leftButtonType)
+        setupButton(rightButton, withImageName: rightButtonType)
         
         titleLabel.text = title
-        
+
         setupViews()
     }
     

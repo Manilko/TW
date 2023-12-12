@@ -29,7 +29,7 @@ class RoundButton: UIButton {
 
     private func commonInit() {
         setTitleColor(UIColor.white, for: .normal)
-        backgroundColor = UIColor.blue
+//        backgroundColor = UIColor.blue
         translatesAutoresizingMaskIntoConstraints = false
 
         // Add the iconImageView as a subview

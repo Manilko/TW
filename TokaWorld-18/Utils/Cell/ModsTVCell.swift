@@ -14,7 +14,6 @@ final class ModsTVCell: UITableViewCell, NibCapable {
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
         view.layer.cornerRadius = 40
-
         // Apply shadow to mainView
         view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
         view.layer.shadowOpacity = 1
@@ -43,7 +42,7 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-        label.font = .customFont(type: .bolt, size: 20)
+        label.font = .customFont(type: .lilitaOne, size: 20)
         label.textColor = .white
         label.numberOfLines = 1
         label.textAlignment = .left
@@ -53,7 +52,7 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-        label.font = .customFont(type: .bolt, size: 12)
+        label.font = .customFont(type: .sfMedium, size: 12)
         label.textColor = .white
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true

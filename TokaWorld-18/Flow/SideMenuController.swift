@@ -11,12 +11,10 @@ final class SideMenuController: UIViewController {
     
     // MARK: - Properties
     weak var coordinatorDelegate: AppCoordinatorDelegate?
-    
     var previousSelectedIndexPath: IndexPath?
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        
         view().navView.rightButton.addTarget(self, action: #selector(closeDidTaped), for: .touchUpInside)
         view().tableView.delegate = self
         view().tableView.dataSource = self
@@ -32,15 +30,9 @@ final class SideMenuController: UIViewController {
         self.view = SideMenuView()
     }
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
-//        view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     }
-
-
 
     @objc private func closeDidTaped() {
         coordinatorDelegate?.pop(self)
@@ -73,24 +65,14 @@ extension SideMenuController: UITableViewDataSource, UITableViewDelegate{
         
         coordinatorDelegate?.pop(self)
         coordinatorDelegate?.didSelectScreen(SideMenuType.allCases[indexPath.row])
-        
-//        MenuType.allCases[indexPath.row].title
-//        delegate?.pop(self)
-//        delegate?.goToItemScreen(MenuType.allCases[indexPath.row])
-        
     }
-
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuTVCell.identifier, for: indexPath) as? SideMenuTVCell else { return UITableViewCell() }
-
         cell.configure(type: SideMenuType.allCases[indexPath.row])
-
         return cell
     }
-
 }
 
 // MARK: - ViewSeparatable

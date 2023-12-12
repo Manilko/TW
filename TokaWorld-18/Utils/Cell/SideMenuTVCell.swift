@@ -11,12 +11,10 @@ import UIKit
 final class SideMenuTVCell: UITableViewCell, NibCapable {
     private let mainView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
-        view.layer.cornerRadius = 20
+        view.backgroundColor = .blueCustom
+        view.layer.cornerRadius = 40
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
-//        view.set(cornerRadius: 38)
-//        view.set(borderColor: .gray, borderWidth: 6)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -92,9 +90,9 @@ final class SideMenuTVCell: UITableViewCell, NibCapable {
             label.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20),
             label.centerYAnchor.constraint(equalTo: mainView.centerYAnchor),
             
-            lockImage.widthAnchor.constraint(equalToConstant: 52),
-            lockImage.heightAnchor.constraint(equalToConstant: 52),
-            lockImage.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            lockImage.widthAnchor.constraint(equalToConstant: 40),
+            lockImage.heightAnchor.constraint(equalToConstant: 40),
+            lockImage.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             lockImage.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         

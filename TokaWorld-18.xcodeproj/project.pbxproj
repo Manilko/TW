@@ -64,6 +64,8 @@
 		4C575F252B02572D00135BF3 /* ReadexPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */; };
 		4C575F2D2B02616600135BF3 /* HouseIdeasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C575F2C2B02616600135BF3 /* HouseIdeasViewController.swift */; };
 		4C575F2F2B02773700135BF3 /* HouseIdeasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C575F2E2B02773700135BF3 /* HouseIdeasCoordinator.swift */; };
+		4C5E352C2B28641700AB26F5 /* Jua-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C5E352B2B28641700AB26F5 /* Jua-Regular.ttf */; };
+		4C5E352E2B28672D00AB26F5 /* SFMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C5E352D2B28672D00AB26F5 /* SFMedium.ttf */; };
 		4C6021142B0188790098F071 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 4C6021132B0188790098F071 /* SideMenu */; };
 		4C6021162B018B730098F071 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6021152B018B730098F071 /* RoundButton.swift */; };
 		4C60211C2B0190BB0098F071 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C60211B2B0190BB0098F071 /* Extension.swift */; };
@@ -168,6 +170,8 @@
 		4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ReadexPro-Bold.ttf"; sourceTree = "<group>"; };
 		4C575F2C2B02616600135BF3 /* HouseIdeasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeasViewController.swift; sourceTree = "<group>"; };
 		4C575F2E2B02773700135BF3 /* HouseIdeasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeasCoordinator.swift; sourceTree = "<group>"; };
+		4C5E352B2B28641700AB26F5 /* Jua-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jua-Regular.ttf"; sourceTree = "<group>"; };
+		4C5E352D2B28672D00AB26F5 /* SFMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFMedium.ttf; sourceTree = "<group>"; };
 		4C6021152B018B730098F071 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		4C6021172B018BAD0098F071 /* ImageNameNawMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameNawMenuType.swift; sourceTree = "<group>"; };
 		4C60211B2B0190BB0098F071 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -381,6 +385,8 @@
 			children = (
 				4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */,
 				4C575F1E2B02567B00135BF3 /* LilitaOne.ttf */,
+				4C5E352B2B28641700AB26F5 /* Jua-Regular.ttf */,
+				4C5E352D2B28672D00AB26F5 /* SFMedium.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -689,7 +695,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C5E352E2B28672D00AB26F5 /* SFMedium.ttf in Resources */,
 				4C575F232B0256F500135BF3 /* ReadexPro-Bold.ttf in Resources */,
+				4C5E352C2B28641700AB26F5 /* Jua-Regular.ttf in Resources */,
 				0DA987B12B1CEEC600E06C26 /* LaunchScreen.storyboard in Resources */,
 				15B3B07C2AFBFBF900706666 /* Assets.xcassets in Resources */,
 				0DA987B32B1CF3DA00E06C26 /* LilitaOne-Regular.ttf in Resources */,
@@ -722,7 +730,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C7006C42B08DA41009A497C /* EditProcessCoordinator.swift in Sources */,
 				0DA987AD2B1CDFB400E06C26 /* UIColor+Extension.swift in Sources */,
 				4C78BC012B1C948200C59A64 /* SideMenuView.swift in Sources */,
 				15C9D6152AFE3824002232D3 /* NavigationView.swift in Sources */,

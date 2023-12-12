@@ -96,25 +96,23 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print("cellForItemAt indexPath")
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCollectionCell.identifier, for: indexPath) as! EditorCollectionCell
-
-            let item = listHeros[indexPath.row]
-            cell.configure(setHeroBodyPart: item)
+        let item = listHeros[indexPath.row]
+        cell.configure(setHeroBodyPart: item)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let chosenHero: HeroSet
         
+        let chosenHero: HeroSet
         if indexPath.row != 0{
             chosenHero = listHeros[indexPath.row]
         } else{
             chosenHero = createStartSet()
         }
-
         itemDelegate?.presentDetailViewController(hero: chosenHero)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

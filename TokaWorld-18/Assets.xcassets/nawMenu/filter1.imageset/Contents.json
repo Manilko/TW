@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Frame 48097546.png",
+      "filename" : "Property 1=Filter.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Property 1=Filter@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Property 1=Filter@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

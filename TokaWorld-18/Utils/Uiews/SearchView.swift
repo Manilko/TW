@@ -8,13 +8,13 @@ class SearchView: UIView {
     
     let searchTextField: UITextField = {
         let textField = UITextField()
-        textField.font = .customFont(type: .bolt, size: 20)
+        textField.font = .customFont(type: .lilitaOne, size: 20)
         textField.textColor = .white
         textField.borderStyle = .none
         textField.backgroundColor = .clear
         let attributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font : UIFont.customFont(type: .bolt, size: 20)
+            NSAttributedString.Key.font : UIFont.customFont(type: .lilitaOne, size: 20)
         ]
         textField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: attributes)
         textField.translatesAutoresizingMaskIntoConstraints = false
