@@ -11,8 +11,7 @@ import Realm
 
 final class ModsController: UIViewController {
     
-    let resultsMod: Results<Mod>
-    let arrayMod: [Mod]
+    var arrayMod: [Mod]
     
     var filterFlag: FilterType
     private var searchResults: [Mod] = []
@@ -25,9 +24,7 @@ final class ModsController: UIViewController {
     
     init() {
         self.filterFlag = .all
-        
-        resultsMod = RealmManager.shared.getObjects(Mod.self)
-        arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
+        self.arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
         
         super.init(nibName: nil, bundle: nil)
         
@@ -72,67 +69,15 @@ final class ModsController: UIViewController {
         
 
         filteredCollection = filterCollection(arrayMod, by: .all)
-        print(" 🔶  arrayMod.count\(arrayMod.count)")
-        
-//        downloadPDFs {
-//            print(" 🔶  DONE")
-//        }
-        
     }
     
-    
-//    func downloadPDFs(completion: @escaping () -> Void) {
-//        let fileManager = FileManager.default
-//
-//        // Obtain the documents directory path
-//        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-//            completion()
-//            return
-//        }
-//
-//        for imageItem in arrayMod {
-//            if let name = imageItem.rd1Lf2 {
-//                var fileName = "/Mods/\(name)"
-//                if fileName == "/Mods/7.jpeg"{   // mistake in json
-//                    fileName = "/Mods/7.png"
-//                }
-//
-//                // Obtain the full file URL
-//                let fileURL = documentsDirectory.appendingPathComponent(fileName)
-//
-//                // Check if the file already exists
-//                if !fileManager.fileExists(atPath: fileURL.path) {
-//                    ServerManager.shared.getData(forPath: fileName) { data in
-//                        if let data = data {
-//                            print(" ℹ️  data at: \(data)")
-//                            self.saveDataToFileManager(data: data, fileURL: fileURL)
-//                        }
-//                    }
-//                } else {
-//                    print(" ℹ️  File already exists: \(fileURL)")
-//                }
-//            }
-//        }
-//
-//        // Call the completion handler when all downloads are complete
-//        completion()
-//    }
-//
-//    func saveDataToFileManager(data: Data, fileURL: URL) {
-//        do {
-//            // Create intermediate directories if they don't exist
-//            let directoryURL = fileURL.deletingLastPathComponent()
-//            try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-//
-//            // Write the data to the file
-//            try data.write(to: fileURL)
-//            print(" ✅  File saved successfully at: \(fileURL)")
-//        } catch {
-//            print(" ⛔ Error saving file: \(error)")
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-    
+        arrayMod.removeAll()
+        arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
+    }
+
     private func filterCollection(_ collection: [Mod], by filterType: FilterType) -> [Mod] {
            switch filterType {
            case .all:
@@ -190,7 +135,6 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
             } else {
                 cell.textLabel.textColor = .white
             }
-
             return cell
         }
     
@@ -272,9 +216,10 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        itemDelegate?.presentDetailViewController()
+        let item = filteredCollection[indexPath.row]
+        let recommended = Array(arrayMod[1...5])  // ????
+        itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
         updateSearchHideTabel()
-        print("didSelectRowAt\(indexPath.row)")
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -286,13 +231,11 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
             let item = filteredCollection[indexPath.row]
             cell.configure(with: item)
             returnCell = cell
-            
        } else if tableView == view().searchView.resultTableView {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
                 cell.textLabel?.text = searchResults[indexPath.row].rd1Ld4
            returnCell =  cell
        }
-        
         return returnCell
     }
 }

@@ -14,9 +14,12 @@ final class SideMenuView: UIView{
     let navView = NavigationView(leftButtonType: .none, title: "Menu", rightButtonType: ImageNameNawMenuType.close)
 
    lazy var tableView: UITableView = {
-      let tableView = UITableView()
-      tableView.translatesAutoresizingMaskIntoConstraints = false
-      return tableView
+        let tableView = UITableView()
+        tableView.backgroundColor = .backgroundWhite
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
 
    // MARK: - Lifecycle
@@ -34,11 +37,7 @@ final class SideMenuView: UIView{
        super.layoutSubviews()
        tableView.reloadData()
    }
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-    }
-
-
+    
    private func configureLayout() {
        
        addSubview(navView)
@@ -55,7 +54,7 @@ final class SideMenuView: UIView{
            tableView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 20),
            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-           tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+           tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
 
        ])
    }

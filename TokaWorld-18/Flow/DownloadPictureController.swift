@@ -10,12 +10,16 @@ import UIKit
 final class DownloadPictureController: UIViewController {
     
     // MARK: - Properties
-//    weak var sideMenuDelegate: SideMenuDelegate?
     weak var coordinatorDelegate: DownloadPictureDelegate?
+    let model: Mod?
+    let recommended: [Mod]
     
-    init() {
+    init(item: Mod, recommended: [Mod]) {
+        self.model = item
+        self.recommended = recommended
         super.init(nibName: nil, bundle: nil)
-        view().navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
+        view().navView.leftButton.addTarget(self, action: #selector(backDidTaped), for: .touchUpInside)
+        view().navView.rightButton.addTarget(self, action: #selector(favoriteDidTaped), for: .touchUpInside)
         
         view().recommendedCollectionView.delegate = self
         view().recommendedCollectionView.dataSource = self
@@ -30,60 +34,66 @@ final class DownloadPictureController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        self.view = DownloadPictureView(ItemModel(title: "", icon: "", discription: ""))
+        self.view = DownloadPictureView(isFavorite: model?.favorites ?? false)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  #colorLiteral(red: 0.2870183289, green: 0.5633350015, blue: 0.8874290586, alpha: 1)
+        view().detailModsView.configure(with: model ?? Mod())
     }
     
-    @objc private func menuDidTaped(_ celector: UIButton) {
-//        sideMenuDelegate?.showSideMenu()
+    @objc private func backDidTaped(_ celector: UIButton) {
         coordinatorDelegate?.pop(self)
+    }
+    
+    @objc private func favoriteDidTaped(_ celector: RoundButton) {
+        guard let model = model else { return }
+
+        RealmManager.shared.runTransaction {
+            if model.favorites {
+                model.favorites = false
+                view().navView.updateFavoriteButton(false)
+            } else {
+                model.favorites = true
+                view().navView.updateFavoriteButton(true)
+            }
+        }
     }
     
     @objc private func downloadFile(_ celector: UIButton) {
         guard let cell = view().recommendedCollectionView.visibleCells.first as? RecommendedCell,
-//              cell.ima
-                let image = cell.imageView.image else {
-              return
-          }
+                let image = cell.imageView.image else { return }
 
           UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
       }
 
       @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
           if let error = error {
-              // Handle the error
               print("Error saving image: \(error.localizedDescription)")
           } else {
-              // Image saved successfully
               print("Image saved successfully")
           }
       }
 
 }
 
-extension DownloadPictureController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension DownloadPictureController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        recommended.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendedCell.identifier, for: indexPath) as? RecommendedCell else { return UICollectionViewCell() }
-
-                let item = ItemModel(title: "title", icon: "mocImage", discription: "description")
-                cell.configure(with: item)
-
-                return cell
+        cell.configure(with: recommended[indexPath.row])
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           CGSize(width: 80, height: 180)
-       }
-    
+        let width = UIScreen.main.bounds.width / 3
+        let height = width
+        return CGSize(width: width, height: height)
+    }
     
 }
 
@@ -91,4 +101,3 @@ extension DownloadPictureController: UICollectionViewDelegate, UICollectionViewD
 extension DownloadPictureController: ViewSeparatable {
     typealias RootView = DownloadPictureView
 }
-

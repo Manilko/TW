@@ -17,22 +17,8 @@ final class EditProcessController: UIViewController {
     weak var coordinatorDelegate: EditProcessDelegate?
     
     init(item: HeroSet) {
-        
         super.init(nibName: nil, bundle: nil)
         startSetBodyElementSet = HeroSet(value: item)
-        
-//        let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
-//        
-//        let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
-//        guard let herosElementSet else { return }
-//        for herosElement in herosElementSet {
-//            herosElement.downloadPDFs {   ///   <-    move to load screen
-//                print("@@@@@@@@>>>>>>>>")
-//            }
-//        }
-
-        
-        
         
         view().navView.leftButton.addTarget(self, action: #selector(leftDidTaped), for: .touchUpInside)
         

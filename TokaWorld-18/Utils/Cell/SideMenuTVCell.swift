@@ -12,9 +12,9 @@ final class SideMenuTVCell: UITableViewCell, NibCapable {
     private let mainView: UIView = {
         let view = UIView()
         view.backgroundColor = .blueCustom
-        view.layer.cornerRadius = 40
+        view.layer.cornerRadius = 34
         view.layer.borderWidth = 3
-        view.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
+        view.layer.borderColor = .borderColorWhite.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -37,8 +37,8 @@ final class SideMenuTVCell: UITableViewCell, NibCapable {
     private let label: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-//        label.font = .customFont(type: .bold, size: 20)
-        label.textColor = .black
+        label.font = .customFont(type: .lilitaOne, size: 20)
+        label.textColor = .lettersWhite
         label.numberOfLines = 1
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,12 +74,14 @@ final class SideMenuTVCell: UITableViewCell, NibCapable {
         addSubview(label)
         
         NSLayoutConstraint.activate([
+           
             self.heightAnchor.constraint(equalToConstant: 100),
             
-            mainView.heightAnchor.constraint(equalToConstant: 76),
+            mainView.heightAnchor.constraint(equalToConstant: 68),
             mainView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mainView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mainView.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            mainView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            mainView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             image.widthAnchor.constraint(equalToConstant: 24),
             image.heightAnchor.constraint(equalToConstant: 24),
@@ -92,7 +94,7 @@ final class SideMenuTVCell: UITableViewCell, NibCapable {
             
             lockImage.widthAnchor.constraint(equalToConstant: 40),
             lockImage.heightAnchor.constraint(equalToConstant: 40),
-            lockImage.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            lockImage.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             lockImage.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         

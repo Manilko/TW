@@ -25,7 +25,7 @@ final class BlueTitleAlertView: UIView {
     private let titleLabel: UILabel = {
         let v = UILabel()
         v.font = .customFont(type: .lilitaOne, size: 28)
-        v.textColor = .loadingBlue
+        v.textColor = .mainBlue
         v.textAlignment = .center
         v.numberOfLines = 0
         return v

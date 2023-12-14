@@ -13,27 +13,44 @@ class DetailModsView: UIView {
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .mainBlue
+        imageView.layer.cornerRadius = 30
         imageView.clipsToBounds = true
-        // Set your image here
-        imageView.image = UIImage(named: "mocImage")
+        imageView.layer.masksToBounds = true
         return imageView
     }()
 
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        // Set your name here
-        label.text = "John Doe"
+        label.backgroundColor = .mainBlue
+        label.font = .customFont(type: .lilitaOne, size: 20)
+        label.textColor = .lettersWhite
+        
+        // Set shadow properties
+        let shadowLabel = UILabel()
+        shadowLabel.text = label.text
+        shadowLabel.font = label.font
+        shadowLabel.textColor = .black // Shadow color
+        shadowLabel.translatesAutoresizingMaskIntoConstraints = false
+        label.addSubview(shadowLabel)
+
+        NSLayoutConstraint.activate([
+            shadowLabel.leadingAnchor.constraint(equalTo: label.leadingAnchor),
+            shadowLabel.trailingAnchor.constraint(equalTo: label.trailingAnchor),
+            shadowLabel.topAnchor.constraint(equalTo: label.topAnchor),
+            shadowLabel.bottomAnchor.constraint(equalTo: label.bottomAnchor),
+        ])
+
         return label
     }()
 
     private let descriptionLabel: UILabel = {
         let label = UILabel()
+        label.backgroundColor = .clear
         label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .lettersWhite
         label.numberOfLines = 0
-        // Set your description here
-        label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         return label
     }()
 
@@ -50,34 +67,48 @@ class DetailModsView: UIView {
     }
 
     // MARK: - Private Methods
+    
+    func configure(with model: Mod) {
+        imageView.image = .getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )")
+        nameLabel.text = model.rd1Ld4
+        descriptionLabel.text = model.rd1Li1
+    }
 
     private func setupUI() {
-        backgroundColor = .white
+        backgroundColor = .mainBlue
 
         addSubview(imageView)
         addSubview(nameLabel)
         addSubview(descriptionLabel)
 
-        // Image View
         imageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+//        let anc = imageView.heightAnchor + 36 + 92
+        
+        NSLayoutConstraint.activate([
+            
+            
+            
+            self.heightAnchor.constraint(equalTo: imageView.heightAnchor, constant: 36 + 92 + 16),
+            
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+//            imageView.heightAnchor.constraint(equalTo: imageView.heightAnchor),
 
-        // Name Label
-        nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
+            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            nameLabel.heightAnchor.constraint(equalToConstant: 20),
 
-        // Description Label
-        descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+            descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 80),
+        ])
     }
 }
 

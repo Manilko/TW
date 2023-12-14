@@ -47,9 +47,9 @@ extension SideMenuController: UITableViewDataSource, UITableViewDelegate{
         SideMenuType.allCases.count
     }
 
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        60.0
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        85.0
+    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

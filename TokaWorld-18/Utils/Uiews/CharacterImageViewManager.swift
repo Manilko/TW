@@ -7,17 +7,7 @@
 
 import UIKit
 
-
-class CharacterImageViewManager {
-    
-    
-    
-}
-
-
 class CharacterImageView: UIView {
-
-//    var characterModel: CharacterModel
 
     let characterView: UIView = {
         let view = UIView()
@@ -34,39 +24,8 @@ class CharacterImageView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        setupUI()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//        setupUI()
-//    }
-
-//    func updateSelectedCategory(with number: Int) {
-//        self.number = number
-//    }
 
     private func setupUI() {
-        
-//        let propertyValues = characterModel.propertyValues()
-
-//        for (propertyName, propertyValue) in propertyValues {
-//            print("\(propertyName): \(propertyValue)")
-//        }
-//        
-//        for (propertyName, propertyValue) in propertyValues {
-//            let imageView = UIImageView()
-//            imageView.contentMode = .scaleAspectFit
-//            imageView.clipsToBounds = true
-//            imageView.translatesAutoresizingMaskIntoConstraints = false
-////            imageView.tag = i
-//            addSubview(imageView)
-//            print(propertyValue)
-//            imageView.image = UIImage(named: "\(propertyValue)")
-//        }
         addSubview(characterView)
 
         NSLayoutConstraint.activate([

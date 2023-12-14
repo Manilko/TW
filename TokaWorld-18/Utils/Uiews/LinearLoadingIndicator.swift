@@ -24,7 +24,7 @@ class LinearLoadingIndicator: UIView {
     private func configureUI() {
         backgroundColor = .white
 
-        progressView.backgroundColor = .loadingBlue
+        progressView.backgroundColor = .mainBlue
         progressView.layer.cornerRadius = UIDevice.current.isIPhone ? 8 : 12
         self.layer.cornerRadius = UIDevice.current.isIPhone ? 16 : 20
         progressView.translatesAutoresizingMaskIntoConstraints = false

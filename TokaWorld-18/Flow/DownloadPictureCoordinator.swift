@@ -16,9 +16,9 @@ class DownloadPictureCoordinator: Coordinator {
     var navigationController: UINavigationController
     let viewController: DownloadPictureController
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, item: Mod, recommended: [Mod]) {
         self.navigationController = navigationController
-        self.viewController = DownloadPictureController()
+        self.viewController = DownloadPictureController(item: item, recommended: recommended)
     }
 
     func start() {

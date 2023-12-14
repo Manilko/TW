@@ -40,7 +40,7 @@ class SearchView: UIView {
     let containerView: UIView = {
         let v = UIView()
         v.layer.cornerRadius = 22
-        v.backgroundColor = .loadingBlue
+        v.backgroundColor = .mainBlue
         v.layer.borderColor = UIColor.white.cgColor
         v.layer.borderWidth = 2
         v.translatesAutoresizingMaskIntoConstraints = false

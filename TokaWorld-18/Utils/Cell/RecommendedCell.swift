@@ -10,12 +10,16 @@ import UIKit
 class RecommendedCell: UICollectionViewCell, NibCapable {
 
     // MARK: - Properties
-
-    let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
+     let imageView: UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .clear
+        image.clipsToBounds = true
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 32
+        image.layer.borderWidth = 3
+        image.layer.borderColor = .borderColorBlue.cgColor
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
 
     private let nameLabel: UILabel = {
@@ -46,43 +50,27 @@ class RecommendedCell: UICollectionViewCell, NibCapable {
 
     // MARK: - Public Method
 
-    func configure(with viewModel: ItemModel) {
-        imageView.image = UIImage(named: viewModel.icon)
-        nameLabel.text = viewModel.title
-        descriptionLabel.text = viewModel.discription
+    func configure(with model: Mod) {
+        if let imageq: UIImage = .getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
+            imageView.image = imageq
+        }
     }
 
     // MARK: - Private Methods
 
     private func setupUI() {
-        backgroundColor = .white
+        backgroundColor = .backgroundWhite
 
         addSubview(imageView)
-        addSubview(nameLabel)
-        addSubview(descriptionLabel)
+//        addSubview(nameLabel)
+//        addSubview(descriptionLabel)
 
-        setupConstraints()
-    }
-
-    private func setupConstraints() {
-        // Image View
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true
-
-        // Name Label
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-
-        // Description Label
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 2),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+        ])
     }
 }
 

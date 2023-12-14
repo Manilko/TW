@@ -28,7 +28,7 @@ class NavigationView: UIView {
     private let titleLabel: UILabel = {
         var titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont(name: "LilitaOne", size: 20)
+        titleLabel.font = UIFont(name: "LilitaOne", size: 28)
         titleLabel.contentMode = .center
         
         return titleLabel
@@ -37,13 +37,15 @@ class NavigationView: UIView {
     // MARK: - Initialization
 
     required init(leftButtonType: ImageNameNawMenuType, title: String, rightButtonType: ImageNameNawMenuType) {
+//        required init(leftButtonType: ImageNameNawMenuType, title: SideMenuType, rightButtonType: ImageNameNawMenuType) {
         super.init(frame: .zero)
 
         setupButton(leftButton, withImageName: leftButtonType)
         setupButton(rightButton, withImageName: rightButtonType)
         
         titleLabel.text = title
-
+        //        titleLabel.text = title.title
+        
         setupViews()
     }
     
@@ -69,6 +71,11 @@ class NavigationView: UIView {
         } else{
             button.setImage(UIImage.image(name: withImageName?.rawValue ?? ""), for: .normal)
         }
+    }
+    
+    func updateFavoriteButton(_ button: Bool) {
+        let imageType: ImageNameNawMenuType = button ? .favorite : .unFavorite
+        rightButton.setImageA(UIImage.image(name: imageType.rawValue))
     }
 
     private func setupViews() {

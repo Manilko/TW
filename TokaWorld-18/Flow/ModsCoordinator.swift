@@ -9,21 +9,20 @@ import UIKit
 import SideMenu
 
 protocol ItemPresrntDelegate: AnyObject {
-    func presentDetailViewController()
+    func presentDetailViewController(with item: Mod, recommended: [Mod])
     func pop(_ cender: UIViewController)
 }
 
 class ModsCoordinator: Coordinator {
     var navigationController: UINavigationController
     let modsController: ModsController
-    let detailCoordinator: DownloadPictureCoordinator
+    var detailCoordinator: DownloadPictureCoordinator?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.modsController = ModsController()
-        self.detailCoordinator = DownloadPictureCoordinator(navigationController: navigationController)
         self.modsController.itemDelegate = self
-        self.detailCoordinator.viewController.coordinatorDelegate = detailCoordinator
+        
     }
     
     deinit{
@@ -42,9 +41,11 @@ extension ModsCoordinator: ItemPresrntDelegate {
            }
     }
     
-    func presentDetailViewController() {
-        detailCoordinator.navigationController.navigationBar.isHidden = true
-        detailCoordinator.start()
+    func presentDetailViewController(with item: Mod, recommended: [Mod]) {
+        detailCoordinator = DownloadPictureCoordinator(navigationController: navigationController, item: item, recommended: recommended)
+        detailCoordinator?.viewController.coordinatorDelegate = detailCoordinator
+        detailCoordinator?.navigationController.navigationBar.isHidden = true
+        detailCoordinator?.start()
     }
 }
 

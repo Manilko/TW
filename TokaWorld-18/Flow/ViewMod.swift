@@ -45,10 +45,6 @@ final class ModsView: UIView {
         modsTableView.reloadData()
     }
 
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-    }
-
     private func configureLayout() {
 
             addSubview(navView)
@@ -56,7 +52,6 @@ final class ModsView: UIView {
             addSubview(modsTableView)
             addSubview(filterView)
         
-
             searchView.translatesAutoresizingMaskIntoConstraints = false
             navView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -69,8 +64,6 @@ final class ModsView: UIView {
                 searchView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
                 searchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 searchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-
-//                searchView.heightAnchor.constraint(equalToConstant: 44),
 
                 modsTableView.topAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 20),
                 modsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),

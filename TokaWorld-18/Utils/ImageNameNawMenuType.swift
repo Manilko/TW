@@ -18,6 +18,7 @@ enum ImageNameNawMenuType: String, CaseIterable {
     case unFavorite
     case crown
     case favorite
+    case leftArrow
     
     case none
 }

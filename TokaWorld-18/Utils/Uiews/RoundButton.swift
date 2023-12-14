@@ -28,14 +28,9 @@ class RoundButton: UIButton {
     }
 
     private func commonInit() {
-        setTitleColor(UIColor.white, for: .normal)
-//        backgroundColor = UIColor.blue
         translatesAutoresizingMaskIntoConstraints = false
-
-        // Add the iconImageView as a subview
         addSubview(iconImageView)
-
-        // Set up constraints for the iconImageView
+        
         NSLayoutConstraint.activate([
             iconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 2),
             iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
@@ -94,7 +89,6 @@ class MenuButton: UIButton {
         ])
     }
 
-    // Function to set the image for the button
     func setImageA(_ image: UIImage?, for state: UIControl.State = .normal) {
         iconImageView.image = image
     }

@@ -61,7 +61,6 @@ class FilterView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
-//        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         return collectionView
     }()
     
