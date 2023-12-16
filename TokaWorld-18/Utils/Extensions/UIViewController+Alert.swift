@@ -10,29 +10,70 @@ import UIKit
 //MARK: - Alerts
 extension UIViewController {
     func presentTwoVLabelAndTwoHButtonAlert(
-        titleText: String,
-        subtitleText: String,
-        leftButtonImageType: ImageType,
-        rightButtonImageType: ImageType,
-        leftCompletion: (() -> Void)? = nil,
-        rightCompletion: (() -> Void)? = nil
-    ) {
-        let view = TitleSubtitleAndTwoHButtonView(titleText: titleText,
-                                                  subtitleText: subtitleText,
-                                                  leftButtonImageType: leftButtonImageType,
-                                                  rightButtonImageType: rightButtonImageType)
-        view.configureUI()
-        
-        view.leftCallback = { leftCompletion?() }
-        view.rightCallback = { rightCompletion?() }
-        
-        let vc = UIViewController()
-        vc.view.addSubview(view)
-        view.autoPinEdgesToSuperView()
-        
-        vc.modalPresentationStyle = .overCurrentContext
-        present(vc, animated: true)
-    }
+            titleText: String,
+            subtitleText: String,
+            leftButtonImageType: ImageType,
+            rightButtonImageType: ImageType,
+            leftCompletion: (() -> Void)? = nil,
+            rightCompletion: (() -> Void)? = nil,
+            dismissCompletion: (() -> Void)? = nil
+        ) {
+            let view = TitleSubtitleAndTwoHButtonView(
+                titleText: titleText,
+                subtitleText: subtitleText,
+                leftButtonImageType: leftButtonImageType,
+                rightButtonImageType: rightButtonImageType
+            )
+            view.configureUI()
+            
+            view.leftCallback = {
+                leftCompletion?()
+                self.dismiss(animated: true, completion: dismissCompletion)
+            }
+            view.rightCallback = {
+                rightCompletion?()
+                self.dismiss(animated: true, completion: dismissCompletion)
+            }
+            
+            let vc = UIViewController()
+            vc.view.addSubview(view)
+            view.autoPinEdgesToSuperView()
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            present(vc, animated: true)
+            
+            
+        }
+
+        func presentEditAlert(
+            topCompletion: (() -> Void)? = nil,
+            bottomCompletion: (() -> Void)? = nil,
+            dismissCompletion: (() -> Void)? = nil
+        ) {
+            let view = EditAlert()
+            view.configureUI()
+            
+            view.bottomButtonCallback = {
+                bottomCompletion?()
+                self.dismiss(animated: true, completion: dismissCompletion)
+            }
+            
+            view.topButtonCallback = {
+                topCompletion?()
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            view.closeCallback = {
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            let vc = UIViewController()
+            vc.view.addSubview(view)
+            view.autoPinEdgesToSuperView()
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            present(vc, animated: true)
+        }
     
     func presentTextAlert(
         titleText: String,

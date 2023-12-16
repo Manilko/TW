@@ -31,6 +31,11 @@ extension UIColor {
         return UIColor(red: 0.154, green: 0.154, blue: 0.154, alpha: 1)
     }
     
+    static var lettersGrey: UIColor {
+        return UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+    }
+    
+    
 }
 
 

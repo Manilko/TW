@@ -128,13 +128,8 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCollectionViewCell
 
             let filterType = FilterType(rawValue: indexPath.item) ?? .all
-            cell.textLabel.text = filterType.title
 
-            if filterType == filterFlag {
-                cell.textLabel.textColor = .red
-            } else {
-                cell.textLabel.textColor = .white
-            }
+        cell.configure(filter: filterType, flag: filterFlag)
             return cell
         }
     
@@ -208,7 +203,7 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
         if tableView == view().modsTableView {
             cellHeight =  164
        } else if tableView == view().searchView.resultTableView {
-           cellHeight = 60
+           cellHeight = 48
        }
         
         return cellHeight
@@ -233,7 +228,11 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
             returnCell = cell
        } else if tableView == view().searchView.resultTableView {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+           // create service for configuration cell
                 cell.textLabel?.text = searchResults[indexPath.row].rd1Ld4
+                cell.backgroundColor = .clear
+                cell.textLabel?.font = .customFont(type: .lilitaOne, size: 20)
+                cell.textLabel?.textColor = .lettersWhite
            returnCell =  cell
        }
         return returnCell

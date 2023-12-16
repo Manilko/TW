@@ -20,6 +20,16 @@ enum ImageNameNawMenuType: String, CaseIterable {
     case favorite
     case leftArrow
     
+    case option
+    case leftBlue
+    case loading
+    case rightGray
+    case rightBlue
+    case leftGray
+    
+    case closeAlert
+    
+    
     case none
 }
 

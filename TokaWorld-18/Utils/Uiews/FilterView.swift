@@ -35,7 +35,22 @@ class FilterView: UIView {
     
     private lazy var mainView: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = .backgroundWhite
+        view.layer.cornerRadius = 40
+        
+        var shadows = UIView()
+        shadows.frame = view.frame
+        shadows.clipsToBounds = false
+        view.addSubview(shadows)
+        
+        let shadowPath0 = UIBezierPath(roundedRect: shadows.bounds, cornerRadius: 40)
+        let layer0 = CALayer()
+        layer0.shadowPath = shadowPath0.cgPath
+        layer0.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        layer0.shadowOpacity = 1
+        layer0.shadowRadius = 5
+        layer0.shadowOffset = CGSize(width: 0, height: -4)
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -43,14 +58,15 @@ class FilterView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Filter"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = .customFont(type: .lilitaOne, size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Close", for: .normal)
+    let closeButton: RoundButton = {
+        let button = RoundButton()
+        button.setImageA(UIImage.image(name: "close"))
+        button.isUserInteractionEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -75,7 +91,7 @@ class FilterView: UIView {
     }
     
     private func setupUI() {
-        backgroundColor = .white.withAlphaComponent(0.5)
+        backgroundColor = .clear
         addSubview(mainView)
         mainView.addSubview(titleLabel)
         mainView.addSubview(closeButton)
@@ -83,7 +99,7 @@ class FilterView: UIView {
         
         NSLayoutConstraint.activate([
             
-            mainView.heightAnchor.constraint(equalToConstant: 250),
+            mainView.heightAnchor.constraint(equalToConstant: 148),
             mainView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mainView.bottomAnchor.constraint(equalTo: bottomAnchor),
             mainView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -93,6 +109,8 @@ class FilterView: UIView {
             
             closeButton.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
             closeButton.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20),
+            closeButton.widthAnchor.constraint(equalToConstant: 40),
+            closeButton.heightAnchor.constraint(equalToConstant: 40),
             
             collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
@@ -139,10 +157,10 @@ class FilterView: UIView {
 // MARK: - MyCollectionViewCell
 
 class MyCollectionViewCell: UICollectionViewCell {
-    let textLabel: UILabel = {
+    private let textLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .white
+        label.font = .customFont(type: .lilitaOne, size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -158,13 +176,22 @@ class MyCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        backgroundColor = .blue
-        layer.cornerRadius = 8
+        backgroundColor = .backgroundWhite
         addSubview(textLabel)
         
         NSLayoutConstraint.activate([
             textLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             textLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+    
+    func configure(filter: FilterType, flag: FilterType) {
+        textLabel.text = filter.title
+        
+        if filter == flag {
+            textLabel.textColor = .mainBlue
+        } else {
+            textLabel.textColor = .lettersBlack
+        }
     }
 }

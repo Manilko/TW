@@ -69,6 +69,7 @@
 		4C6021142B0188790098F071 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 4C6021132B0188790098F071 /* SideMenu */; };
 		4C6021162B018B730098F071 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6021152B018B730098F071 /* RoundButton.swift */; };
 		4C60211C2B0190BB0098F071 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C60211B2B0190BB0098F071 /* Extension.swift */; };
+		4C66E7902B2C8DE700EB79DF /* EditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */; };
 		4C6AFE612B0754FF0001B6A7 /* DownloadPictureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE602B0754FF0001B6A7 /* DownloadPictureCoordinator.swift */; };
 		4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE622B07554A0001B6A7 /* DownloadPictureController.swift */; };
 		4C6AFE652B07592E0001B6A7 /* DetailModsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE642B07592E0001B6A7 /* DetailModsView.swift */; };
@@ -175,6 +176,7 @@
 		4C6021152B018B730098F071 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		4C6021172B018BAD0098F071 /* ImageNameNawMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameNawMenuType.swift; sourceTree = "<group>"; };
 		4C60211B2B0190BB0098F071 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlert.swift; sourceTree = "<group>"; };
 		4C6AFE602B0754FF0001B6A7 /* DownloadPictureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPictureCoordinator.swift; sourceTree = "<group>"; };
 		4C6AFE622B07554A0001B6A7 /* DownloadPictureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPictureController.swift; sourceTree = "<group>"; };
 		4C6AFE642B07592E0001B6A7 /* DetailModsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModsView.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				0DA987BB2B1CFBFE00E06C26 /* BlueTitleAlertView.swift */,
 				0DA987BF2B1D034B00E06C26 /* TitleSubtitleAlertView.swift */,
 				0DA987C12B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift */,
+				4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -327,7 +330,6 @@
 				4C575F012B0225DF00135BF3 /* ModsScreen */,
 				4C575F272B0260AC00135BF3 /* House Ideas */,
 				4C575F2B2B02611000135BF3 /* Editor */,
-				4C7006BA2B08D1B2009A497C /* DetailEditScreen */,
 				4C575F2A2B02610D00135BF3 /* Wallpapers */,
 				4C575F292B0260B300135BF3 /* Guides */,
 				4C575F282B0260B000135BF3 /* Recipes */,
@@ -490,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				4C7006BF2B08D974009A497C /* EditCollectionScreen */,
+				4C7006BA2B08D1B2009A497C /* DetailEditScreen */,
 				4C7006C02B08D9D5009A497C /* EditProcessScreen */,
 			);
 			name = Editor;
@@ -740,6 +743,7 @@
 				4C50AC992B03B17C00355DBF /* ItemModel.swift in Sources */,
 				4C4CC7492B14E36E0030885C /* BaseViewController.swift in Sources */,
 				4C3961142B04F83B0023E7FA /* FilterView.swift in Sources */,
+				4C66E7902B2C8DE700EB79DF /* EditAlert.swift in Sources */,
 				4C7007062B0F6A0A009A497C /* DropBoxKeys_ltlpm.swift in Sources */,
 				4C575F2D2B02616600135BF3 /* HouseIdeasViewController.swift in Sources */,
 				4C575F072B022DCE00135BF3 /* ModsCoordinator.swift in Sources */,

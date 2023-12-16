@@ -41,7 +41,7 @@ class SearchView: UIView {
         let v = UIView()
         v.layer.cornerRadius = 22
         v.backgroundColor = .mainBlue
-        v.layer.borderColor = UIColor.white.cgColor
+        v.layer.borderColor = .borderColorWhite.cgColor
         v.layer.borderWidth = 2
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
@@ -49,6 +49,11 @@ class SearchView: UIView {
 
     let resultTableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .mainBlue
+        tableView.separatorColor = .white
+        tableView.layer.cornerRadius = 32
+        tableView.layer.borderColor = .borderColorWhite.cgColor
+        tableView.layer.borderWidth = 2
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()

@@ -10,25 +10,29 @@ import UIKit
 class EditorCollectionCell: UICollectionViewCell, NibCapable {
     
     // MARK: - Properties
-    
-    var characterView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.backgroundColor = UIColor(red: 0.971, green: 0.971, blue: 0.971, alpha: 1).cgColor
-        view.layer.cornerRadius = 40
-        view.layer.borderWidth = 3
-        view.layer.borderColor = UIColor(red: 0.338, green: 0.487, blue: 1, alpha: 1).cgColor
-        return view
-    }()
-    
-    var imageView: UIImageView = {
+
+    private let imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        view.backgroundColor = .clear
+        view.backgroundColor = .backgroundWhite
+        view.layer.cornerRadius = 40
+        view.layer.borderWidth = 3
+        view.layer.borderColor = .borderColorBlue.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private let optionImage: UIButton = {
+        let image = UIButton()
+        image.backgroundColor = .clear
+        image.translatesAutoresizingMaskIntoConstraints = false
+        let icon = UIImage(named: ImageNameNawMenuType.option.rawValue)
+        image.addTarget(self, action: #selector(optionTapped), for: .touchUpInside)
+        image.setImage(icon, for: .normal)
+        return image
+    }()
+    
+    var optionTappedCallback: (() -> Void)?
     
     // MARK: - Initialization
     
@@ -47,35 +51,35 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
         imageView.image = nil  // Reset other UI elements as needed
     }
     
+    @objc func optionTapped() {
+        optionTappedCallback?()
+        
+    }
+    
     // MARK: - Public Method
     
     func configure(setHeroBodyPart: HeroSet) {
         guard let image = setHeroBodyPart.iconImage else { return }
-//        imageView.image.
         imageView.image = UIImage(data: image)
     }
     
     // MARK: - Setup UI
     
     private func setupUI() {
-        contentView.addSubview(characterView)
+
+        addSubview(imageView)
+        addSubview(optionImage)
         
         NSLayoutConstraint.activate([
-            characterView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            characterView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            characterView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            characterView.heightAnchor.constraint(equalToConstant: 210),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            optionImage.topAnchor.constraint(equalTo: topAnchor),
+            optionImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+            optionImage.widthAnchor.constraint(equalToConstant: 32),
+            optionImage.heightAnchor.constraint(equalToConstant: 32),
         ])
-        
-        characterView.addSubview(imageView)
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: characterView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: characterView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: characterView.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: characterView.bottomAnchor),
-        ])
-        
-        // Add any additional customization or subviews here
     }
 }

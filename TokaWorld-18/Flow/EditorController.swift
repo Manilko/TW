@@ -101,8 +101,35 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
         let item = listHeros[indexPath.row]
         cell.configure(setHeroBodyPart: item)
         
+        // need fix? 
+        cell.optionTappedCallback = { [weak self] in
+            guard let self = self else { return }
+            self.presentEditAlert(
+                topCompletion: {
+                    print("topCompletion")
+                },
+                dismissCompletion: { [weak self] in
+                    self?.presentTwoVLabelAndTwoHButtonAlert(
+                        titleText: "Another Alert",
+                        subtitleText: "Another alert's subtitle",
+                        leftButtonImageType: .noButton,
+                        rightButtonImageType: .deleteButton,
+                        leftCompletion: {
+                            print("noButton tapped")
+                        },
+                        rightCompletion: {
+                            print("deleteObject button tapped")
+                            RealmManager.shared.deleteObject(HeroSet.self, primaryKeyValue: item.id)
+                            self?.reloadData()
+                        }
+                    )
+                }
+            )
+        }
+                
         return cell
     }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -116,7 +143,7 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Assuming characterView's width is 166 and height is 211
+
         let cellWidth = 166.0
         let cellHeight = 211.0
         return CGSize(width: cellWidth, height: cellHeight)

@@ -25,6 +25,8 @@ enum ImageType: String, Codable, CaseIterable {
     case favorite
     case unFavorite
     
+    case exitButton
+    
     case smile
     
     static let isIPhone: Bool = UIDevice.current.isIPhone
