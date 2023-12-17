@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ModsTVCell: UITableViewCell, NibCapable {
+final class ModsTVCell: UICollectionViewCell, NibCapable {
     private lazy var mainView: UIView = {
         let view = UIView()
         view.backgroundColor = .mainBlue
@@ -67,18 +67,20 @@ final class ModsTVCell: UITableViewCell, NibCapable {
         descriptionLabel.text = ""
         favoriteImage.image = nil
     }
-
-    override init(
-        style: UITableViewCell.CellStyle,
-        reuseIdentifier: String?
-    ) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+//        setupCell()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+//        setupCell()
     }
+
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 
     private func setup() {
         backgroundColor = .clear
@@ -121,7 +123,7 @@ final class ModsTVCell: UITableViewCell, NibCapable {
             favoriteImage.heightAnchor.constraint(equalToConstant: 32),
         ])
 
-        selectionStyle = .none
+//        selectionStyle = .none
     }
 
     func configure(with model: Mod) {

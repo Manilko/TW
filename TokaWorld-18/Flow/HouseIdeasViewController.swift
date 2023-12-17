@@ -17,8 +17,8 @@ final class HouseIdeasViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         view().navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
         
-        view().tableView.delegate = self
-        view().tableView.dataSource = self
+//        view().tableView.delegate = self
+//        view().tableView.dataSource = self
         view().tableView.register(ModsTVCell.self, forCellReuseIdentifier: ModsTVCell.identifier)
     }
 
@@ -44,34 +44,34 @@ final class HouseIdeasViewController: UIViewController {
 }
 
 // MARK: - TableViewDelegate
-extension HouseIdeasViewController: UITableViewDataSource, UITableViewDelegate{
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        SideMenuType.allCases.count
-    }
-
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        60.0
+//extension HouseIdeasViewController: UITableViewDataSource, UITableViewDelegate{
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        SideMenuType.allCases.count
 //    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ModsTVCell.identifier, for: indexPath) as? ModsTVCell else { return UITableViewCell() }
-
-        let item = ItemModel(title: "title", icon: "imageName", discription: "description")
-        
-//        cell.configure(with: item)
-
-        return cell
-    }
-
-}
+//
+////    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+////        60.0
+////    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//
+//
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: ModsTVCell.identifier, for: indexPath) as? ModsTVCell else { return UITableViewCell() }
+//
+//        let item = ItemModel(title: "title", icon: "imageName", discription: "description")
+//        
+////        cell.configure(with: item)
+//
+//        return cell
+//    }
+//
+//}
 
 // MARK: - ViewSeparatable
 extension HouseIdeasViewController: ViewSeparatable {

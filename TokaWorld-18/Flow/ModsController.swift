@@ -33,7 +33,7 @@ final class ModsController: UIViewController {
 
         view().modsTableView.delegate = self
         view().modsTableView.dataSource = self
-        view().modsTableView.register(ModsTVCell.self, forCellReuseIdentifier: ModsTVCell.identifier)
+        view().modsTableView.register(ModsTVCell.self, forCellWithReuseIdentifier: ModsTVCell.identifier)
         
         view().searchView.resultTableView.delegate = self
         view().searchView.resultTableView.dataSource = self
@@ -108,6 +108,12 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
+        if collectionView == view().modsTableView{
+            let item = filteredCollection[indexPath.row]
+            let recommended = Array(arrayMod[1...5])  // ????
+            itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
+            updateSearchHideTabel()
+        } else{
             guard let selectedFilter = FilterType(rawValue: indexPath.item) else { return }
             
             filterFlag = selectedFilter
@@ -118,12 +124,35 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
             view().modsTableView.reloadData()
             view().filterView.isHidden = true
         }
+        
+        
+        
+           
+        }
     
       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-          FilterType.allCases.count
+          var cellCount = 0
+          
+          if collectionView == view().modsTableView{
+              cellCount =  filteredCollection.count
+          } else{
+              cellCount = FilterType.allCases.count
+          }
+          
+          return cellCount
+          
       }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+//        var cellCount = 0
+        
+        if collectionView == view().modsTableView{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModsTVCell.identifier, for: indexPath) as? ModsTVCell else { return UICollectionViewCell() }
+            let item = filteredCollection[indexPath.row]
+            cell.configure(with: item)
+            return cell
+        } else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCollectionViewCell
 
             let filterType = FilterType(rawValue: indexPath.item) ?? .all
@@ -131,10 +160,23 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
         
             return cell
         }
+        
+
+            
+        }
     
     // UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width / 4.4, height: 200)
+        
+        if collectionView == view().modsTableView{
+            return CGSize(width: collectionView.bounds.width / 2.4, height: 200)
+        } else{
+            return CGSize(width: collectionView.bounds.width / 4.4, height: 200)
+        }
+        
+//        return CGSize()
+        
+        
     }
     
     // Target Action
@@ -184,15 +226,16 @@ extension ModsController: UITextFieldDelegate {
 extension ModsController: UITableViewDataSource, UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var cellCount = 0
-        
-        if tableView == view().modsTableView {
-            cellCount =  filteredCollection.count
-       } else if tableView == view().searchView.resultTableView {
-           cellCount = searchResults.count
-       }
-        
-       return cellCount
+//        var cellCount = 0
+//        
+//        if tableView == view().modsTableView {
+//            cellCount =  filteredCollection.count
+//       } else if tableView == view().searchView.resultTableView {
+//           cellCount = searchResults.count
+//       }
+//        
+//       return cellCount
+        searchResults.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -218,23 +261,32 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var returnCell = UITableViewCell()
+//        var returnCell = UITableViewCell()
+//        
+//        if tableView == view().modsTableView {
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: ModsTVCell.identifier, for: indexPath) as? ModsTVCell else { return UITableViewCell() }
+//            let item = filteredCollection[indexPath.row]
+//            cell.configure(with: item)
+//            returnCell = cell
+//       } else if tableView == view().searchView.resultTableView {
+//           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//           // create service for configuration cell
+//                cell.textLabel?.text = searchResults[indexPath.row].rd1Ld4
+//                cell.backgroundColor = .clear
+//                cell.textLabel?.font = .customFont(type: .lilitaOne, size: 20)
+//                cell.textLabel?.textColor = .lettersWhite
+//           returnCell =  cell
+//       }
+//        return returnCell
         
-        if tableView == view().modsTableView {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ModsTVCell.identifier, for: indexPath) as? ModsTVCell else { return UITableViewCell() }
-            let item = filteredCollection[indexPath.row]
-            cell.configure(with: item)
-            returnCell = cell
-       } else if tableView == view().searchView.resultTableView {
-           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-           // create service for configuration cell
-                cell.textLabel?.text = searchResults[indexPath.row].rd1Ld4
-                cell.backgroundColor = .clear
-                cell.textLabel?.font = .customFont(type: .lilitaOne, size: 20)
-                cell.textLabel?.textColor = .lettersWhite
-           returnCell =  cell
-       }
-        return returnCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        // create service for configuration cell
+             cell.textLabel?.text = searchResults[indexPath.row].rd1Ld4
+             cell.backgroundColor = .clear
+             cell.textLabel?.font = .customFont(type: .lilitaOne, size: 20)
+             cell.textLabel?.textColor = .lettersWhite
+     
+     return cell
     }
 }
 
