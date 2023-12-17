@@ -33,6 +33,6 @@ private func setupCell() {
 
 func configure(with text: String) {
     label.text = text
-    backgroundColor = .white
+    backgroundColor = .backgroundBlue
 }
 }

@@ -14,6 +14,15 @@ final class EditProcessView: UIView {
     
     let collectionViewContainer: CollectionViewContainer
     let navigationButtons: NavigationButtons = NavigationButtons()
+    
+    var frameView: UIImageView = {
+        let view = UIImageView()
+        view.backgroundColor = .clear
+        view.image = UIImage(named: "frame")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
 
     // MARK: - Lifecycle
     init(startSet: HeroSet) {
@@ -30,11 +39,14 @@ final class EditProcessView: UIView {
     private func configureLayout() {
         addSubview(navView)
         navView.addSubview(navigationButtons)
+        addSubview(frameView)
         addSubview(collectionViewContainer)
+        
         
         navigationButtons.translatesAutoresizingMaskIntoConstraints = false
         collectionViewContainer.translatesAutoresizingMaskIntoConstraints = false
         navView.translatesAutoresizingMaskIntoConstraints = false
+        frameView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             
@@ -48,10 +60,15 @@ final class EditProcessView: UIView {
             navigationButtons.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -90),
             navigationButtons.heightAnchor.constraint(equalToConstant: 100),
   
-            collectionViewContainer.topAnchor.constraint(equalTo: topAnchor, constant: 200),
+            collectionViewContainer.heightAnchor.constraint(equalToConstant: 500),
             collectionViewContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionViewContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionViewContainer.bottomAnchor.constraint(equalTo: bottomAnchor)
+            collectionViewContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            frameView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            frameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38),
+            frameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -38),
+            frameView.heightAnchor.constraint(equalToConstant: 230),
         ])
     }
 }

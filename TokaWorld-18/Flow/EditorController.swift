@@ -99,7 +99,7 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCollectionCell.identifier, for: indexPath) as! EditorCollectionCell
         let item = listHeros[indexPath.row]
-        cell.configure(setHeroBodyPart: item)
+        cell.configure(setHeroBodyPart: item, type: indexPath.row)
         
         // need fix? 
         cell.optionTappedCallback = { [weak self] in
@@ -107,6 +107,7 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
             self.presentEditAlert(
                 topCompletion: {
                     print("topCompletion")
+                    self.itemDelegate?.presentEditProcessController(hero: item)
                 },
                 dismissCompletion: { [weak self] in
                     self?.presentTwoVLabelAndTwoHButtonAlert(
@@ -132,8 +133,7 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-//        let chosenHero: HeroSet
+
         if indexPath.row == 0{
             itemDelegate?.presentEditProcessController(hero: listHeros[indexPath.row])
         } else{

@@ -22,7 +22,7 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
         return view
     }()
     
-    private let optionImage: UIButton = {
+    private let optionButton: UIButton = {
         let image = UIButton()
         image.backgroundColor = .clear
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -58,9 +58,15 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
     
     // MARK: - Public Method
     
-    func configure(setHeroBodyPart: HeroSet) {
+    func configure(setHeroBodyPart: HeroSet, type: Int) {
         guard let image = setHeroBodyPart.iconImage else { return }
         imageView.image = UIImage(data: image)
+        
+        if type == 0{
+            optionButton.isHidden = true
+        } else{
+            optionButton.isHidden = false
+        }
     }
     
     // MARK: - Setup UI
@@ -68,7 +74,7 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
     private func setupUI() {
 
         addSubview(imageView)
-        addSubview(optionImage)
+        addSubview(optionButton)
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -76,10 +82,11 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            optionImage.topAnchor.constraint(equalTo: topAnchor),
-            optionImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-            optionImage.widthAnchor.constraint(equalToConstant: 32),
-            optionImage.heightAnchor.constraint(equalToConstant: 32),
+            optionButton.topAnchor.constraint(equalTo: topAnchor),
+            optionButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            optionButton.widthAnchor.constraint(equalToConstant: 32),
+            optionButton.heightAnchor.constraint(equalToConstant: 32),
         ])
+        
     }
 }

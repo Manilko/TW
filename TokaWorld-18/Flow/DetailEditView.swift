@@ -16,7 +16,7 @@ final class DetailEditView: UIView {
     
     var characterView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .backgroundWhite
+        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
