@@ -9,7 +9,7 @@ class SearchView: UIView {
     let searchTextField: UITextField = {
         let textField = UITextField()
         textField.font = .customFont(type: .lilitaOne, size: 20)
-        textField.textColor = .white
+        textField.textColor = .lettersWhite
         textField.borderStyle = .none
         textField.backgroundColor = .clear
         let attributes = [

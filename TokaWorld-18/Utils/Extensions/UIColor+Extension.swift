@@ -20,6 +20,10 @@ extension UIColor {
         return UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1)
     }
     
+    static var backgroundGrey: UIColor {
+        return UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+    }
+    
     static var blueCustom: UIColor {
         return UIColor(red: 0.34, green: 0.49, blue: 1, alpha: 1)
     }
@@ -34,6 +38,12 @@ extension UIColor {
     static var lettersGrey: UIColor {
         return UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
     }
+    
+    static var lettersBlue: UIColor {
+        return UIColor(red: 0.34, green: 0.49, blue: 1, alpha: 1)
+    }
+    
+    
     
     
 }

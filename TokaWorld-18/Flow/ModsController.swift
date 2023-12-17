@@ -107,7 +107,6 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
     
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            print("didSelectItemAt \(indexPath.row)")
 
             guard let selectedFilter = FilterType(rawValue: indexPath.item) else { return }
             
@@ -115,7 +114,7 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
             view().filterView.collectionView.reloadData()
             
             filteredCollection = filterCollection(arrayMod, by: selectedFilter)
-            print("filteredCollection.count \(arrayMod.count)")
+        
             view().modsTableView.reloadData()
             view().filterView.isHidden = true
         }
@@ -128,8 +127,8 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCollectionViewCell
 
             let filterType = FilterType(rawValue: indexPath.item) ?? .all
-
-        cell.configure(filter: filterType, flag: filterFlag)
+            cell.configure(filter: filterType, flag: filterFlag)
+        
             return cell
         }
     

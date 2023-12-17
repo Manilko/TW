@@ -54,7 +54,7 @@ final class EditorController: UIViewController {
     
     private func reloadData() {
         listHeros.removeAll()
-        let firstCell = HeroSet()
+        let firstCell = createStartSet()
         if let image = UIImage(named: "Component 17"), let imageData = image.pngData() {
             firstCell.iconImage = imageData
         }
@@ -133,13 +133,14 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let chosenHero: HeroSet
-        if indexPath.row != 0{
-            chosenHero = listHeros[indexPath.row]
-        } else{
-            chosenHero = createStartSet()
-        }
-        itemDelegate?.presentDetailViewController(hero: chosenHero)
+//        let chosenHero: HeroSet
+//        if indexPath.row != 0{
+//            chosenHero = listHeros[indexPath.row]
+//        } else{
+//            chosenHero = createStartSet()
+//        }
+        
+        itemDelegate?.presentDetailViewController(herosSet: listHeros,  chosenIndex: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
