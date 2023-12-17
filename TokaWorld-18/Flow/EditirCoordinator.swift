@@ -9,6 +9,7 @@ import UIKit
 
 protocol PresrntDelegate: AnyObject {
     func presentDetailViewController(herosSet: [HeroSet],  chosenIndex: Int)
+    func presentEditProcessController(hero: HeroSet)
     func pop(_ cender: UIViewController)
 }
 
@@ -17,6 +18,7 @@ class EditirCoordinator: Coordinator {
     let viewController: EditorController
 //    var detailCoordinator: EditProcessCoordinator?
     var detailCoordinator: DetailEditCoordinator?
+    var processCoordinator: EditProcessCoordinator?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -46,5 +48,13 @@ extension EditirCoordinator: PresrntDelegate {
         detailCoordinator?.viewController.coordinatorDelegate = detailCoordinator
         detailCoordinator?.navigationController.navigationBar.isHidden = true
         detailCoordinator?.start()
+    }
+    
+    func presentEditProcessController(hero: HeroSet) {
+        processCoordinator = EditProcessCoordinator(navigationController: navigationController, itemQ: hero)
+        
+        processCoordinator?.viewController.coordinatorDelegate = processCoordinator
+        processCoordinator?.navigationController.navigationBar.isHidden = true
+        processCoordinator?.start()
     }
 }

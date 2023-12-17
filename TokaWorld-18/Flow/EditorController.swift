@@ -134,13 +134,12 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
 //        let chosenHero: HeroSet
-//        if indexPath.row != 0{
-//            chosenHero = listHeros[indexPath.row]
-//        } else{
-//            chosenHero = createStartSet()
-//        }
-        
-        itemDelegate?.presentDetailViewController(herosSet: listHeros,  chosenIndex: indexPath.row)
+        if indexPath.row == 0{
+            itemDelegate?.presentEditProcessController(hero: listHeros[indexPath.row])
+        } else{
+            itemDelegate?.presentDetailViewController(herosSet: listHeros,  chosenIndex: indexPath.row)
+        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

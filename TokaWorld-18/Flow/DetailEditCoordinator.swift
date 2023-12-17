@@ -16,7 +16,7 @@ protocol DetailEditDelegate: AnyObject {
 class DetailEditCoordinator: Coordinator {
     var navigationController: UINavigationController
     let viewController: DetailEditController
-    var detailCoordinator: EditProcessCoordinator?
+    var editProcessCoordinator: EditProcessCoordinator?
 
     init(navigationController: UINavigationController, itemQ: [HeroSet],  index: Int) {
         self.navigationController = navigationController
@@ -35,11 +35,12 @@ extension DetailEditCoordinator: DetailEditDelegate{
     }
     
     func presentEditProcessController(hero: HeroSet) {
-        detailCoordinator = EditProcessCoordinator(navigationController: navigationController, itemQ: hero)
+        editProcessCoordinator = EditProcessCoordinator(navigationController: navigationController, itemQ: hero)
         
-        detailCoordinator?.viewController.coordinatorDelegate = detailCoordinator
-        detailCoordinator?.navigationController.navigationBar.isHidden = true
-        detailCoordinator?.start()
+        editProcessCoordinator?.viewController.coordinatorDelegate = editProcessCoordinator
+        editProcessCoordinator?.navigationController.navigationBar.isHidden = true
+        editProcessCoordinator?.start()
+        
     }
 }
 
