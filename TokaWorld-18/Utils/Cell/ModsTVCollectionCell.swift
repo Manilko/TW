@@ -1,13 +1,13 @@
 //
-//  ModsTVCell.swift
+//  ModsTVCollectionCell.swift
 //  TokaWorld-18
 //
-//  Created by Yevhenii Manilko on 12.11.2023.
+//  Created by Viacheslav Markov on 17.12.2023.
 //
 
 import UIKit
 
-final class ModsTVCell: UITableViewCell, NibCapable {
+final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
     private lazy var mainView: UIView = {
         let view = UIView()
         view.backgroundColor = .mainBlue
@@ -68,16 +68,14 @@ final class ModsTVCell: UITableViewCell, NibCapable {
         favoriteImage.image = nil
     }
     
-    override init(
-        style: UITableViewCell.CellStyle,
-        reuseIdentifier: String?
-    ) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     private func setup() {
@@ -97,9 +95,9 @@ final class ModsTVCell: UITableViewCell, NibCapable {
         
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            mainView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            mainView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            mainView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            mainView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            mainView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            mainView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             
             image.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12),
             image.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 12),
@@ -120,12 +118,9 @@ final class ModsTVCell: UITableViewCell, NibCapable {
             favoriteImage.widthAnchor.constraint(equalToConstant: 32),
             favoriteImage.heightAnchor.constraint(equalToConstant: 32),
         ])
-        
-        selectionStyle = .none
     }
     
     func configure(with model: Mod) {
-        
         titleLabel.text = model.rd1Ld4
         descriptionLabel.text = model.rd1Li1
         
@@ -135,7 +130,6 @@ final class ModsTVCell: UITableViewCell, NibCapable {
         
         let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
         favoriteImage.image = UIImage(named: imageType.rawValue)
-        
     }
     
     func updateDescriptionText(isFullDescription: Bool) {
@@ -145,5 +139,4 @@ final class ModsTVCell: UITableViewCell, NibCapable {
     func updateFavoriteImage(isFavorite: Bool = false) {
         // favoriteImage.isHidden = !isFavorite
     }
-    
 }

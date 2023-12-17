@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D5E254C2B2F666400124428 /* ModsTVCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E254B2B2F666400124428 /* ModsTVCollectionCell.swift */; };
 		0DA987A62B1CD88900E06C26 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A52B1CD88900E06C26 /* ImageType.swift */; };
 		0DA987A92B1CD95B00E06C26 /* UIImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */; };
 		0DA987AB2B1CD99F00E06C26 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */; };
@@ -122,6 +123,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D5E254B2B2F666400124428 /* ModsTVCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsTVCollectionCell.swift; sourceTree = "<group>"; };
 		0DA987A52B1CD88900E06C26 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Init.swift"; sourceTree = "<group>"; };
 		0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				4C50ACA22B042EF700355DBF /* ModsTVCell.swift */,
 				4C6AFE672B075F780001B6A7 /* RecommendedCell.swift */,
 				4C55CBAA2B10E05B00A883AC /* Editor */,
+				0D5E254B2B2F666400124428 /* ModsTVCollectionCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				4C50ACA12B042ED100355DBF /* SideMenuTVCell.swift in Sources */,
 				0DA987AF2B1CE3EB00E06C26 /* UIView+Extension.swift in Sources */,
 				4C55CBAC2B10E08E00A883AC /* EditorCategoryCell.swift in Sources */,
+				0D5E254C2B2F666400124428 /* ModsTVCollectionCell.swift in Sources */,
 				4C78BC032B1C955900C59A64 /* DownloadPictureView.swift in Sources */,
 				4C7006BC2B08D1E8009A497C /* DetailEditController.swift in Sources */,
 				4C50ACA32B042EF700355DBF /* ModsTVCell.swift in Sources */,

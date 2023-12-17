@@ -22,192 +22,208 @@ final class ModsController: UIViewController {
     weak var coordinatorDelegate: AppCoordinatorDelegate?
     weak var itemDelegate: ItemPresrntDelegate?
     
+    private lazy var modView = ModsView(frame: UIScreen.main.bounds)
+    
     init() {
         self.filterFlag = .all
         self.arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
         
         super.init(nibName: nil, bundle: nil)
-        
-        view().navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
-        view().navView.rightButton.addTarget(self, action: #selector(showContainerButtonTapped), for: .touchUpInside)
-
-        view().modsTableView.delegate = self
-        view().modsTableView.dataSource = self
-        view().modsTableView.register(ModsTVCell.self, forCellReuseIdentifier: ModsTVCell.identifier)
-        
-        view().searchView.resultTableView.delegate = self
-        view().searchView.resultTableView.dataSource = self
-        view().searchView.resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-
-        searchResults = Array(filteredCollection.prefix(3))
-        
-        // MARK: - searchView
-        view().searchView.closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        view().searchView.searchTextField.delegate = self
-        view().searchView.searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
-        
-        // MARK: - filterView
-        view().filterView.collectionView.dataSource = self
-        view().filterView.collectionView.delegate = self
-        view().filterView.collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        view().filterView.closeButton.addTarget(self, action: #selector(closeButtonTappedFilterView), for: .touchUpInside)
     }
-
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func loadView() {
-        super.loadView()
-        self.view = ModsView()
-    }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  .backgroundBlue
+        view.backgroundColor = .backgroundBlue
         
-
+        modView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(modView)
+        
+        NSLayoutConstraint.activate([
+            modView.topAnchor.constraint(equalTo: view.topAnchor),
+            modView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            modView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            modView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        setupSubViews()
+        
         filteredCollection = filterCollection(arrayMod, by: .all)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
+        
         arrayMod.removeAll()
         arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
     }
-
+    
     private func filterCollection(_ collection: [Mod], by filterType: FilterType) -> [Mod] {
-           switch filterType {
-           case .all:
-               return collection.filter { $0.isAll }
-           case .new:
-               return collection.filter { $0.isNew }
-           case .favorite:
-               return collection.filter { $0.favorites }
-           case .top:
-               return collection.filter { $0.isTop }
-           }
-       }
+        switch filterType {
+        case .all:
+            return collection.filter { $0.isAll }
+        case .new:
+            return collection.filter { $0.isNew }
+        case .favorite:
+            return collection.filter { $0.favorites }
+        case .top:
+            return collection.filter { $0.isTop }
+        }
+    }
     
-    
+    func setupSubViews() {
+        modView.navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
+        modView.navView.rightButton.addTarget(self, action: #selector(showContainerButtonTapped), for: .touchUpInside)
+        
+        modView.collectionView.register(ModsTVCollectionCell.self, forCellWithReuseIdentifier: ModsTVCollectionCell.identifier)
+        modView.collectionView.delegate = self
+        modView.collectionView.dataSource = self
+        
+        modView.searchView.resultTableView.delegate = self
+        modView.searchView.resultTableView.dataSource = self
+        modView.searchView.resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        searchResults = Array(filteredCollection.prefix(3))
+        
+        // MARK: - searchView
+        modView.searchView.closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        modView.searchView.searchTextField.delegate = self
+        modView.searchView.searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
+        
+        // MARK: - filterView
+        modView.filterView.collectionView.dataSource = self
+        modView.filterView.collectionView.delegate = self
+        modView.filterView.collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        modView.filterView.closeButton.addTarget(self, action: #selector(closeButtonTappedFilterView), for: .touchUpInside)
+    }
     
     @objc private func menuDidTaped(_ celector: UIButton) {
         sideMenuDelegate?.showSideMenu()
     }
     
     @objc private func showContainerButtonTapped(_ celector: UIButton) {
-        view().filterView.isHidden = false
+        modView.filterView.isHidden = false
     }
 }
 
 // MARK: - filterView UICollectionViewDataSource
-extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-
+extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        if collectionView == modView.filterView.collectionView {
             guard let selectedFilter = FilterType(rawValue: indexPath.item) else { return }
             
             filterFlag = selectedFilter
-            view().filterView.collectionView.reloadData()
+            modView.filterView.collectionView.reloadData()
             
             filteredCollection = filterCollection(arrayMod, by: selectedFilter)
-        
-            view().modsTableView.reloadData()
-            view().filterView.isHidden = true
+            
+            modView.collectionView.reloadData()
+            modView.filterView.isHidden = true
+        } else if collectionView == modView.collectionView {
+            let item = filteredCollection[indexPath.row]
+            let recommended = Array(arrayMod[1...5])  // ????
+            itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
+            updateSearchHideTabel()
         }
+    }
     
-      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-          FilterType.allCases.count
-      }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == modView.filterView.collectionView {
+            return FilterType.allCases.count
+        }  else if collectionView == modView.collectionView {
+            return filteredCollection.count
+        }
+        return 0
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == modView.filterView.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCollectionViewCell
-
+            
             let filterType = FilterType(rawValue: indexPath.item) ?? .all
             cell.configure(filter: filterType, flag: filterFlag)
-        
+            
             return cell
+        } else if collectionView == modView.collectionView {
+            guard
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModsTVCollectionCell.identifier, for: indexPath) as? ModsTVCollectionCell
+            else { return UICollectionViewCell() }
+            // create service for configuration cell
+            let item = filteredCollection[indexPath.row]
+            cell.configure(with: item)
+            return cell
+            
         }
+        return UICollectionViewCell()
+    }
     
     // UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width / 4.4, height: 200)
+        if collectionView == modView.filterView.collectionView {
+            return CGSize(width: collectionView.bounds.width / 4.4, height: 200)
+        } else {
+            let width = UIScreen.main.bounds.width
+            let iPhoneW = width - 2 * 20
+            let iPadW = (width - 3 * 20) / 2
+            return CGSize(width: UIDevice.current.isIPad ? iPadW : iPhoneW, height: 164)
+        }
     }
     
     // Target Action
     @objc private func closeButtonTappedFilterView() {
-        view().filterView.isHidden = true
+        modView.filterView.isHidden = true
     }
-    
-    
 }
+
 // MARK: - UITextFieldDelegate, search Target Actions
 extension ModsController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-
+    
     @objc private func searchFieldDidChange(_ textField: UITextField) {
         updateSearch(textField.text ?? "")
     }
     
     @objc private func closeButtonTapped() {
         updateSearchHideTabel()
-        }
+    }
     
     private func updateSearch(_ searchText: String) {
         searchResults = filteredCollection.filter { ($0.rd1Ld4?.lowercased() ?? "").contains(searchText.lowercased()) }
-        view().searchView.resultTableView.reloadData()
-        view().searchView.resultTableView.isHidden = searchResults.isEmpty
+        modView.searchView.resultTableView.reloadData()
+        modView.searchView.resultTableView.isHidden = searchResults.isEmpty
         updateSearchViewHeight()
     }
     
     private func updateSearchViewHeight() {
-           UIView.animate(withDuration: 0.3) {
-               let newHeight = self.view().searchView.resultTableView.isHidden ? 80 : 310
-               self.view().searchView.searchViewHeightConstraint.constant = CGFloat(newHeight)
-           }
-       }
+        UIView.animate(withDuration: 0.3) {
+            let newHeight = self.modView.searchView.resultTableView.isHidden ? 80 : 310
+            self.modView.searchView.searchViewHeightConstraint.constant = CGFloat(newHeight)
+        }
+    }
     
     private func updateSearchHideTabel() {
-        view().searchView.searchTextField.text = nil
+        modView.searchView.searchTextField.text = nil
         updateSearch("")
-       }
+    }
 }
 
-// MARK: - TableViewDelegate
+//// MARK: - TableViewDelegate
 extension ModsController: UITableViewDataSource, UITableViewDelegate{
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var cellCount = 0
-        
-        if tableView == view().modsTableView {
-            cellCount =  filteredCollection.count
-       } else if tableView == view().searchView.resultTableView {
-           cellCount = searchResults.count
-       }
-        
-       return cellCount
+        return searchResults.count
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        var cellHeight: CGFloat = 0
-        
-        if tableView == view().modsTableView {
-            cellHeight =  164
-       } else if tableView == view().searchView.resultTableView {
-           cellHeight = 48
-       }
-        
-        return cellHeight
+        return 48
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = filteredCollection[indexPath.row]
@@ -215,30 +231,21 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
         itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
         updateSearchHideTabel()
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         var returnCell = UITableViewCell()
-        
-        if tableView == view().modsTableView {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ModsTVCell.identifier, for: indexPath) as? ModsTVCell else { return UITableViewCell() }
-            let item = filteredCollection[indexPath.row]
-            cell.configure(with: item)
-            returnCell = cell
-       } else if tableView == view().searchView.resultTableView {
-           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-           // create service for configuration cell
-                cell.textLabel?.text = searchResults[indexPath.row].rd1Ld4
-                cell.backgroundColor = .clear
-                cell.textLabel?.font = .customFont(type: .lilitaOne, size: 20)
-                cell.textLabel?.textColor = .lettersWhite
-           returnCell =  cell
-       }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        // create service for configuration cell
+        cell.textLabel?.text = searchResults[indexPath.row].rd1Ld4
+        cell.backgroundColor = .clear
+        cell.textLabel?.font = .customFont(type: .lilitaOne, size: 20)
+        cell.textLabel?.textColor = .lettersWhite
+        returnCell =  cell
         return returnCell
     }
 }
 
 // MARK: - ViewSeparatable
-extension ModsController: ViewSeparatable {
-    typealias RootView = ModsView
-}
+//extension ModsController: ViewSeparatable {
+//    typealias RootView = ModsView
+//}
