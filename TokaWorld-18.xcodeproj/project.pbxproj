@@ -65,6 +65,11 @@
 		4C575F252B02572D00135BF3 /* ReadexPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */; };
 		4C575F2D2B02616600135BF3 /* HouseIdeasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C575F2C2B02616600135BF3 /* HouseIdeasViewController.swift */; };
 		4C575F2F2B02773700135BF3 /* HouseIdeasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C575F2E2B02773700135BF3 /* HouseIdeasCoordinator.swift */; };
+		4C5AEA8E2B2F836C00DCB0A8 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A52B1CD88900E06C26 /* ImageType.swift */; };
+		4C5AEA8F2B2F836C00DCB0A8 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A52B1CD88900E06C26 /* ImageType.swift */; };
+		4C5AEA912B2F838100DCB0A8 /* JsonPathType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA902B2F838100DCB0A8 /* JsonPathType.swift */; };
+		4C5AEA932B2F83B200DCB0A8 /* StorageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA922B2F83B200DCB0A8 /* StorageHandler.swift */; };
+		4C5AEA952B2F86A000DCB0A8 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA942B2F86A000DCB0A8 /* Size.swift */; };
 		4C5BDE2F2B2E16ED0045205C /* DetailEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BDE2E2B2E16ED0045205C /* DetailEditCoordinator.swift */; };
 		4C5E352C2B28641700AB26F5 /* Jua-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C5E352B2B28641700AB26F5 /* Jua-Regular.ttf */; };
 		4C5E352E2B28672D00AB26F5 /* SFMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C5E352D2B28672D00AB26F5 /* SFMedium.ttf */; };
@@ -174,6 +179,9 @@
 		4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ReadexPro-Bold.ttf"; sourceTree = "<group>"; };
 		4C575F2C2B02616600135BF3 /* HouseIdeasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeasViewController.swift; sourceTree = "<group>"; };
 		4C575F2E2B02773700135BF3 /* HouseIdeasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeasCoordinator.swift; sourceTree = "<group>"; };
+		4C5AEA902B2F838100DCB0A8 /* JsonPathType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPathType.swift; sourceTree = "<group>"; };
+		4C5AEA922B2F83B200DCB0A8 /* StorageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
+		4C5AEA942B2F86A000DCB0A8 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		4C5BDE2E2B2E16ED0045205C /* DetailEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditCoordinator.swift; sourceTree = "<group>"; };
 		4C5E352B2B28641700AB26F5 /* Jua-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jua-Regular.ttf"; sourceTree = "<group>"; };
 		4C5E352D2B28672D00AB26F5 /* SFMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFMedium.ttf; sourceTree = "<group>"; };
@@ -243,6 +251,7 @@
 		0DA987A72B1CD92E00E06C26 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4C60211B2B0190BB0098F071 /* Extension.swift */,
 				0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */,
 				0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */,
 				0DA987AC2B1CDFB400E06C26 /* UIColor+Extension.swift */,
@@ -345,20 +354,14 @@
 		15B3B0A42AFC033E00706666 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4C5AEA8D2B2F836100DCB0A8 /* Type */,
+				4C5AEA8C2B2F834100DCB0A8 /* Managers */,
 				0DA987A72B1CD92E00E06C26 /* Extensions */,
 				4C78BBFD2B1C939400C59A64 /* Uiews */,
 				4C50AC952B03AE5700355DBF /* Protocols */,
 				4C50AC942B03A77200355DBF /* Fonts */,
 				15C9D6112AFE3684002232D3 /* Cell */,
-				15C9D61A2AFE6C8F002232D3 /* RealmManager.swift */,
-				4C55CBAF2B10E24200A883AC /* JsonParsingManager.swift */,
-				4C78BC102B1DFAE800C59A64 /* DownloadManager.swift */,
-				4C7007052B0F6A09009A497C /* DropBoxKeys_ltlpm.swift */,
-				4C6021172B018BAD0098F071 /* ImageNameNawMenuType.swift */,
-				4C60211B2B0190BB0098F071 /* Extension.swift */,
-				4C4CC7462B14E3030030885C /* NetworkMonitor.swift */,
 				4C4CC7482B14E36E0030885C /* BaseViewController.swift */,
-				0DA987A52B1CD88900E06C26 /* ImageType.swift */,
 				0DA987B02B1CEEC600E06C26 /* LaunchScreen.storyboard */,
 				0DA987B22B1CF3D900E06C26 /* LilitaOne-Regular.ttf */,
 			);
@@ -501,6 +504,30 @@
 				4C7006C02B08D9D5009A497C /* EditProcessScreen */,
 			);
 			name = Editor;
+			sourceTree = "<group>";
+		};
+		4C5AEA8C2B2F834100DCB0A8 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4C55CBAF2B10E24200A883AC /* JsonParsingManager.swift */,
+				4C78BC102B1DFAE800C59A64 /* DownloadManager.swift */,
+				4C7007052B0F6A09009A497C /* DropBoxKeys_ltlpm.swift */,
+				15C9D61A2AFE6C8F002232D3 /* RealmManager.swift */,
+				4C4CC7462B14E3030030885C /* NetworkMonitor.swift */,
+				4C5AEA922B2F83B200DCB0A8 /* StorageHandler.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		4C5AEA8D2B2F836100DCB0A8 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				4C6021172B018BAD0098F071 /* ImageNameNawMenuType.swift */,
+				0DA987A52B1CD88900E06C26 /* ImageType.swift */,
+				4C5AEA902B2F838100DCB0A8 /* JsonPathType.swift */,
+				4C5AEA942B2F86A000DCB0A8 /* Size.swift */,
+			);
+			path = Type;
 			sourceTree = "<group>";
 		};
 		4C6AFE5F2B07548D0001B6A7 /* DownloadPictureScreen */ = {
@@ -777,9 +804,11 @@
 				4C55CBB02B10E24200A883AC /* JsonParsingManager.swift in Sources */,
 				4C6021162B018B730098F071 /* RoundButton.swift in Sources */,
 				4C78BC072B1C95F100C59A64 /* EditorCollectionCell.swift in Sources */,
+				4C5AEA912B2F838100DCB0A8 /* JsonPathType.swift in Sources */,
 				4C78BBF72B1A88AD00C59A64 /* Editor Respond.swift in Sources */,
 				0DA987AB2B1CD99F00E06C26 /* UIDevice+Extension.swift in Sources */,
 				15B3B0772AFBFBF700706666 /* SideMenuController.swift in Sources */,
+				4C5AEA932B2F83B200DCB0A8 /* StorageHandler.swift in Sources */,
 				4C50AC912B03A54A00355DBF /* FurnitureViewController.swift in Sources */,
 				4C78BBFF2B1C93B800C59A64 /* LinearLoadingIndicator.swift in Sources */,
 				4C8939B32B13504700EB821A /* ViewMod.swift in Sources */,
@@ -795,6 +824,7 @@
 				4C78BC052B1C958F00C59A64 /* EditirView.swift in Sources */,
 				0DA987B52B1CF41C00E06C26 /* UIFont+Extension.swift in Sources */,
 				15C9D61B2AFE6C8F002232D3 /* RealmManager.swift in Sources */,
+				4C5AEA952B2F86A000DCB0A8 /* Size.swift in Sources */,
 				0DA987BE2B1D01CD00E06C26 /* UIViewController+Alert.swift in Sources */,
 				0DA987C42B1D0C9F00E06C26 /* NetworkMonitoring.swift in Sources */,
 				4C7006B92B08C1AF009A497C /* EditirCoordinator.swift in Sources */,
@@ -819,6 +849,7 @@
 			files = (
 				4C575EFF2B02256E00135BF3 /* ImageNameNawMenuType.swift in Sources */,
 				4C575F042B02266A00135BF3 /* ModsController.swift in Sources */,
+				4C5AEA8E2B2F836C00DCB0A8 /* ImageType.swift in Sources */,
 				4C575F082B022DCE00135BF3 /* ModsCoordinator.swift in Sources */,
 				15B3B08A2AFBFBFA00706666 /* TokaWorld_18Tests.swift in Sources */,
 			);
@@ -829,6 +860,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C575F052B02266A00135BF3 /* ModsController.swift in Sources */,
+				4C5AEA8F2B2F836C00DCB0A8 /* ImageType.swift in Sources */,
 				15B3B0942AFBFBFA00706666 /* TokaWorld_18UITests.swift in Sources */,
 				15B3B0962AFBFBFA00706666 /* TokaWorld_18UITestsLaunchTests.swift in Sources */,
 				4C575F002B02256F00135BF3 /* ImageNameNawMenuType.swift in Sources */,

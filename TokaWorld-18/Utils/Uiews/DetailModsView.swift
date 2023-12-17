@@ -27,11 +27,10 @@ class DetailModsView: UIView {
         label.font = .customFont(type: .lilitaOne, size: 20)
         label.textColor = .lettersWhite
         
-        // Set shadow properties
         let shadowLabel = UILabel()
         shadowLabel.text = label.text
         shadowLabel.font = label.font
-        shadowLabel.textColor = .black // Shadow color
+        shadowLabel.textColor = .black
         shadowLabel.translatesAutoresizingMaskIntoConstraints = false
         label.addSubview(shadowLabel)
 
@@ -41,7 +40,6 @@ class DetailModsView: UIView {
             shadowLabel.topAnchor.constraint(equalTo: label.topAnchor),
             shadowLabel.bottomAnchor.constraint(equalTo: label.bottomAnchor),
         ])
-
         return label
     }()
 
@@ -66,7 +64,7 @@ class DetailModsView: UIView {
         setupUI()
     }
 
-    // MARK: - Private Methods
+    // MARK: - Methods
     
     func configure(with model: Mod) {
         imageView.image = .getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )")
@@ -84,20 +82,13 @@ class DetailModsView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-//        let anc = imageView.heightAnchor + 36 + 92
-        
+
         NSLayoutConstraint.activate([
-            
-            
-            
-            self.heightAnchor.constraint(equalTo: imageView.heightAnchor, constant: 36 + 92 + 16),
-            
+
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-//            imageView.heightAnchor.constraint(equalTo: imageView.heightAnchor),
 
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -107,7 +98,7 @@ class DetailModsView: UIView {
             descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 80),
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
         ])
     }
 }

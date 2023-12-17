@@ -166,10 +166,7 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
         if collectionView == modView.filterView.collectionView {
             return CGSize(width: collectionView.bounds.width / 4.4, height: 200)
         } else {
-            let width = UIScreen.main.bounds.width
-            let iPhoneW = width - 2 * 20
-            let iPadW = (width - 3 * 20) / 2
-            return CGSize(width: UIDevice.current.isIPad ? iPadW : iPhoneW, height: 164)
+            return CGSize(width: Sizes.cellWidth , height: Sizes.cellHeight)
         }
     }
     

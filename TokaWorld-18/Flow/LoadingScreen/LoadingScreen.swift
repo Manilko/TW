@@ -36,33 +36,27 @@ class LoadingScreenViewController: UIViewController {
                 let furnitureElementManager = DownloadManager<FurnitureElement>(results: RealmManager.shared.getObjects(FurnitureElement.self))
                 modManager.downloadData(nameDirectory: .furniture) {
                     self.loadingIndicator.updateProgressView(progress: 2 / 7, completion: {})
-                    print(" 🔶  DONE Mods")
                 }
                 
               
                 let houseManager = DownloadManager<HouseIdea>(results: RealmManager.shared.getObjects(HouseIdea.self))
                 modManager.downloadData(nameDirectory: .house) {
                     self.loadingIndicator.updateProgressView(progress: 3 / 7, completion: {})
-                    print(" 🔶  DONE Mods")
                 }
                 
                 let recipesManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
                 modManager.downloadData(nameDirectory: .recipes) {
                     self.loadingIndicator.updateProgressView(progress: 4 / 7, completion: {})
-                    print(" 🔶  DONE Mods")
                 }
                 
                 let guidesManager = DownloadManager<Guide>(results: RealmManager.shared.getObjects(Guide.self))
                 modManager.downloadData(nameDirectory: .guides) {
                     self.loadingIndicator.updateProgressView(progress: 5 / 7, completion: {})
-                    print(" 🔶  DONE Mods")
                 }
                 let wallpapersManager = DownloadManager<Wallpaper>(results: RealmManager.shared.getObjects(Wallpaper.self))
                 modManager.downloadData(nameDirectory: .wallpapers) {
                     self.loadingIndicator.updateProgressView(progress: 6 / 7, completion: {
-//                        self.coordinatorDelegate?.didSelectScreen(.mods)
                     })
-                    print(" 🔶  DONE Mods")
                 }
                 
                 let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
@@ -74,7 +68,6 @@ class LoadingScreenViewController: UIViewController {
                         self.loadingIndicator.updateProgressView(progress: 7 / 7, completion: {
                             self.coordinatorDelegate?.didSelectScreen(.mods)
                         })
-                        print("@@@@@@@@>>>>>>>>")
                     }
                 }
                 
@@ -95,10 +88,6 @@ class LoadingScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = .red
-
-
         configureLayout()
         loadDataWithLoadingIndicator()
         
@@ -139,7 +128,7 @@ class LoadingScreenViewController: UIViewController {
             containerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
         ])
         
-        loadingLabel.text = NSLocalizedString("loading", comment: "")
+        loadingLabel.text = NSLocalizedString("Loading", comment: "")
         loadingLabel.font = UIFont(name: "ReadexPro-Bold", size: 25)
         loadingLabel.textColor = .white
         loadingLabel.textAlignment = .center
@@ -164,82 +153,3 @@ class LoadingScreenViewController: UIViewController {
         ])
     }
 }
-
-// MARK: - JsonPathType
-//enum JsonPathType: String, CaseIterable {
-//    case mods = "/Mods/Mods.json"
-//    case furniture = "/Furniture/Furniture.json"
-//    case house = "/House_Ideas/House_Ideas.json"
-//    case recipes = "/Recipes/Recipes.json"
-//    case guides = "/Guides/Guides.json"
-//    case wallpapers = "/Wallpapers/Wallpapers.json"
-//    case editor = "/json.json"
-//    
-//    var caseName: String {
-//        return String(describing: self)
-//    }
-//    
-//    var correspondingModel: Codable.Type {
-//        switch self {
-//        case .mods:
-//            return Mods.self
-//        case .furniture:
-//            return Furniture.self
-//        case .house:
-//            return HouseIdeas.self
-//        case .recipes:
-//            return Recipes.self
-//        case .guides:
-//            return Guides.self
-//        case .wallpapers:
-//            return Wallpapers.self
-//        case .editor:
-//            return EditorRespondModel.self
-//        }
-//    }
-//}
-
-// MARK: - LoadingScreenViewModel
-class LoadingScreenViewModel {
-    
-    init() {}
-    
-    func getJson(completion: @escaping ([JsonPathType: Data?]) -> Void) {
-        var dataResults: [JsonPathType: Data?] = [:]
-        
-        let dispatchGroup = DispatchGroup()
-        
-        JsonPathType.allCases.forEach { jsonPathEnum in
-            let jsonPath = jsonPathEnum.rawValue
-            dispatchGroup.enter()
-            
-            ServerManager.shared.downloadJSONFile(filePath: jsonPath) { data in
-                //                print("          \(jsonPathEnum.caseName) ✅ \(String(describing: data))")
-                dataResults[jsonPathEnum] = data
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            completion(dataResults)
-        }
-    }
-    
-    func downloadFile(completion: @escaping ([JsonPathType: Data?]) -> Void) {
-        
-        //        let results: Results<Wallpapers>
-        //        let array: [Wallpapers]
-        //
-        //        results = RealmManager.shared.getObjects(Wallpapers.self)
-        //        array = Array(RealmManager.shared.getObjects(Wallpapers.self))
-        //
-        //        let herosElementSet = JsonParsingManager.parseJSON(data: array)
-        //        guard let herosElementSet = herosElementSet else { return }
-        //        for i in herosElementSet {
-        //            i.downloadPDFs {
-        //                print("@@@@@@@@>>>>>>>>")
-        //            }
-        //        }
-    }
-}
-

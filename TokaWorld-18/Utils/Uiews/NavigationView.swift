@@ -89,12 +89,12 @@ class NavigationView: UIView {
             leftButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             leftButton.widthAnchor.constraint(equalToConstant: 40),
             leftButton.heightAnchor.constraint(equalToConstant: 40),
-            leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
 
             rightButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             rightButton.widthAnchor.constraint(equalToConstant: 40),
             rightButton.heightAnchor.constraint(equalToConstant: 40),
-            rightButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            rightButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
 
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),

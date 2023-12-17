@@ -68,12 +68,12 @@ final class ModsView: UIView {
             navView.heightAnchor.constraint(equalToConstant: 80),
             
             searchView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
-            searchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            searchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            searchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
+            searchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
             
             collectionView.topAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
             filterView.topAnchor.constraint(equalTo: topAnchor),
@@ -87,4 +87,13 @@ final class ModsView: UIView {
         searchViewHeightConstraint = searchView.heightAnchor.constraint(equalToConstant: 310)
         searchViewHeightConstraint.isActive = true
     }
+}
+
+
+extension CGFloat{
+    
+    func margin() -> CGFloat {
+      UIDevice.current.isIPhone ? 40 : 16
+    }
+    
 }
