@@ -70,6 +70,10 @@
 		4C5AEA912B2F838100DCB0A8 /* JsonPathType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA902B2F838100DCB0A8 /* JsonPathType.swift */; };
 		4C5AEA932B2F83B200DCB0A8 /* StorageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA922B2F83B200DCB0A8 /* StorageHandler.swift */; };
 		4C5AEA952B2F86A000DCB0A8 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA942B2F86A000DCB0A8 /* Size.swift */; };
+		4C5AEA992B2FE10000DCB0A8 /* FurnitureDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA982B2FE10000DCB0A8 /* FurnitureDetailCoordinator.swift */; };
+		4C5AEA9B2B2FE11B00DCB0A8 /* FurnitureDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA9A2B2FE11B00DCB0A8 /* FurnitureDetailController.swift */; };
+		4C5AEA9D2B2FE19200DCB0A8 /* FurnitureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA9C2B2FE19200DCB0A8 /* FurnitureDetailView.swift */; };
+		4C5AEA9F2B2FE21C00DCB0A8 /* FurnitureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA9E2B2FE21C00DCB0A8 /* FurnitureView.swift */; };
 		4C5BDE2F2B2E16ED0045205C /* DetailEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BDE2E2B2E16ED0045205C /* DetailEditCoordinator.swift */; };
 		4C5E352C2B28641700AB26F5 /* Jua-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C5E352B2B28641700AB26F5 /* Jua-Regular.ttf */; };
 		4C5E352E2B28672D00AB26F5 /* SFMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C5E352D2B28672D00AB26F5 /* SFMedium.ttf */; };
@@ -182,6 +186,10 @@
 		4C5AEA902B2F838100DCB0A8 /* JsonPathType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPathType.swift; sourceTree = "<group>"; };
 		4C5AEA922B2F83B200DCB0A8 /* StorageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
 		4C5AEA942B2F86A000DCB0A8 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		4C5AEA982B2FE10000DCB0A8 /* FurnitureDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureDetailCoordinator.swift; sourceTree = "<group>"; };
+		4C5AEA9A2B2FE11B00DCB0A8 /* FurnitureDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureDetailController.swift; sourceTree = "<group>"; };
+		4C5AEA9C2B2FE19200DCB0A8 /* FurnitureDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureDetailView.swift; sourceTree = "<group>"; };
+		4C5AEA9E2B2FE21C00DCB0A8 /* FurnitureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureView.swift; sourceTree = "<group>"; };
 		4C5BDE2E2B2E16ED0045205C /* DetailEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditCoordinator.swift; sourceTree = "<group>"; };
 		4C5E352B2B28641700AB26F5 /* Jua-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jua-Regular.ttf"; sourceTree = "<group>"; };
 		4C5E352D2B28672D00AB26F5 /* SFMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFMedium.ttf; sourceTree = "<group>"; };
@@ -460,8 +468,8 @@
 		4C575F262B0260A900135BF3 /* Furniture */ = {
 			isa = PBXGroup;
 			children = (
-				4C50AC902B03A54A00355DBF /* FurnitureViewController.swift */,
-				4C50AC922B03A5BD00355DBF /* FurnitureCoordinator.swift */,
+				4C5AEA962B2FDF8500DCB0A8 /* Furniture */,
+				4C5AEA972B2FDF9000DCB0A8 /* FurnitureDetail */,
 			);
 			name = Furniture;
 			sourceTree = "<group>";
@@ -528,6 +536,26 @@
 				4C5AEA942B2F86A000DCB0A8 /* Size.swift */,
 			);
 			path = Type;
+			sourceTree = "<group>";
+		};
+		4C5AEA962B2FDF8500DCB0A8 /* Furniture */ = {
+			isa = PBXGroup;
+			children = (
+				4C50AC922B03A5BD00355DBF /* FurnitureCoordinator.swift */,
+				4C50AC902B03A54A00355DBF /* FurnitureViewController.swift */,
+				4C5AEA9E2B2FE21C00DCB0A8 /* FurnitureView.swift */,
+			);
+			name = Furniture;
+			sourceTree = "<group>";
+		};
+		4C5AEA972B2FDF9000DCB0A8 /* FurnitureDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4C5AEA982B2FE10000DCB0A8 /* FurnitureDetailCoordinator.swift */,
+				4C5AEA9A2B2FE11B00DCB0A8 /* FurnitureDetailController.swift */,
+				4C5AEA9C2B2FE19200DCB0A8 /* FurnitureDetailView.swift */,
+			);
+			name = FurnitureDetail;
 			sourceTree = "<group>";
 		};
 		4C6AFE5F2B07548D0001B6A7 /* DownloadPictureScreen */ = {
@@ -767,6 +795,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DA987AD2B1CDFB400E06C26 /* UIColor+Extension.swift in Sources */,
+				4C5AEA9F2B2FE21C00DCB0A8 /* FurnitureView.swift in Sources */,
 				4C5BDE2F2B2E16ED0045205C /* DetailEditCoordinator.swift in Sources */,
 				4C78BC012B1C948200C59A64 /* SideMenuView.swift in Sources */,
 				15C9D6152AFE3824002232D3 /* NavigationView.swift in Sources */,
@@ -777,11 +806,13 @@
 				4C50AC992B03B17C00355DBF /* ItemModel.swift in Sources */,
 				4C4CC7492B14E36E0030885C /* BaseViewController.swift in Sources */,
 				4C3961142B04F83B0023E7FA /* FilterView.swift in Sources */,
+				4C5AEA992B2FE10000DCB0A8 /* FurnitureDetailCoordinator.swift in Sources */,
 				4C66E7902B2C8DE700EB79DF /* EditAlert.swift in Sources */,
 				4C7007062B0F6A0A009A497C /* DropBoxKeys_ltlpm.swift in Sources */,
 				4C575F2D2B02616600135BF3 /* HouseIdeasViewController.swift in Sources */,
 				4C575F072B022DCE00135BF3 /* ModsCoordinator.swift in Sources */,
 				4C6AFE652B07592E0001B6A7 /* DetailModsView.swift in Sources */,
+				4C5AEA9B2B2FE11B00DCB0A8 /* FurnitureDetailController.swift in Sources */,
 				4C50AC8F2B0397D400355DBF /* AppCoordinator.swift in Sources */,
 				0DA987BC2B1CFBFE00E06C26 /* BlueTitleAlertView.swift in Sources */,
 				4C6AFE612B0754FF0001B6A7 /* DownloadPictureCoordinator.swift in Sources */,
@@ -819,6 +850,7 @@
 				4C60211C2B0190BB0098F071 /* Extension.swift in Sources */,
 				4C7006B72B08C19E009A497C /* EditorController.swift in Sources */,
 				4C55CBAE2B10E0D500A883AC /* EditorCategoryItemCell.swift in Sources */,
+				4C5AEA9D2B2FE19200DCB0A8 /* FurnitureDetailView.swift in Sources */,
 				4C50AC9B2B040E0400355DBF /* NibCapable.swift in Sources */,
 				4C4CC7472B14E3030030885C /* NetworkMonitor.swift in Sources */,
 				4C78BC052B1C958F00C59A64 /* EditirView.swift in Sources */,

@@ -1,16 +1,16 @@
 //
-//  DownloadingPictureController.swift
+//  FurnitureDetailController.swift
 //  TokaWorld-18
 //
-//  Created by Yevhenii Manilko on 17.11.2023.
+//  Created by Yevhenii Manilko on 18.12.2023.
 //
 
 import UIKit
 
-final class DownloadPictureController: UIViewController {
+final class FurnitureDetailController: UIViewController {
     
     // MARK: - Properties
-    weak var coordinatorDelegate: DownloadPictureDelegate?
+    weak var coordinatorDelegate: FurnitureDetailDelegate?
     let model: Mod?
     let recommended: [Mod]
     
@@ -34,7 +34,7 @@ final class DownloadPictureController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        self.view = DownloadPictureView(isFavorite: model?.favorites ?? false)
+        self.view = FurnitureDetailView(isFavorite: model?.favorites ?? false)
     }
 
     override func viewDidLoad() {
@@ -77,7 +77,7 @@ final class DownloadPictureController: UIViewController {
 
 }
 
-extension DownloadPictureController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension FurnitureDetailController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         recommended.count
     }
@@ -98,6 +98,7 @@ extension DownloadPictureController: UICollectionViewDelegate, UICollectionViewD
 }
 
 // MARK: - ViewSeparatable
-extension DownloadPictureController: ViewSeparatable {
+extension FurnitureDetailController: ViewSeparatable {
     typealias RootView = DownloadPictureView
 }
+

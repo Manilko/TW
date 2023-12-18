@@ -11,6 +11,7 @@ import SideMenu
 class AppCoordinator {
     var navigationController: UINavigationController
     var modsCoordinator: ModsCoordinator?
+    var furnitureCoordinator: FurnitureCoordinator?
     var houseIdeasCoordinator: HouseIdeasCoordinator?
     var editirCoordinator: EditirCoordinator?
 
@@ -39,29 +40,44 @@ class AppCoordinator {
                 modsCoordinator?.start()
             
         case .houseIdeas:
-                houseIdeasCoordinator = HouseIdeasCoordinator(navigationController: navigationController)
-                houseIdeasCoordinator?.viewController.coordinatorDelegate = self
-                houseIdeasCoordinator?.viewController.sideMenuDelegate = self
-                houseIdeasCoordinator?.start()
-            
+//
+            modsCoordinator = ModsCoordinator(navigationController: navigationController)
+            modsCoordinator?.modsController.coordinatorDelegate = self
+            modsCoordinator?.modsController.sideMenuDelegate = self
+            modsCoordinator?.modsController.itemDelegate = modsCoordinator
+            modsCoordinator?.start()
         case .furniture:
-            var screen3Coordinator = FurnitureCoordinator(navigationController: navigationController)
-//            screen3Coordinator.viewController.coordinatorDelegate = self
-//            screen3Coordinator.viewController.sideMenuDelegate = self
-            screen3Coordinator.start()
+            modsCoordinator = ModsCoordinator(navigationController: navigationController)
+            modsCoordinator?.modsController.coordinatorDelegate = self
+            modsCoordinator?.modsController.sideMenuDelegate = self
+            modsCoordinator?.modsController.itemDelegate = modsCoordinator
+            modsCoordinator?.start()
             
         case .editor:
             
             editirCoordinator = EditirCoordinator(navigationController: navigationController)
-//            editirCoordinator?.modsController.coordinatorDelegate = self
             editirCoordinator?.viewController.sideMenuDelegate = self
             editirCoordinator?.viewController.itemDelegate = editirCoordinator
             editirCoordinator?.start()
-        default :
-            var screen2Coordinator = HouseIdeasCoordinator(navigationController: navigationController)
-            screen2Coordinator.viewController.coordinatorDelegate = self
-            screen2Coordinator.viewController.sideMenuDelegate = self
-            screen2Coordinator.start()
+        
+        case .recipes:
+            modsCoordinator = ModsCoordinator(navigationController: navigationController)
+            modsCoordinator?.modsController.coordinatorDelegate = self
+            modsCoordinator?.modsController.sideMenuDelegate = self
+            modsCoordinator?.modsController.itemDelegate = modsCoordinator
+            modsCoordinator?.start()
+        case .guides:
+            modsCoordinator = ModsCoordinator(navigationController: navigationController)
+            modsCoordinator?.modsController.coordinatorDelegate = self
+            modsCoordinator?.modsController.sideMenuDelegate = self
+            modsCoordinator?.modsController.itemDelegate = modsCoordinator
+            modsCoordinator?.start()
+        case .wallpapers:
+            modsCoordinator = ModsCoordinator(navigationController: navigationController)
+            modsCoordinator?.modsController.coordinatorDelegate = self
+            modsCoordinator?.modsController.sideMenuDelegate = self
+            modsCoordinator?.modsController.itemDelegate = modsCoordinator
+            modsCoordinator?.start()
         }
     }
 }
