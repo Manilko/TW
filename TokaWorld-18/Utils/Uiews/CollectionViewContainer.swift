@@ -12,9 +12,7 @@ import Realm
 
 class CollectionViewContainer: UIView {
     
-    // MARK: - ______
-    
-    let firstCollectionView: UICollectionView = {
+    let categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -23,7 +21,7 @@ class CollectionViewContainer: UIView {
         return collectionView
     }()
     
-    let secondCollectionView: UICollectionView = {
+    let elementCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -48,9 +46,8 @@ class CollectionViewContainer: UIView {
     var index = 0
     var countSecondCVCell: Int = 0 {
         didSet {
-//            print("countSecondCVCell =  \(countSecondCVCell)")
             DispatchQueue.main.async {
-                self.secondCollectionView.reloadData()
+                self.elementCollectionView.reloadData()
             }
         }
     }
@@ -78,9 +75,7 @@ class CollectionViewContainer: UIView {
             var bodyPart: BodyPart = BodyPart(value: i)
             bodyParts.append(bodyPart)
         }
-        
-        
-        
+
         startSetQ = HeroSet()
         startSetQ.id = startSet.id
         startSetQ.bodyParts.append(objectsIn: bodyParts)
@@ -102,24 +97,24 @@ class CollectionViewContainer: UIView {
     
     private func setupViews() {
         addSubview(characterView)
-        addSubview(firstCollectionView)
-        addSubview(secondCollectionView)
+        addSubview(categoryCollectionView)
+        addSubview(elementCollectionView)
         
         NSLayoutConstraint.activate([
             characterView.topAnchor.constraint(equalTo: topAnchor),
-            characterView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            characterView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            characterView.heightAnchor.constraint(equalToConstant: 350),
+            characterView.widthAnchor.constraint(equalToConstant:  400),// UIDevice.current.isIPad ? 356 : 228),
+            characterView.heightAnchor.constraint(equalToConstant: 400),//UIDevice.current.isIPad ? 650 : 356),
+            characterView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            firstCollectionView.topAnchor.constraint(equalTo: topAnchor, constant: 350),
-            firstCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            firstCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            firstCollectionView.heightAnchor.constraint(equalToConstant: 60),
+            categoryCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant:  Sizes.leading),
+            categoryCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
+            categoryCollectionView.bottomAnchor.constraint(equalTo: elementCollectionView.topAnchor),
+            categoryCollectionView.heightAnchor.constraint(equalToConstant:90),
             
-            secondCollectionView.topAnchor.constraint(equalTo: firstCollectionView.bottomAnchor),
-            secondCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            secondCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            secondCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            elementCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant:  Sizes.leading),
+            elementCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
+            elementCollectionView.heightAnchor.constraint(equalToConstant: 90),
+            elementCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
         
         setupExistingBodyParts()
@@ -191,7 +186,7 @@ extension CollectionViewContainer{
             return nil
         }
         
-        let imageSize = CGSize(width: 1000, height: 1000)
+        let imageSize = CGSize(width: 500, height: 500)
         
         UIGraphicsBeginImageContext(imageSize)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
@@ -212,7 +207,7 @@ extension CollectionViewContainer{
         let pdfImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
-        
+
         return pdfImage
     }
 }

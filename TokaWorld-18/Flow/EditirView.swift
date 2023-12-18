@@ -34,7 +34,7 @@ class EditirView: UIView {
     private func configureLayout() {
         addSubview(navView)
         addSubview(collectionView)
-        
+        backgroundColor = .backgroundBlue
         navView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -44,8 +44,8 @@ class EditirView: UIView {
             navView.heightAnchor.constraint(equalToConstant: 100),
 
             collectionView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
         ])
     }

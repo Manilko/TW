@@ -37,6 +37,7 @@ final class EditProcessView: UIView {
     }
 
     private func configureLayout() {
+        backgroundColor = .backgroundBlue
         addSubview(navView)
         navView.addSubview(navigationButtons)
         addSubview(frameView)
@@ -60,7 +61,7 @@ final class EditProcessView: UIView {
             navigationButtons.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -90),
             navigationButtons.heightAnchor.constraint(equalToConstant: 100),
   
-            collectionViewContainer.heightAnchor.constraint(equalToConstant: 500),
+            collectionViewContainer.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 40),
             collectionViewContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionViewContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionViewContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -68,7 +69,7 @@ final class EditProcessView: UIView {
             frameView.bottomAnchor.constraint(equalTo: bottomAnchor),
             frameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38),
             frameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -38),
-            frameView.heightAnchor.constraint(equalToConstant: 230),
+            frameView.heightAnchor.constraint(equalToConstant: 350),
         ])
     }
 }

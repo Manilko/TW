@@ -113,11 +113,11 @@ final class DetailEditView: UIView {
             navigationButtons.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             characterView.topAnchor.constraint(equalTo: topAnchor, constant: 200),
-            characterView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            characterView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            characterView.heightAnchor.constraint(equalToConstant: 350),
+            characterView.widthAnchor.constraint(equalToConstant:  400),
+            characterView.heightAnchor.constraint(equalToConstant: 400),
+            characterView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            hStack.topAnchor.constraint(equalTo: characterView.bottomAnchor, constant: 30),
+            hStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
             hStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             hStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             hStack.heightAnchor.constraint(equalToConstant: 52),

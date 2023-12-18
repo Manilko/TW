@@ -88,12 +88,3 @@ final class ModsView: UIView {
         searchViewHeightConstraint.isActive = true
     }
 }
-
-
-extension CGFloat{
-    
-    func margin() -> CGFloat {
-      UIDevice.current.isIPhone ? 40 : 16
-    }
-    
-}

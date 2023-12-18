@@ -9,30 +9,42 @@ import UIKit
 
 class EditorCategoryCell: UICollectionViewCell, NibCapable {
 
-var label: UILabel!
+    let label: UILabel = {
+        let b = UILabel()
+        b.tintColor = .clear
+        b.backgroundColor = .backgroundBlue
+        b.font = .customFont(type: .juaRegular, size: 20)
+        b.textColor = .lettersBlack
+        b.textAlignment = .center
+        b.layer.cornerRadius = 15
+        b.translatesAutoresizingMaskIntoConstraints = false
+        return b
+    }()
 
-override init(frame: CGRect) {
-    super.init(frame: frame)
-    setupCell()
-}
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupCell()
+    }
 
-required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    setupCell()
-}
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupCell()
+    }
 
-private func setupCell() {
-    backgroundColor = .lightGray
-    layer.cornerRadius = 5
-    
-    label = UILabel(frame: contentView.bounds)
-    label.textAlignment = .center
-    label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    contentView.addSubview(label)
-}
+    private func setupCell() {
+        
+        addSubview(label)
 
-func configure(with text: String) {
-    label.text = text
-    backgroundColor = .backgroundBlue
-}
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+
+    func configure(with text: String) {
+        label.text = text
+        backgroundColor = .backgroundBlue
+    }
 }

@@ -44,7 +44,6 @@ final class EditorController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,9 +143,7 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let cellWidth = 166.0
-        let cellHeight = 211.0
-        return CGSize(width: cellWidth, height: cellHeight)
+        return CGSize(width: Sizes.cellEditoWidth, height: Sizes.cellEditorHeight)
     }
 }
 

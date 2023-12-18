@@ -25,7 +25,7 @@ final class EditProcessController: UIViewController {
     var countSecondCVCell: Int = 0 {
         didSet {
             DispatchQueue.main.async {
-                self.view().collectionViewContainer.secondCollectionView.reloadData()
+                self.view().collectionViewContainer.elementCollectionView.reloadData()
             }
         }
     }
@@ -34,10 +34,7 @@ final class EditProcessController: UIViewController {
         didSet {
             self.storyHeroChanges.item.append(oneStep)
             view().navigationButtons.totalCount = storyHeroChanges.item.count
-//            view().navigationButtons.currentIndex = storyHeroChanges.item.count
             currentIndex =  storyHeroChanges.item.count
-            print("              storyHeroChanges.item.count      \(storyHeroChanges.item.count)")
-            print("              storyHeroChanges.item.count      \(storyHeroChanges.item.count)")
         }
     }
     
@@ -81,13 +78,13 @@ final class EditProcessController: UIViewController {
         view().navigationButtons.leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
         view().navigationButtons.rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
         
-        view().collectionViewContainer.secondCollectionView.delegate = self
-        view().collectionViewContainer.secondCollectionView.dataSource = self
-        view().collectionViewContainer.secondCollectionView.register(EditorCategoryItemCell.self, forCellWithReuseIdentifier: EditorCategoryItemCell.identifier)
+        view().collectionViewContainer.elementCollectionView.delegate = self
+        view().collectionViewContainer.elementCollectionView.dataSource = self
+        view().collectionViewContainer.elementCollectionView.register(EditorCategoryItemCell.self, forCellWithReuseIdentifier: EditorCategoryItemCell.identifier)
         
-        view().collectionViewContainer.firstCollectionView.delegate = self
-        view().collectionViewContainer.firstCollectionView.dataSource = self
-        view().collectionViewContainer.firstCollectionView.register(EditorCategoryCell.self, forCellWithReuseIdentifier: EditorCategoryCell.identifier)
+        view().collectionViewContainer.categoryCollectionView.delegate = self
+        view().collectionViewContainer.categoryCollectionView.dataSource = self
+        view().collectionViewContainer.categoryCollectionView.register(EditorCategoryCell.self, forCellWithReuseIdentifier: EditorCategoryCell.identifier)
         
     }
 
@@ -109,7 +106,6 @@ final class EditProcessController: UIViewController {
         super.viewDidLoad()
         
         oneStep = startSetQ
-        view.backgroundColor =  #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
     }
     
     @objc func leftButtonTapped() {
@@ -147,9 +143,7 @@ final class EditProcessController: UIViewController {
         } else{
             self.coordinatorDelegate?.pop(self)
         }
-        
-       
- 
+
     }
     
     @objc private func saveToRealm() {
@@ -177,19 +171,29 @@ extension EditProcessController: ViewSeparatable {
 
 
 // MARK: - UICollectionViewDelegate and UICollectionViewDataSource methods
-extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == view().collectionViewContainer.categoryCollectionView {
+            return CGSize(width: collectionView.bounds.width / 3.4, height: 60)
+        } else {
+            return CGSize(width: collectionView.bounds.width / 3.4, height: 70)
+        }
+    }
    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == view().collectionViewContainer.firstCollectionView {
+        if collectionView == view().collectionViewContainer.categoryCollectionView {
             return startSetQ.bodyParts.count
         } else {
             return countSecondCVCell
         }
     }
     
+   
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == view().collectionViewContainer.firstCollectionView {
+        if collectionView == view().collectionViewContainer.categoryCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCategoryCell.identifier, for: indexPath) as! EditorCategoryCell
             cell.configure(with: "\(startSetQ.bodyParts[indexPath.row].nameS ?? "no name 🤷")")
             return cell
@@ -218,9 +222,9 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        if collectionView == view().collectionViewContainer.firstCollectionView {
+        if collectionView == view().collectionViewContainer.categoryCollectionView {
             DispatchQueue.main.async {
-                self.view().collectionViewContainer.secondCollectionView.reloadData()
+                self.view().collectionViewContainer.elementCollectionView.reloadData()
             }
 
             if startSetQ.gender == .girl {
@@ -233,11 +237,8 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
             
         }
 
-        if collectionView == view().collectionViewContainer.secondCollectionView {
+        if collectionView == view().collectionViewContainer.elementCollectionView {
             var fileName = ""
-
-            print(index)
-            print(startSetQ.bodyParts.count)
 
             if startSetQ.gender == .girl {
                 fileName = startSetQ.bodyParts[index].girl[indexPath.item].vcbVnbvbvBBB ?? ""
@@ -271,8 +272,7 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
             startSetQ.bodyParts[ind].girl.first
             
             if let imageView = subview as? UIImageView {
-//                if ind != 0 { // gender cell
-                    
+
                     let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
                     let  part = startSetQ.bodyParts[ind]
                     part.valueValue = fileName
@@ -283,7 +283,6 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
                     genderChangeSet.gender = startSetQ.gender
                 let image = createImageFromLayers()
                 genderChangeSet.iconImage = image
-//                }  //
             }
         }
 
@@ -294,21 +293,14 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
         guard let previousHeroSet = storyHeroChanges.item.last else { return HeroSet() }
         var newHeroSet = HeroSet()
 
-        print("previousHeroSet.bodyParts.count   =   \(previousHeroSet.bodyParts.count)")
-        print("index   =   \(index)")
-        
         newHeroSet.gender = previousHeroSet.gender
         newHeroSet.bodyParts.append(objectsIn: previousHeroSet.bodyParts)
         newHeroSet.bodyParts[index].valueValue = fileName
         let image = createImageFromLayers()
         newHeroSet.iconImage = image
-        
-//        print("newHeroSet.iconImage   =   \(newHeroSet.iconImage)")
-       
+  
         return newHeroSet
     }
-    
-  
 }
 
 
@@ -352,7 +344,7 @@ extension EditProcessController{
             return nil
         }
         
-        let imageSize = CGSize(width: 1000, height: 1000)
+        let imageSize = CGSize(width: 500, height: 500)
         
         UIGraphicsBeginImageContext(imageSize)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }

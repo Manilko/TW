@@ -27,7 +27,11 @@ enum Sizes {
     static let trailing: CGFloat = isPhone ? -lateralIndentation : -lateralIndentation
     static let leading: CGFloat = isPhone ? lateralIndentation : lateralIndentation
     
+    static let iPhoneEditorW = (width - (2 * lateralIndentation + 12)) / 2
+    static let iPadEditorW = (width - (2 * lateralIndentation + 24)) / 3
     
+    static let cellEditoWidth = UIDevice.current.isIPad ?  iPadEditorW : iPhoneEditorW
+    static let cellEditorHeight = UIDevice.current.isIPad ?  392.0 : 211.0
     
     
 }
