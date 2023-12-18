@@ -103,7 +103,7 @@ class CollectionViewContainer: UIView {
         NSLayoutConstraint.activate([
             characterView.topAnchor.constraint(equalTo: topAnchor),
             characterView.widthAnchor.constraint(equalToConstant:  400),// UIDevice.current.isIPad ? 356 : 228),
-            characterView.heightAnchor.constraint(equalToConstant: 400),//UIDevice.current.isIPad ? 650 : 356),
+            characterView.heightAnchor.constraint(equalToConstant: 500),//UIDevice.current.isIPad ? 650 : 356),
             characterView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             categoryCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant:  Sizes.leading),
@@ -132,7 +132,7 @@ class CollectionViewContainer: UIView {
                }
                
                imageView.image = getImageFromFile(with: fileName)
-               imageView.contentMode = .scaleAspectFit
+               imageView.contentMode = .scaleToFill
                imageView.translatesAutoresizingMaskIntoConstraints = false
                characterView.addSubview(imageView)
                NSLayoutConstraint.activate([
@@ -165,7 +165,7 @@ extension CollectionViewContainer{
                     do {
                         let fileData = try Data(contentsOf: fileURL)
                         
-                        if let im = transformPdfToImage(data: fileData) {
+                        if let im = pdfToImage(data: fileData) {
                             image = im
                         }
                     } catch {
@@ -178,36 +178,31 @@ extension CollectionViewContainer{
         return image
     }
     
-    func transformPdfToImage(data: Data) -> UIImage? {
-        guard let provider = CGDataProvider(data: data as CFData),
-              let pdfDoc = CGPDFDocument(provider),
-              let pdfPage = pdfDoc.page(at: 1)
+    func pdfToImage(data: Data?) -> UIImage? {
+        guard let data,
+           let provider = CGDataProvider(data: data as CFData),
+           let pdfDoc  = CGPDFDocument(provider),
+           let pdfPage = pdfDoc.page(at: 1)
         else {
-            return nil
+          return nil
         }
-        
-        let imageSize = CGSize(width: 500, height: 500)
-        
-        UIGraphicsBeginImageContext(imageSize)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        
-        context.setFillColor(UIColor.clear.cgColor)
-        context.fill(CGRect(origin: .zero, size: imageSize))
-        
-        context.translateBy(x: 0, y: imageSize.height)
-        context.scaleBy(x: 1, y: -1)
-        
-        let pdfRect = pdfPage.getBoxRect(.mediaBox)
-        
-        let scale = min(imageSize.width / pdfRect.width, imageSize.height / pdfRect.height)
-        context.scaleBy(x: scale, y: scale)
-        
-        context.drawPDFPage(pdfPage)
-        
-        let pdfImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
+        let rectWidth = UIScreen.main.bounds.width
+        let pageRect = pdfPage.getBoxRect(.mediaBox)
+        let proportion: CGFloat = pageRect.height / pageRect.width
+        let proportionRect = CGRect(x: 0, y: 0, width: rectWidth, height: rectWidth * proportion)
+        let renderer = UIGraphicsImageRenderer(size: proportionRect.size)
+        let scale : CGFloat = proportionRect.width / pageRect.width
+        let img = renderer.image { ctx in
+          UIColor.white.withAlphaComponent(0).set()
+          ctx.cgContext.translateBy(x: 0.0, y: proportionRect.height)
+          ctx.cgContext.scaleBy(x: scale, y: -scale)
+          ctx.cgContext.drawPDFPage(pdfPage)
+        }
+        if let pngData = img.pngData() {
+          print("Converted PDF to PNG and cached for path")
+          return UIImage(data: pngData)
+        }
+        return img
+      }
 
-        return pdfImage
-    }
 }
