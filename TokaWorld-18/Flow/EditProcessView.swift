@@ -63,10 +63,10 @@ final class EditProcessView: UIView {
 
     private func configureLayout() {
         backgroundColor = .backgroundBlue
-        addSubview(navView)
-        navView.addSubview(navigationButtons)
         addSubview(frameView)
         addSubview(characterView)
+        addSubview(navView)
+        navView.addSubview(navigationButtons)
         addSubview(collectionViewContainer)
         
         
@@ -76,6 +76,8 @@ final class EditProcessView: UIView {
         frameView.translatesAutoresizingMaskIntoConstraints = false
 
 //        characterView.backgroundColor = .gray
+        
+        let screenWidth = UIScreen.main.bounds.width
         
         NSLayoutConstraint.activate([
             
@@ -88,16 +90,16 @@ final class EditProcessView: UIView {
             navigationButtons.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 90),
             navigationButtons.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -90),
             navigationButtons.heightAnchor.constraint(equalToConstant: 100),
-            
-            characterView.bottomAnchor.constraint(equalTo: frameView.topAnchor, constant: 40),
-            characterView.widthAnchor.constraint(equalToConstant:  335),
-            characterView.heightAnchor.constraint(equalToConstant: 418),
-            characterView.centerXAnchor.constraint(equalTo: centerXAnchor),
   
             collectionViewContainer.heightAnchor.constraint(equalToConstant: Sizes.editorCollectionViewHeight),
             collectionViewContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionViewContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionViewContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            characterView.bottomAnchor.constraint(equalTo: collectionViewContainer.topAnchor, constant: -40),
+            characterView.widthAnchor.constraint(equalToConstant: screenWidth * 1.1),
+            characterView.heightAnchor.constraint(equalToConstant: (screenWidth * 1.1) * 1.25),
+            characterView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             frameView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Sizes.editorFrameBottom),
             frameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.editorFrameSideIndents),

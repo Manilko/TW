@@ -104,6 +104,8 @@ final class DetailEditView: UIView {
         navigationButtons.translatesAutoresizingMaskIntoConstraints = false
         characterView.translatesAutoresizingMaskIntoConstraints = false
         navView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let screenWidth = UIScreen.main.bounds.width
 
         NSLayoutConstraint.activate([
 

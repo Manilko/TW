@@ -14,7 +14,23 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
     private let imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        view.backgroundColor = .backgroundWhite
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let plusImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "Component 17")
+        return view
+    }()
+    
+    private let borderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
         view.layer.cornerRadius = 40
         view.layer.borderWidth = 3
         view.layer.borderColor = .borderColorBlue.cgColor
@@ -53,40 +69,49 @@ class EditorCollectionCell: UICollectionViewCell, NibCapable {
     
     @objc func optionTapped() {
         optionTappedCallback?()
-        
     }
     
     // MARK: - Public Method
     
     func configure(setHeroBodyPart: HeroSet, type: Int) {
-        guard let image = setHeroBodyPart.iconImage else { return }
-        imageView.image = UIImage(data: image)
+//        guard let image = setHeroBodyPart.iconImage else { return }
+        let data = setHeroBodyPart.iconImage
+        imageView.image = UIImage(data: data ?? Data())
         
-        if type == 0{
-            optionButton.isHidden = true
-        } else{
-            optionButton.isHidden = false
-        }
+        optionButton.isHidden = type == 0
+        imageView.isHidden = type == 0
+        plusImageView.isHidden = type != 0
     }
     
     // MARK: - Setup UI
     
     private func setupUI() {
 
+        addSubview(borderView)
         addSubview(imageView)
         addSubview(optionButton)
+        addSubview(plusImageView)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            borderView.topAnchor.constraint(equalTo: topAnchor),
+            borderView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            borderView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            borderView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: -30),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -15),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 15),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             
             optionButton.topAnchor.constraint(equalTo: topAnchor),
             optionButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             optionButton.widthAnchor.constraint(equalToConstant: 32),
             optionButton.heightAnchor.constraint(equalToConstant: 32),
+            
+            plusImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            plusImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            plusImageView.widthAnchor.constraint(equalToConstant: 88),
+            plusImageView.heightAnchor.constraint(equalToConstant: 88),
         ])
-        
     }
 }
