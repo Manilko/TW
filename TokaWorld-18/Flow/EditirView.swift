@@ -21,6 +21,40 @@ class EditirView: UIView {
         collectionView.register(EditorCollectionCell.self, forCellWithReuseIdentifier: EditorCollectionCell.identifier)
         return collectionView
     }()
+    
+    private let deleteButton: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.font = .customFont(type: .lilitaOne, size: 20)
+        label.text = "You don’t have any characters yet"
+        label.textColor = .black
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var addButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.mainBlue
+        button.layer.cornerRadius = 28
+        button.layer.borderWidth = 2
+        button.layer.borderColor = .borderColorWhite.cgColor
+        button.titleLabel?.font = .customFont(type: .lilitaOne, size: 24)
+        button.titleLabel?.textColor = .lettersWhite
+        button.setTitle("Add new", for: .normal)
+        return button
+    }()
+    
+    lazy var hStack: UIStackView = {
+        let h = UIStackView(arrangedSubviews: [deleteButton, addButton])
+        h.axis = .vertical
+        h.alignment = .fill
+        h.distribution = .fillEqually
+        h.spacing = 20
+        h.translatesAutoresizingMaskIntoConstraints = false
+        return h
+    }()
 
     required init() {
         super.init(frame: .zero)
@@ -33,9 +67,11 @@ class EditirView: UIView {
 
     private func configureLayout() {
         addSubview(navView)
+        addSubview(hStack)
         addSubview(collectionView)
         backgroundColor = .backgroundBlue
         navView.translatesAutoresizingMaskIntoConstraints = false
+        hStack.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
@@ -47,6 +83,11 @@ class EditirView: UIView {
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            
+            hStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            hStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            hStack.centerYAnchor.constraint(equalTo: centerYAnchor),
+            hStack.heightAnchor.constraint(equalToConstant: 150),
         ])
     }
 }

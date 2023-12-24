@@ -12,7 +12,6 @@ protocol MenuTypeNameble: AnyObject {
     var rd1Lf2: String? { get }  // name in each menu type
 }
 
-
 // MARK: - Wallpapers
 class Wallpapers: Object, Codable, Identifierble {
     @objc dynamic var id: String = "wallpapers"
@@ -41,30 +40,6 @@ class Wallpapers: Object, Codable, Identifierble {
         self.item = try container.decodeIfPresent(List<Wallpaper>.self, forKey: .item) ?? List<Wallpaper>()
     }
 }
-
-
-
-
-
-
-//struct Wallpapers: Codable {
-//    let rd1L3K: String
-//    let item: [WallpaperRealm]
-//
-//    enum CodingKeys: String, CodingKey {
-//        case rd1L3K = "_rd1l_3k"
-//        case item = "Wallpapers"
-//    }
-//}
-
-
-
-
-
-
-
-
-
 
 final class Wallpaper: Object, Codable, MenuTypeNameble {
     
@@ -149,16 +124,6 @@ class Recipes: Object, Codable, Identifierble {
         self.item = try container.decodeIfPresent(List<Recipe>.self, forKey: .item) ?? List<Recipe>()
     }
 }
-
-//struct Recipes: Codable {
-//    let rd1L3K: String
-//    let item: [Recipe]
-//
-//    enum CodingKeys: String, CodingKey {
-//        case rd1L3K = "_rd1l_3k"
-//        case item = "Recipes"
-//    }
-//}
 
 final class Recipe: Object, Codable, MenuTypeNameble {
     
@@ -328,16 +293,6 @@ class HouseIdeas: Object, Codable, Identifierble {
     }
 }
 
-//struct HouseIdeas: Codable {
-//    let rd1L3K: String
-//    let item: [HouseIdea]
-//
-//    enum CodingKeys: String, CodingKey {
-//        case rd1L3K = "_rd1l_3k"
-//        case item = "House_Ideas"
-//    }
-//}
-
 
 final class HouseIdea: Object, Codable, MenuTypeNameble {
     
@@ -421,16 +376,6 @@ class Guides: Object, Codable, Identifierble {
         self.item = try container.decodeIfPresent(List<Guide>.self, forKey: .item) ?? List<Guide>()
     }
 }
-
-//struct Guides: Codable {
-//    let rd1L3K: String
-//    let item: [Guide]
-//
-//    enum CodingKeys: String, CodingKey {
-//        case rd1L3K = "_rd1l_3k"
-//        case item = "Guides"
-//    }
-//}
 
 
 final class Guide: Object, Codable, MenuTypeNameble {

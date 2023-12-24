@@ -33,6 +33,7 @@
 		15C9D6152AFE3824002232D3 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9D6142AFE3824002232D3 /* NavigationView.swift */; };
 		15C9D61B2AFE6C8F002232D3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9D61A2AFE6C8F002232D3 /* RealmManager.swift */; };
 		4C3961142B04F83B0023E7FA /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3961132B04F83B0023E7FA /* FilterView.swift */; };
+		4C49A7202B31885E001658A6 /* ImageSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C49A71F2B31885E001658A6 /* ImageSeries.swift */; };
 		4C4CC7452B13D43E0030885C /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CC7442B13D43E0030885C /* LoadingScreen.swift */; };
 		4C4CC7472B14E3030030885C /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CC7462B14E3030030885C /* NetworkMonitor.swift */; };
 		4C4CC7492B14E36E0030885C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CC7482B14E36E0030885C /* BaseViewController.swift */; };
@@ -80,6 +81,7 @@
 		4C6021142B0188790098F071 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 4C6021132B0188790098F071 /* SideMenu */; };
 		4C6021162B018B730098F071 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6021152B018B730098F071 /* RoundButton.swift */; };
 		4C60211C2B0190BB0098F071 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C60211B2B0190BB0098F071 /* Extension.swift */; };
+		4C62C7AA2B3326FE0024AEFB /* Data?.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62C7A92B3326FE0024AEFB /* Data?.swift */; };
 		4C66E7902B2C8DE700EB79DF /* EditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */; };
 		4C6AFE612B0754FF0001B6A7 /* DownloadPictureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE602B0754FF0001B6A7 /* DownloadPictureCoordinator.swift */; };
 		4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE622B07554A0001B6A7 /* DownloadPictureController.swift */; };
@@ -162,6 +164,7 @@
 		15C9D6142AFE3824002232D3 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		15C9D61A2AFE6C8F002232D3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		4C3961132B04F83B0023E7FA /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		4C49A71F2B31885E001658A6 /* ImageSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSeries.swift; sourceTree = "<group>"; };
 		4C4CC7442B13D43E0030885C /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		4C4CC7462B14E3030030885C /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		4C4CC7482B14E36E0030885C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 		4C6021152B018B730098F071 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		4C6021172B018BAD0098F071 /* ImageNameNawMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameNawMenuType.swift; sourceTree = "<group>"; };
 		4C60211B2B0190BB0098F071 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		4C62C7A92B3326FE0024AEFB /* Data?.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data?.swift"; sourceTree = "<group>"; };
 		4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlert.swift; sourceTree = "<group>"; };
 		4C6AFE602B0754FF0001B6A7 /* DownloadPictureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPictureCoordinator.swift; sourceTree = "<group>"; };
 		4C6AFE622B07554A0001B6A7 /* DownloadPictureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPictureController.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 				0DA987B42B1CF41C00E06C26 /* UIFont+Extension.swift */,
 				0DA987BD2B1D01CD00E06C26 /* UIViewController+Alert.swift */,
 				0DA987C52B1D0D4500E06C26 /* UIWindow+Extension.swift */,
+				4C62C7A92B3326FE0024AEFB /* Data?.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				15C9D61A2AFE6C8F002232D3 /* RealmManager.swift */,
 				4C4CC7462B14E3030030885C /* NetworkMonitor.swift */,
 				4C5AEA922B2F83B200DCB0A8 /* StorageHandler.swift */,
+				4C49A71F2B31885E001658A6 /* ImageSeries.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -841,6 +847,7 @@
 				15B3B0772AFBFBF700706666 /* SideMenuController.swift in Sources */,
 				4C5AEA932B2F83B200DCB0A8 /* StorageHandler.swift in Sources */,
 				4C50AC912B03A54A00355DBF /* FurnitureViewController.swift in Sources */,
+				4C62C7AA2B3326FE0024AEFB /* Data?.swift in Sources */,
 				4C78BBFF2B1C93B800C59A64 /* LinearLoadingIndicator.swift in Sources */,
 				4C8939B32B13504700EB821A /* ViewMod.swift in Sources */,
 				4C7006BE2B08D1F6009A497C /* EditProcessCoordinator.swift in Sources */,
@@ -858,6 +865,7 @@
 				15C9D61B2AFE6C8F002232D3 /* RealmManager.swift in Sources */,
 				4C5AEA952B2F86A000DCB0A8 /* Size.swift in Sources */,
 				0DA987BE2B1D01CD00E06C26 /* UIViewController+Alert.swift in Sources */,
+				4C49A7202B31885E001658A6 /* ImageSeries.swift in Sources */,
 				0DA987C42B1D0C9F00E06C26 /* NetworkMonitoring.swift in Sources */,
 				4C7006B92B08C1AF009A497C /* EditirCoordinator.swift in Sources */,
 				4C7006C82B0E934F009A497C /* CharacterImageViewManager.swift in Sources */,

@@ -97,7 +97,7 @@ final class FurnitureViewController: UIViewController {
         // MARK: - filterView
         modView.filterView.collectionView.dataSource = self
         modView.filterView.collectionView.delegate = self
-        modView.filterView.collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        modView.filterView.collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         modView.filterView.closeButton.addTarget(self, action: #selector(closeButtonTappedFilterView), for: .touchUpInside)
     }
     
@@ -142,7 +142,7 @@ extension FurnitureViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == modView.filterView.collectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FilterCollectionViewCell
             
             let filterType = FilterType(rawValue: indexPath.item) ?? .all
             cell.configure(filter: filterType, flag: filterFlag)

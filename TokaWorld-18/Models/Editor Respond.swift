@@ -38,7 +38,7 @@ final class EditorRespondModel: Object, Codable, Identifierble {
 final class EditorCategory: Object, Codable {
     @objc dynamic var id: String = UUID().uuidString
     
-    @objc dynamic var LKHKHVbkjbj223: Int = 0       // id Category
+//    @objc dynamic var lkhkhVbkjbj223: Int = 0       // id Category
     @objc dynamic var jhvqwjgcvMMB5fF: String = "" // name: String
     @objc dynamic var cfxfDXCGFc4DFf: Int = 0       // hierarchy: Int
     @objc dynamic var gcgdxdfzASXXS3dd: Int = 0     // value: Int
@@ -50,7 +50,7 @@ final class EditorCategory: Object, Codable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case LKHKHVbkjbj223
+//        case lkhkhVbkjbj223
         case jhvqwjgcvMMB5fF
         case cfxfDXCGFc4DFf
         case gcgdxdfzASXXS3dd

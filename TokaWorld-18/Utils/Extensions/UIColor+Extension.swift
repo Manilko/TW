@@ -57,4 +57,8 @@ extension CGColor{
     static var borderColorBlue: UIColor {
         return UIColor(red: 86 / 255, green: 124 / 255, blue: 255 / 255, alpha: 1.0)
     }
+    
+    static var borderColorGrey: UIColor {
+        return UIColor(red: 0.696, green: 0.696, blue: 0.696, alpha: 1)
+    }
 }

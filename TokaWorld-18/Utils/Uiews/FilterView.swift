@@ -117,46 +117,13 @@ class FilterView: UIView {
             collectionView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor)
         ])
-        
-//        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        
-//        collectionView.dataSource = self
-//        collectionView.delegate = self
     }
-    
-//    // MARK: - UICollectionViewDataSource
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("didSelectItemAt \(indexPath.row)")
-//    }
-//    
-//      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//          FilterType.allCases.count
-//      }
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCollectionViewCell
-//        // Configure the cell as needed
-//        cell.textLabel.text = "Cell \(indexPath.item)"
-//        return cell
-//    }
-//    
-//    // MARK: - UICollectionViewDelegateFlowLayout
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.bounds.width / 4.4, height: 200)
-//    }
-//    
-//    // MARK: - Target Action
-//    
-//    @objc private func closeButtonTapped() {
-//        self.isHidden = true
-//    }
 }
 
 
-// MARK: - MyCollectionViewCell
+// MARK: - CollectionViewCell
 
-class MyCollectionViewCell: UICollectionViewCell {
+class FilterCollectionViewCell: UICollectionViewCell {
     private let textLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center

@@ -81,18 +81,23 @@ final class DetailEditView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(startSet: HeroSet) {
-        guard let iconData = startSet.iconImage else {return}
-        characterView.image = UIImage(data: iconData)
-    }
+//    func configure(startSet: HeroSet) {
+//        guard let iconData = startSet.iconImage else {return}
+//        characterView.image = UIImage(data: iconData)
+//    }
 
+    func configure(startSet: HeroSet) {
+            guard let iconData = startSet.iconImage else { return }
+            characterView.image = UIImage(data: iconData)
+        }
+    
     private func configureLayout() {
         backgroundColor = .backgroundBlue
         
+        addSubview(frameView)
         addSubview(navView)
         addSubview(characterView)
         addSubview(navigationButtons)
-        addSubview(frameView)
         addSubview(hStack)
 
         frameView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +119,7 @@ final class DetailEditView: UIView {
             
             characterView.topAnchor.constraint(equalTo: topAnchor, constant: 200),
             characterView.widthAnchor.constraint(equalToConstant:  400),
-            characterView.heightAnchor.constraint(equalToConstant: 400),
+            characterView.heightAnchor.constraint(equalToConstant: 500),
             characterView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             hStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
@@ -130,4 +135,3 @@ final class DetailEditView: UIView {
         ])
     }
 }
-

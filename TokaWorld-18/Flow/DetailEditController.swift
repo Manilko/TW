@@ -12,13 +12,13 @@ import PDFKit
 
 final class DetailEditController: UIViewController {
     
-    var list: [HeroSet] = []
-    var startSetBodyElementSet: HeroSet = HeroSet()
+    var list: [HeroSet]
     
-    var countEl: Int
+    var countHeros: Int
+    
     var indexDisplayedHero: Int{
         didSet{
-            view().configure(startSet: list[indexDisplayedHero])
+            updateNavigationButtons()
         }
     }
     
@@ -28,23 +28,16 @@ final class DetailEditController: UIViewController {
     
     init(item: [HeroSet], index: Int) {
         self.indexDisplayedHero = index
-        self.countEl = item.count
-        list = item
-        let item = item[index]
+        self.countHeros = item.count
+        self.list = item
         
         super.init(nibName: nil, bundle: nil)
-        startSetBodyElementSet = HeroSet(value: item)
-
-
-//        view().configure(startSet: startSetBodyElementSet)
         
         //navView
         view().navView.leftButton.addTarget(self, action: #selector(backDidTaped), for: .touchUpInside)
 //        view().navView.rightButton.addTarget(self, action: #selector(saveToRealm), for: .touchUpInside)
         
         //navigationButtons
-//        view().navigationButtons.totalCount = storyHeroChanges.item.count
-//        view().navigationButtons.currentIndex = currentIndex
         view().navigationButtons.leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
         view().navigationButtons.rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
         
@@ -62,8 +55,8 @@ final class DetailEditController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        self.view = DetailEditView(startSet: startSetBodyElementSet)
-
+        self.view = DetailEditView(startSet: list[indexDisplayedHero])
+        updateNavigationButtons()
     }
 
     override func viewDidLoad() {
@@ -71,27 +64,30 @@ final class DetailEditController: UIViewController {
         
     }
     
+    private func updateNavigationButtons() {
+
+        view().navigationButtons.currentIndex = indexDisplayedHero
+        view().navigationButtons.totalCount = countHeros
+
+        view().configure(startSet: list[indexDisplayedHero])
+    }
+
     @objc func leftButtonTapped() {
-//        if currentIndex > 0 {
-//            currentIndex -= 1
-//            view().navigationButtons.currentIndex = currentIndex
-//        }
+            indexDisplayedHero -= 1
     }
 
     @objc func rightButtonTapped() {
-//        if currentIndex < storyHeroChanges.item.count - 1 {
-//            currentIndex += 1
-//            view().navigationButtons.currentIndex = currentIndex
-//        }
+            indexDisplayedHero += 1
     }
+
     
     @objc func editButtonTapped() {
         coordinatorDelegate?.pop(self)
-        coordinatorDelegate?.presentEditProcessController(hero: startSetBodyElementSet)
+        coordinatorDelegate?.presentEditProcessController(hero: list[indexDisplayedHero])
     }
 
     @objc func deleteButtonTapped() {
-        RealmManager.shared.deleteObject(HeroSet.self, primaryKeyValue: startSetBodyElementSet.id)
+        RealmManager.shared.deleteObject(HeroSet.self, primaryKeyValue: list[indexDisplayedHero].id)
         self.coordinatorDelegate?.pop(self)
     }
     

@@ -8,6 +8,7 @@ import UIKit
 import RealmSwift
 
 // MARK: - StoryCharacterChanges
+// StoryCharacterChanges unUsed
 final class StoryCharacterChanges: Object, Sequence {
     @objc dynamic var id: String = UUID().uuidString
     var item: List<HeroSet> = List<HeroSet>()
@@ -60,6 +61,17 @@ final class HeroSet: Object, Sequence {   // complete full set of hero BodyPart
 
     func makeIterator() -> List<BodyPart>.Iterator {
         return bodyParts.makeIterator()
+    }
+    
+    func bodyPartItems(forGender gender: GenderType) -> [ComponentsBodyPart] {
+          return Array(bodyParts.lazy.flatMap { bodyPart in
+              switch gender {
+              case .girl:
+                  return bodyPart.girl
+              case .boy:
+                  return bodyPart.boy
+              }
+          })
     }
 }
 

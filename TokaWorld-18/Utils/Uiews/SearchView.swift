@@ -3,7 +3,7 @@
 import UIKit
 
 class SearchView: UIView {
-
+    
     var searchViewHeightConstraint: NSLayoutConstraint!
     
     let searchTextField: UITextField = {
@@ -20,7 +20,7 @@ class SearchView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-
+    
     let closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage.image(imageType: .closeImage, renderingMode: .alwaysOriginal), for: .normal)
@@ -46,7 +46,7 @@ class SearchView: UIView {
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
-
+    
     let resultTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .mainBlue
@@ -57,12 +57,12 @@ class SearchView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
@@ -72,9 +72,9 @@ class SearchView: UIView {
         super.layoutSubviews()
         backgroundColor = .clear
     }
-
+    
     private func setupUI() {
-
+        
         addSubview(containerView)
         
         containerView.addSubview(searchButton)
@@ -110,10 +110,25 @@ class SearchView: UIView {
             resultTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
         
+        closeButton.isHidden = true
         resultTableView.isHidden = true
-
-        // Set up the height constraint for SearchView
+        
         searchViewHeightConstraint = heightAnchor.constraint(equalToConstant: 84)
         searchViewHeightConstraint.isActive = true
     }
+    
+    func textFieldDidBeginEditing() {
+        closeButton.isHidden = false
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ])
+    }
+
+    func textFieldDidEndEditing() {
+        closeButton.isHidden = true
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ])
+    }
+    
 }

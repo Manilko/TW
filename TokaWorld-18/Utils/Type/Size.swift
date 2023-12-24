@@ -33,6 +33,17 @@ enum Sizes {
     static let cellEditoWidth = UIDevice.current.isIPad ?  iPadEditorW : iPhoneEditorW
     static let cellEditorHeight = UIDevice.current.isIPad ?  392.0 : 211.0
     
+    static let editorCollectionViewHeight = UIDevice.current.isIPad ?  304.0 : 176.0
+    static let editorCategoryColViewTop = UIDevice.current.isIPad ?  40.0 : 20.0
     
+    static let editorElementColViewTop = UIDevice.current.isIPad ?  40.0 : 24.0
+    static let editorCategoryCellHeight = UIDevice.current.isIPad ?  38.0 : 38.0
+    static let editorCategoryCellWidth = UIDevice.current.isIPad ?  38.0 : 38.0
+    static let editorElementCellHeight = UIDevice.current.isIPad ?  120.0 : 80.0
+    
+    static let editorFrameHeight = UIDevice.current.isIPad ?  422.0 : 220.0
+    
+    static let editorFrameSideIndents = UIDevice.current.isIPad ?  168.0 : 39.0
+    static let editorFrameBottom = UIDevice.current.isIPad ?  0 : 80.0
 }
 

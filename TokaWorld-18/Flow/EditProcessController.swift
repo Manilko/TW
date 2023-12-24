@@ -14,13 +14,17 @@ final class EditProcessController: UIViewController {
     
     var startSetBodyElementSet: HeroSet = HeroSet()
     
-    var currentIndex: Int = 0{
+    var currentIndex: Int{
         didSet{
-            self.view().navigationButtons.currentIndex = currentIndex
+            updateNavigationButtons()
+            DispatchQueue.main.async {
+                self.view().collectionViewContainer.elementCollectionView.reloadData()
+                self.view().collectionViewContainer.categoryCollectionView.reloadData()
+            }
         }
         
     }
-    
+    var selectedCategoryIndex: Int = 0
     var index = 0
     var countSecondCVCell: Int = 0 {
         didSet {
@@ -32,15 +36,19 @@ final class EditProcessController: UIViewController {
     
     var oneStep: HeroSet = HeroSet() {
         didSet {
-            self.storyHeroChanges.item.append(oneStep)
-            view().navigationButtons.totalCount = storyHeroChanges.item.count
-            currentIndex =  storyHeroChanges.item.count
+            let newSet = HeroSet(value: oneStep)
+            storyHeroChanges.append(newSet)
+            updateNavigationButtons()
         }
     }
     
     var startSetQ: HeroSet = HeroSet()
-    
-    var storyHeroChanges: StoryCharacterChanges = StoryCharacterChanges()
+
+    var storyHeroChanges: [HeroSet] = []{
+        didSet {
+            currentIndex += 1
+        }
+    }
     var startToDel: HeroSet
     
     // MARK: - Properties
@@ -48,22 +56,26 @@ final class EditProcessController: UIViewController {
     
     init(item: HeroSet) {
         
-        startToDel = item
+        self.startToDel = item
+        self.currentIndex = 0
+        storyHeroChanges.append(item)
         
         super.init(nibName: nil, bundle: nil)
         startSetBodyElementSet = HeroSet(value: item)
 
-        var bodyParts: List<BodyPart> = List<BodyPart>()
+        let bodyParts: List<BodyPart> = List<BodyPart>()
         
         for i in item.bodyParts{
-            var bodyPart: BodyPart = BodyPart(value: i)
+            let bodyPart: BodyPart = BodyPart(value: i)
             bodyParts.append(bodyPart)
         }
        
         startSetQ = HeroSet()
-        startSetQ.id = item.id
         startSetQ.bodyParts.append(objectsIn: bodyParts)
         startSetQ.gender = item.gender
+        
+        startSetQ.id = item.id
+        
         
         self.countSecondCVCell = item.bodyParts.first?.item.count ?? 0
 
@@ -73,8 +85,6 @@ final class EditProcessController: UIViewController {
         view().navView.rightButton.addTarget(self, action: #selector(saveToRealm), for: .touchUpInside)
         
         //navigationButtons
-        view().navigationButtons.totalCount = storyHeroChanges.item.count
-        view().navigationButtons.currentIndex = currentIndex
         view().navigationButtons.leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
         view().navigationButtons.rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
         
@@ -108,23 +118,33 @@ final class EditProcessController: UIViewController {
         oneStep = startSetQ
     }
     
-    @objc func leftButtonTapped() {
-        if currentIndex > 0 {
-            currentIndex -= 1
-            view().navigationButtons.currentIndex = currentIndex
+    private func updateNavigationButtons() {
+
+        view().navigationButtons.currentIndex = currentIndex
+        view().navigationButtons.totalCount = storyHeroChanges.count
+
+        let hero = storyHeroChanges[currentIndex]
+
+        for (ind, subview) in view().characterView.subviews.enumerated() {
+            if let imageView = subview as? UIImageView {
+                let  fileName = hero.bodyParts[ind].valueValue
+                imageView.image = ImageSeries.getImageFromFile(with: fileName ?? "")
+            }
         }
+        
+    }
+    
+    @objc func leftButtonTapped() {
+            currentIndex -= 1
     }
 
     @objc func rightButtonTapped() {
-        if currentIndex < storyHeroChanges.item.count - 1 {
             currentIndex += 1
-            view().navigationButtons.currentIndex = currentIndex
-        }
     }
     
     @objc private func backDidTaped(_ celector: UIButton) {
         
-        if storyHeroChanges.item.count > 1 {
+        if storyHeroChanges.count > 1 {
             self.presentTwoVLabelAndTwoHButtonAlert(
                 titleText: "Do you want to exit?",
                 subtitleText: "All your actions will be canceled",
@@ -138,7 +158,6 @@ final class EditProcessController: UIViewController {
                     self.dismiss(animated: true)
                     self.coordinatorDelegate?.pop(self)
                 }
-                
             )
         } else{
             self.coordinatorDelegate?.pop(self)
@@ -148,12 +167,7 @@ final class EditProcessController: UIViewController {
     
     @objc private func saveToRealm() {
 
-        let image = UIImage(data: createImageFromLayers() ?? Data())
-        view().collectionViewContainer.viewImage.image = image
-
-        print("Data saved to Realm")
-        
-        guard let lastSet = storyHeroChanges.item.last else { return }
+        guard let lastSet = storyHeroChanges.last else { return }
 
         RealmManager.shared.deleteObject(HeroSet.self, primaryKeyValue: startToDel.id)
         RealmManager.shared.add(lastSet)
@@ -175,9 +189,14 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == view().collectionViewContainer.categoryCollectionView {
-            return CGSize(width: collectionView.bounds.width / 3.4, height: 60)
+            return CGSize(width: collectionView.bounds.width / 3.4, height: 38)
         } else {
-            return CGSize(width: collectionView.bounds.width / 3.4, height: 70)
+            if selectedCategoryIndex == 0{
+                return CGSize(width: collectionView.bounds.width / 2, height: 80)
+            } else{
+                return CGSize(width: collectionView.bounds.width / 3.4, height: 80)
+            }
+            
         }
     }
    
@@ -190,13 +209,15 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     
-   
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == view().collectionViewContainer.categoryCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCategoryCell.identifier, for: indexPath) as! EditorCategoryCell
-            cell.configure(with: "\(startSetQ.bodyParts[indexPath.row].nameS ?? "no name 🤷")")
-            return cell
+
+                  let isSelected = indexPath.row == selectedCategoryIndex
+                  cell.configure(with: "\(startSetQ.bodyParts[indexPath.row].nameS ?? "no name 🤷")", isSelected: isSelected)
+
+                  return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCategoryItemCell.identifier, for: indexPath) as! EditorCategoryItemCell
             
@@ -208,34 +229,74 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
                 fileName = startSetQ.bodyParts[index].boy[indexPath.item].bvcfXbnbjb6Hhn ?? ""
             }
             
-            if fileName == "ic_round-g" { // for gender button
-                let previewImage = getImageFromFile(with: fileName)
-                cell.configure(with: previewImage, backgroundColorr: .blue)
+            let previewImage = ImageSeries.getImageFromFile(with: fileName)
+            
+            if index == 0 {
+                if indexPath.item == 1 {
+                    if startSetQ.gender == .girl {
+                        cell.configure(with: previewImage, backgroundColorr: .mainBlue, isRound: false, isSelect: true)
+                    } else {
+                        cell.configure(with: previewImage, backgroundColorr: .backgroundBlue, isRound: false, isSelect: true)
+                    }
+                } else {
+                    if startSetQ.gender == .boy {
+                        cell.configure(with: previewImage, backgroundColorr: .mainBlue, isRound: false, isSelect: true)
+                    } else {
+                        cell.configure(with: previewImage, isRound: false, isSelect: true)
+                    }
+                }
             } else {
-                let previewImage = getImageFromFile(with: fileName)
-                cell.configure(with: previewImage)
+            
+                 let fileName1 = extractFilename(from: fileName)
+                
+                let a = extractFilename(from:storyHeroChanges.last?.bodyParts[index].valueValue ?? "")
+                
+                if removeSpaces(from: fileName1 ?? "") == removeSpaces(from: a ?? "")  || areStringsEqualIgnoringCase(fileName1 ?? "", a ?? ""){
+                    cell.configure(with: previewImage, isSelect: true)
+                } else{
+                    cell.configure(with: previewImage)
+                }
+                
+                
+                
             }
             
             return cell
         }
     }
     
+    func extractFilename(from filePath: String) -> String? {
+        let fileURL = URL(fileURLWithPath: filePath)
+        let fileName = fileURL.deletingPathExtension().lastPathComponent
+        return fileName
+    }
+    
+    func removeSpaces(from string: String) -> String {
+        let trimmedString = string.replacingOccurrences(of: " ", with: "")
+        return trimmedString
+    }
+    
+    func areStringsEqualIgnoringCase(_ string1: String, _ string2: String) -> Bool {
+        return string1.caseInsensitiveCompare(string2) == .orderedSame
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if collectionView == view().collectionViewContainer.categoryCollectionView {
-            DispatchQueue.main.async {
-                self.view().collectionViewContainer.elementCollectionView.reloadData()
-            }
+                DispatchQueue.main.async {
+                    self.view().collectionViewContainer.elementCollectionView.reloadData()
+                }
 
-            if startSetQ.gender == .girl {
-                countSecondCVCell = startSetQ.bodyParts[indexPath.row].girl.count
-            } else {
-                countSecondCVCell = startSetQ.bodyParts[indexPath.row].boy.count
-            }
+                if startSetQ.gender == .girl {
+                    countSecondCVCell = startSetQ.bodyParts[indexPath.row].girl.count
+                } else {
+                    countSecondCVCell = startSetQ.bodyParts[indexPath.row].boy.count
+                }
 
-            index = indexPath.row
-            
-        }
+                index = indexPath.row
+                selectedCategoryIndex = indexPath.row
+                collectionView.reloadData()
+            }
 
         if collectionView == view().collectionViewContainer.elementCollectionView {
             var fileName = ""
@@ -247,25 +308,43 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
             }
 
             if index != 0 {
-                let image = getImageFromFile(with: fileName)
-                if let view = view().collectionViewContainer.characterView.subviews[index] as? UIImageView {
+                let image = ImageSeries.getImageFromFile(with: fileName)
+                if let view = view().characterView.subviews[index] as? UIImageView {
                     view.image = image
                 }
 
                 oneStep = createOneNextStep(with: fileName, and: index)
+                
+                if let cell = collectionView.cellForItem(at: indexPath) as? EditorCategoryItemCell {
+                    cell.isSelect = true
+                }
+                
+                DispatchQueue.main.async {
+                    self.view().collectionViewContainer.elementCollectionView.reloadData()
+                }
+                
             } else {
                 updateGenderSet(with: indexPath.item)
+                collectionView.reloadData()
             }
         }
     }
 
+}
+
+
+
+// MARK: -
+
+extension EditProcessController{
+    
     func updateGenderSet(with itemIndex: Int) {
         var genderChangeSet = HeroSet()
         var bodyPartsList = List<BodyPart>()
 
         startSetQ.gender = (itemIndex == 0) ? .boy : .girl
 
-        for (ind, subview) in view().collectionViewContainer.characterView.subviews.enumerated() {
+        for (ind, subview) in view().characterView.subviews.enumerated() {
             
             let genderBodyPart = (startSetQ.gender == .boy) ?
             startSetQ.bodyParts[ind].boy.first :
@@ -273,108 +352,41 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
             
             if let imageView = subview as? UIImageView {
 
-                    let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
-                    let  part = startSetQ.bodyParts[ind]
-                    part.valueValue = fileName
+                let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
+                let  part = startSetQ.bodyParts[ind]
+                part.valueValue = fileName
 
-                    imageView.image = getImageFromFile(with: fileName)
-    
-                    genderChangeSet.bodyParts.append(part)
-                    genderChangeSet.gender = startSetQ.gender
-                let image = createImageFromLayers()
+                imageView.image = ImageSeries.getImageFromFile(with: fileName)
+
+                genderChangeSet.bodyParts.append(part)
+                genderChangeSet.gender = startSetQ.gender
+                let image: Data? = .createImageData(from: view().characterView)
                 genderChangeSet.iconImage = image
             }
         }
 
         oneStep = genderChangeSet
     }
-
+    
     func createOneNextStep(with fileName: String, and index: Int) -> HeroSet {
-        guard let previousHeroSet = storyHeroChanges.item.last else { return HeroSet() }
-        var newHeroSet = HeroSet()
+        
+        guard let previousHeroSet = storyHeroChanges.last else { return HeroSet() }
+        let newHeroSet = HeroSet()
+
+        let bodyParts: List<BodyPart> = List<BodyPart>()
+        
+        for element in previousHeroSet.bodyParts{
+            let bodyPart: BodyPart = BodyPart(value: element)
+            bodyParts.append(bodyPart)
+        }
 
         newHeroSet.gender = previousHeroSet.gender
-        newHeroSet.bodyParts.append(objectsIn: previousHeroSet.bodyParts)
+        newHeroSet.bodyParts.append(objectsIn: bodyParts)
         newHeroSet.bodyParts[index].valueValue = fileName
-        let image = createImageFromLayers()
+
+        let image: Data? = .createImageData(from: view().characterView)
         newHeroSet.iconImage = image
   
         return newHeroSet
     }
 }
-
-
-
-// MARK: - getImageFromFile
-
-extension EditProcessController{
-    
-    func getImageFromFile(with fileName: String) -> UIImage {
-        var image = UIImage()
-        
-        if let localImage = UIImage(named: fileName) {
-            // for local Image
-            image = localImage
-        } else {
-            if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let fileURL = documentDirectory.appendingPathComponent(fileName)
-                
-                if FileManager.default.fileExists(atPath: fileURL.path) {
-                    do {
-                        let fileData = try Data(contentsOf: fileURL)
-                        
-                        if let im = pdfToImage(data: fileData) {
-                            image = im
-                        }
-                    } catch {
-                        print("Failed to read data from file: \(error)")
-                    }
-                }
-            }
-        }
-        
-        return image
-    }
-    
-    func pdfToImage(data: Data?) -> UIImage? {
-        guard let data,
-           let provider = CGDataProvider(data: data as CFData),
-           let pdfDoc  = CGPDFDocument(provider),
-           let pdfPage = pdfDoc.page(at: 1)
-        else {
-          return nil
-        }
-        let rectWidth = UIScreen.main.bounds.width
-        let pageRect = pdfPage.getBoxRect(.mediaBox)
-        let proportion: CGFloat = pageRect.height / pageRect.width
-        let proportionRect = CGRect(x: 0, y: 0, width: rectWidth, height: rectWidth * proportion)
-        let renderer = UIGraphicsImageRenderer(size: proportionRect.size)
-        let scale : CGFloat = proportionRect.width / pageRect.width
-        let img = renderer.image { ctx in
-          UIColor.white.withAlphaComponent(0).set()
-          ctx.cgContext.translateBy(x: 0.0, y: proportionRect.height)
-          ctx.cgContext.scaleBy(x: scale, y: -scale)
-          ctx.cgContext.drawPDFPage(pdfPage)
-        }
-        if let pngData = img.pngData() {
-          print("Converted PDF to PNG and cached for path")
-          return UIImage(data: pngData)
-        }
-        return img
-      }
-    
-    func createImageFromLayers() -> Data? {
-        UIGraphicsBeginImageContextWithOptions(view().collectionViewContainer.characterView.bounds.size, false, UIScreen.main.scale)
-        
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        view().collectionViewContainer.characterView.layer.render(in: context)
-        guard let image = UIGraphicsGetImageFromCurrentImageContext(),
-              let imageData = image.pngData() else {
-            UIGraphicsEndImageContext()
-            return nil
-        }
-        UIGraphicsEndImageContext()
-        return imageData
-    }
-}
-

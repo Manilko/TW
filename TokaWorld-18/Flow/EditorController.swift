@@ -27,6 +27,8 @@ final class EditorController: UIViewController {
         view().collectionView.delegate = self
         view().collectionView.register(EditorCollectionCell.self, forCellWithReuseIdentifier: EditorCollectionCell.identifier)
         
+        view().addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        
     }
 
     required init?(coder: NSCoder) {
@@ -51,6 +53,10 @@ final class EditorController: UIViewController {
            reloadData()
        }
     
+    @objc func addButtonTapped() {
+        itemDelegate?.presentEditProcessController(hero: listHeros.first ?? HeroSet())
+    }
+    
     private func reloadData() {
         listHeros.removeAll()
         let firstCell = createStartSet()
@@ -61,6 +67,13 @@ final class EditorController: UIViewController {
         listHeros.append(firstCell)
         listHeros.append(contentsOf: Array(RealmManager.shared.getObjects(HeroSet.self)))
         view().collectionView.reloadData()
+        if listHeros.count < 2{
+            view().collectionView.isHidden = true
+            view().hStack.isHidden = false
+        } else{
+            view().collectionView.isHidden = false
+            view().hStack.isHidden = true
+        }
         }
     
     @objc private func menuDidTaped(_ celector: UIButton) {
@@ -81,6 +94,7 @@ final class EditorController: UIViewController {
         herosElementlist.append(objectsIn: sortedHerosElementSet)
         
         herosBodyElementSet = HeroSet(item: herosElementlist)
+//        herosBodyElementSet.gender = .girl
         
         return herosBodyElementSet
     }

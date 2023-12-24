@@ -19,14 +19,14 @@ final class ModsView: UIView {
         return view
     }()
     
-    lazy var collectionView: UICollectionView = {
-        let c = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        c.backgroundColor = .clear
-        c.showsVerticalScrollIndicator = false
-        return c
+    lazy var modcCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
     }()
     
-    private var searchViewHeightConstraint: NSLayoutConstraint!
+//    private var searchViewHeightConstraint: NSLayoutConstraint!
     
     required init() {
         super.init(frame: .zero)
@@ -46,19 +46,19 @@ final class ModsView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        collectionView.reloadData()
+        modcCollectionView.reloadData()
     }
     
     private func configureLayout() {
         
         addSubview(navView)
+        addSubview(modcCollectionView)
         addSubview(searchView)
-        addSubview(collectionView)
         addSubview(filterView)
         
         searchView.translatesAutoresizingMaskIntoConstraints = false
         navView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        modcCollectionView.translatesAutoresizingMaskIntoConstraints = false
         filterView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -71,10 +71,10 @@ final class ModsView: UIView {
             searchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
             searchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
             
-            collectionView.topAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            modcCollectionView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 84),
+            modcCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
+            modcCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
+            modcCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
             filterView.topAnchor.constraint(equalTo: topAnchor),
             filterView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -83,8 +83,9 @@ final class ModsView: UIView {
         ])
         
         filterView.isHidden = true
+//        bringSubviewToFront(searchView)
         
-        searchViewHeightConstraint = searchView.heightAnchor.constraint(equalToConstant: 310)
-        searchViewHeightConstraint.isActive = true
+//        searchViewHeightConstraint = searchView.heightAnchor.constraint(equalToConstant: 310)
+//        searchViewHeightConstraint.isActive = true
     }
 }

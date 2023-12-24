@@ -10,15 +10,15 @@ import UIKit
 class EditorCategoryCell: UICollectionViewCell, NibCapable {
 
     let label: UILabel = {
-        let b = UILabel()
-        b.tintColor = .clear
-        b.backgroundColor = .backgroundBlue
-        b.font = .customFont(type: .juaRegular, size: 20)
-        b.textColor = .lettersBlack
-        b.textAlignment = .center
-        b.layer.cornerRadius = 15
-        b.translatesAutoresizingMaskIntoConstraints = false
-        return b
+        let label = UILabel()
+        label.tintColor = .clear
+        label.layer.masksToBounds = true
+        label.font = .customFont(type: .juaRegular, size: 20)
+        label.textColor = .lettersBlack
+        label.textAlignment = .center
+        label.layer.cornerRadius = 20
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
 
     override init(frame: CGRect) {
@@ -32,7 +32,6 @@ class EditorCategoryCell: UICollectionViewCell, NibCapable {
     }
 
     private func setupCell() {
-        
         addSubview(label)
 
         NSLayoutConstraint.activate([
@@ -43,8 +42,10 @@ class EditorCategoryCell: UICollectionViewCell, NibCapable {
         ])
     }
 
-    func configure(with text: String) {
+    func configure(with text: String, isSelected: Bool) {
         label.text = text
-        backgroundColor = .backgroundBlue
+        label.backgroundColor = isSelected ? .mainBlue : .backgroundBlue
+        label.textColor = isSelected ? .lettersWhite : .lettersBlack
     }
 }
+

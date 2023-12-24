@@ -85,7 +85,7 @@ extension DownloadPictureController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendedCell.identifier, for: indexPath) as? RecommendedCell else { return UICollectionViewCell() }
-//        cell.configure(with: recommended[indexPath.row])
+        cell.configure(with: recommended[indexPath.row])
         return cell
     }
     

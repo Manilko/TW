@@ -10,6 +10,13 @@ import UIKit
 class EditorCategoryItemCell: UICollectionViewCell, NibCapable {
     
     var previewImageView: UIImageView!
+    var isRound: Bool = true
+    
+    var isSelect: Bool = false {
+        didSet {
+            updateCellAppearance()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,19 +30,39 @@ class EditorCategoryItemCell: UICollectionViewCell, NibCapable {
 
     private func setupCell() {
         backgroundColor = .cyan
-        layer.cornerRadius = 5
-
+        
         previewImageView = UIImageView(frame: contentView.bounds)
         previewImageView.contentMode = .scaleAspectFit
         previewImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.addSubview(previewImageView)
+        
+        updateCellAppearance()
     }
 
-    func configure(with image: UIImage?, backgroundColorr: UIColor = .white) {
-        backgroundColor = backgroundColorr    // ? only for coloring cell gender girl
+    func configure(with image: UIImage?, backgroundColorr: UIColor = .white, isRound: Bool = true, isSelect: Bool = false) {
+        self.isSelect = isSelect
+        self.isRound = isRound
+        updateCellAppearance()
+        
+        backgroundColor = backgroundColorr
         previewImageView.image = image
     }
+    
+    
+
+    private func updateCellAppearance() {
+        if isRound {
+            layer.cornerRadius = frame.size.width / 2
+            layer.borderWidth = 3
+            layer.borderColor = isSelect ? .borderColorBlue.cgColor : .borderColorGrey.cgColor
+//            layer.borderColor = .borderColorGrey.cgColor
+            clipsToBounds = true
+        } else {
+            layer.cornerRadius = 40
+            layer.borderWidth = 3
+//            layer.borderColor = isSelect ? .borderColorBlue.cgColor : .borderColorGrey.cgColor
+            layer.borderColor = .borderColorBlue.cgColor
+            clipsToBounds = false
+        }
+    }
 }
-
-
-

@@ -18,20 +18,33 @@ enum ParseError: Error {
 // MARK: - JsonParsingManager
 class JsonParsingManager {
     
+    static func clearDictionary(data: Data, key: String = "//\n//  json.swift\n//  TokaWorld-18\n//\n//  Created by Yevhenii Manilko on 21.11.2023.\n//\n") -> Data {
+        var str = String(decoding: data, as: UTF8.self)
+        str = str.replacingOccurrences(of: key, with: "")
+        return Data(str.utf8)
+      }
+    
     static func parseJSON(data: [JsonPathType: Data?]) -> Result<[[JsonPathType: Codable]], ParseError> {
         var parsedResults: [[JsonPathType: Codable]] = []
         
         for jsonPath in JsonPathType.allCases {
-            guard let jsonData = data[jsonPath] else {
+            guard var jsonData = data[jsonPath] else {
                 return .failure(.noData(jsonPath.rawValue))
             }
             
+            if jsonPath == .editor{
+                jsonData = clearDictionary(data: jsonData ?? Data())
+                
+            }
+            
+            var str = String(decoding: jsonData!, as: UTF8.self)
             let decoder = JSONDecoder()
             do {
                 let modelType = jsonPath.correspondingModel
                 let result = try decoder.decode(modelType, from: jsonData ?? Data())
                 parsedResults.append([jsonPath: result])
             } catch {
+                print("error parseJSON decodingError: \(error)")
                 return .failure(.decodingError(jsonPath.caseName, error))
             }
         }
