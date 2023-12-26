@@ -64,8 +64,6 @@
 		4C575F232B0256F500135BF3 /* ReadexPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */; };
 		4C575F242B02572C00135BF3 /* ReadexPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */; };
 		4C575F252B02572D00135BF3 /* ReadexPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */; };
-		4C575F2D2B02616600135BF3 /* HouseIdeasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C575F2C2B02616600135BF3 /* HouseIdeasViewController.swift */; };
-		4C575F2F2B02773700135BF3 /* HouseIdeasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C575F2E2B02773700135BF3 /* HouseIdeasCoordinator.swift */; };
 		4C5AEA8E2B2F836C00DCB0A8 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A52B1CD88900E06C26 /* ImageType.swift */; };
 		4C5AEA8F2B2F836C00DCB0A8 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A52B1CD88900E06C26 /* ImageType.swift */; };
 		4C5AEA912B2F838100DCB0A8 /* JsonPathType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEA902B2F838100DCB0A8 /* JsonPathType.swift */; };
@@ -184,8 +182,6 @@
 		4C575F062B022DCE00135BF3 /* ModsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsCoordinator.swift; sourceTree = "<group>"; };
 		4C575F1E2B02567B00135BF3 /* LilitaOne.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LilitaOne.ttf; sourceTree = "<group>"; };
 		4C575F222B0256F500135BF3 /* ReadexPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ReadexPro-Bold.ttf"; sourceTree = "<group>"; };
-		4C575F2C2B02616600135BF3 /* HouseIdeasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeasViewController.swift; sourceTree = "<group>"; };
-		4C575F2E2B02773700135BF3 /* HouseIdeasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeasCoordinator.swift; sourceTree = "<group>"; };
 		4C5AEA902B2F838100DCB0A8 /* JsonPathType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPathType.swift; sourceTree = "<group>"; };
 		4C5AEA922B2F83B200DCB0A8 /* StorageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
 		4C5AEA942B2F86A000DCB0A8 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
@@ -482,8 +478,8 @@
 		4C575F272B0260AC00135BF3 /* House Ideas */ = {
 			isa = PBXGroup;
 			children = (
-				4C575F2C2B02616600135BF3 /* HouseIdeasViewController.swift */,
-				4C575F2E2B02773700135BF3 /* HouseIdeasCoordinator.swift */,
+				4C648E992B3B086300FA5D73 /* House IdeaDetail */,
+				4C648E982B3B085900FA5D73 /* House Idea */,
 			);
 			name = "House Ideas";
 			sourceTree = "<group>";
@@ -491,6 +487,8 @@
 		4C575F282B0260B000135BF3 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				4C648E9A2B3B089900FA5D73 /* Recipes */,
+				4C648E9B2B3B08A200FA5D73 /* RecipeDetail */,
 			);
 			name = Recipes;
 			sourceTree = "<group>";
@@ -498,6 +496,8 @@
 		4C575F292B0260B300135BF3 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
+				4C648E962B3B081C00FA5D73 /* Guide */,
+				4C648E972B3B082F00FA5D73 /* GuideDetail */,
 			);
 			name = Guides;
 			sourceTree = "<group>";
@@ -562,6 +562,48 @@
 				4C5AEA9C2B2FE19200DCB0A8 /* FurnitureDetailView.swift */,
 			);
 			name = FurnitureDetail;
+			sourceTree = "<group>";
+		};
+		4C648E962B3B081C00FA5D73 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Guide;
+			sourceTree = "<group>";
+		};
+		4C648E972B3B082F00FA5D73 /* GuideDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GuideDetail;
+			sourceTree = "<group>";
+		};
+		4C648E982B3B085900FA5D73 /* House Idea */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "House Idea";
+			sourceTree = "<group>";
+		};
+		4C648E992B3B086300FA5D73 /* House IdeaDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "House IdeaDetail";
+			sourceTree = "<group>";
+		};
+		4C648E9A2B3B089900FA5D73 /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Recipes;
+			sourceTree = "<group>";
+		};
+		4C648E9B2B3B08A200FA5D73 /* RecipeDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = RecipeDetail;
 			sourceTree = "<group>";
 		};
 		4C6AFE5F2B07548D0001B6A7 /* DownloadPictureScreen */ = {
@@ -815,7 +857,6 @@
 				4C5AEA992B2FE10000DCB0A8 /* FurnitureDetailCoordinator.swift in Sources */,
 				4C66E7902B2C8DE700EB79DF /* EditAlert.swift in Sources */,
 				4C7007062B0F6A0A009A497C /* DropBoxKeys_ltlpm.swift in Sources */,
-				4C575F2D2B02616600135BF3 /* HouseIdeasViewController.swift in Sources */,
 				4C575F072B022DCE00135BF3 /* ModsCoordinator.swift in Sources */,
 				4C6AFE652B07592E0001B6A7 /* DetailModsView.swift in Sources */,
 				4C5AEA9B2B2FE11B00DCB0A8 /* FurnitureDetailController.swift in Sources */,
@@ -872,7 +913,6 @@
 				4C78BC0F2B1DDBFF00C59A64 /* LoadingScreenVM.swift in Sources */,
 				0DA987C62B1D0D4500E06C26 /* UIWindow+Extension.swift in Sources */,
 				15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */,
-				4C575F2F2B02773700135BF3 /* HouseIdeasCoordinator.swift in Sources */,
 				4C78BC112B1DFAE800C59A64 /* DownloadManager.swift in Sources */,
 				4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */,
 				4C7006C22B08DA34009A497C /* EditProcessController.swift in Sources */,

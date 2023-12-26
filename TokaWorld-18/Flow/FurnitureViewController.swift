@@ -11,11 +11,11 @@ import Realm
 
 final class FurnitureViewController: UIViewController {
     
-    var arrayMod: [Mod]
+    private var dataSource: [FurnitureElement]
     
-    var filterFlag: FilterType
-    private var searchResults: [Mod] = []
-    private var filteredCollection: [Mod] = []
+    private var filterFlag: FilterType
+    private var searchResults: [FurnitureElement] = []
+    private var filteredCollection: [FurnitureElement] = []
     
     // MARK: - Properties
     weak var sideMenuDelegate: SideMenuDelegate?
@@ -26,7 +26,7 @@ final class FurnitureViewController: UIViewController {
     
     init() {
         self.filterFlag = .all
-        self.arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
+        self.dataSource = Array(RealmManager.shared.getObjects(FurnitureElement.self))
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,21 +51,21 @@ final class FurnitureViewController: UIViewController {
         ])
         setupSubViews()
         
-        filteredCollection = filterCollection(arrayMod, by: .all)
+        filteredCollection = filterCollection(dataSource, by: .all)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         
-        arrayMod.removeAll()
-        arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
+        dataSource.removeAll()
+        dataSource = Array(RealmManager.shared.getObjects(FurnitureElement.self))
     }
     
-    private func filterCollection(_ collection: [Mod], by filterType: FilterType) -> [Mod] {
+    private func filterCollection(_ collection: [FurnitureElement], by filterType: FilterType) -> [FurnitureElement] {
         switch filterType {
         case .all:
-            return collection.filter { $0.isAll }
+            return collection
         case .new:
             return collection.filter { $0.isNew }
         case .favorite:
@@ -79,7 +79,7 @@ final class FurnitureViewController: UIViewController {
         modView.navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
         modView.navView.rightButton.addTarget(self, action: #selector(showContainerButtonTapped), for: .touchUpInside)
         
-        modView.collectionView.register(ModsTVCollectionCell.self, forCellWithReuseIdentifier: ModsTVCollectionCell.identifier)
+        modView.collectionView.register(FurnitureElementCell.self, forCellWithReuseIdentifier: FurnitureElementCell.identifier)
         modView.collectionView.delegate = self
         modView.collectionView.dataSource = self
         
@@ -119,13 +119,13 @@ extension FurnitureViewController: UICollectionViewDataSource, UICollectionViewD
             filterFlag = selectedFilter
             modView.filterView.collectionView.reloadData()
             
-            filteredCollection = filterCollection(arrayMod, by: selectedFilter)
+            filteredCollection = filterCollection(dataSource, by: selectedFilter)
             
             modView.collectionView.reloadData()
             modView.filterView.isHidden = true
         } else if collectionView == modView.collectionView {
-            let item = filteredCollection[indexPath.row]
-            let recommended = Array(arrayMod[1...5])  // ????
+            let item = dataSource[indexPath.row]
+            let recommended = Array(dataSource[1...5])  // ????
             itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
             updateSearchHideTabel()
         }
@@ -150,10 +150,10 @@ extension FurnitureViewController: UICollectionViewDataSource, UICollectionViewD
             return cell
         } else if collectionView == modView.collectionView {
             guard
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModsTVCollectionCell.identifier, for: indexPath) as? ModsTVCollectionCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FurnitureElementCell.identifier, for: indexPath) as? FurnitureElementCell
             else { return UICollectionViewCell() }
             // create service for configuration cell
-            let item = filteredCollection[indexPath.row]
+            let item = dataSource[indexPath.row]
             cell.configure(with: item)
             return cell
             
@@ -224,7 +224,7 @@ extension FurnitureViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = filteredCollection[indexPath.row]
-        let recommended = Array(arrayMod[1...5])  // ????
+        let recommended = Array(dataSource[1...5])  // ????
         itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
         updateSearchHideTabel()
     }

@@ -9,19 +9,19 @@ import UIKit
 import SideMenu
 
 protocol FurnitureCoordinatorDelegate: AnyObject {
-    func presentDetailViewController(with item: Mod, recommended: [Mod])
+    func presentDetailViewController(with item: FurnitureElement, recommended: [FurnitureElement])
     func pop(_ cender: UIViewController)
 }
 
 class FurnitureCoordinator: Coordinator {
     var navigationController: UINavigationController
-    let viewController: ModsController
-    var detailCoordinator: DownloadPictureCoordinator?
+    let viewController: FurnitureViewController
+    var detailCoordinator: FurnitureDetailCoordinator?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.viewController = ModsController()
-//        self.modsController.itemDelegate = self
+        self.viewController = FurnitureViewController()
+        self.viewController.itemDelegate = self
         
     }
     
@@ -41,8 +41,8 @@ extension FurnitureCoordinator: FurnitureCoordinatorDelegate {
            }
     }
     
-    func presentDetailViewController(with item: Mod, recommended: [Mod]) {
-        detailCoordinator = DownloadPictureCoordinator(navigationController: navigationController, item: item, recommended: recommended)
+    func presentDetailViewController(with item: FurnitureElement, recommended: [FurnitureElement]) {
+        detailCoordinator = FurnitureDetailCoordinator(navigationController: navigationController, item: item, recommended: recommended)
         detailCoordinator?.viewController.coordinatorDelegate = detailCoordinator
         detailCoordinator?.navigationController.navigationBar.isHidden = true
         detailCoordinator?.start()

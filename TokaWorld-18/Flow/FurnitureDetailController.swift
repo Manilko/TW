@@ -11,10 +11,10 @@ final class FurnitureDetailController: UIViewController {
     
     // MARK: - Properties
     weak var coordinatorDelegate: FurnitureDetailDelegate?
-    let model: Mod?
-    let recommended: [Mod]
+    let model: FurnitureElement?
+    let recommended: [FurnitureElement]
     
-    init(item: Mod, recommended: [Mod]) {
+    init(item: FurnitureElement, recommended: [FurnitureElement]) {
         self.model = item
         self.recommended = recommended
         super.init(nibName: nil, bundle: nil)
@@ -23,7 +23,7 @@ final class FurnitureDetailController: UIViewController {
         
         view().recommendedCollectionView.delegate = self
         view().recommendedCollectionView.dataSource = self
-        view().recommendedCollectionView.register(RecommendedCell.self, forCellWithReuseIdentifier: RecommendedCell.identifier)
+        view().recommendedCollectionView.register(FurnitureRecommendedCell.self, forCellWithReuseIdentifier: FurnitureRecommendedCell.identifier)
         
         view().downloadButton.addTarget(self, action: #selector(downloadFile), for: .touchUpInside)
     }
@@ -39,7 +39,7 @@ final class FurnitureDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view().detailModsView.configure(with: model ?? Mod())
+        view().detailFurnitureView.configure(with: model ?? FurnitureElement())
     }
     
     @objc private func backDidTaped(_ celector: UIButton) {
@@ -61,7 +61,7 @@ final class FurnitureDetailController: UIViewController {
     }
     
     @objc private func downloadFile(_ celector: UIButton) {
-        guard let cell = view().recommendedCollectionView.visibleCells.first as? RecommendedCell,
+        guard let cell = view().recommendedCollectionView.visibleCells.first as? FurnitureRecommendedCell,
                 let image = cell.imageView.image else { return }
 
           UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -84,7 +84,7 @@ extension FurnitureDetailController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendedCell.identifier, for: indexPath) as? RecommendedCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FurnitureRecommendedCell.identifier, for: indexPath) as? FurnitureRecommendedCell else { return UICollectionViewCell() }
 //        cell.configure(with: recommended[indexPath.row])
         return cell
     }
@@ -99,6 +99,6 @@ extension FurnitureDetailController: UICollectionViewDelegate, UICollectionViewD
 
 // MARK: - ViewSeparatable
 extension FurnitureDetailController: ViewSeparatable {
-    typealias RootView = DownloadPictureView
+    typealias RootView = FurnitureDetailView
 }
 

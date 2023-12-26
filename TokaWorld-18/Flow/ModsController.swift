@@ -66,7 +66,7 @@ final class ModsController: UIViewController {
     private func filterCollection(_ collection: [Mod], by filterType: FilterType) -> [Mod] {
         switch filterType {
         case .all:
-            return collection.filter { $0.isAll }
+            return collection
         case .new:
             return collection.filter { $0.isNew }
         case .favorite:
@@ -168,7 +168,7 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModsTVCollectionCell.identifier, for: indexPath) as? ModsTVCollectionCell
             else { return UICollectionViewCell() }
             // create service for configuration cell
-            let item = filteredCollection[indexPath.row]
+            let item = arrayMod[indexPath.row]
             cell.configure(with: item)
             return cell
             
@@ -250,7 +250,7 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let item = filteredCollection[indexPath.row]
+        let item = arrayMod[indexPath.row]
         let recommended = Array(arrayMod[1...5])  // ????
         itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
         updateSearchHideTabel()

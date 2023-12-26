@@ -25,8 +25,8 @@ final class FurnitureDetailView: UIView {
         return view
     }()
 
-    lazy var detailModsView: DetailModsView = {
-        let view = DetailModsView()
+    lazy var detailFurnitureView: DetailFurnitureView = {
+        let view = DetailFurnitureView()
         view.layer.cornerRadius = 40
         view.layer.borderWidth = 2
         view.layer.borderColor = .borderColorWhite.cgColor
@@ -91,7 +91,7 @@ final class FurnitureDetailView: UIView {
         scrollView.addSubview(contentView)
 
         contentView.addSubview(recommendedCollectionView)
-        contentView.addSubview(detailModsView)
+        contentView.addSubview(detailFurnitureView)
         contentView.addSubview(downloadButton)
         contentView.addSubview(titleLabel)
 
@@ -114,11 +114,11 @@ final class FurnitureDetailView: UIView {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 
-            detailModsView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            detailModsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
-            detailModsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Sizes.trailing),
+            detailFurnitureView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            detailFurnitureView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
+            detailFurnitureView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Sizes.trailing),
 
-            downloadButton.topAnchor.constraint(equalTo: detailModsView.bottomAnchor, constant: UIDevice.current.isIPad ?  20 : 12),
+            downloadButton.topAnchor.constraint(equalTo: detailFurnitureView.bottomAnchor, constant: UIDevice.current.isIPad ?  20 : 12),
             downloadButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
             downloadButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Sizes.trailing),
             downloadButton.heightAnchor.constraint(equalToConstant: 52),

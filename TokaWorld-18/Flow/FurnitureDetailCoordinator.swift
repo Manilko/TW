@@ -14,11 +14,11 @@ protocol FurnitureDetailDelegate: AnyObject {
 
 class FurnitureDetailCoordinator: Coordinator {
     var navigationController: UINavigationController
-    let viewController: DownloadPictureController
+    let viewController: FurnitureDetailController
 
-    init(navigationController: UINavigationController, item: Mod, recommended: [Mod]) {
+    init(navigationController: UINavigationController, item: FurnitureElement, recommended: [FurnitureElement]) {
         self.navigationController = navigationController
-        self.viewController = DownloadPictureController(item: item, recommended: recommended)
+        self.viewController = FurnitureDetailController(item: item, recommended: recommended)
     }
 
     func start() {
@@ -26,7 +26,7 @@ class FurnitureDetailCoordinator: Coordinator {
     }
 }
 
-extension FurnitureDetailCoordinator: DownloadPictureDelegate{
+extension FurnitureDetailCoordinator: FurnitureDetailDelegate{
     
     func pop(_ cender: UIViewController) {
         navigationController.viewControllers.removeLast()

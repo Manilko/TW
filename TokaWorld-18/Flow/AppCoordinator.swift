@@ -12,7 +12,7 @@ class AppCoordinator {
     var navigationController: UINavigationController
     var modsCoordinator: ModsCoordinator?
     var furnitureCoordinator: FurnitureCoordinator?
-    var houseIdeasCoordinator: HouseIdeasCoordinator?
+//    var houseIdeasCoordinator: HouseIdeasCoordinator?
     var editirCoordinator: EditirCoordinator?
 
     init(navigationController: UINavigationController) {
@@ -33,25 +33,24 @@ class AppCoordinator {
         navigationController.viewControllers.removeAll()
         switch screen {
         case .mods:
-                modsCoordinator = ModsCoordinator(navigationController: navigationController)
-                modsCoordinator?.modsController.coordinatorDelegate = self
-                modsCoordinator?.modsController.sideMenuDelegate = self
-                modsCoordinator?.modsController.itemDelegate = modsCoordinator
-                modsCoordinator?.start()
+            modsCoordinator = ModsCoordinator(navigationController: navigationController)
+            modsCoordinator?.modsController.coordinatorDelegate = self
+            modsCoordinator?.modsController.sideMenuDelegate = self
+            modsCoordinator?.modsController.itemDelegate = modsCoordinator
+            modsCoordinator?.start()
             
         case .houseIdeas:
-//
             modsCoordinator = ModsCoordinator(navigationController: navigationController)
             modsCoordinator?.modsController.coordinatorDelegate = self
             modsCoordinator?.modsController.sideMenuDelegate = self
             modsCoordinator?.modsController.itemDelegate = modsCoordinator
             modsCoordinator?.start()
         case .furniture:
-            modsCoordinator = ModsCoordinator(navigationController: navigationController)
-            modsCoordinator?.modsController.coordinatorDelegate = self
-            modsCoordinator?.modsController.sideMenuDelegate = self
-            modsCoordinator?.modsController.itemDelegate = modsCoordinator
-            modsCoordinator?.start()
+            furnitureCoordinator = FurnitureCoordinator(navigationController: navigationController)
+            furnitureCoordinator?.viewController.coordinatorDelegate = self
+            furnitureCoordinator?.viewController.sideMenuDelegate = self
+            furnitureCoordinator?.viewController.itemDelegate = furnitureCoordinator
+            furnitureCoordinator?.start()
             
         case .editor:
             
