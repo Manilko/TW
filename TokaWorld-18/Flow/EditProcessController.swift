@@ -12,7 +12,7 @@ import PDFKit
 
 final class EditProcessController: UIViewController {
     
-    var startSetBodyElementSet: HeroSet = HeroSet()
+//    var startSetBodyElementSet: HeroSet = HeroSet()
     
     var currentIndex: Int{
         didSet{
@@ -61,7 +61,7 @@ final class EditProcessController: UIViewController {
         storyHeroChanges.append(item)
         
         super.init(nibName: nil, bundle: nil)
-        startSetBodyElementSet = HeroSet(value: item)
+//        startSetBodyElementSet = HeroSet(value: item)
 
         let bodyParts: List<BodyPart> = List<BodyPart>()
         
@@ -108,7 +108,7 @@ final class EditProcessController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        self.view = EditProcessView(startSet: startSetBodyElementSet)
+        self.view = EditProcessView(startSet: startSetQ)
 
     }
 
@@ -169,6 +169,9 @@ final class EditProcessController: UIViewController {
 
         guard let lastSet = storyHeroChanges.last else { return }
 
+        let image: Data? = .createImageData(from: view().characterView)
+        lastSet.iconImage = image
+        
         RealmManager.shared.deleteObject(HeroSet.self, primaryKeyValue: startToDel.id)
         RealmManager.shared.add(lastSet)
         
@@ -247,18 +250,15 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
                 }
             } else {
             
-                 let fileName1 = extractFilename(from: fileName)
+                 let extFileName = extractFilename(from: fileName)
                 
-                let a = extractFilename(from:storyHeroChanges.last?.bodyParts[index].valueValue ?? "")
+                let filename = extractFilename(from:storyHeroChanges.last?.bodyParts[index].valueValue ?? "")
                 
-                if removeSpaces(from: fileName1 ?? "") == removeSpaces(from: a ?? "")  || areStringsEqualIgnoringCase(fileName1 ?? "", a ?? ""){
+                if removeSpaces(from: extFileName ?? "") == removeSpaces(from: filename ?? "")  || areStringsEqualIgnoringCase(extFileName ?? "", filename ?? ""){
                     cell.configure(with: previewImage, isSelect: true)
                 } else{
                     cell.configure(with: previewImage)
                 }
-                
-                
-                
             }
             
             return cell
