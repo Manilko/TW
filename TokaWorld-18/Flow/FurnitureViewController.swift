@@ -241,8 +241,3 @@ extension FurnitureViewController: UITableViewDataSource, UITableViewDelegate{
         return returnCell
     }
 }
-
-// MARK: - ViewSeparatable
-//extension ModsController: ViewSeparatable {
-//    typealias RootView = ModsView
-//}

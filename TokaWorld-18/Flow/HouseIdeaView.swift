@@ -1,16 +1,16 @@
 //
-//  ViewMod.swift
+//  HouseIdeaView.swift
 //  TokaWorld-18
 //
-//  Created by Yevhenii Manilko on 26.11.2023.
+//  Created by Yevhenii Manilko on 27.12.2023.
 //
 
 import UIKit
 
 // MARK: - class ModsView
-final class ModsView: UIView {
+final class HouseIdeaView: UIView {
     
-    let navView = NavigationView(leftButtonType: .menu, title: "Mods", rightButtonType: ImageNameNawMenuType.filter)
+    let navView = NavigationView(leftButtonType: .menu, title: "House Idea", rightButtonType: ImageNameNawMenuType.filter)
     let searchView = SearchView()
     
     lazy var filterView: FilterView = {
@@ -115,3 +115,4 @@ final class ModsView: UIView {
         filterView.isHidden = true
     }
 }
+

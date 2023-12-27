@@ -80,6 +80,30 @@
 		4C6021162B018B730098F071 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6021152B018B730098F071 /* RoundButton.swift */; };
 		4C60211C2B0190BB0098F071 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C60211B2B0190BB0098F071 /* Extension.swift */; };
 		4C62C7AA2B3326FE0024AEFB /* Data?.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62C7A92B3326FE0024AEFB /* Data?.swift */; };
+		4C648E9D2B3C7BB300FA5D73 /* HouseIdeaDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648E9C2B3C7BB300FA5D73 /* HouseIdeaDetailController.swift */; };
+		4C648E9F2B3C7BD100FA5D73 /* GuideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648E9E2B3C7BD100FA5D73 /* GuideController.swift */; };
+		4C648EA12B3C7BEA00FA5D73 /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EA02B3C7BEA00FA5D73 /* RecipeController.swift */; };
+		4C648EA52B3C7C3300FA5D73 /* WallpaperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EA42B3C7C3300FA5D73 /* WallpaperController.swift */; };
+		4C648EA72B3C7C6C00FA5D73 /* HouseIdeaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EA62B3C7C6C00FA5D73 /* HouseIdeaController.swift */; };
+		4C648EA92B3C7CA300FA5D73 /* WallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EA82B3C7CA300FA5D73 /* WallpaperView.swift */; };
+		4C648EAB2B3C7CBF00FA5D73 /* WallpaperCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EAA2B3C7CBF00FA5D73 /* WallpaperCoordinator.swift */; };
+		4C648EAD2B3C7CFD00FA5D73 /* WallpaperDetailConrtoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EAC2B3C7CFD00FA5D73 /* WallpaperDetailConrtoller.swift */; };
+		4C648EAF2B3C7D0500FA5D73 /* WallpaperDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EAE2B3C7D0500FA5D73 /* WallpaperDetailView.swift */; };
+		4C648EB12B3C7D1100FA5D73 /* WallpaperDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EB02B3C7D1100FA5D73 /* WallpaperDetailCoordinator.swift */; };
+		4C648EB32B3C7D3200FA5D73 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EB22B3C7D3200FA5D73 /* GuideView.swift */; };
+		4C648EB52B3C7D3D00FA5D73 /* GuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EB42B3C7D3D00FA5D73 /* GuideCoordinator.swift */; };
+		4C648EB72B3C7D5600FA5D73 /* GuideDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EB62B3C7D5600FA5D73 /* GuideDetailCoordinator.swift */; };
+		4C648EB92B3C7D6900FA5D73 /* GuideDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EB82B3C7D6900FA5D73 /* GuideDetailController.swift */; };
+		4C648EBB2B3C7D7100FA5D73 /* GuideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EBA2B3C7D7100FA5D73 /* GuideDetailView.swift */; };
+		4C648EBD2B3C7D9200FA5D73 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EBC2B3C7D9200FA5D73 /* RecipeView.swift */; };
+		4C648EBF2B3C7D9C00FA5D73 /* RecipeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EBE2B3C7D9C00FA5D73 /* RecipeCoordinator.swift */; };
+		4C648EC12B3C7DB800FA5D73 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EC02B3C7DB800FA5D73 /* RecipeDetailView.swift */; };
+		4C648EC32B3C7DC700FA5D73 /* RecipeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EC22B3C7DC700FA5D73 /* RecipeDetailCoordinator.swift */; };
+		4C648EC52B3C7DDE00FA5D73 /* RecipeDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EC42B3C7DDE00FA5D73 /* RecipeDetailController.swift */; };
+		4C648EC72B3C7DFB00FA5D73 /* HouseIdeaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EC62B3C7DFB00FA5D73 /* HouseIdeaDetailView.swift */; };
+		4C648EC92B3C7E0700FA5D73 /* HouseIdeaDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648EC82B3C7E0700FA5D73 /* HouseIdeaDetailCoordinator.swift */; };
+		4C648ECB2B3C7E2E00FA5D73 /* HouseIdeaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648ECA2B3C7E2E00FA5D73 /* HouseIdeaView.swift */; };
+		4C648ECD2B3C7E3B00FA5D73 /* HouseIdeaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648ECC2B3C7E3B00FA5D73 /* HouseIdeaCoordinator.swift */; };
 		4C66E7902B2C8DE700EB79DF /* EditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */; };
 		4C6AFE612B0754FF0001B6A7 /* DownloadPictureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE602B0754FF0001B6A7 /* DownloadPictureCoordinator.swift */; };
 		4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE622B07554A0001B6A7 /* DownloadPictureController.swift */; };
@@ -196,6 +220,30 @@
 		4C6021172B018BAD0098F071 /* ImageNameNawMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameNawMenuType.swift; sourceTree = "<group>"; };
 		4C60211B2B0190BB0098F071 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		4C62C7A92B3326FE0024AEFB /* Data?.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data?.swift"; sourceTree = "<group>"; };
+		4C648E9C2B3C7BB300FA5D73 /* HouseIdeaDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeaDetailController.swift; sourceTree = "<group>"; };
+		4C648E9E2B3C7BD100FA5D73 /* GuideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideController.swift; sourceTree = "<group>"; };
+		4C648EA02B3C7BEA00FA5D73 /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
+		4C648EA42B3C7C3300FA5D73 /* WallpaperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperController.swift; sourceTree = "<group>"; };
+		4C648EA62B3C7C6C00FA5D73 /* HouseIdeaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeaController.swift; sourceTree = "<group>"; };
+		4C648EA82B3C7CA300FA5D73 /* WallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperView.swift; sourceTree = "<group>"; };
+		4C648EAA2B3C7CBF00FA5D73 /* WallpaperCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperCoordinator.swift; sourceTree = "<group>"; };
+		4C648EAC2B3C7CFD00FA5D73 /* WallpaperDetailConrtoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperDetailConrtoller.swift; sourceTree = "<group>"; };
+		4C648EAE2B3C7D0500FA5D73 /* WallpaperDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperDetailView.swift; sourceTree = "<group>"; };
+		4C648EB02B3C7D1100FA5D73 /* WallpaperDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperDetailCoordinator.swift; sourceTree = "<group>"; };
+		4C648EB22B3C7D3200FA5D73 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		4C648EB42B3C7D3D00FA5D73 /* GuideCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCoordinator.swift; sourceTree = "<group>"; };
+		4C648EB62B3C7D5600FA5D73 /* GuideDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailCoordinator.swift; sourceTree = "<group>"; };
+		4C648EB82B3C7D6900FA5D73 /* GuideDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailController.swift; sourceTree = "<group>"; };
+		4C648EBA2B3C7D7100FA5D73 /* GuideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailView.swift; sourceTree = "<group>"; };
+		4C648EBC2B3C7D9200FA5D73 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		4C648EBE2B3C7D9C00FA5D73 /* RecipeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCoordinator.swift; sourceTree = "<group>"; };
+		4C648EC02B3C7DB800FA5D73 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		4C648EC22B3C7DC700FA5D73 /* RecipeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailCoordinator.swift; sourceTree = "<group>"; };
+		4C648EC42B3C7DDE00FA5D73 /* RecipeDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailController.swift; sourceTree = "<group>"; };
+		4C648EC62B3C7DFB00FA5D73 /* HouseIdeaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeaDetailView.swift; sourceTree = "<group>"; };
+		4C648EC82B3C7E0700FA5D73 /* HouseIdeaDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeaDetailCoordinator.swift; sourceTree = "<group>"; };
+		4C648ECA2B3C7E2E00FA5D73 /* HouseIdeaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeaView.swift; sourceTree = "<group>"; };
+		4C648ECC2B3C7E3B00FA5D73 /* HouseIdeaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeaCoordinator.swift; sourceTree = "<group>"; };
 		4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlert.swift; sourceTree = "<group>"; };
 		4C6AFE602B0754FF0001B6A7 /* DownloadPictureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPictureCoordinator.swift; sourceTree = "<group>"; };
 		4C6AFE622B07554A0001B6A7 /* DownloadPictureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPictureController.swift; sourceTree = "<group>"; };
@@ -478,8 +526,8 @@
 		4C575F272B0260AC00135BF3 /* House Ideas */ = {
 			isa = PBXGroup;
 			children = (
-				4C648E992B3B086300FA5D73 /* House IdeaDetail */,
-				4C648E982B3B085900FA5D73 /* House Idea */,
+				4C648E982B3B085900FA5D73 /* HouseIdea */,
+				4C648E992B3B086300FA5D73 /* HouseIdeaDetail */,
 			);
 			name = "House Ideas";
 			sourceTree = "<group>";
@@ -487,7 +535,7 @@
 		4C575F282B0260B000135BF3 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
-				4C648E9A2B3B089900FA5D73 /* Recipes */,
+				4C648E9A2B3B089900FA5D73 /* Recipe */,
 				4C648E9B2B3B08A200FA5D73 /* RecipeDetail */,
 			);
 			name = Recipes;
@@ -505,6 +553,8 @@
 		4C575F2A2B02610D00135BF3 /* Wallpapers */ = {
 			isa = PBXGroup;
 			children = (
+				4C648EA22B3C7BF300FA5D73 /* Wallpaper */,
+				4C648EA32B3C7C0600FA5D73 /* WallpaperDetail */,
 			);
 			name = Wallpapers;
 			sourceTree = "<group>";
@@ -567,6 +617,9 @@
 		4C648E962B3B081C00FA5D73 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
+				4C648E9E2B3C7BD100FA5D73 /* GuideController.swift */,
+				4C648EB22B3C7D3200FA5D73 /* GuideView.swift */,
+				4C648EB42B3C7D3D00FA5D73 /* GuideCoordinator.swift */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
@@ -574,36 +627,71 @@
 		4C648E972B3B082F00FA5D73 /* GuideDetail */ = {
 			isa = PBXGroup;
 			children = (
+				4C648EB62B3C7D5600FA5D73 /* GuideDetailCoordinator.swift */,
+				4C648EB82B3C7D6900FA5D73 /* GuideDetailController.swift */,
+				4C648EBA2B3C7D7100FA5D73 /* GuideDetailView.swift */,
 			);
 			name = GuideDetail;
 			sourceTree = "<group>";
 		};
-		4C648E982B3B085900FA5D73 /* House Idea */ = {
+		4C648E982B3B085900FA5D73 /* HouseIdea */ = {
 			isa = PBXGroup;
 			children = (
+				4C648EA62B3C7C6C00FA5D73 /* HouseIdeaController.swift */,
+				4C648ECA2B3C7E2E00FA5D73 /* HouseIdeaView.swift */,
+				4C648ECC2B3C7E3B00FA5D73 /* HouseIdeaCoordinator.swift */,
 			);
-			name = "House Idea";
+			name = HouseIdea;
 			sourceTree = "<group>";
 		};
-		4C648E992B3B086300FA5D73 /* House IdeaDetail */ = {
+		4C648E992B3B086300FA5D73 /* HouseIdeaDetail */ = {
 			isa = PBXGroup;
 			children = (
+				4C648E9C2B3C7BB300FA5D73 /* HouseIdeaDetailController.swift */,
+				4C648EC62B3C7DFB00FA5D73 /* HouseIdeaDetailView.swift */,
+				4C648EC82B3C7E0700FA5D73 /* HouseIdeaDetailCoordinator.swift */,
 			);
-			name = "House IdeaDetail";
+			name = HouseIdeaDetail;
 			sourceTree = "<group>";
 		};
-		4C648E9A2B3B089900FA5D73 /* Recipes */ = {
+		4C648E9A2B3B089900FA5D73 /* Recipe */ = {
 			isa = PBXGroup;
 			children = (
+				4C648EA02B3C7BEA00FA5D73 /* RecipeController.swift */,
+				4C648EBC2B3C7D9200FA5D73 /* RecipeView.swift */,
+				4C648EBE2B3C7D9C00FA5D73 /* RecipeCoordinator.swift */,
 			);
-			name = Recipes;
+			name = Recipe;
 			sourceTree = "<group>";
 		};
 		4C648E9B2B3B08A200FA5D73 /* RecipeDetail */ = {
 			isa = PBXGroup;
 			children = (
+				4C648EC02B3C7DB800FA5D73 /* RecipeDetailView.swift */,
+				4C648EC22B3C7DC700FA5D73 /* RecipeDetailCoordinator.swift */,
+				4C648EC42B3C7DDE00FA5D73 /* RecipeDetailController.swift */,
 			);
 			name = RecipeDetail;
+			sourceTree = "<group>";
+		};
+		4C648EA22B3C7BF300FA5D73 /* Wallpaper */ = {
+			isa = PBXGroup;
+			children = (
+				4C648EA42B3C7C3300FA5D73 /* WallpaperController.swift */,
+				4C648EA82B3C7CA300FA5D73 /* WallpaperView.swift */,
+				4C648EAA2B3C7CBF00FA5D73 /* WallpaperCoordinator.swift */,
+			);
+			name = Wallpaper;
+			sourceTree = "<group>";
+		};
+		4C648EA32B3C7C0600FA5D73 /* WallpaperDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4C648EAC2B3C7CFD00FA5D73 /* WallpaperDetailConrtoller.swift */,
+				4C648EAE2B3C7D0500FA5D73 /* WallpaperDetailView.swift */,
+				4C648EB02B3C7D1100FA5D73 /* WallpaperDetailCoordinator.swift */,
+			);
+			name = WallpaperDetail;
 			sourceTree = "<group>";
 		};
 		4C6AFE5F2B07548D0001B6A7 /* DownloadPictureScreen */ = {
@@ -843,17 +931,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DA987AD2B1CDFB400E06C26 /* UIColor+Extension.swift in Sources */,
+				4C648EA92B3C7CA300FA5D73 /* WallpaperView.swift in Sources */,
 				4C5AEA9F2B2FE21C00DCB0A8 /* FurnitureView.swift in Sources */,
+				4C648E9F2B3C7BD100FA5D73 /* GuideController.swift in Sources */,
 				4C5BDE2F2B2E16ED0045205C /* DetailEditCoordinator.swift in Sources */,
 				4C78BC012B1C948200C59A64 /* SideMenuView.swift in Sources */,
+				4C648ECD2B3C7E3B00FA5D73 /* HouseIdeaCoordinator.swift in Sources */,
 				15C9D6152AFE3824002232D3 /* NavigationView.swift in Sources */,
+				4C648EA52B3C7C3300FA5D73 /* WallpaperController.swift in Sources */,
 				4C78BBF92B1AB0C900C59A64 /* CollectionViewContainer.swift in Sources */,
 				4C78BC0B2B1C96A200C59A64 /* EditProcessView.swift in Sources */,
 				4C575EFE2B02255100135BF3 /* ImageNameNawMenuType.swift in Sources */,
 				4C50AC9F2B0411C500355DBF /* SearchView.swift in Sources */,
 				4C50AC992B03B17C00355DBF /* ItemModel.swift in Sources */,
 				4C4CC7492B14E36E0030885C /* BaseViewController.swift in Sources */,
+				4C648EAB2B3C7CBF00FA5D73 /* WallpaperCoordinator.swift in Sources */,
 				4C3961142B04F83B0023E7FA /* FilterView.swift in Sources */,
+				4C648EBD2B3C7D9200FA5D73 /* RecipeView.swift in Sources */,
 				4C5AEA992B2FE10000DCB0A8 /* FurnitureDetailCoordinator.swift in Sources */,
 				4C66E7902B2C8DE700EB79DF /* EditAlert.swift in Sources */,
 				4C7007062B0F6A0A009A497C /* DropBoxKeys_ltlpm.swift in Sources */,
@@ -861,21 +955,27 @@
 				4C6AFE652B07592E0001B6A7 /* DetailModsView.swift in Sources */,
 				4C5AEA9B2B2FE11B00DCB0A8 /* FurnitureDetailController.swift in Sources */,
 				4C50AC8F2B0397D400355DBF /* AppCoordinator.swift in Sources */,
+				4C648EAF2B3C7D0500FA5D73 /* WallpaperDetailView.swift in Sources */,
 				0DA987BC2B1CFBFE00E06C26 /* BlueTitleAlertView.swift in Sources */,
+				4C648EB32B3C7D3200FA5D73 /* GuideView.swift in Sources */,
 				4C6AFE612B0754FF0001B6A7 /* DownloadPictureCoordinator.swift in Sources */,
 				4C50ACA12B042ED100355DBF /* SideMenuTVCell.swift in Sources */,
 				0DA987AF2B1CE3EB00E06C26 /* UIView+Extension.swift in Sources */,
 				4C55CBAC2B10E08E00A883AC /* EditorCategoryCell.swift in Sources */,
 				0D5E254C2B2F666400124428 /* ModsTVCollectionCell.swift in Sources */,
+				4C648EC12B3C7DB800FA5D73 /* RecipeDetailView.swift in Sources */,
 				4C78BC032B1C955900C59A64 /* DownloadPictureView.swift in Sources */,
 				4C7006BC2B08D1E8009A497C /* DetailEditController.swift in Sources */,
+				4C648EAD2B3C7CFD00FA5D73 /* WallpaperDetailConrtoller.swift in Sources */,
 				4C50ACA32B042EF700355DBF /* ModsTVCell.swift in Sources */,
 				0DA987C22B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift in Sources */,
 				4C78BC0D2B1C97DC00C59A64 /* CategorysData.swift in Sources */,
 				4C55CBB22B10E85100A883AC /* Editor.swift in Sources */,
+				4C648EC32B3C7DC700FA5D73 /* RecipeDetailCoordinator.swift in Sources */,
 				15B3B0A62AFC036D00706666 /* Coordinator.swift in Sources */,
 				4C575F032B02266A00135BF3 /* ModsController.swift in Sources */,
 				4C7006C62B0C27C7009A497C /* json.json in Sources */,
+				4C648EB72B3C7D5600FA5D73 /* GuideDetailCoordinator.swift in Sources */,
 				4C78BBFC2B1C933A00C59A64 /* LoadingScreenCoordinator.swift in Sources */,
 				4C78BC092B1C962700C59A64 /* DetailEditView.swift in Sources */,
 				4C4CC7452B13D43E0030885C /* LoadingScreen.swift in Sources */,
@@ -897,29 +997,41 @@
 				15B3B0732AFBFBF700706666 /* AppDelegate.swift in Sources */,
 				4C60211C2B0190BB0098F071 /* Extension.swift in Sources */,
 				4C7006B72B08C19E009A497C /* EditorController.swift in Sources */,
+				4C648EB52B3C7D3D00FA5D73 /* GuideCoordinator.swift in Sources */,
 				4C55CBAE2B10E0D500A883AC /* EditorCategoryItemCell.swift in Sources */,
 				4C5AEA9D2B2FE19200DCB0A8 /* FurnitureDetailView.swift in Sources */,
 				4C50AC9B2B040E0400355DBF /* NibCapable.swift in Sources */,
 				4C4CC7472B14E3030030885C /* NetworkMonitor.swift in Sources */,
 				4C78BC052B1C958F00C59A64 /* EditirView.swift in Sources */,
+				4C648EC92B3C7E0700FA5D73 /* HouseIdeaDetailCoordinator.swift in Sources */,
 				0DA987B52B1CF41C00E06C26 /* UIFont+Extension.swift in Sources */,
 				15C9D61B2AFE6C8F002232D3 /* RealmManager.swift in Sources */,
 				4C5AEA952B2F86A000DCB0A8 /* Size.swift in Sources */,
 				0DA987BE2B1D01CD00E06C26 /* UIViewController+Alert.swift in Sources */,
 				4C49A7202B31885E001658A6 /* ImageSeries.swift in Sources */,
 				0DA987C42B1D0C9F00E06C26 /* NetworkMonitoring.swift in Sources */,
+				4C648EB12B3C7D1100FA5D73 /* WallpaperDetailCoordinator.swift in Sources */,
 				4C7006B92B08C1AF009A497C /* EditirCoordinator.swift in Sources */,
 				4C7006C82B0E934F009A497C /* CharacterImageViewManager.swift in Sources */,
 				4C78BC0F2B1DDBFF00C59A64 /* LoadingScreenVM.swift in Sources */,
 				0DA987C62B1D0D4500E06C26 /* UIWindow+Extension.swift in Sources */,
+				4C648ECB2B3C7E2E00FA5D73 /* HouseIdeaView.swift in Sources */,
+				4C648EC52B3C7DDE00FA5D73 /* RecipeDetailController.swift in Sources */,
+				4C648E9D2B3C7BB300FA5D73 /* HouseIdeaDetailController.swift in Sources */,
+				4C648EBF2B3C7D9C00FA5D73 /* RecipeCoordinator.swift in Sources */,
+				4C648EC72B3C7DFB00FA5D73 /* HouseIdeaDetailView.swift in Sources */,
 				15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */,
 				4C78BC112B1DFAE800C59A64 /* DownloadManager.swift in Sources */,
 				4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */,
 				4C7006C22B08DA34009A497C /* EditProcessController.swift in Sources */,
+				4C648EA72B3C7C6C00FA5D73 /* HouseIdeaController.swift in Sources */,
 				0DA987A92B1CD95B00E06C26 /* UIImage+Init.swift in Sources */,
+				4C648EB92B3C7D6900FA5D73 /* GuideDetailController.swift in Sources */,
 				4C50AC932B03A5BD00355DBF /* FurnitureCoordinator.swift in Sources */,
+				4C648EBB2B3C7D7100FA5D73 /* GuideDetailView.swift in Sources */,
 				0DA987C02B1D034B00E06C26 /* TitleSubtitleAlertView.swift in Sources */,
 				4C6AFE682B075F780001B6A7 /* RecommendedCell.swift in Sources */,
+				4C648EA12B3C7BEA00FA5D73 /* RecipeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

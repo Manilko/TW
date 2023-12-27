@@ -12,7 +12,10 @@ class AppCoordinator {
     var navigationController: UINavigationController
     var modsCoordinator: ModsCoordinator?
     var furnitureCoordinator: FurnitureCoordinator?
-//    var houseIdeasCoordinator: HouseIdeasCoordinator?
+    var houseIdeasCoordinator: HouseIdeaCoordinator?
+    var recipesCoordinator: RecipeCoordinator?
+    var guidesCoordinator: GuideCoordinator?
+    var wallpapersCoordinator: WallpaperCoordinator?
     var editirCoordinator: EditirCoordinator?
 
     init(navigationController: UINavigationController) {
@@ -38,45 +41,41 @@ class AppCoordinator {
             modsCoordinator?.modsController.sideMenuDelegate = self
             modsCoordinator?.modsController.itemDelegate = modsCoordinator
             modsCoordinator?.start()
-            
         case .houseIdeas:
-            modsCoordinator = ModsCoordinator(navigationController: navigationController)
-            modsCoordinator?.modsController.coordinatorDelegate = self
-            modsCoordinator?.modsController.sideMenuDelegate = self
-            modsCoordinator?.modsController.itemDelegate = modsCoordinator
-            modsCoordinator?.start()
+            houseIdeasCoordinator = HouseIdeaCoordinator(navigationController: navigationController)
+            houseIdeasCoordinator?.controller.coordinatorDelegate = self
+            houseIdeasCoordinator?.controller.sideMenuDelegate = self
+            houseIdeasCoordinator?.controller.itemDelegate = houseIdeasCoordinator
+            houseIdeasCoordinator?.start()
         case .furniture:
             furnitureCoordinator = FurnitureCoordinator(navigationController: navigationController)
             furnitureCoordinator?.viewController.coordinatorDelegate = self
             furnitureCoordinator?.viewController.sideMenuDelegate = self
             furnitureCoordinator?.viewController.itemDelegate = furnitureCoordinator
             furnitureCoordinator?.start()
-            
         case .editor:
-            
             editirCoordinator = EditirCoordinator(navigationController: navigationController)
             editirCoordinator?.viewController.sideMenuDelegate = self
             editirCoordinator?.viewController.itemDelegate = editirCoordinator
             editirCoordinator?.start()
-        
         case .recipes:
-            modsCoordinator = ModsCoordinator(navigationController: navigationController)
-            modsCoordinator?.modsController.coordinatorDelegate = self
-            modsCoordinator?.modsController.sideMenuDelegate = self
-            modsCoordinator?.modsController.itemDelegate = modsCoordinator
-            modsCoordinator?.start()
+            recipesCoordinator = RecipeCoordinator(navigationController: navigationController)
+            recipesCoordinator?.controller.coordinatorDelegate = self
+            recipesCoordinator?.controller.sideMenuDelegate = self
+            recipesCoordinator?.controller.itemDelegate = recipesCoordinator
+            recipesCoordinator?.start()
         case .guides:
-            modsCoordinator = ModsCoordinator(navigationController: navigationController)
-            modsCoordinator?.modsController.coordinatorDelegate = self
-            modsCoordinator?.modsController.sideMenuDelegate = self
-            modsCoordinator?.modsController.itemDelegate = modsCoordinator
-            modsCoordinator?.start()
+            guidesCoordinator = GuideCoordinator(navigationController: navigationController)
+            guidesCoordinator?.controller.coordinatorDelegate = self
+            guidesCoordinator?.controller.sideMenuDelegate = self
+            guidesCoordinator?.controller.itemDelegate = guidesCoordinator
+            guidesCoordinator?.start()
         case .wallpapers:
-            modsCoordinator = ModsCoordinator(navigationController: navigationController)
-            modsCoordinator?.modsController.coordinatorDelegate = self
-            modsCoordinator?.modsController.sideMenuDelegate = self
-            modsCoordinator?.modsController.itemDelegate = modsCoordinator
-            modsCoordinator?.start()
+            wallpapersCoordinator = WallpaperCoordinator(navigationController: navigationController)
+            wallpapersCoordinator?.controller.coordinatorDelegate = self
+            wallpapersCoordinator?.controller.sideMenuDelegate = self
+            wallpapersCoordinator?.controller.itemDelegate = wallpapersCoordinator
+            wallpapersCoordinator?.start()
         }
     }
 }
