@@ -65,17 +65,17 @@ class LoadingScreenViewController: UIViewController {
 //                    })
 //                }
                 
-                let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
+                self.loadingIndicator.updateProgressView(progress: 7 / 7, completion: {
+                    self.coordinatorDelegate?.didSelectScreen(.mods)
+                })
+//                let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
                 
-                let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
-                guard let herosElementSet else { return }
-                for herosElement in herosElementSet {
-                    herosElement.downloadPDFs {
-                        self.loadingIndicator.updateProgressView(progress: 7 / 7, completion: {
-                            self.coordinatorDelegate?.didSelectScreen(.mods)
-                        })
-                    }
-                }
+//                let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
+//                guard let herosElementSet else { return }
+//                for herosElement in herosElementSet {
+//                    herosElement.downloadPDFs {
+//                    }
+//                }
             }
         }
     }

@@ -19,7 +19,7 @@ final class EditorController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-
+        
         view().navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
         
         // MARK: - collectionView
@@ -30,28 +30,29 @@ final class EditorController: UIViewController {
         view().addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-        deinit {
-            print("🗑️☑️   EditorController is deinited")
-        }
-
+    deinit {
+        print("🗑️☑️   EditorController is deinited")
+    }
+    
     override func loadView() {
         super.loadView()
         self.view = EditirView()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadEditor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(animated)
-           reloadData()
-       }
+        super.viewWillAppear(animated)
+        reloadData()
+    }
     
     @objc func addButtonTapped() {
         itemDelegate?.presentEditProcessController(hero: listHeros.first ?? HeroSet())
@@ -63,7 +64,7 @@ final class EditorController: UIViewController {
         if let image = UIImage(named: "Component 17"), let imageData = image.pngData() {
             firstCell.iconImage = imageData
         }
-
+        
         listHeros.append(firstCell)
         listHeros.append(contentsOf: Array(RealmManager.shared.getObjects(HeroSet.self)))
         view().collectionView.reloadData()
@@ -74,7 +75,7 @@ final class EditorController: UIViewController {
             view().collectionView.isHidden = false
             view().hStack.isHidden = true
         }
-        }
+    }
     
     @objc private func menuDidTaped(_ celector: UIButton) {
         sideMenuDelegate?.showSideMenu()
@@ -94,11 +95,33 @@ final class EditorController: UIViewController {
         herosElementlist.append(objectsIn: sortedHerosElementSet)
         
         herosBodyElementSet = HeroSet(item: herosElementlist)
-//        herosBodyElementSet.gender = .girl
+        //        herosBodyElementSet.gender = .girl
         
         return herosBodyElementSet
     }
     
+    func loadEditor() {
+        let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
+        
+        let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
+        
+        let sum: CGFloat = 228
+        
+        var counter: CGFloat = 0
+        
+        guard let herosElementSet else { return }
+        for herosElement in herosElementSet {
+            herosElement.downloadPDFSNew { [weak self] in
+                counter += 1
+                let pr = counter / sum
+                print("progress - ", pr)
+                self?.view().downloadingView.updateProgressView(progress: pr)
+                if pr == 1 {
+                    self?.view().downloadingView.isHidden = true
+                }
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -114,7 +137,7 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
         let item = listHeros[indexPath.row]
         cell.configure(setHeroBodyPart: item, type: indexPath.row)
         
-        // need fix? 
+        // need fix?
         cell.optionTappedCallback = { [weak self] in
             guard let self = self else { return }
             self.presentEditAlert(
@@ -140,23 +163,23 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
                 }
             )
         }
-                
+        
         return cell
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         if indexPath.row == 0{
             itemDelegate?.presentEditProcessController(hero: listHeros[indexPath.row])
         } else{
             itemDelegate?.presentDetailViewController(herosSet: listHeros,  chosenIndex: indexPath.row)
         }
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         return CGSize(width: Sizes.cellEditoWidth, height: Sizes.cellEditorHeight)
     }
 }

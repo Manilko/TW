@@ -62,6 +62,22 @@ class EditirView: UIView {
         h.translatesAutoresizingMaskIntoConstraints = false
         return h
     }()
+    
+    let downloadingView: EditorDownloadContentView = {
+        let v = EditorDownloadContentView()
+        v.updateProgressView(progress: 0.001)
+        v.backgroundColor = .clear
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+    
+    private lazy var vStack: UIStackView = {
+        let v = UIStackView(arrangedSubviews: [downloadingView])
+        v.axis = .vertical
+        v.backgroundColor = .clear
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
 
     required init() {
         super.init(frame: .zero)
@@ -77,6 +93,9 @@ class EditirView: UIView {
         addSubview(navView)
         addSubview(hStack)
         addSubview(collectionView)
+        
+        addSubview(vStack)
+        
         backgroundColor = .backgroundBlue
         navView.translatesAutoresizingMaskIntoConstraints = false
         hStack.translatesAutoresizingMaskIntoConstraints = false
@@ -102,6 +121,12 @@ class EditirView: UIView {
             hStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             hStack.centerYAnchor.constraint(equalTo: centerYAnchor),
             hStack.heightAnchor.constraint(equalToConstant: 150),
+            
+            vStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            vStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            vStack.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            downloadingView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
         ])
     }
 }

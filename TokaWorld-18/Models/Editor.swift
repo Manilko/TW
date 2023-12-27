@@ -234,6 +234,67 @@ final class BodyPart: Object, Codable, Sequence {
         // Call the completion handler when all downloads are complete
         completion()
     }
+    
+    func downloadPDFSNew(completion: @escaping () -> Void) {
+
+        checkEditorImagesPDF {
+            completion()
+        }
+        
+        checkEditorPreviewPDF {
+            completion()
+        }
+
+    }
+    
+    private func checkEditorImagesPDF(completion: @escaping () -> Void) {
+        let fileManager = FileManager.default
+        for imageItem in item {
+            // Check if the file already exists in the document directory
+            if let filePath = localFilePath(for: imageItem) {
+                if fileManager.fileExists(atPath: filePath.path) {
+                    print(" ℹ️ File already exists at: \(filePath)")
+                    completion()
+                    continue // Skip download if the file already exists
+                }
+            }
+            
+            // Download the file if it doesn't exist locally
+            if let bvcfXbnbjb6HhnPath = imageItem.bvcfXbnbjb6Hhn {
+                ServerManager.shared.getData(forPath: bvcfXbnbjb6HhnPath) { data in
+                    if let data = data {
+                        print(" ℹ️  data at: \(data)")
+                        self.saveDataToFileManager(data: data, fileName: "\(bvcfXbnbjb6HhnPath)")
+                        completion()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func checkEditorPreviewPDF(completion: @escaping () -> Void) {
+        let fileManager = FileManager.default
+        for imageItem in item {
+            // Check if the file already exists in the document directory
+            if let filePath = localFilePath(for: imageItem) {
+                if fileManager.fileExists(atPath: filePath.path) {
+                    print(" ℹ️ File already exists at: \(filePath)")
+                    completion()
+                    continue // Skip download if the file already exists
+                }
+            }
+            
+            if let vcbVnbvbvBBBPath = imageItem.vcbVnbvbvBBB {
+                ServerManager.shared.getData(forPath: vcbVnbvbvBBBPath) { data in
+                    if let data = data {
+                        print(" ℹ️  data at: \(data)")
+                        self.saveDataToFileManager(data: data, fileName: "\(vcbVnbvbvBBBPath)")
+                        completion()
+                    }
+                }
+            }
+        }
+    }
 
     // Function to get the local file path for a given image item
     func localFilePath(for imageItem: ComponentsBodyPart) -> URL? {
