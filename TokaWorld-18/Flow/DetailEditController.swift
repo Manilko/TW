@@ -35,7 +35,7 @@ final class DetailEditController: UIViewController {
         
         //navView
         view().navView.leftButton.addTarget(self, action: #selector(backDidTaped), for: .touchUpInside)
-//        view().navView.rightButton.addTarget(self, action: #selector(saveToRealm), for: .touchUpInside)
+        view().navView.rightButton.addTarget(self, action: #selector(saveToGallery), for: .touchUpInside)
         
         //navigationButtons
         view().navigationButtons.leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
@@ -96,9 +96,22 @@ final class DetailEditController: UIViewController {
             self.coordinatorDelegate?.pop(self)
     }
     
-//    @objc private func saveToRealm() {
-//    }
+    @objc private func saveToGallery() {
+        guard let imageData: Data = Data?.createImageData(from: view().characterView),
+              let image = UIImage(data: imageData) else {
+            return
+        }
 
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+
+    @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print("Error saving image: \(error.localizedDescription)")
+        } else {
+            print("Image saved successfully")
+        }
+    }
 }
 
 

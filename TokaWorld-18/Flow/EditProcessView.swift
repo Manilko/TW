@@ -82,8 +82,6 @@ final class EditProcessView: UIView {
         collectionViewContainer.translatesAutoresizingMaskIntoConstraints = false
         navView.translatesAutoresizingMaskIntoConstraints = false
         frameView.translatesAutoresizingMaskIntoConstraints = false
-
-//        characterView.backgroundColor = .gray
         
         let screenWidth = UIScreen.main.bounds.width
         

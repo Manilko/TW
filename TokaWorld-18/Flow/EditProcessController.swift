@@ -12,8 +12,6 @@ import PDFKit
 
 final class EditProcessController: UIViewController {
     
-    var startSetBodyElementSet: HeroSet = HeroSet()
-    
     var currentIndex: Int{
         didSet{
             updateNavigationButtons()
@@ -42,7 +40,7 @@ final class EditProcessController: UIViewController {
         }
     }
     
-    var startSetQ: HeroSet = HeroSet()
+    var startBodyElementSet: HeroSet = HeroSet()
 
     var storyHeroChanges: [HeroSet] = []{
         didSet {
@@ -61,7 +59,6 @@ final class EditProcessController: UIViewController {
         storyHeroChanges.append(item)
         
         super.init(nibName: nil, bundle: nil)
-        startSetBodyElementSet = HeroSet(value: item)
 
         let bodyParts: List<BodyPart> = List<BodyPart>()
         
@@ -70,11 +67,11 @@ final class EditProcessController: UIViewController {
             bodyParts.append(bodyPart)
         }
        
-        startSetQ = HeroSet()
-        startSetQ.bodyParts.append(objectsIn: bodyParts)
-        startSetQ.gender = item.gender
+        startBodyElementSet = HeroSet()
+        startBodyElementSet.bodyParts.append(objectsIn: bodyParts)
+        startBodyElementSet.gender = item.gender
         
-        startSetQ.id = item.id
+        startBodyElementSet.id = item.id
         
         
         self.countSecondCVCell = item.bodyParts.first?.item.count ?? 0
@@ -108,14 +105,14 @@ final class EditProcessController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        self.view = EditProcessView(startSet: startSetBodyElementSet)
+        self.view = EditProcessView(startSet: startBodyElementSet)
 
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        oneStep = startSetQ
+        oneStep = startBodyElementSet
     }
     
     private func updateNavigationButtons() {
@@ -169,6 +166,9 @@ final class EditProcessController: UIViewController {
 
         guard let lastSet = storyHeroChanges.last else { return }
 
+        let image: Data? = .createImageData(from: view().characterView)
+        lastSet.iconImage = image
+        
         RealmManager.shared.deleteObject(HeroSet.self, primaryKeyValue: startToDel.id)
         RealmManager.shared.add(lastSet)
         
@@ -203,7 +203,7 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == view().collectionViewContainer.categoryCollectionView {
-            return startSetQ.bodyParts.count
+            return startBodyElementSet.bodyParts.count
         } else {
             return countSecondCVCell
         }
@@ -215,7 +215,7 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditorCategoryCell.identifier, for: indexPath) as! EditorCategoryCell
 
                   let isSelected = indexPath.row == selectedCategoryIndex
-                  cell.configure(with: "\(startSetQ.bodyParts[indexPath.row].nameS ?? "no name 🤷")", isSelected: isSelected)
+                  cell.configure(with: "\(startBodyElementSet.bodyParts[indexPath.row].nameS ?? "no name 🤷")", isSelected: isSelected)
 
                   return cell
         } else {
@@ -223,23 +223,23 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
             
             var fileName = ""
             
-            if startSetQ.gender == .girl {
-                fileName = startSetQ.bodyParts[index].girl[indexPath.item].bvcfXbnbjb6Hhn ?? ""
+            if startBodyElementSet.gender == .girl {
+                fileName = startBodyElementSet.bodyParts[index].girl[indexPath.item].bvcfXbnbjb6Hhn ?? ""
             } else {
-                fileName = startSetQ.bodyParts[index].boy[indexPath.item].bvcfXbnbjb6Hhn ?? ""
+                fileName = startBodyElementSet.bodyParts[index].boy[indexPath.item].bvcfXbnbjb6Hhn ?? ""
             }
             
             let previewImage = ImageSeries.getImageFromFile(with: fileName)
             
             if index == 0 {
                 if indexPath.item == 1 {
-                    if startSetQ.gender == .girl {
+                    if startBodyElementSet.gender == .girl {
                         cell.configure(with: previewImage, backgroundColorr: .mainBlue, isRound: false, isSelect: true)
                     } else {
                         cell.configure(with: previewImage, backgroundColorr: .backgroundBlue, isRound: false, isSelect: true)
                     }
                 } else {
-                    if startSetQ.gender == .boy {
+                    if startBodyElementSet.gender == .boy {
                         cell.configure(with: previewImage, backgroundColorr: .mainBlue, isRound: false, isSelect: true)
                     } else {
                         cell.configure(with: previewImage, isRound: false, isSelect: true)
@@ -247,18 +247,15 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
                 }
             } else {
             
-                 let fileName1 = extractFilename(from: fileName)
+                 let extFileName = extractFilename(from: fileName)
                 
-                let a = extractFilename(from:storyHeroChanges.last?.bodyParts[index].valueValue ?? "")
+                let filename = extractFilename(from:storyHeroChanges.last?.bodyParts[index].valueValue ?? "")
                 
-                if removeSpaces(from: fileName1 ?? "") == removeSpaces(from: a ?? "")  || areStringsEqualIgnoringCase(fileName1 ?? "", a ?? ""){
+                if removeSpaces(from: extFileName ?? "") == removeSpaces(from: filename ?? "")  || areStringsEqualIgnoringCase(extFileName ?? "", filename ?? ""){
                     cell.configure(with: previewImage, isSelect: true)
                 } else{
                     cell.configure(with: previewImage)
                 }
-                
-                
-                
             }
             
             return cell
@@ -287,10 +284,10 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
                     self.view().collectionViewContainer.elementCollectionView.reloadData()
                 }
 
-                if startSetQ.gender == .girl {
-                    countSecondCVCell = startSetQ.bodyParts[indexPath.row].girl.count
+                if startBodyElementSet.gender == .girl {
+                    countSecondCVCell = startBodyElementSet.bodyParts[indexPath.row].girl.count
                 } else {
-                    countSecondCVCell = startSetQ.bodyParts[indexPath.row].boy.count
+                    countSecondCVCell = startBodyElementSet.bodyParts[indexPath.row].boy.count
                 }
 
                 index = indexPath.row
@@ -301,10 +298,10 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
         if collectionView == view().collectionViewContainer.elementCollectionView {
             var fileName = ""
 
-            if startSetQ.gender == .girl {
-                fileName = startSetQ.bodyParts[index].girl[indexPath.item].vcbVnbvbvBBB ?? ""
+            if startBodyElementSet.gender == .girl {
+                fileName = startBodyElementSet.bodyParts[index].girl[indexPath.item].vcbVnbvbvBBB ?? ""
             } else {
-                fileName = startSetQ.bodyParts[index].boy[indexPath.item].vcbVnbvbvBBB ?? ""
+                fileName = startBodyElementSet.bodyParts[index].boy[indexPath.item].vcbVnbvbvBBB ?? ""
             }
 
             if index != 0 {
@@ -339,27 +336,26 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
 extension EditProcessController{
     
     func updateGenderSet(with itemIndex: Int) {
-        var genderChangeSet = HeroSet()
-        var bodyPartsList = List<BodyPart>()
+        let genderChangeSet = HeroSet()
 
-        startSetQ.gender = (itemIndex == 0) ? .boy : .girl
+        startBodyElementSet.gender = (itemIndex == 0) ? .boy : .girl
 
         for (ind, subview) in view().characterView.subviews.enumerated() {
             
-            let genderBodyPart = (startSetQ.gender == .boy) ?
-            startSetQ.bodyParts[ind].boy.first :
-            startSetQ.bodyParts[ind].girl.first
+            let genderBodyPart = (startBodyElementSet.gender == .boy) ?
+            startBodyElementSet.bodyParts[ind].boy.first :
+            startBodyElementSet.bodyParts[ind].girl.first
             
             if let imageView = subview as? UIImageView {
 
                 let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
-                let  part = startSetQ.bodyParts[ind]
+                let  part = startBodyElementSet.bodyParts[ind]
                 part.valueValue = fileName
 
                 imageView.image = ImageSeries.getImageFromFile(with: fileName)
 
                 genderChangeSet.bodyParts.append(part)
-                genderChangeSet.gender = startSetQ.gender
+                genderChangeSet.gender = startBodyElementSet.gender
                 let image: Data? = .createImageData(from: view().characterView)
                 genderChangeSet.iconImage = image
             }
