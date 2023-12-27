@@ -10,6 +10,13 @@ import UIKit
 class EditirView: UIView {
 
     let navView = NavigationView(leftButtonType: .menu, title: "Editor", rightButtonType: ImageNameNawMenuType.none)
+    
+    var backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "background")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,7 +29,7 @@ class EditirView: UIView {
         return collectionView
     }()
     
-    private let deleteButton: UILabel = {
+    private let lackLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
         label.font = .customFont(type: .lilitaOne, size: 20)
@@ -47,7 +54,7 @@ class EditirView: UIView {
     }()
     
     lazy var hStack: UIStackView = {
-        let h = UIStackView(arrangedSubviews: [deleteButton, addButton])
+        let h = UIStackView(arrangedSubviews: [lackLabel, addButton])
         h.axis = .vertical
         h.alignment = .fill
         h.distribution = .fillEqually
@@ -66,6 +73,7 @@ class EditirView: UIView {
     }
 
     private func configureLayout() {
+        addSubview(backgroundView)
         addSubview(navView)
         addSubview(hStack)
         addSubview(collectionView)
@@ -74,6 +82,12 @@ class EditirView: UIView {
         hStack.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
             navView.leadingAnchor.constraint(equalTo: leadingAnchor),
             navView.widthAnchor.constraint(equalTo: widthAnchor),

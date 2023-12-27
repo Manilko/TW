@@ -74,7 +74,7 @@ final class DownloadPictureView: UIView {
     // MARK: - Lifecycle
     init(isFavorite: Bool) {
         let rightButtonType: ImageNameNawMenuType = isFavorite ? .favorite : .unFavorite
-        navView = NavigationView(leftButtonType: .leftArrow, title: "Download Picture", rightButtonType: rightButtonType)
+        navView = NavigationView(leftButtonType: .leftArrow, title: "Mods", rightButtonType: rightButtonType)
 
         super.init(frame: .zero)
         configureLayout()

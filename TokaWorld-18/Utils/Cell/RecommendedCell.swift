@@ -90,20 +90,6 @@ class FurnitureRecommendedCell: UICollectionViewCell, NibCapable {
         return image
     }()
 
-    private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.numberOfLines = 1
-        return label
-    }()
-
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 2
-        return label
-    }()
-
     // MARK: - Initialization
 
     override init(frame: CGRect) {
@@ -119,7 +105,7 @@ class FurnitureRecommendedCell: UICollectionViewCell, NibCapable {
     // MARK: - Public Method
 
     func configure(with model: FurnitureElement) {
-        if let imageq: UIImage = .getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
+        if let imageq: UIImage = .getImageFromFile(fileName: "/Furniture/\(model.rd1Lf2 ?? "" )") {
             imageView.image = imageq
         }
     }
@@ -130,8 +116,6 @@ class FurnitureRecommendedCell: UICollectionViewCell, NibCapable {
         backgroundColor = .backgroundWhite
 
         addSubview(imageView)
-//        addSubview(nameLabel)
-//        addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 2),

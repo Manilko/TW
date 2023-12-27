@@ -13,6 +13,13 @@ final class FurnitureView: UIView {
     let navView = NavigationView(leftButtonType: .menu, title: "Furniture", rightButtonType: ImageNameNawMenuType.filter)
     let searchView = SearchView()
     
+    var backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "background")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var filterView: FilterView = {
         let view = FilterView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +58,7 @@ final class FurnitureView: UIView {
     
     private func configureLayout() {
         
+        addSubview(backgroundView)
         addSubview(navView)
         addSubview(searchView)
         addSubview(collectionView)
@@ -62,6 +70,12 @@ final class FurnitureView: UIView {
         filterView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
             navView.leadingAnchor.constraint(equalTo: leadingAnchor),
             navView.trailingAnchor.constraint(equalTo: trailingAnchor),

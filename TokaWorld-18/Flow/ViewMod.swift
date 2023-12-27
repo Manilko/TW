@@ -26,7 +26,24 @@ final class ModsView: UIView {
         return collectionView
     }()
     
-//    private var searchViewHeightConstraint: NSLayoutConstraint!
+    private let lackLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.font = .customFont(type: .lilitaOne, size: 20)
+        label.text = "We didn’t find anything"
+        label.textColor = .black
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        return label
+    }()
+    
+    var backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "background")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     
     required init() {
         super.init(frame: .zero)
@@ -51,6 +68,8 @@ final class ModsView: UIView {
     
     private func configureLayout() {
         
+        addSubview(backgroundView)
+        addSubview(lackLabel)
         addSubview(navView)
         addSubview(modcCollectionView)
         addSubview(searchView)
@@ -62,6 +81,17 @@ final class ModsView: UIView {
         filterView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            lackLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            lackLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            lackLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            lackLabel.heightAnchor.constraint(equalToConstant: 150),
+            
             navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
             navView.leadingAnchor.constraint(equalTo: leadingAnchor),
             navView.trailingAnchor.constraint(equalTo: trailingAnchor),

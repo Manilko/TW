@@ -898,6 +898,21 @@
                   endingLineNumber = "187"
                   offsetFromSymbolStart = "264">
                </Location>
+               <Location
+                  uuid = "8C23790A-464E-4664-8911-77C73F73BBBF - 556c02fbda5bf42"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (TokaWorld_18.ComponentsBodyPart) -&gt; Swift.Bool in TokaWorld_18.BodyPart.boy.getter : Swift.Array&lt;TokaWorld_18.ComponentsBodyPart&gt;"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Models/Editor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "264">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -985,6 +1000,21 @@
                   moduleName = "TokaWorld-18"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yevheniimanilko/Documents/ios-toka-world-18-ref/TokaWorld-18/Models/Editor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "5C9281E7-EB39-441C-8E88-A0A5A15980E0 - 9e81f0658cc694b8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (TokaWorld_18.ComponentsBodyPart) -&gt; Swift.Bool in TokaWorld_18.BodyPart.girl.getter : Swift.Array&lt;TokaWorld_18.ComponentsBodyPart&gt;"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Models/Editor.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "197"
@@ -1084,6 +1114,21 @@
                   endingLineNumber = "143"
                   offsetFromSymbolStart = "1428">
                </Location>
+               <Location
+                  uuid = "7D30E542-C9E3-4D4F-B502-A9B5CCCF84C1 - fd07df48c5dfa06f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.BodyPart.__allocating_init(from: Swift.Decoder) throws -&gt; TokaWorld_18.BodyPart"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Models/Editor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "1428">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -1173,6 +1218,21 @@
                   moduleName = "TokaWorld-18"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yevheniimanilko/Documents/ios-toka-world-18-ref/TokaWorld-18/Flow/DetailEditController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "340">
+               </Location>
+               <Location
+                  uuid = "A8917B89-DE1A-46C0-BAE9-9BC2FF43DB24 - f2778e75ce0410dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TokaWorld_18.DetailEditController.deleteButtonTapped() -&gt; ()"
+                  moduleName = "TokaWorld-18"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yevheniimanilko/Documents/TW/TokaWorld-18/Flow/DetailEditController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "91"
@@ -1378,8 +1438,8 @@
             filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "dataArray"
             landmarkType = "24">
          </BreakpointContent>
@@ -1394,8 +1454,8 @@
             filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "dataArray"
             landmarkType = "24">
          </BreakpointContent>
@@ -1410,8 +1470,8 @@
             filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "dataArray"
             landmarkType = "24">
             <Locations>
@@ -1458,8 +1518,8 @@
             filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "dataArray"
             landmarkType = "24">
          </BreakpointContent>

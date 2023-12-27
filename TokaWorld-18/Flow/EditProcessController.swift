@@ -194,7 +194,7 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
             if selectedCategoryIndex == 0{
                 return CGSize(width: collectionView.bounds.width / 2, height: 80)
             } else{
-                return CGSize(width: collectionView.bounds.width / 3.4, height: 80)
+                return CGSize(width: 80, height: 80)
             }
             
         }

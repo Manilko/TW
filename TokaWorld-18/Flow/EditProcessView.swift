@@ -19,6 +19,13 @@ final class EditProcessView: UIView {
     
     var startSetQ: HeroSet = HeroSet()
     
+    var backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "background")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var frameView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .clear
@@ -62,6 +69,7 @@ final class EditProcessView: UIView {
     }
 
     private func configureLayout() {
+        addSubview(backgroundView)
         backgroundColor = .backgroundBlue
         addSubview(frameView)
         addSubview(characterView)
@@ -80,6 +88,11 @@ final class EditProcessView: UIView {
         let screenWidth = UIScreen.main.bounds.width
         
         NSLayoutConstraint.activate([
+            
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
             navView.leadingAnchor.constraint(equalTo: leadingAnchor),

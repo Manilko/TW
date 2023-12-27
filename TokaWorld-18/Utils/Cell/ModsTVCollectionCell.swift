@@ -60,12 +60,19 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         return label
     }()
     
+    private let loadingIndicator: UIActivityIndicatorView = {
+            let indicator = UIActivityIndicatorView(style: .gray)
+            indicator.hidesWhenStopped = true
+        return indicator
+        }()
+    
     override func prepareForReuse() {
         image.image = nil
         favoriteImage.isHidden = false
         titleLabel.text = ""
         descriptionLabel.text = ""
         favoriteImage.image = nil
+        loadingIndicator.stopAnimating()
     }
     
     override init(frame: CGRect) {
@@ -86,6 +93,8 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         favoriteImage.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        image.addSubview(loadingIndicator)
         
         addSubview(mainView)
         mainView.addSubview(image)
@@ -94,6 +103,10 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         addSubview(favoriteImage)
         
         NSLayoutConstraint.activate([
+            
+            loadingIndicator.centerXAnchor.constraint(equalTo: image.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: image.centerYAnchor),
+            
             mainView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             mainView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
@@ -121,12 +134,16 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
     }
     
     func configure(with model: Mod) {
+        loadingIndicator.startAnimating()
+        let _ = DownloadManager<Mod>(element: model).downloadData(nameDirectory: .mods) { [weak self] in
+            self?.loadingIndicator.stopAnimating()
+            if let imageq: UIImage = .getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
+                self?.image.image = imageq
+            }
+        }
+        
         titleLabel.text = model.rd1Ld4
         descriptionLabel.text = model.rd1Li1
-        
-        if let imageq: UIImage = .getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
-            image.image = imageq
-        }
         
         let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
         favoriteImage.image = UIImage(named: imageType.rawValue)
@@ -195,84 +212,100 @@ final class FurnitureElementCell: UICollectionViewCell, NibCapable {
         label.textAlignment = .left
         return label
     }()
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.hidesWhenStopped = true
+    return indicator
+    }()
+
+override func prepareForReuse() {
+    image.image = nil
+    favoriteImage.isHidden = false
+    titleLabel.text = ""
+    descriptionLabel.text = ""
+    favoriteImage.image = nil
+    loadingIndicator.stopAnimating()
+}
+
+override init(frame: CGRect) {
+    super.init(frame: frame)
+    setup()
+}
+
+required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+    return nil
+}
+
+private func setup() {
+    backgroundColor = .clear
     
-    override func prepareForReuse() {
-        image.image = nil
-        favoriteImage.isHidden = false
-        titleLabel.text = ""
-        descriptionLabel.text = ""
-        favoriteImage.image = nil
-    }
+    image.translatesAutoresizingMaskIntoConstraints = false
+    mainView.translatesAutoresizingMaskIntoConstraints = false
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    favoriteImage.translatesAutoresizingMaskIntoConstraints = false
+    loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+    image.addSubview(loadingIndicator)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
+    addSubview(mainView)
+    mainView.addSubview(image)
+    addSubview(titleLabel)
+    addSubview(descriptionLabel)
+    addSubview(favoriteImage)
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-        return nil
-    }
-    
-    private func setup() {
-        backgroundColor = .clear
+    NSLayoutConstraint.activate([
         
-        image.translatesAutoresizingMaskIntoConstraints = false
-        mainView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        favoriteImage.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.centerXAnchor.constraint(equalTo: image.centerXAnchor),
+        loadingIndicator.centerYAnchor.constraint(equalTo: image.centerYAnchor),
         
-        addSubview(mainView)
-        mainView.addSubview(image)
-        addSubview(titleLabel)
-        addSubview(descriptionLabel)
-        addSubview(favoriteImage)
+        mainView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+        mainView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+        mainView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+        mainView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
         
-        NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            mainView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            mainView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            mainView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            
-            image.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12),
-            image.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 12),
-            image.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12),
-            image.widthAnchor.constraint(equalTo: image.heightAnchor),
-            
-            titleLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12),
-            titleLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            descriptionLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
-            descriptionLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -20),
-            descriptionLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
-            
-            favoriteImage.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16),
-            favoriteImage.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
-            favoriteImage.widthAnchor.constraint(equalToConstant: 32),
-            favoriteImage.heightAnchor.constraint(equalToConstant: 32),
-        ])
-    }
-    
-    func configure(with model: FurnitureElement) {
-        titleLabel.text = model.rd1Ld4
-        descriptionLabel.text = model.rd1Li1
+        image.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12),
+        image.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 12),
+        image.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12),
+        image.widthAnchor.constraint(equalTo: image.heightAnchor),
         
+        titleLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12),
+        titleLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
+        titleLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
+        
+        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+        descriptionLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
+        descriptionLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -20),
+        descriptionLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
+        
+        favoriteImage.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16),
+        favoriteImage.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
+        favoriteImage.widthAnchor.constraint(equalToConstant: 32),
+        favoriteImage.heightAnchor.constraint(equalToConstant: 32),
+    ])
+}
+
+func configure(with model: FurnitureElement) {
+    loadingIndicator.startAnimating()
+    let _ = DownloadManager<FurnitureElement>(element: model).downloadData(nameDirectory: .furniture) { [weak self] in
+        self?.loadingIndicator.stopAnimating()
         if let imageq: UIImage = .getImageFromFile(fileName: "/Furniture/\(model.rd1Lf2 ?? "" )") {
-            image.image = imageq
+            self?.image.image = imageq
         }
-        
-        let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
-        favoriteImage.image = UIImage(named: imageType.rawValue)
     }
     
-    func updateDescriptionText(isFullDescription: Bool) {
-        // descriptionLabel.numberOfLines = 0
-    }
+    titleLabel.text = model.rd1Ld4
+    descriptionLabel.text = model.rd1Li1
     
-    func updateFavoriteImage(isFavorite: Bool = false) {
-        // favoriteImage.isHidden = !isFavorite
-    }
+    let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
+    favoriteImage.image = UIImage(named: imageType.rawValue)
+}
+
+func updateDescriptionText(isFullDescription: Bool) {
+    // descriptionLabel.numberOfLines = 0
+}
+
+func updateFavoriteImage(isFavorite: Bool = false) {
+    // favoriteImage.isHidden = !isFavorite
+}
 }

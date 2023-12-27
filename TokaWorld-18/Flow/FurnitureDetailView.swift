@@ -58,23 +58,10 @@ final class FurnitureDetailView: UIView {
         return collectionView
     }()
 
-    lazy var downloadButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor.mainBlue
-        button.layer.cornerRadius = 28
-        button.layer.borderWidth = 2
-        button.layer.borderColor = .borderColorWhite.cgColor
-        button.titleLabel?.font = .customFont(type: .lilitaOne, size: 24)
-        button.titleLabel?.textColor = .lettersWhite
-        button.setTitle("Download File", for: .normal)
-        return button
-    }()
-
     // MARK: - Lifecycle
     init(isFavorite: Bool) {
         let rightButtonType: ImageNameNawMenuType = isFavorite ? .favorite : .unFavorite
-        navView = NavigationView(leftButtonType: .leftArrow, title: "Download Picture", rightButtonType: rightButtonType)
+        navView = NavigationView(leftButtonType: .leftArrow, title: "Furniture", rightButtonType: rightButtonType)
 
         super.init(frame: .zero)
         configureLayout()
@@ -92,7 +79,6 @@ final class FurnitureDetailView: UIView {
 
         contentView.addSubview(recommendedCollectionView)
         contentView.addSubview(detailFurnitureView)
-        contentView.addSubview(downloadButton)
         contentView.addSubview(titleLabel)
 
         navView.translatesAutoresizingMaskIntoConstraints = false
@@ -118,12 +104,7 @@ final class FurnitureDetailView: UIView {
             detailFurnitureView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
             detailFurnitureView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Sizes.trailing),
 
-            downloadButton.topAnchor.constraint(equalTo: detailFurnitureView.bottomAnchor, constant: UIDevice.current.isIPad ?  20 : 12),
-            downloadButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
-            downloadButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Sizes.trailing),
-            downloadButton.heightAnchor.constraint(equalToConstant: 52),
-
-            titleLabel.topAnchor.constraint(equalTo: downloadButton.bottomAnchor, constant: UIDevice.current.isIPad ?  40 : 24),
+            titleLabel.topAnchor.constraint(equalTo: detailFurnitureView.bottomAnchor, constant: UIDevice.current.isIPad ?  40 : 24),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
             titleLabel.widthAnchor.constraint(equalToConstant: 150),
             titleLabel.heightAnchor.constraint(equalToConstant: 18),

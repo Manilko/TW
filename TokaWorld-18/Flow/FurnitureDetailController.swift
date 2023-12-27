@@ -24,8 +24,7 @@ final class FurnitureDetailController: UIViewController {
         view().recommendedCollectionView.delegate = self
         view().recommendedCollectionView.dataSource = self
         view().recommendedCollectionView.register(FurnitureRecommendedCell.self, forCellWithReuseIdentifier: FurnitureRecommendedCell.identifier)
-        
-        view().downloadButton.addTarget(self, action: #selector(downloadFile), for: .touchUpInside)
+
     }
 
     required init?(coder: NSCoder) {
@@ -59,21 +58,6 @@ final class FurnitureDetailController: UIViewController {
             }
         }
     }
-    
-    @objc private func downloadFile(_ celector: UIButton) {
-        guard let cell = view().recommendedCollectionView.visibleCells.first as? FurnitureRecommendedCell,
-                let image = cell.imageView.image else { return }
-
-          UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-      }
-
-      @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
-          if let error = error {
-              print("Error saving image: \(error.localizedDescription)")
-          } else {
-              print("Image saved successfully")
-          }
-      }
 
 }
 
@@ -85,7 +69,7 @@ extension FurnitureDetailController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FurnitureRecommendedCell.identifier, for: indexPath) as? FurnitureRecommendedCell else { return UICollectionViewCell() }
-//        cell.configure(with: recommended[indexPath.row])
+        cell.configure(with: recommended[indexPath.row])
         return cell
     }
     

@@ -14,6 +14,13 @@ final class DetailEditView: UIView {
 
     let navigationButtons: NavigationButtons = NavigationButtons()
     
+    var backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "background")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var characterView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .clear
@@ -94,6 +101,7 @@ final class DetailEditView: UIView {
     private func configureLayout() {
         backgroundColor = .backgroundBlue
         
+        addSubview(backgroundView)
         addSubview(frameView)
         addSubview(navView)
         addSubview(characterView)
@@ -108,6 +116,11 @@ final class DetailEditView: UIView {
         let screenWidth = UIScreen.main.bounds.width
 
         NSLayoutConstraint.activate([
+            
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
             navView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
             navView.leadingAnchor.constraint(equalTo: leadingAnchor),

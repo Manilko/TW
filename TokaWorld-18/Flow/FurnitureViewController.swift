@@ -22,7 +22,7 @@ final class FurnitureViewController: UIViewController {
     weak var coordinatorDelegate: AppCoordinatorDelegate?
     weak var itemDelegate: FurnitureCoordinatorDelegate?
     
-    private lazy var modView = FurnitureView(frame: UIScreen.main.bounds)
+    private lazy var furnitureView = FurnitureView(frame: UIScreen.main.bounds)
     
     init() {
         self.filterFlag = .all
@@ -40,14 +40,14 @@ final class FurnitureViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundBlue
         
-        modView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(modView)
+        furnitureView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(furnitureView)
         
         NSLayoutConstraint.activate([
-            modView.topAnchor.constraint(equalTo: view.topAnchor),
-            modView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            modView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            modView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            furnitureView.topAnchor.constraint(equalTo: view.topAnchor),
+            furnitureView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            furnitureView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            furnitureView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         setupSubViews()
         
@@ -57,9 +57,9 @@ final class FurnitureViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         dataSource.removeAll()
         dataSource = Array(RealmManager.shared.getObjects(FurnitureElement.self))
+        furnitureView.collectionView.reloadData()
     }
     
     private func filterCollection(_ collection: [FurnitureElement], by filterType: FilterType) -> [FurnitureElement] {
@@ -76,29 +76,29 @@ final class FurnitureViewController: UIViewController {
     }
     
     func setupSubViews() {
-        modView.navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
-        modView.navView.rightButton.addTarget(self, action: #selector(showContainerButtonTapped), for: .touchUpInside)
+        furnitureView.navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
+        furnitureView.navView.rightButton.addTarget(self, action: #selector(showContainerButtonTapped), for: .touchUpInside)
         
-        modView.collectionView.register(FurnitureElementCell.self, forCellWithReuseIdentifier: FurnitureElementCell.identifier)
-        modView.collectionView.delegate = self
-        modView.collectionView.dataSource = self
+        furnitureView.collectionView.register(FurnitureElementCell.self, forCellWithReuseIdentifier: FurnitureElementCell.identifier)
+        furnitureView.collectionView.delegate = self
+        furnitureView.collectionView.dataSource = self
         
-        modView.searchView.resultTableView.delegate = self
-        modView.searchView.resultTableView.dataSource = self
-        modView.searchView.resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        furnitureView.searchView.resultTableView.delegate = self
+        furnitureView.searchView.resultTableView.dataSource = self
+        furnitureView.searchView.resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         searchResults = Array(filteredCollection.prefix(3))
         
         // MARK: - searchView
-        modView.searchView.closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        modView.searchView.searchTextField.delegate = self
-        modView.searchView.searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
+        furnitureView.searchView.closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        furnitureView.searchView.searchTextField.delegate = self
+        furnitureView.searchView.searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
         
         // MARK: - filterView
-        modView.filterView.collectionView.dataSource = self
-        modView.filterView.collectionView.delegate = self
-        modView.filterView.collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        modView.filterView.closeButton.addTarget(self, action: #selector(closeButtonTappedFilterView), for: .touchUpInside)
+        furnitureView.filterView.collectionView.dataSource = self
+        furnitureView.filterView.collectionView.delegate = self
+        furnitureView.filterView.collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        furnitureView.filterView.closeButton.addTarget(self, action: #selector(closeButtonTappedFilterView), for: .touchUpInside)
     }
     
     @objc private func menuDidTaped(_ celector: UIButton) {
@@ -106,24 +106,24 @@ final class FurnitureViewController: UIViewController {
     }
     
     @objc private func showContainerButtonTapped(_ celector: UIButton) {
-        modView.filterView.isHidden = false
+        furnitureView.filterView.isHidden = false
     }
 }
 
 // MARK: - filterView UICollectionViewDataSource
 extension FurnitureViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == modView.filterView.collectionView {
+        if collectionView == furnitureView.filterView.collectionView {
             guard let selectedFilter = FilterType(rawValue: indexPath.item) else { return }
             
             filterFlag = selectedFilter
-            modView.filterView.collectionView.reloadData()
+            furnitureView.filterView.collectionView.reloadData()
             
             filteredCollection = filterCollection(dataSource, by: selectedFilter)
             
-            modView.collectionView.reloadData()
-            modView.filterView.isHidden = true
-        } else if collectionView == modView.collectionView {
+            furnitureView.collectionView.reloadData()
+            furnitureView.filterView.isHidden = true
+        } else if collectionView == furnitureView.collectionView {
             let item = dataSource[indexPath.row]
             let recommended = Array(dataSource[1...5])  // ????
             itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
@@ -132,23 +132,23 @@ extension FurnitureViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == modView.filterView.collectionView {
+        if collectionView == furnitureView.filterView.collectionView {
             return FilterType.allCases.count
-        }  else if collectionView == modView.collectionView {
+        }  else if collectionView == furnitureView.collectionView {
             return filteredCollection.count
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == modView.filterView.collectionView {
+        if collectionView == furnitureView.filterView.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FilterCollectionViewCell
             
             let filterType = FilterType(rawValue: indexPath.item) ?? .all
             cell.configure(filter: filterType, flag: filterFlag)
             
             return cell
-        } else if collectionView == modView.collectionView {
+        } else if collectionView == furnitureView.collectionView {
             guard
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FurnitureElementCell.identifier, for: indexPath) as? FurnitureElementCell
             else { return UICollectionViewCell() }
@@ -163,7 +163,7 @@ extension FurnitureViewController: UICollectionViewDataSource, UICollectionViewD
     
     // UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == modView.filterView.collectionView {
+        if collectionView == furnitureView.filterView.collectionView {
             return CGSize(width: collectionView.bounds.width / 4.4, height: 200)
         } else {
             return CGSize(width: Sizes.cellWidth , height: Sizes.cellHeight)
@@ -172,7 +172,7 @@ extension FurnitureViewController: UICollectionViewDataSource, UICollectionViewD
     
     // Target Action
     @objc private func closeButtonTappedFilterView() {
-        modView.filterView.isHidden = true
+        furnitureView.filterView.isHidden = true
     }
 }
 
@@ -193,20 +193,20 @@ extension FurnitureViewController: UITextFieldDelegate {
     
     private func updateSearch(_ searchText: String) {
         searchResults = filteredCollection.filter { ($0.rd1Ld4?.lowercased() ?? "").contains(searchText.lowercased()) }
-        modView.searchView.resultTableView.reloadData()
-        modView.searchView.resultTableView.isHidden = searchResults.isEmpty
+        furnitureView.searchView.resultTableView.reloadData()
+        furnitureView.searchView.resultTableView.isHidden = searchResults.isEmpty
         updateSearchViewHeight()
     }
     
     private func updateSearchViewHeight() {
         UIView.animate(withDuration: 0.3) {
-            let newHeight = self.modView.searchView.resultTableView.isHidden ? 80 : 310
-            self.modView.searchView.searchViewHeightConstraint.constant = CGFloat(newHeight)
+            let newHeight = self.furnitureView.searchView.resultTableView.isHidden ? 80 : 310
+            self.furnitureView.searchView.searchViewHeightConstraint.constant = CGFloat(newHeight)
         }
     }
     
     private func updateSearchHideTabel() {
-        modView.searchView.searchTextField.text = nil
+        furnitureView.searchView.searchTextField.text = nil
         updateSearch("")
     }
 }

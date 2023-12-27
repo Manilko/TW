@@ -169,6 +169,7 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
             else { return UICollectionViewCell() }
             // create service for configuration cell
             let item = arrayMod[indexPath.row]
+           
             cell.configure(with: item)
             return cell
             
@@ -251,6 +252,7 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = arrayMod[indexPath.row]
+//        let houseManager = DownloadManager<Mod>(element: item)
         let recommended = Array(arrayMod[1...5])  // ????
         itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
         updateSearchHideTabel()
