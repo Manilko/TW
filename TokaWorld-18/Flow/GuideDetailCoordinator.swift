@@ -26,7 +26,7 @@ final class GuideDetailController: UIViewController {
         view().recommendedCollectionView.dataSource = self
         view().recommendedCollectionView.register(GuideRecommendedCell.self, forCellWithReuseIdentifier: GuideRecommendedCell.identifier)
         
-        view().downloadButton.addTarget(self, action: #selector(downloadFile), for: .touchUpInside)
+//        view().downloadButton.addTarget(self, action: #selector(downloadFile), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {

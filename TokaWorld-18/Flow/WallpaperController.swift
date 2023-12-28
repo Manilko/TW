@@ -11,11 +11,11 @@ import Realm
 
 final class WallpaperController: UIViewController {
 
-    var arrayMod: [Mod]
+    var arrayMod: [Wallpaper]
 
     var filterFlag: FilterType
-    private var searchResults: [Mod] = []
-    private var filteredCollection: [Mod] = []
+    private var searchResults: [Wallpaper] = []
+    private var filteredCollection: [Wallpaper] = []
 
     // MARK: - Properties
     weak var sideMenuDelegate: SideMenuDelegate?
@@ -26,7 +26,7 @@ final class WallpaperController: UIViewController {
 
     init() {
         self.filterFlag = .all
-        self.arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
+        self.arrayMod = Array(RealmManager.shared.getObjects(Wallpaper.self))
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -59,11 +59,11 @@ final class WallpaperController: UIViewController {
 
 
         arrayMod.removeAll()
-        arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
+        arrayMod = Array(RealmManager.shared.getObjects(Wallpaper.self))
         modView.modcCollectionView.reloadData()
     }
 
-    private func filterCollection(_ collection: [Mod], by filterType: FilterType) -> [Mod] {
+    private func filterCollection(_ collection: [Wallpaper], by filterType: FilterType) -> [Wallpaper] {
         switch filterType {
         case .all:
             return collection
@@ -80,20 +80,9 @@ final class WallpaperController: UIViewController {
         modView.navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
         modView.navView.rightButton.addTarget(self, action: #selector(showContainerButtonTapped), for: .touchUpInside)
 
-        modView.modcCollectionView.register(ModsTVCollectionCell.self, forCellWithReuseIdentifier: ModsTVCollectionCell.identifier)
+        modView.modcCollectionView.register(WallpaperCell.self, forCellWithReuseIdentifier: WallpaperCell.identifier)
         modView.modcCollectionView.delegate = self
         modView.modcCollectionView.dataSource = self
-
-        modView.searchView.resultTableView.delegate = self
-        modView.searchView.resultTableView.dataSource = self
-        modView.searchView.resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-
-        searchResults = Array(filteredCollection.prefix(3))
-
-        // MARK: - searchView
-        modView.searchView.closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        modView.searchView.searchTextField.delegate = self
-        modView.searchView.searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
 
         // MARK: - filterView
         modView.filterView.collectionView.dataSource = self
@@ -108,20 +97,6 @@ final class WallpaperController: UIViewController {
 
     @objc private func showContainerButtonTapped(_ celector: UIButton) {
         modView.filterView.isHidden = false
-    }
-
-    func creationRecommendedArray(from array: [Mod], number elements: Int) -> [Mod] {
-        var modifiedArray: [Mod] = []
-
-        for (index, element) in arrayMod.enumerated() {
-            if index < elements {
-                modifiedArray.append(element)
-            } else {
-                break
-            }
-        }
-
-        return modifiedArray
     }
 }
 
@@ -140,9 +115,8 @@ extension WallpaperController: UICollectionViewDataSource, UICollectionViewDeleg
             modView.filterView.isHidden = true
         } else if collectionView == modView.modcCollectionView {
             let item = filteredCollection[indexPath.row]
-            let recommended = creationRecommendedArray(from: filteredCollection, number: 5)
+            let recommended: [Wallpaper] = []
             itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
-            updateSearchHideTabel()
         }
     }
 
@@ -165,7 +139,7 @@ extension WallpaperController: UICollectionViewDataSource, UICollectionViewDeleg
             return cell
         } else if collectionView == modView.modcCollectionView {
             guard
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModsTVCollectionCell.identifier, for: indexPath) as? ModsTVCollectionCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WallpaperCell.identifier, for: indexPath) as? WallpaperCell
             else { return UICollectionViewCell() }
             // create service for configuration cell
             let item = arrayMod[indexPath.row]
@@ -180,9 +154,9 @@ extension WallpaperController: UICollectionViewDataSource, UICollectionViewDeleg
     // UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == modView.filterView.collectionView {
-            return CGSize(width: collectionView.bounds.width / 4.4, height: 200)
+            return CGSize(width: collectionView.bounds.width / 2.4, height: 200)
         } else {
-            return CGSize(width: Sizes.cellWidth , height: Sizes.cellHeight)
+            return CGSize(width: Sizes.cellEditoWidth, height: Sizes.cellEditorHeight)
         }
     }
 
@@ -191,84 +165,3 @@ extension WallpaperController: UICollectionViewDataSource, UICollectionViewDeleg
         modView.filterView.isHidden = true
     }
 }
-
-// MARK: - UITextFieldDelegate, search Target Actions
-extension WallpaperController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-
-    @objc private func searchFieldDidChange(_ textField: UITextField) {
-        updateSearch(textField.text ?? "")
-    }
-
-    @objc private func closeButtonTapped() {
-        updateSearchHideTabel()
-    }
-
-    private func updateSearch(_ searchText: String) {
-//        modView.searchView.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [
-//                NSAttributedString.Key.foregroundColor: UIColor.white
-//            ])
-        searchResults = filteredCollection.filter { ($0.rd1Ld4?.lowercased() ?? "").contains(searchText.lowercased()) }
-        modView.searchView.resultTableView.reloadData()
-        modView.searchView.resultTableView.isHidden = searchResults.isEmpty
-        updateSearchViewHeight()
-    }
-
-    private func updateSearchViewHeight() {
-        UIView.animate(withDuration: 0.3) {
-            let newHeight = self.modView.searchView.resultTableView.isHidden ? 80 : 310
-            self.modView.searchView.searchViewHeightConstraint.constant = CGFloat(newHeight)
-        }
-    }
-
-    private func updateSearchHideTabel() {
-        modView.searchView.searchTextField.text = nil
-        updateSearch("")
-    }
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        modView.searchView.textFieldDidBeginEditing()
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        modView.searchView.textFieldDidEndEditing()
-    }
-
-}
-
-//// MARK: - TableViewDelegate
-extension WallpaperController: UITableViewDataSource, UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let item = arrayMod[indexPath.row]
-//        let houseManager = DownloadManager<Mod>(element: item)
-        let recommended = Array(arrayMod[1...5])  // ????
-        itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
-        updateSearchHideTabel()
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var returnCell = UITableViewCell()
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        // create service for configuration cell
-        cell.textLabel?.text = searchResults[indexPath.row].rd1Ld4
-        cell.backgroundColor = .clear
-        cell.textLabel?.font = .customFont(type: .lilitaOne, size: 20)
-        cell.textLabel?.textColor = .lettersWhite
-        returnCell =  cell
-        return returnCell
-    }
-}
-
-

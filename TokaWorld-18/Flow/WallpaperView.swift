@@ -11,7 +11,7 @@ import UIKit
 final class WallpaperView: UIView {
     
     let navView = NavigationView(leftButtonType: .menu, title: "Wallpaper", rightButtonType: ImageNameNawMenuType.filter)
-    let searchView = SearchView()
+//    let searchView = SearchView()
     
     lazy var filterView: FilterView = {
         let view = FilterView()
@@ -72,10 +72,10 @@ final class WallpaperView: UIView {
         addSubview(lackLabel)
         addSubview(navView)
         addSubview(modcCollectionView)
-        addSubview(searchView)
+//        addSubview(searchView)
         addSubview(filterView)
         
-        searchView.translatesAutoresizingMaskIntoConstraints = false
+//        searchView.translatesAutoresizingMaskIntoConstraints = false
         navView.translatesAutoresizingMaskIntoConstraints = false
         modcCollectionView.translatesAutoresizingMaskIntoConstraints = false
         filterView.translatesAutoresizingMaskIntoConstraints = false
@@ -97,11 +97,11 @@ final class WallpaperView: UIView {
             navView.trailingAnchor.constraint(equalTo: trailingAnchor),
             navView.heightAnchor.constraint(equalToConstant: 80),
             
-            searchView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
-            searchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
-            searchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
+//            searchView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
+//            searchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
+//            searchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
             
-            modcCollectionView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 84),
+            modcCollectionView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 24),
             modcCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
             modcCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
             modcCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),

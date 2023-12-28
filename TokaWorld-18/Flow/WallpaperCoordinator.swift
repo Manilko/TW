@@ -9,7 +9,7 @@ import UIKit
 import SideMenu
 
 protocol WallpaperPresrntDelegate: AnyObject {
-    func presentDetailViewController(with item: Mod, recommended: [Mod])
+    func presentDetailViewController(with item: Wallpaper, recommended: [Wallpaper])
     func pop(_ cender: UIViewController)
 }
 
@@ -41,7 +41,7 @@ extension WallpaperCoordinator: WallpaperPresrntDelegate {
            }
     }
     
-    func presentDetailViewController(with item: Mod, recommended: [Mod]) {
+    func presentDetailViewController(with item: Wallpaper, recommended: [Wallpaper]) {
         detailCoordinator = WallpaperDetailCoordinator(navigationController: navigationController, item: item, recommended: recommended)
         detailCoordinator?.viewController.coordinatorDelegate = detailCoordinator
         detailCoordinator?.navigationController.navigationBar.isHidden = true

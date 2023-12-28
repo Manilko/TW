@@ -19,43 +19,17 @@ final class WallpaperDetailView: UIView {
         return view
     }()
 
-    lazy var contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    lazy var detailModsView: DetailModsView = {
-        let view = DetailModsView()
-        view.layer.cornerRadius = 40
-        view.layer.borderWidth = 2
-        view.layer.borderColor = .borderColorWhite.cgColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lettersBlack
-        label.font = .customFont(type: .lilitaOne, size: 24)
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        var paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 0.87
-        label.attributedText = NSMutableAttributedString(string: "Recommended", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        return label
-    }()
-
-    lazy var recommendedCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .backgroundWhite
-        collectionView.showsVerticalScrollIndicator = false
-        return collectionView
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .mainBlue
+        imageView.layer.cornerRadius = 30
+        imageView.layer.borderWidth = 3
+        imageView.layer.borderColor = .borderColorBlue.cgColor
+        imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
 
     lazy var downloadButton: UIButton = {
@@ -67,7 +41,8 @@ final class WallpaperDetailView: UIView {
         button.layer.borderColor = .borderColorWhite.cgColor
         button.titleLabel?.font = .customFont(type: .lilitaOne, size: 24)
         button.titleLabel?.textColor = .lettersWhite
-        button.setTitle("Download File", for: .normal)
+        button.setTitle("Download", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -83,17 +58,16 @@ final class WallpaperDetailView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(with model: Wallpaper) {
+        imageView.image = .getImageFromFile(fileName: "/Wallpapers/\(model.rd1Lf2 ?? "" )")
+    }
 
     private func configureLayout() {
         backgroundColor = UIColor.backgroundWhite
         addSubview(navView)
-        addSubview(scrollView)
-        scrollView.addSubview(contentView)
-
-        contentView.addSubview(recommendedCollectionView)
-        contentView.addSubview(detailModsView)
-        contentView.addSubview(downloadButton)
-        contentView.addSubview(titleLabel)
+        addSubview(imageView)
+        addSubview(downloadButton)
 
         navView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -103,36 +77,16 @@ final class WallpaperDetailView: UIView {
             navView.widthAnchor.constraint(equalTo: widthAnchor),
             navView.heightAnchor.constraint(equalToConstant: 80),
 
-            scrollView.topAnchor.constraint(equalTo: navView.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 140),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
 
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-
-            detailModsView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            detailModsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
-            detailModsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Sizes.trailing),
-
-            downloadButton.topAnchor.constraint(equalTo: detailModsView.bottomAnchor, constant: UIDevice.current.isIPad ?  20 : 12),
-            downloadButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
-            downloadButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Sizes.trailing),
+            downloadButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: UIDevice.current.isIPad ?  20 : 12),
+            downloadButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.leading),
+            downloadButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Sizes.trailing),
             downloadButton.heightAnchor.constraint(equalToConstant: 52),
 
-            titleLabel.topAnchor.constraint(equalTo: downloadButton.bottomAnchor, constant: UIDevice.current.isIPad ?  40 : 24),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
-            titleLabel.widthAnchor.constraint(equalToConstant: 150),
-            titleLabel.heightAnchor.constraint(equalToConstant: 18),
-
-            recommendedCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            recommendedCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leading),
-            recommendedCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Sizes.trailing),
-            recommendedCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            recommendedCollectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: UIScreen.main.bounds.width / 3)
         ])
     }
 }

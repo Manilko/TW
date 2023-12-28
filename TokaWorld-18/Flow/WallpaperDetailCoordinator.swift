@@ -16,7 +16,7 @@ class WallpaperDetailCoordinator: Coordinator {
     var navigationController: UINavigationController
     let viewController: WallpaperDetailConrtoller
 
-    init(navigationController: UINavigationController, item: Mod, recommended: [Mod]) {
+    init(navigationController: UINavigationController, item: Wallpaper, recommended: [Wallpaper]) {
         self.navigationController = navigationController
         self.viewController = WallpaperDetailConrtoller(item: item, recommended: recommended)
     }

@@ -27,55 +27,23 @@ class LoadingScreenViewController: UIViewController {
         didSet{
         // pay attention to this
             StorageHandler.handleStorage(array: dataArray) {
-//                let modManager = DownloadManager<Mod>(results: RealmManager.shared.getObjects(Mod.self))
+
                 self.loadingIndicator.updateProgressView(progress: 1 / 7, completion: {})
-//                modManager.downloadData(nameDirectory: .mods) {
-//                    self.loadingIndicator.updateProgressView(progress: 1 / 7, completion: {})
-//                    print(" 🔶  DONE Mods")
-//                }
-                
-//                let furnitureElementManager = DownloadManager<FurnitureElement>(results: RealmManager.shared.getObjects(FurnitureElement.self))
+
                 self.loadingIndicator.updateProgressView(progress: 2 / 7, completion: {})
-//                modManager.downloadData(nameDirectory: .furniture) {
-//                    self.loadingIndicator.updateProgressView(progress: 2 / 7, completion: {})
-//                }
-                
-              
-//                let houseManager = DownloadManager<HouseIdea>(results: RealmManager.shared.getObjects(HouseIdea.self))
+
                 self.loadingIndicator.updateProgressView(progress: 3 / 7, completion: {})
-//                modManager.downloadData(nameDirectory: .house) {
-//                    self.loadingIndicator.updateProgressView(progress: 3 / 7, completion: {})
-//                }
-                
-//                let recipesManager = DownloadManager<Recipe>(results: RealmManager.shared.getObjects(Recipe.self))
+
                 self.loadingIndicator.updateProgressView(progress: 4 / 7, completion: {})
-//                modManager.downloadData(nameDirectory: .recipes) {
-//                    self.loadingIndicator.updateProgressView(progress: 4 / 7, completion: {})
-//                }
-                
-//                let guidesManager = DownloadManager<Guide>(results: RealmManager.shared.getObjects(Guide.self))
+
                 self.loadingIndicator.updateProgressView(progress: 5 / 7, completion: {})
-//                modManager.downloadData(nameDirectory: .guides) {
-//                    self.loadingIndicator.updateProgressView(progress: 5 / 7, completion: {})
-//                }
-//                let wallpapersManager = DownloadManager<Wallpaper>(results: RealmManager.shared.getObjects(Wallpaper.self))
+
                 self.loadingIndicator.updateProgressView(progress: 6 / 7, completion: {})
-//                modManager.downloadData(nameDirectory: .wallpapers) {
-//                    self.loadingIndicator.updateProgressView(progress: 6 / 7, completion: {
-//                    })
-//                }
-                
+
                 self.loadingIndicator.updateProgressView(progress: 7 / 7, completion: {
                     self.coordinatorDelegate?.didSelectScreen(.mods)
                 })
-//                let editorCategory: [EditorCategory] = Array(RealmManager.shared.getObjects(EditorCategory.self))
-                
-//                let herosElementSet = JsonParsingManager.parseEditorJSON(data: editorCategory)
-//                guard let herosElementSet else { return }
-//                for herosElement in herosElementSet {
-//                    herosElement.downloadPDFs {
-//                    }
-//                }
+
             }
         }
     }

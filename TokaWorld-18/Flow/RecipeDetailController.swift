@@ -26,7 +26,7 @@ final class RecipeDetailController: UIViewController {
         view().recommendedCollectionView.dataSource = self
         view().recommendedCollectionView.register(RecipeRecommendedCell.self, forCellWithReuseIdentifier: RecipeRecommendedCell.identifier)
         
-        view().downloadButton.addTarget(self, action: #selector(downloadFile), for: .touchUpInside)
+//        view().downloadButton.addTarget(self, action: #selector(downloadFile), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {

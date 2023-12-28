@@ -761,3 +761,102 @@ func updateFavoriteImage(isFavorite: Bool = false) {
     // favoriteImage.isHidden = !isFavorite
 }
 }
+
+
+class WallpaperCell: UICollectionViewCell, NibCapable {
+    
+    // MARK: - Properties
+
+    private let imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.layer.cornerRadius = 40
+        view.layer.borderWidth = 3
+        view.clipsToBounds = true
+        view.layer.masksToBounds = true
+        view.layer.borderColor = .borderColorBlue.cgColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let favoriteImage: UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .clear
+        image.image = UIImage(named: ImageNameNawMenuType.unFavorite.rawValue)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.hidesWhenStopped = true
+    return indicator
+    }()
+    
+    var optionTappedCallback: (() -> Void)?
+    
+    // MARK: - Initialization
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        loadingIndicator.stopAnimating()
+    }
+    
+    @objc func optionTapped() {
+        optionTappedCallback?()
+    }
+    
+    // MARK: - Public Method
+    
+    func configure(with model: Wallpaper) {
+        loadingIndicator.startAnimating()
+        let _ = DownloadManager<Wallpaper>(element: model).downloadData(nameDirectory: .wallpapers) { [weak self] in
+            self?.loadingIndicator.stopAnimating()
+            if let imageq: UIImage = .getImageFromFile(fileName: "/Wallpapers/\(model.rd1Lf2 ?? "" )") {
+                self?.imageView.image = imageq
+            }
+        }
+        
+        let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
+        favoriteImage.image = UIImage(named: imageType.rawValue)
+    }
+    
+    // MARK: - Setup UI
+    
+    private func setupUI() {
+
+        addSubview(imageView)
+        addSubview(favoriteImage)
+        
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        imageView.addSubview(loadingIndicator)
+        
+        NSLayoutConstraint.activate([
+            
+            loadingIndicator.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            favoriteImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 4),
+            favoriteImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
+            favoriteImage.widthAnchor.constraint(equalToConstant: 32),
+            favoriteImage.heightAnchor.constraint(equalToConstant: 32),
+
+        ])
+    }
+}

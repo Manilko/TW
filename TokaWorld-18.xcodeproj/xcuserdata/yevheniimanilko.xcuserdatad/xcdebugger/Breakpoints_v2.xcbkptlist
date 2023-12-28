@@ -1144,7 +1144,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
             endingLineNumber = "110"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkName = "loadEditor()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1300,8 +1300,8 @@
             filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "dataArray"
             landmarkType = "24">
          </BreakpointContent>
@@ -1316,58 +1316,10 @@
             filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "dataArray"
             landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E9FF5584-AED5-4691-A06C-42189B369B35"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "dataArray"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "E9FF5584-AED5-4691-A06C-42189B369B35 - bac4c2ccea269638"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in TokaWorld_18.LoadingScreenViewController.dataArray.didset : Swift.Result&lt;Swift.Array&lt;Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Decodable &amp; Swift.Encodable&gt;&gt;, TokaWorld_18.ParseError&gt;"
-                  moduleName = "TokaWorld-18"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yevheniimanilko/Documents/ios-toka-world-18-ref/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "1812">
-               </Location>
-               <Location
-                  uuid = "E9FF5584-AED5-4691-A06C-42189B369B35 - 3a99b0e70121630a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #7 () -&gt; () in closure #1 () -&gt; () in TokaWorld_18.LoadingScreenViewController.dataArray.didset : Swift.Result&lt;Swift.Array&lt;Swift.Dictionary&lt;TokaWorld_18.JsonPathType, Swift.Decodable &amp; Swift.Encodable&gt;&gt;, TokaWorld_18.ParseError&gt;"
-                  moduleName = "TokaWorld-18"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yevheniimanilko/Documents/ios-toka-world-18-ref/TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1380,8 +1332,8 @@
             filePath = "TokaWorld-18/Flow/LoadingScreen/LoadingScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "dataArray"
             landmarkType = "24">
          </BreakpointContent>
