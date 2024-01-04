@@ -2,7 +2,7 @@
 //  InternetAlertVC.swift
 //  TokaWorld-18
 //
-//  Created by Viacheslav Markov on 04.01.2024.
+//  Created by Yevhenii Manilko on 04.01.2024.
 //
 
 import UIKit

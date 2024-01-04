@@ -2,7 +2,7 @@
 //  ModsTVCollectionCell.swift
 //  TokaWorld-18
 //
-//  Created by Viacheslav Markov on 17.12.2023.
+//  Created by Yevhenii Manilko on 17.12.2023.
 //
 
 import UIKit
