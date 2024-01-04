@@ -65,7 +65,7 @@ class FilterView: UIView {
     
     let closeButton: RoundButton = {
         let button = RoundButton()
-        button.setImageA(UIImage.image(name: "close"))
+        button.setImageA(UIImage.image(name: .close))
         button.isUserInteractionEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -99,7 +99,7 @@ class FilterView: UIView {
         
         NSLayoutConstraint.activate([
             
-            mainView.heightAnchor.constraint(equalToConstant: 148),
+            mainView.heightAnchor.constraint(equalToConstant: 172),
             mainView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mainView.bottomAnchor.constraint(equalTo: bottomAnchor),
             mainView.trailingAnchor.constraint(equalTo: trailingAnchor),

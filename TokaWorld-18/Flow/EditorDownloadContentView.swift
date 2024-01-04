@@ -2,7 +2,7 @@
 //  EditorDownloadСщтеутеView.swift
 //  TokaWorld-18
 //
-//  Created by Viacheslav Markov on 27.12.2023.
+//  Created by Yevhenii Manilko on 27.12.2023.
 //
 
 import UIKit

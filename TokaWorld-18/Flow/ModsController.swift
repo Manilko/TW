@@ -11,22 +11,22 @@ import Realm
 
 final class ModsController: UIViewController {
     
-    var arrayMod: [Mod]
-    
-    var filterFlag: FilterType
+    // MARK: - Properties
+    private var collectionMod: [Mod]
+    private var filterFlag: FilterType
     private var searchResults: [Mod] = []
     private var filteredCollection: [Mod] = []
     
-    // MARK: - Properties
     weak var sideMenuDelegate: SideMenuDelegate?
     weak var coordinatorDelegate: AppCoordinatorDelegate?
     weak var itemDelegate: ItemPresrntDelegate?
     
     private lazy var modView = ModsView(frame: UIScreen.main.bounds)
     
+    // MARK: - lifeCycle
     init() {
         self.filterFlag = .all
-        self.arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
+        self.collectionMod = Array(RealmManager.shared.getObjects(Mod.self))
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,32 +38,22 @@ final class ModsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .backgroundBlue
         
-        modView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(modView)
-        
-        NSLayoutConstraint.activate([
-            modView.topAnchor.constraint(equalTo: view.topAnchor),
-            modView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            modView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            modView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
         setupSubViews()
         
-        filteredCollection = filterCollection(arrayMod, by: .all)
+        filteredCollection = filter(collectionMod, by: .all)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        arrayMod.removeAll()
-        arrayMod = Array(RealmManager.shared.getObjects(Mod.self))
+        collectionMod.removeAll()
+        collectionMod = Array(RealmManager.shared.getObjects(Mod.self))
         modView.modcCollectionView.reloadData()
     }
     
-    private func filterCollection(_ collection: [Mod], by filterType: FilterType) -> [Mod] {
+    // MARK: - private Method
+    private func filter(_ collection: [Mod], by filterType: FilterType) -> [Mod] {
         switch filterType {
         case .all:
             return collection
@@ -76,9 +66,22 @@ final class ModsController: UIViewController {
         }
     }
     
-    func setupSubViews() {
+    private func setupSubViews() {
+        
+        view.backgroundColor = .backgroundBlue
+        
+        modView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(modView)
+        
+        NSLayoutConstraint.activate([
+            modView.topAnchor.constraint(equalTo: view.topAnchor),
+            modView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            modView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            modView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
         modView.navView.leftButton.addTarget(self, action: #selector(menuDidTaped), for: .touchUpInside)
-        modView.navView.rightButton.addTarget(self, action: #selector(showContainerButtonTapped), for: .touchUpInside)
+        modView.navView.rightButton.addTarget(self, action: #selector(filterTapped), for: .touchUpInside)
         
         modView.modcCollectionView.register(ModsTVCollectionCell.self, forCellWithReuseIdentifier: ModsTVCollectionCell.identifier)
         modView.modcCollectionView.delegate = self
@@ -88,14 +91,14 @@ final class ModsController: UIViewController {
         modView.searchView.resultTableView.dataSource = self
         modView.searchView.resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        searchResults = Array(filteredCollection.prefix(3))
+        searchResults = Array(collectionMod.prefix(3))
         
-        // MARK: - searchView
+        //  searchView
         modView.searchView.closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         modView.searchView.searchTextField.delegate = self
         modView.searchView.searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
         
-        // MARK: - filterView
+        // filterView
         modView.filterView.collectionView.dataSource = self
         modView.filterView.collectionView.delegate = self
         modView.filterView.collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
@@ -106,14 +109,14 @@ final class ModsController: UIViewController {
         sideMenuDelegate?.showSideMenu()
     }
     
-    @objc private func showContainerButtonTapped(_ celector: UIButton) {
+    @objc private func filterTapped(_ celector: UIButton) {
         modView.filterView.isHidden = false
     }
     
-    func creationRecommendedArray(from array: [Mod], number elements: Int) -> [Mod] {
+    private func creationRecommendedArray(from array: [Mod], number elements: Int) -> [Mod] {
         var modifiedArray: [Mod] = []
 
-        for (index, element) in arrayMod.enumerated() {
+        for (index, element) in collectionMod.enumerated() {
             if index < elements {
                 modifiedArray.append(element)
             } else {
@@ -134,7 +137,9 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
             filterFlag = selectedFilter
             modView.filterView.collectionView.reloadData()
             
-            filteredCollection = filterCollection(arrayMod, by: selectedFilter)
+            filteredCollection = filter(collectionMod, by: selectedFilter)
+            
+            modView.lackLabel.isHidden = !filteredCollection.isEmpty
             
             modView.modcCollectionView.reloadData()
             modView.filterView.isHidden = true
@@ -147,12 +152,14 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var itemsInSection: Int = 0
+        
         if collectionView == modView.filterView.collectionView {
-            return FilterType.allCases.count
+            itemsInSection = FilterType.allCases.count
         }  else if collectionView == modView.modcCollectionView {
-            return filteredCollection.count
+            itemsInSection = filteredCollection.count
         }
-        return 0
+        return itemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -168,8 +175,7 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModsTVCollectionCell.identifier, for: indexPath) as? ModsTVCollectionCell
             else { return UICollectionViewCell() }
             // create service for configuration cell
-            let item = arrayMod[indexPath.row]
-           
+            let item = collectionMod[indexPath.row]
             cell.configure(with: item)
             return cell
             
@@ -192,7 +198,7 @@ extension ModsController: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
 }
 
-// MARK: - UITextFieldDelegate, search Target Actions
+// MARK: - search UITextFieldDelegate, Target Actions
 extension ModsController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -211,7 +217,7 @@ extension ModsController: UITextFieldDelegate {
 //        modView.searchView.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [
 //                NSAttributedString.Key.foregroundColor: UIColor.white
 //            ])
-        searchResults = filteredCollection.filter { ($0.rd1Ld4?.lowercased() ?? "").contains(searchText.lowercased()) }
+        searchResults = collectionMod.filter { ($0.rd1Ld4?.lowercased() ?? "").contains(searchText.lowercased()) }
         modView.searchView.resultTableView.reloadData()
         modView.searchView.resultTableView.isHidden = searchResults.isEmpty
         updateSearchViewHeight()
@@ -239,7 +245,7 @@ extension ModsController: UITextFieldDelegate {
     
 }
 
-//// MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 extension ModsController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
@@ -251,9 +257,9 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let item = arrayMod[indexPath.row]
+        let item = collectionMod[indexPath.row]
 //        let houseManager = DownloadManager<Mod>(element: item)
-        let recommended = Array(arrayMod[1...5])  // ????
+        let recommended = Array(collectionMod[1...5])  // ????
         itemDelegate?.presentDetailViewController(with: item, recommended: recommended)
         updateSearchHideTabel()
     }

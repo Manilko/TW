@@ -31,12 +31,13 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         image.layer.cornerRadius = 32
         return image
     }()
-    
-    private let favoriteImage: UIImageView = {
-        let image = UIImageView()
-        image.backgroundColor = .clear
-        image.image = UIImage(named: ImageNameNawMenuType.unFavorite.rawValue)
-        return image
+
+    let favoriteButton: RoundButton = {
+        let button = RoundButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled = true
+        button.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     private let titleLabel: UILabel = {
@@ -66,12 +67,12 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         return indicator
         }()
     
+    // MARK: - Initialization
     override func prepareForReuse() {
         image.image = nil
-        favoriteImage.isHidden = false
+        favoriteButton.isHidden = false
         titleLabel.text = ""
         descriptionLabel.text = ""
-        favoriteImage.image = nil
         loadingIndicator.stopAnimating()
     }
     
@@ -85,6 +86,14 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         return nil
     }
     
+    private func setupButton(_ button: RoundButton, withImageName: ImageNameNawMenuType) {
+        if withImageName == .none {
+            button.isHidden = true
+        } else{
+            button.setImageA(UIImage.image(name: withImageName.rawValue))
+        }
+    }
+    
     private func setup() {
         backgroundColor = .clear
         
@@ -92,7 +101,7 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         mainView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        favoriteImage.translatesAutoresizingMaskIntoConstraints = false
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         image.addSubview(loadingIndicator)
         
@@ -100,7 +109,7 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         mainView.addSubview(image)
         addSubview(titleLabel)
         addSubview(descriptionLabel)
-        addSubview(favoriteImage)
+        addSubview(favoriteButton)
         
         NSLayoutConstraint.activate([
             
@@ -119,22 +128,27 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
             
             titleLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
+            titleLabel.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: -4),
             
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
             descriptionLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -20),
-            descriptionLabel.trailingAnchor.constraint(equalTo: favoriteImage.leadingAnchor, constant: -4),
+            descriptionLabel.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: -4),
             
-            favoriteImage.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16),
-            favoriteImage.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
-            favoriteImage.widthAnchor.constraint(equalToConstant: 32),
-            favoriteImage.heightAnchor.constraint(equalToConstant: 32),
+            favoriteButton.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16),
+            favoriteButton.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 32),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 32),
         ])
     }
-    
+    var configureModel: Mod = Mod()
     func configure(with model: Mod) {
+        configureModel = model
         loadingIndicator.startAnimating()
+        
+        let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
+        setupButton(favoriteButton, withImageName: imageType)
+        
         let _ = DownloadManager<Mod>(element: model).downloadData(nameDirectory: .mods) { [weak self] in
             self?.loadingIndicator.stopAnimating()
             if let imageq: UIImage = .getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
@@ -144,17 +158,25 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         
         titleLabel.text = model.rd1Ld4
         descriptionLabel.text = model.rd1Li1
-        
-        let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
-        favoriteImage.image = UIImage(named: imageType.rawValue)
+
     }
     
-    func updateDescriptionText(isFullDescription: Bool) {
-        // descriptionLabel.numberOfLines = 0
+    // Target Action
+    @objc private func favoriteButtonTapped() {
+        let model = configureModel
+        RealmManager.shared.runTransaction {
+            if model.favorites {
+                model.favorites = false
+                updateFavoriteButton(false)
+            } else {
+                model.favorites = true
+                updateFavoriteButton(true)
+            }
+        }
     }
-    
-    func updateFavoriteImage(isFavorite: Bool = false) {
-        // favoriteImage.isHidden = !isFavorite
+    func updateFavoriteButton(_ button: Bool) {
+        let imageType: ImageNameNawMenuType = button ? .favorite : .unFavorite
+        favoriteButton.setImageA(UIImage.image(name: imageType.rawValue))
     }
 }
 

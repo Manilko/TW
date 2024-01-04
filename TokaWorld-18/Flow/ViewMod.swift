@@ -16,6 +16,7 @@ final class ModsView: UIView {
     lazy var filterView: FilterView = {
         let view = FilterView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
         return view
     }()
     
@@ -26,7 +27,7 @@ final class ModsView: UIView {
         return collectionView
     }()
     
-    private let lackLabel: UILabel = {
+    let lackLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
         label.font = .customFont(type: .lilitaOne, size: 20)
@@ -79,6 +80,7 @@ final class ModsView: UIView {
         navView.translatesAutoresizingMaskIntoConstraints = false
         modcCollectionView.translatesAutoresizingMaskIntoConstraints = false
         filterView.translatesAutoresizingMaskIntoConstraints = false
+        lackLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -111,7 +113,5 @@ final class ModsView: UIView {
             filterView.trailingAnchor.constraint(equalTo: trailingAnchor),
             filterView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
-        filterView.isHidden = true
     }
 }

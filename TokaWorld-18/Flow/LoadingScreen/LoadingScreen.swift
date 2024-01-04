@@ -101,7 +101,7 @@ class LoadingScreenViewController: UIViewController {
         ])
         
         loadingLabel.text = NSLocalizedString("Loading", comment: "")
-        loadingLabel.font = UIFont(name: "ReadexPro-Bold", size: 25)
+        loadingLabel.font = .customFont(type: .lilitaOne, size: 32)
         loadingLabel.textColor = .white
         loadingLabel.textAlignment = .center
         loadingLabel.translatesAutoresizingMaskIntoConstraints = false

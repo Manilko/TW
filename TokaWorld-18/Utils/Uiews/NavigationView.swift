@@ -65,14 +65,6 @@ class NavigationView: UIView {
         }
     }
     
-    private func setupButton(_ button: RoundButton, withImageName: ImageType?) {
-        if withImageName == nil {
-            button.isHidden = true
-        } else{
-            button.setImage(UIImage.image(name: withImageName?.rawValue ?? ""), for: .normal)
-        }
-    }
-    
     func updateFavoriteButton(_ button: Bool) {
         let imageType: ImageNameNawMenuType = button ? .favorite : .unFavorite
         rightButton.setImageA(UIImage.image(name: imageType.rawValue))

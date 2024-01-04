@@ -23,6 +23,14 @@ extension UIImage {
     }
     
     static func image(
+        name: ImageNameNawMenuType,
+        renderingMode: RenderingMode = .alwaysOriginal
+    ) -> UIImage? {
+        .init(named: name.rawValue)?
+        .withRenderingMode(renderingMode)
+    }
+    
+    static func image(
         imageType: ImageType,
         renderingMode: RenderingMode = .alwaysOriginal
     ) -> UIImage? {
