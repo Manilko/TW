@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D5E254C2B2F666400124428 /* ModsTVCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E254B2B2F666400124428 /* ModsTVCollectionCell.swift */; };
+		0D7609BA2B474C5E003F2C0D /* NetworkStatusMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7609B92B474C5E003F2C0D /* NetworkStatusMonitor.swift */; };
+		0D7609BC2B474D39003F2C0D /* InternetAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7609BB2B474D39003F2C0D /* InternetAlertVC.swift */; };
 		0DA987A62B1CD88900E06C26 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A52B1CD88900E06C26 /* ImageType.swift */; };
 		0DA987A92B1CD95B00E06C26 /* UIImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */; };
 		0DA987AB2B1CD99F00E06C26 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */; };
@@ -158,6 +160,8 @@
 
 /* Begin PBXFileReference section */
 		0D5E254B2B2F666400124428 /* ModsTVCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsTVCollectionCell.swift; sourceTree = "<group>"; };
+		0D7609B92B474C5E003F2C0D /* NetworkStatusMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusMonitor.swift; sourceTree = "<group>"; };
+		0D7609BB2B474D39003F2C0D /* InternetAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetAlertVC.swift; sourceTree = "<group>"; };
 		0DA987A52B1CD88900E06C26 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		0DA987A82B1CD95B00E06C26 /* UIImage+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Init.swift"; sourceTree = "<group>"; };
 		0DA987AA2B1CD99F00E06C26 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 				4C575F292B0260B300135BF3 /* Guides */,
 				4C575F282B0260B000135BF3 /* Recipes */,
 				4C575F262B0260A900135BF3 /* Furniture */,
+				0D7609B92B474C5E003F2C0D /* NetworkStatusMonitor.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -712,6 +717,7 @@
 				4C575F022B02266A00135BF3 /* ModsController.swift */,
 				4C8939B22B13504700EB821A /* ViewMod.swift */,
 				4C575F062B022DCE00135BF3 /* ModsCoordinator.swift */,
+				0D7609BB2B474D39003F2C0D /* InternetAlertVC.swift */,
 			);
 			name = ModsTabelScreen;
 			sourceTree = "<group>";
@@ -1025,6 +1031,7 @@
 				4C648EBF2B3C7D9C00FA5D73 /* RecipeCoordinator.swift in Sources */,
 				4C648EC72B3C7DFB00FA5D73 /* HouseIdeaDetailView.swift in Sources */,
 				15B3B0752AFBFBF700706666 /* SceneDelegate.swift in Sources */,
+				0D7609BC2B474D39003F2C0D /* InternetAlertVC.swift in Sources */,
 				4C78BC112B1DFAE800C59A64 /* DownloadManager.swift in Sources */,
 				4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */,
 				4C7006C22B08DA34009A497C /* EditProcessController.swift in Sources */,
@@ -1032,6 +1039,7 @@
 				0DA987A92B1CD95B00E06C26 /* UIImage+Init.swift in Sources */,
 				4C648EB92B3C7D6900FA5D73 /* GuideDetailController.swift in Sources */,
 				4C50AC932B03A5BD00355DBF /* FurnitureCoordinator.swift in Sources */,
+				0D7609BA2B474C5E003F2C0D /* NetworkStatusMonitor.swift in Sources */,
 				4C648EBB2B3C7D7100FA5D73 /* GuideDetailView.swift in Sources */,
 				0DA987C02B1D034B00E06C26 /* TitleSubtitleAlertView.swift in Sources */,
 				4C6AFE682B075F780001B6A7 /* RecommendedCell.swift in Sources */,
@@ -1201,6 +1209,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LMH8QQN35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TokaWorld-18/Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save images.";
@@ -1227,6 +1236,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LMH8QQN35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TokaWorld-18/Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save images.";

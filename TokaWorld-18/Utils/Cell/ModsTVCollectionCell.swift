@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+import Realm
 
 final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
     private lazy var mainView: UIView = {
@@ -142,6 +144,7 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         ])
     }
     var configureModel: Mod = Mod()
+    
     func configure(with model: Mod) {
         configureModel = model
         loadingIndicator.startAnimating()
@@ -149,16 +152,34 @@ final class ModsTVCollectionCell: UICollectionViewCell, NibCapable {
         let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
         setupButton(favoriteButton, withImageName: imageType)
         
-        let _ = DownloadManager<Mod>(element: model).downloadData(nameDirectory: .mods) { [weak self] in
-            self?.loadingIndicator.stopAnimating()
-            if let imageq: UIImage = .getImageFromFile(fileName: "/Mods/\(model.rd1Lf2 ?? "" )") {
-                self?.image.image = imageq
-            }
-        }
+        downloadImage(type: model, nameDirectory: .mods, fileName: "Mods")
         
         titleLabel.text = model.rd1Ld4
         descriptionLabel.text = model.rd1Li1
-
+    }
+    
+    var configureFurnitureModel: FurnitureElement = FurnitureElement()
+    
+    func configure(with model: FurnitureElement) {
+        configureFurnitureModel = model
+        loadingIndicator.startAnimating()
+        
+        let imageType: ImageNameNawMenuType = model.favorites ? .favorite : .unFavorite
+        setupButton(favoriteButton, withImageName: imageType)
+        
+        downloadImage(type: model, nameDirectory: .furniture, fileName: "Furniture")
+        
+        titleLabel.text = model.rd1Ld4
+        descriptionLabel.text = model.rd1Li1
+    }
+    
+    func downloadImage<T: Object & Codable & MenuTypeNameble>(type: T, nameDirectory: JsonPathType, fileName: String) {
+        let _ = DownloadManager(element: type).downloadData(nameDirectory: nameDirectory) { [weak self] in
+            self?.loadingIndicator.stopAnimating()
+            if let imageq: UIImage = .getImageFromFile(fileName: "/\(fileName)/\(type.rd1Lf2 ?? "" )") {
+                self?.image.image = imageq
+            }
+        }
     }
     
     // Target Action

@@ -23,6 +23,9 @@ final class ModsController: UIViewController {
     
     private lazy var modView = ModsView(frame: UIScreen.main.bounds)
     
+    private let net = NetworkStatusMonitor.shared
+    private lazy var netAlert = InternetAlertVC()
+    
     // MARK: - lifeCycle
     init() {
         self.filterFlag = .all
@@ -42,6 +45,8 @@ final class ModsController: UIViewController {
         setupSubViews()
         
         filteredCollection = filter(collectionMod, by: .all)
+        
+        net.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -233,6 +238,7 @@ extension ModsController: UITextFieldDelegate {
     private func updateSearchHideTabel() {
         modView.searchView.searchTextField.text = nil
         updateSearch("")
+        modView.searchView.searchTextField.resignFirstResponder()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -277,4 +283,19 @@ extension ModsController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
-
+// MARK: - NetworkStatusMonitorDelegate
+extension ModsController: NetworkStatusMonitorDelegate {
+    func showMess() {
+    // Add logic to present side menu
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.netAlert.dismiss(animated: true)
+        })
+        
+        present(netAlert, animated: false)
+    }
+    
+    func hideMess() {
+        print("")
+//        self.netAlert.dismiss(animated: true)
+    }
+}

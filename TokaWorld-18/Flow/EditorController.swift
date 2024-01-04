@@ -17,6 +17,8 @@ final class EditorController: UIViewController {
     weak var sideMenuDelegate: SideMenuDelegate?
     weak var itemDelegate: PresrntDelegate?
     
+    private let net = NetworkStatusMonitor.shared
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         
@@ -47,6 +49,8 @@ final class EditorController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadEditor()
+        
+        net.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +121,7 @@ final class EditorController: UIViewController {
                 print("progress - ", pr)
                 self?.view().downloadingView.updateProgressView(progress: pr)
                 if pr == 1 {
+                    UserDefaults.standard.set(true, forKey: "hasDownloadEditorData")
                     self?.view().downloadingView.isHidden = true
                 }
             }
@@ -188,4 +193,25 @@ extension EditorController: UICollectionViewDataSource, UICollectionViewDelegate
 // MARK: - ViewSeparatable
 extension EditorController: ViewSeparatable {
     typealias RootView = EditirView
+}
+
+// MARK: - NetworkStatusMonitorDelegate
+extension EditorController: NetworkStatusMonitorDelegate {
+    func showMess() {
+    // no net
+        let isDownloadedData = UserDefaults.standard.bool(forKey: "hasDownloadEditorData")
+        if !isDownloadedData {
+            UserDefaults.standard.set(false, forKey: "hasDownloadEditorData")
+        }
+        view().downloadingView.isHidden = true
+       
+    }
+    
+    func hideMess() {
+        let isDownloadedData = UserDefaults.standard.bool(forKey: "hasDownloadEditorData")
+        if !isDownloadedData {
+            loadEditor()
+            view().downloadingView.isHidden = false
+        }
+    }
 }
