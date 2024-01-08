@@ -20,14 +20,56 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        guard let windowScene = (scene as? UIWindowScene) else { return }
        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
        window?.windowScene = windowScene
-
-       navigationController = UINavigationController()
-       homeCoordinator = AppCoordinator(navigationController: navigationController)
-       homeCoordinator.start()
-
-       window?.rootViewController = navigationController
-       window?.makeKeyAndVisible()
+       
+       showApp()
+       
+//       checkSubscriptionConfigs()
+//
+//       IAPManager.shared.validateSubscriptionWithCompletionHandler(productIdentifier: Configurations.mainSubscriptionID) { userHaveSub in
+//           switch userHaveSub {
+//           case true:
+//               self.showApp()
+//           case false:
+//               DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                   let unsubscribedVC = PremiumMainController()
+//                   unsubscribedVC.modalPresentationStyle = .fullScreen
+//                   self.window?.rootViewController = unsubscribedVC
+//                   self.window?.makeKeyAndVisible()
+//               })
+//           }
+//       }
    }
+    
+    func showApp() {
+        navigationController = UINavigationController()
+        homeCoordinator = AppCoordinator(navigationController: navigationController)
+        homeCoordinator.start()
+
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
+    
+    func checkSubscriptionConfigs() {
+        IAPManager.shared.validateSubscriptions(productIdentifiers: [Configurations.mainSubscriptionID,
+                                                                                   Configurations.unlockContentSubscriptionID,
+                                                                                   Configurations.unlockFuncSubscriptionID,
+                                                                                   Configurations.unlockerThreeSubscriptionID])
+        { results in
+            debugPrint("Subscription Validation Results: \(results)")
+                        
+            Configs_preTok.shared.mainSub = results[Configurations.mainSubscriptionID] ?? false
+            print("mainSub: \(Configs_preTok.shared.mainSub)")
+            
+            Configs_preTok.shared.unlockOne = results[Configurations.unlockContentSubscriptionID] ?? false
+            print("unlockOne: \(Configs_preTok.shared.unlockOne)")
+                        
+            Configs_preTok.shared.unlockTwo = results[Configurations.unlockFuncSubscriptionID] ?? false
+            print("unlockTwo: \(Configs_preTok.shared.unlockTwo)")
+            
+            Configs_preTok.shared.unlockThree = results[Configurations.unlockerThreeSubscriptionID] ?? false
+            print("unlockThree: \(Configs_preTok.shared.unlockThree)")
+        }
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -56,7 +98,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

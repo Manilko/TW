@@ -8,6 +8,11 @@
 		<string>ReadexPro-Bold.ttf</string>
 		<string>Jua-Regular.ttf</string>
 		<string>SF-Medium.ttf</string>
+		<string>sub.ttf</string>
+		<string>PollerOne-Regular.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>FontsFree-Net-SFProDisplay-Regular.ttf</string>
+		<string>SFProText-Bold.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -26,5 +31,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>
