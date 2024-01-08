@@ -38,7 +38,7 @@ class NetworkStatusMonitor {
                     self.delegate?.hideMess()
                     self.didShowAlert = false
                 }
-                print("Internet connection is active.")
+//                print("Internet connection is active.")
             }
         }
     }

@@ -13,7 +13,7 @@ final class NetworkMonitoring {
     // Public
     static var isConnection: Bool {
         if _isConnection {
-            print("Internet Connection Is Active.")
+//            print("Internet Connection Is Active.")
         } else {
             print("No Internet Connection.")
         }
@@ -42,7 +42,7 @@ final class NetworkMonitoring {
                 print("No internet connection.")
                 self.showDisconnectionAlert()
             } else {
-                print("Internet connection is active.")
+//                print("Internet connection is active.")
                 if isAlertPresented {
                     alert?.dismiss(animated: true)
                 }

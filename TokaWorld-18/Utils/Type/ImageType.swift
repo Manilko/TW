@@ -26,6 +26,7 @@ enum ImageType: String, Codable, CaseIterable {
     case unFavorite
     
     case exitButton
+    case yed
     
     case smile
     

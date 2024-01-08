@@ -12,6 +12,7 @@ import PDFKit
 
 final class EditProcessController: UIViewController {
     
+    // MARK: - Properties
     private var startBodyElementSet: HeroSet = HeroSet()
     private var startToDel: HeroSet
     
@@ -41,8 +42,13 @@ final class EditProcessController: UIViewController {
     
     private var oneStepHeroChanges: HeroSet = HeroSet() {
         didSet {
-            
+
             storyHeroChanges.append(oneStepHeroChanges)
+
+            if storyHeroChanges.count > 1 && currentNavigationIndex < (storyHeroChanges.count - 1) {
+                currentNavigationIndex = storyHeroChanges.count - 1
+//                storyHeroChanges = update(with: (storyHeroChanges.count + 1) - (currentNavigationIndex - 1), story: storyHeroChanges)
+            }
         }
     }
 
@@ -52,10 +58,9 @@ final class EditProcessController: UIViewController {
         }
     }
     
-    
-    // MARK: - Properties
     weak var coordinatorDelegate: EditProcessDelegate?
     
+    // MARK: -
     init(item: HeroSet) {
         
         self.startToDel = item
@@ -135,13 +140,24 @@ final class EditProcessController: UIViewController {
         
     }
     
+    func update(with itemIndex: Int, story: [HeroSet]) -> [HeroSet] {
+        guard itemIndex >= 0 && itemIndex <= story.count else {
+            return story
+        }
+
+        let updatedArray = Array(story.dropLast(itemIndex))
+        return updatedArray
+    }
+    
+    
     @objc func leftButtonTapped() {
-            currentNavigationIndex -= 1
+        currentNavigationIndex -= 1
     }
 
     @objc func rightButtonTapped() {
-            currentNavigationIndex += 1
+        currentNavigationIndex += 1
     }
+
     
     @objc private func backDidTaped(_ celector: UIButton) {
         
@@ -335,141 +351,74 @@ extension EditProcessController: UICollectionViewDelegate, UICollectionViewDataS
 
 extension EditProcessController{
     
-    func updateGenderSet(with itemIndex: Int) {
-        let genderChangeSet = HeroSet()
-
-        startBodyElementSet.gender = (itemIndex == 0) ? .boy : .girl
-
-        for (ind, subview) in view().characterView.subviews.enumerated() {
+        func updateGenderSet(with itemIndex: Int) {
             
-            let genderBodyPart = (startBodyElementSet.gender == .boy) ?
-            startBodyElementSet.bodyParts[ind].boy.first :
-            startBodyElementSet.bodyParts[ind].girl.first
+            self.presentTwoVLabelAndTwoHButtonAlert(
+                titleText: "Think it over:",
+                subtitleText: "Confirming will discard all modifications.",
+                leftButtonImageType: .cancelButton,
+                rightButtonImageType: .yed,
+                leftCompletion: {
+                    print("leftCompletion tapped")
+                    self.dismiss(animated: true)
+                },
+                rightCompletion: { [self] in
+                    print("rightCompletion tapped")
+                    let genderChangeSet = HeroSet()
             
-            if let imageView = subview as? UIImageView {
-
-                let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
-                let  part = startBodyElementSet.bodyParts[ind]
-                part.valueValue = fileName
-
-                imageView.image = ImageSeries.getImageFromFile(with: fileName)
-
-                genderChangeSet.bodyParts.append(part)
-                genderChangeSet.gender = startBodyElementSet.gender
-                let image: Data? = .createImageData(from: view().characterView)
-                genderChangeSet.iconImage = image
-            }
+                    self.startBodyElementSet.gender = (itemIndex == 0) ? .boy : .girl
+            
+                    for (ind, subview) in self.view().characterView.subviews.enumerated() {
+            
+                        let genderBodyPart = (startBodyElementSet.gender == .boy) ?
+                        startBodyElementSet.bodyParts[ind].boy.first :
+                        startBodyElementSet.bodyParts[ind].girl.first
+            
+                        if let imageView = subview as? UIImageView {
+            
+                            let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
+                            let  part = startBodyElementSet.bodyParts[ind]
+                            part.valueValue = fileName
+            
+                            imageView.image = ImageSeries.getImageFromFile(with: fileName)
+            
+                            genderChangeSet.bodyParts.append(part)
+                            genderChangeSet.gender = startBodyElementSet.gender
+                            let image: Data? = .createImageData(from: view().characterView)
+                            genderChangeSet.iconImage = image
+                        }
+                    }
+            
+                    currentNavigationIndex = -2
+                    storyHeroChanges.removeAll()
+                    oneStepHeroChanges = genderChangeSet
+                    
+                    self.dismiss(animated: true)
+                }
+            )
+            
+     
         }
-        
-        currentNavigationIndex = -2
-        storyHeroChanges.removeAll()
-        oneStepHeroChanges = genderChangeSet
-    }
     
     func createOneNextStep(with fileName: String, and index: Int) -> HeroSet {
         
         guard let previousHeroSet = storyHeroChanges.last else { return HeroSet() }
         let newHeroSet = HeroSet()
-
+        
         let bodyParts: List<BodyPart> = List<BodyPart>()
         
         for element in previousHeroSet.bodyParts{
             let bodyPart: BodyPart = BodyPart(value: element)
             bodyParts.append(bodyPart)
         }
-
+        
         newHeroSet.gender = previousHeroSet.gender
         newHeroSet.bodyParts.append(objectsIn: bodyParts)
         newHeroSet.bodyParts[index].valueValue = fileName
-
+        
         let image: Data? = .createImageData(from: view().characterView)
         newHeroSet.iconImage = image
-  
+        
         return newHeroSet
     }
 }
-
-
-//
-//func updateGenderSet(with itemIndex: Int) {
-//    
-//    
-//    if storyHeroChanges.count > 1 {
-//        self.presentTwoVLabelAndTwoHButtonAlert(
-//            titleText: "Think it over:",
-//            subtitleText: "Confirming will discard all modifications.",
-//            leftButtonImageType: .cancelButton,
-//            rightButtonImageType: .favorite,
-//            leftCompletion: {
-//                print("leftCompletion tapped")
-//            },
-//            rightCompletion: {
-//                print("rightCompletion tapped")
-//                self.storyHeroChanges.removeAll()
-//                
-//                let genderChangeSet = HeroSet()
-//                self.storyHeroChanges.append(genderChangeSet)
-//                self.startBodyElementSet.gender = (itemIndex == 0) ? .boy : .girl
-//
-//                for (ind, subview) in self.view().characterView.subviews.enumerated() {
-//                    
-//                    let genderBodyPart = (self.startBodyElementSet.gender == .boy) ?
-//                    self.startBodyElementSet.bodyParts[ind].boy.first :
-//                    self.startBodyElementSet.bodyParts[ind].girl.first
-//                    
-//                    if let imageView = subview as? UIImageView {
-//
-//                        let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
-//                        let  part = self.startBodyElementSet.bodyParts[ind]
-//                        part.valueValue = fileName
-//
-//                        imageView.image = ImageSeries.getImageFromFile(with: fileName)
-//
-//                        genderChangeSet.bodyParts.append(part)
-//                        genderChangeSet.gender = self.startBodyElementSet.gender
-//                        let image: Data? = .createImageData(from: self.view().characterView)
-//                        genderChangeSet.iconImage = image
-//                    }
-//                }
-//
-//                self.oneStep = genderChangeSet
-//                self.currentIndex = 0
-//                
-//                self.dismiss(animated: true)
-////                    self.coordinatorDelegate?.pop(self)
-//            }
-//        )
-//    } else{
-//        let genderChangeSet = HeroSet()
-//
-//        self.startBodyElementSet.gender = (itemIndex == 0) ? .boy : .girl
-//
-//        for (ind, subview) in self.view().characterView.subviews.enumerated() {
-//            
-//            let genderBodyPart = (self.startBodyElementSet.gender == .boy) ?
-//            self.startBodyElementSet.bodyParts[ind].boy.first :
-//            self.startBodyElementSet.bodyParts[ind].girl.first
-//            
-//            if let imageView = subview as? UIImageView {
-//
-//                let fileName = genderBodyPart?.vcbVnbvbvBBB ?? ""
-//                let  part = self.startBodyElementSet.bodyParts[ind]
-//                part.valueValue = fileName
-//
-//                imageView.image = ImageSeries.getImageFromFile(with: fileName)
-//
-//                genderChangeSet.bodyParts.append(part)
-//                genderChangeSet.gender = self.startBodyElementSet.gender
-//                let image: Data? = .createImageData(from: self.view().characterView)
-//                genderChangeSet.iconImage = image
-//            }
-//        }
-//
-//        self.oneStep = genderChangeSet
-//    }
-//    
-//    
-//    
-//    
-//   
-//}
