@@ -35,5 +35,8 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+    <key>NSUserTrackingUsageDescription</key>
+        <string>We need your permission to track your data for personalized ads.</string>
+
 </dict>
 </plist>
