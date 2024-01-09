@@ -81,4 +81,18 @@ enum SideMenuType: Int, CaseIterable {
             "wallpapers"
         }
     }
+    
+    var isBlocked: Bool {
+        switch self {
+            
+        case .mods:
+            return !configs.unlockOne
+        case .editor:
+            return !configs.unlockTwo
+        case .furniture:
+            return !configs.unlockThree
+        default:
+            return false
+        }
+    }
 }

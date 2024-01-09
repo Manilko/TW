@@ -70,7 +70,8 @@ extension SideMenuController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuTVCell.identifier, for: indexPath) as? SideMenuTVCell else { return UITableViewCell() }
-        cell.configure(type: SideMenuType.allCases[indexPath.row])
+        let item = SideMenuType.allCases[indexPath.row]
+        cell.configure(type: item)
         return cell
     }
 }

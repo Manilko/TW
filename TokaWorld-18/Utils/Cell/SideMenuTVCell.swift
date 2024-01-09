@@ -101,9 +101,11 @@ final class SideMenuTVCell: UITableViewCell, NibCapable {
         selectionStyle = .none
     }
     
-    func configure(type: SideMenuType, isSubscription: Bool = true) {
+    func configure(type: SideMenuType) {
         image.image = UIImage(named: type.icon)
         label.text = type.title
-        lockImage.isHidden = isSubscription
+        lockImage.isHidden = !type.isBlocked
+        mainView.backgroundColor = type.isBlocked ? .unBlueCustom : .blueCustom
+//        lockImage.backgroundColor = type.isBlocked ?
     }
 }

@@ -36,11 +36,16 @@ class AppCoordinator {
         navigationController.viewControllers.removeAll()
         switch screen {
         case .mods:
-            modsCoordinator = ModsCoordinator(navigationController: navigationController)
-            modsCoordinator?.modsController.coordinatorDelegate = self
-            modsCoordinator?.modsController.sideMenuDelegate = self
-            modsCoordinator?.modsController.itemDelegate = modsCoordinator
-            modsCoordinator?.start()
+            if configs.unlockOne{
+                modsCoordinator = ModsCoordinator(navigationController: navigationController)
+                modsCoordinator?.modsController.coordinatorDelegate = self
+                modsCoordinator?.modsController.sideMenuDelegate = self
+                modsCoordinator?.modsController.itemDelegate = modsCoordinator
+                modsCoordinator?.start()
+            } else {
+                navigateToPremiumVC_preTok(product: .unlockContentProduct)
+            }
+          
         case .houseIdeas:
             houseIdeasCoordinator = HouseIdeaCoordinator(navigationController: navigationController)
             houseIdeasCoordinator?.controller.coordinatorDelegate = self
@@ -104,5 +109,24 @@ extension AppCoordinator: AppCoordinatorDelegate{
     
     func pop(_ cender: UIViewController) {
         cender.dismiss(animated: true)
+    }
+}
+extension AppCoordinator{
+//    func changeVC() {
+//        if configs.unlockOne {
+//            navigateToPremiumVC_preTok(product: .unlockContentProduct)
+//        }
+//        if configs.unlockTwo {
+//            navigateToPremiumVC_preTok(product: .unlockFuncProduct)
+//        }
+//        if configs.unlockThree {
+//            navigateToPremiumVC_preTok(product: .unlockOther)
+//        }
+//    }
+    func navigateToPremiumVC_preTok(product: PremiumMainControllerStyle) {
+        let vc = PremiumMainController()
+        vc.productBuy = product
+        vc.modalPresentationStyle = .fullScreen
+        navigationController.present(vc, animated: true)
     }
 }

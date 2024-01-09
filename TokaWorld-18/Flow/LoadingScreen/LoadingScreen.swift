@@ -41,13 +41,30 @@ class LoadingScreenViewController: UIViewController {
                 self.loadingIndicator.updateProgressView(progress: 6 / 7, completion: {})
 
                 self.loadingIndicator.updateProgressView(progress: 7 / 7, completion: {
-                    self.coordinatorDelegate?.didSelectScreen(.mods)
+//                     check sub
+                    self.changeVC()
+                    
                 })
 
             }
         }
     }
 
+    func changeVC() {
+        if configs.unlockOne {
+            self.coordinatorDelegate?.didSelectScreen(.mods)
+            return
+        }
+        if configs.unlockTwo {
+            self.coordinatorDelegate?.didSelectScreen(.editor)
+            return
+        }
+        if configs.unlockThree {
+            self.coordinatorDelegate?.didSelectScreen(.furniture)
+            return
+        }
+        self.coordinatorDelegate?.didSelectScreen(.houseIdeas)
+    }
 
     init(viewModel: LoadingScreenViewModel) {
         self.viewModel = viewModel

@@ -28,6 +28,10 @@ extension UIColor {
         return UIColor(red: 0.34, green: 0.49, blue: 1, alpha: 1)
     }
     
+    static var unBlueCustom: UIColor {
+        return UIColor(red: 176/255, green: 194/255, blue: 255/255, alpha: 1)
+    }
+    
     static var lettersWhite: UIColor {
         return UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     }
