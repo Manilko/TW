@@ -2,7 +2,7 @@
 //  NotificationService.swift
 //  PushwooshCenterToka
 //
-//  Created by Viacheslav Markov on 08.01.2024.
+//  Created by Yevhenii Manilko on 08.01.2024.
 //
 
 import UserNotifications

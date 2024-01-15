@@ -1,8 +1,7 @@
 //
-//  Configs_preTok.swift
-//  ios-toka-world-23-ref
+//  TokaWorld-18
 //
-//  Created by Viacheslav Markov on 08.12.2023.
+//  Created by Yevhenii Manilko on 13.11.2023.
 //
 
 import Foundation

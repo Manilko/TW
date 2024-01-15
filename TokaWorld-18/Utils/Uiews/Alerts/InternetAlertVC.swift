@@ -32,3 +32,29 @@ final class InternetAlertVC: UIViewController {
         titleView.configureUI()
     }
 }
+
+final class InfoAlertVC: UIViewController {
+    lazy private var titleView = TitleSubtitleAlertView(
+        titleText: "Saved to gallery",
+        subtitleText: ""
+    )
+    
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+        self.modalTransitionStyle = .crossDissolve
+        self.modalPresentationStyle = .overFullScreen
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .clear
+        setupUI()
+    }
+    
+    private func setupUI() {
+        view.addSubview(titleView)
+        titleView.autoPinEdgesToSuperView()
+        
+        titleView.configureUI()
+    }
+}

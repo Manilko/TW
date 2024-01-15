@@ -253,7 +253,7 @@ final class BodyPart: Object, Codable, Sequence {
             // Check if the file already exists in the document directory
             if let filePath = localFilePath(for: imageItem) {
                 if fileManager.fileExists(atPath: filePath.path) {
-                    print(" ℹ️ File already exists at: \(filePath)")
+                    print(" ⚠️ File already exists at: \(filePath)")
                     completion()
                     continue // Skip download if the file already exists
                 }
@@ -303,7 +303,9 @@ final class BodyPart: Object, Codable, Sequence {
 
         if let bvcfXbnbjb6HhnPath = imageItem.bvcfXbnbjb6Hhn {
             fileName = bvcfXbnbjb6HhnPath
-        } else if let vcbVnbvbvBBBPath = imageItem.vcbVnbvbvBBB {
+        }
+        
+        if let vcbVnbvbvBBBPath = imageItem.vcbVnbvbvBBB {
             fileName = vcbVnbvbvBBBPath
         }
 

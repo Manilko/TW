@@ -36,7 +36,7 @@ class AppCoordinator {
         navigationController.viewControllers.removeAll()
         switch screen {
         case .mods:
-            if configs.unlockOne{
+            if !configs.unlockOne{
                 modsCoordinator = ModsCoordinator(navigationController: navigationController)
                 modsCoordinator?.modsController.coordinatorDelegate = self
                 modsCoordinator?.modsController.sideMenuDelegate = self
@@ -53,11 +53,15 @@ class AppCoordinator {
             houseIdeasCoordinator?.controller.itemDelegate = houseIdeasCoordinator
             houseIdeasCoordinator?.start()
         case .furniture:
-            furnitureCoordinator = FurnitureCoordinator(navigationController: navigationController)
-            furnitureCoordinator?.viewController.coordinatorDelegate = self
-            furnitureCoordinator?.viewController.sideMenuDelegate = self
-            furnitureCoordinator?.viewController.itemDelegate = furnitureCoordinator
-            furnitureCoordinator?.start()
+            if configs.unlockThree{
+                furnitureCoordinator = FurnitureCoordinator(navigationController: navigationController)
+                furnitureCoordinator?.viewController.coordinatorDelegate = self
+                furnitureCoordinator?.viewController.sideMenuDelegate = self
+                furnitureCoordinator?.viewController.itemDelegate = furnitureCoordinator
+                furnitureCoordinator?.start()
+            }else {
+                navigateToPremiumVC_preTok(product: .unlockContentProduct)
+            }
         case .editor:
             editirCoordinator = EditirCoordinator(navigationController: navigationController)
             editirCoordinator?.viewController.sideMenuDelegate = self

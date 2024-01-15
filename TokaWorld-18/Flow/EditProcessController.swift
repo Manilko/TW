@@ -84,7 +84,7 @@ final class EditProcessController: UIViewController {
         
         
         self.countSecondCVCell = item.bodyParts.first?.item.count ?? 0
-
+//print(item)
         
         //navView
         view().navView.leftButton.addTarget(self, action: #selector(backDidTaped), for: .touchUpInside)
@@ -188,7 +188,9 @@ final class EditProcessController: UIViewController {
         RealmManager.shared.deleteObject(HeroSet.self, primaryKeyValue: startToDel.id)
         RealmManager.shared.add(lastSet)
         
+        let array = Array(RealmManager.shared.getObjects(HeroSet.self))
         coordinatorDelegate?.pop(self)
+        coordinatorDelegate?.presentDetailViewController(herosSet: array, chosenIndex: array.count - 1)
     }
 
 }

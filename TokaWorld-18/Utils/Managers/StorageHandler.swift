@@ -50,6 +50,8 @@ class StorageHandler {
                    }
                    
                }
+            // set flag
+            UserDefaults.standard.set(true, forKey: "isDownloadData")
 
            case .failure(let error):
                switch error {

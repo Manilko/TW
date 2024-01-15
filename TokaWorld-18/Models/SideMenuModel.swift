@@ -220,6 +220,7 @@ final class Mod: Object, Codable, MenuTypeNameble {
     @objc dynamic var rd1Ld4: String?  // "icon"
     @objc dynamic var rd1Li1: String?  // "title"
     @objc dynamic var rd1Lf2: String? // description
+    @objc dynamic var rd1Lf3: String? // description
 
     override static func primaryKey() -> String? {
         return "id"
@@ -233,6 +234,7 @@ final class Mod: Object, Codable, MenuTypeNameble {
         case rd1Ld4 = "_rd1ld4"
         case rd1Li1 = "_rd1li1"
         case rd1Lf2 = "_rd1lf2"
+        case rd1Lf3 = "_rd1lt3"
         case id
     }
 
@@ -247,6 +249,7 @@ final class Mod: Object, Codable, MenuTypeNameble {
         self.rd1Ld4 = try container.decodeIfPresent(String.self, forKey: .rd1Ld4)
         self.rd1Li1 = try container.decodeIfPresent(String.self, forKey: .rd1Li1)
         self.rd1Lf2 = try container.decodeIfPresent(String.self, forKey: .rd1Lf2)
+        self.rd1Lf3 = try container.decodeIfPresent(String.self, forKey: .rd1Lf3)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -259,6 +262,7 @@ final class Mod: Object, Codable, MenuTypeNameble {
         try container.encodeIfPresent(rd1Li1, forKey: .rd1Li1)
         try container.encodeIfPresent(rd1Lf2, forKey: .rd1Lf2)
         try container.encodeIfPresent(rd1Ld4, forKey: .rd1Ld4)
+        try container.encodeIfPresent(rd1Lf3, forKey: .rd1Lf3)
     }
 }
 

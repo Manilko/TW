@@ -110,6 +110,12 @@ final class DetailEditController: UIViewController {
             print("Error saving image: \(error.localizedDescription)")
         } else {
             print("Image saved successfully")
+            let alert = InfoAlertVC()
+            present(alert, animated: false)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                alert.dismiss(animated: false)
+            })
         }
     }
 }

@@ -189,6 +189,7 @@
 		4C648ECB2B3C7E2E00FA5D73 /* HouseIdeaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648ECA2B3C7E2E00FA5D73 /* HouseIdeaView.swift */; };
 		4C648ECD2B3C7E3B00FA5D73 /* HouseIdeaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C648ECC2B3C7E3B00FA5D73 /* HouseIdeaCoordinator.swift */; };
 		4C66E7902B2C8DE700EB79DF /* EditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */; };
+		4C6978732B51CC91003CFE2D /* TitleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6978722B51CC91003CFE2D /* TitleAlert.swift */; };
 		4C6AFE612B0754FF0001B6A7 /* DownloadPictureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE602B0754FF0001B6A7 /* DownloadPictureCoordinator.swift */; };
 		4C6AFE632B07554A0001B6A7 /* DownloadPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE622B07554A0001B6A7 /* DownloadPictureController.swift */; };
 		4C6AFE652B07592E0001B6A7 /* DetailModsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AFE642B07592E0001B6A7 /* DetailModsView.swift */; };
@@ -472,6 +473,7 @@
 		4C648ECA2B3C7E2E00FA5D73 /* HouseIdeaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeaView.swift; sourceTree = "<group>"; };
 		4C648ECC2B3C7E3B00FA5D73 /* HouseIdeaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseIdeaCoordinator.swift; sourceTree = "<group>"; };
 		4C66E78F2B2C8DE700EB79DF /* EditAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlert.swift; sourceTree = "<group>"; };
+		4C6978722B51CC91003CFE2D /* TitleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAlert.swift; sourceTree = "<group>"; };
 		4C6AFE602B0754FF0001B6A7 /* DownloadPictureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPictureCoordinator.swift; sourceTree = "<group>"; };
 		4C6AFE622B07554A0001B6A7 /* DownloadPictureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPictureController.swift; sourceTree = "<group>"; };
 		4C6AFE642B07592E0001B6A7 /* DetailModsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModsView.swift; sourceTree = "<group>"; };
@@ -793,6 +795,8 @@
 		0DA987B62B1CF81700E06C26 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
+				0D7609BB2B474D39003F2C0D /* InternetAlertVC.swift */,
+				4C6978722B51CC91003CFE2D /* TitleAlert.swift */,
 				0DA987BB2B1CFBFE00E06C26 /* BlueTitleAlertView.swift */,
 				0DA987BF2B1D034B00E06C26 /* TitleSubtitleAlertView.swift */,
 				0DA987C12B1D036600E06C26 /* TitleSubtitleAndTwoHButtonView.swift */,
@@ -882,7 +886,6 @@
 				4C575F292B0260B300135BF3 /* Guides */,
 				4C575F282B0260B000135BF3 /* Recipes */,
 				4C575F262B0260A900135BF3 /* Furniture */,
-				0D7609B92B474C5E003F2C0D /* NetworkStatusMonitor.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1188,7 +1191,6 @@
 				4C575F022B02266A00135BF3 /* ModsController.swift */,
 				4C8939B22B13504700EB821A /* ViewMod.swift */,
 				4C575F062B022DCE00135BF3 /* ModsCoordinator.swift */,
-				0D7609BB2B474D39003F2C0D /* InternetAlertVC.swift */,
 			);
 			name = ModsTabelScreen;
 			sourceTree = "<group>";
@@ -1230,7 +1232,6 @@
 				4C4CC7442B13D43E0030885C /* LoadingScreen.swift */,
 				4C78BBFB2B1C933A00C59A64 /* LoadingScreenCoordinator.swift */,
 				4C78BC0E2B1DDBFF00C59A64 /* LoadingScreenVM.swift */,
-				0DA987C32B1D0C9F00E06C26 /* NetworkMonitoring.swift */,
 			);
 			path = LoadingScreen;
 			sourceTree = "<group>";
@@ -1240,6 +1241,8 @@
 			children = (
 				0DA987B62B1CF81700E06C26 /* Alerts */,
 				4C78BBFE2B1C93B800C59A64 /* LinearLoadingIndicator.swift */,
+				0DA987C32B1D0C9F00E06C26 /* NetworkMonitoring.swift */,
+				0D7609B92B474C5E003F2C0D /* NetworkStatusMonitor.swift */,
 				15C9D6142AFE3824002232D3 /* NavigationView.swift */,
 				4C7006C72B0E934F009A497C /* CharacterImageViewManager.swift */,
 				4C6AFE642B07592E0001B6A7 /* DetailModsView.swift */,
@@ -1634,6 +1637,7 @@
 				0DA987C42B1D0C9F00E06C26 /* NetworkMonitoring.swift in Sources */,
 				4C648EB12B3C7D1100FA5D73 /* WallpaperDetailCoordinator.swift in Sources */,
 				0D760A692B4C5AED003F2C0D /* LayoutConstraintItem.swift in Sources */,
+				4C6978732B51CC91003CFE2D /* TitleAlert.swift in Sources */,
 				4C7006B92B08C1AF009A497C /* EditirCoordinator.swift in Sources */,
 				4C7006C82B0E934F009A497C /* CharacterImageViewManager.swift in Sources */,
 				4C78BC0F2B1DDBFF00C59A64 /* LoadingScreenVM.swift in Sources */,

@@ -67,7 +67,7 @@ final class DetailEditView: UIView {
         let h = UIStackView(arrangedSubviews: [deleteButton, editButton])
         h.axis = .horizontal
         h.alignment = .center
-        h.distribution = .fillEqually
+        h.distribution = .fillEqually // .fill and set width to buttons
         h.spacing = 8
         h.translatesAutoresizingMaskIntoConstraints = false
         return h

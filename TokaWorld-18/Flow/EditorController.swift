@@ -17,7 +17,13 @@ final class EditorController: UIViewController {
     weak var sideMenuDelegate: SideMenuDelegate?
     weak var itemDelegate: PresrntDelegate?
     
-    private let net = NetworkStatusMonitor.shared
+    private var networkMonitor = NetworkStatusMonitor.shared
+    
+    private var alert = InternetAlertVC()
+    private var isAlertPresented: Bool = false
+    var isInternetAvailable: Bool {
+        return NetworkStatusMonitor.shared.checkInternetConnectivity()
+    }
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -48,9 +54,22 @@ final class EditorController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadEditor()
         
-        net.delegate = self
+        networkMonitor.delegate = self
+
+
+        if networkMonitor.checkInternetConnectivity() {
+            loadEditor()
+        } else {
+                
+            view().downloadingView.isHidden = true
+            
+            presentAlert_preTok()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.hideAlert_preTok()
+            })
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +78,16 @@ final class EditorController: UIViewController {
     }
     
     @objc func addButtonTapped() {
+        let isDownloadedData = UserDefaults.standard.bool(forKey: "hasDownloadEditorData")
+        if !isDownloadedData, !(networkMonitor.checkInternetConnectivity())  {
+            
+            presentAlert_preTok()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.hideAlert_preTok()
+            })
+            return
+        }
+        
         itemDelegate?.presentEditProcessController(hero: listHeros.first ?? HeroSet())
     }
     
@@ -99,7 +128,6 @@ final class EditorController: UIViewController {
         herosElementlist.append(objectsIn: sortedHerosElementSet)
         
         herosBodyElementSet = HeroSet(item: herosElementlist)
-        //        herosBodyElementSet.gender = .girl
         
         return herosBodyElementSet
     }
@@ -198,13 +226,16 @@ extension EditorController: ViewSeparatable {
 // MARK: - NetworkStatusMonitorDelegate
 extension EditorController: NetworkStatusMonitorDelegate {
     func showMess() {
+        presentAlert_preTok()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            self.hideAlert_preTok()
+        })
     // no net
         let isDownloadedData = UserDefaults.standard.bool(forKey: "hasDownloadEditorData")
         if !isDownloadedData {
             UserDefaults.standard.set(false, forKey: "hasDownloadEditorData")
         }
         view().downloadingView.isHidden = true
-       
     }
     
     func hideMess() {
@@ -213,5 +244,19 @@ extension EditorController: NetworkStatusMonitorDelegate {
             loadEditor()
             view().downloadingView.isHidden = false
         }
+    }
+    
+    func presentAlert_preTok() {
+        if isAlertPresented { return }
+        isAlertPresented = true
+        var svsfvfdvfsvv: UInt { 1100156355352251 }
+        present(alert, animated: false)
+    }
+    
+    func hideAlert_preTok() {
+        var dsefef: NSInteger { 524524 }
+        if !isAlertPresented { return }
+        isAlertPresented = false
+        alert.dismiss(animated: false)
     }
 }

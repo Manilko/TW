@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+import Realm
 
 final class DownloadPictureController: UIViewController {
     
@@ -61,11 +63,55 @@ final class DownloadPictureController: UIViewController {
     }
     
     @objc private func downloadFile(_ celector: UIButton) {
-        guard let cell = view().recommendedCollectionView.visibleCells.first as? RecommendedCell,
-                let image = cell.imageView.image else { return }
+        let path = model?.rd1Lf3 ?? "1"
+        print(model?.rd1Lf3)
+        let str = "/Mods/" + path
+        
+        
+        let name = str
 
-          UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        let fileManager = FileManager.default
+
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return
+        }
+
+        var fileName = str
+
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+
+        if !fileManager.fileExists(atPath: fileURL.path) {
+            ServerManager.shared.getData(forPath: fileName) { data in
+                if let data = data {
+                    print(" ℹ️  data at: \(data)")
+                    saveDataToFileManager(data: data, fileURL: fileURL)
+                }
+            }
+        } else {
+            print(" ℹ️  File already exists: \(fileURL)")
+            coordinatorDelegate?.showActivityController_preTok(fileURL: fileURL, completedCompletion: {
+                print(" ✅  File saved")
+            })
+        }
+        
+        
+        func saveDataToFileManager(data: Data, fileURL: URL) {
+            do {
+                let directoryURL = fileURL.deletingLastPathComponent()
+                try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                try data.write(to: fileURL)
+                print(" ✅  File saved successfully at: \(fileURL)")
+                coordinatorDelegate?.showActivityController_preTok(fileURL: fileURL, completedCompletion: {
+                    print(" ✅  File saved")
+                })
+            } catch {
+                print(" ⛔ Error saving file: \(error)")
+            }
+        }
+        
       }
+    
+    
 
       @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
           if let error = error {
